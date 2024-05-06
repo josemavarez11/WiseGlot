@@ -2,6 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'welcome',
+    pathMatch: 'full'
+  },
+  {
     path: 'welcome',
     loadComponent: () => import('./views/welcome-view/welcome-view.page').then( m => m.WelcomeViewPage)
   },
