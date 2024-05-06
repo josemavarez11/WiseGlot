@@ -1,14 +1,28 @@
-<ion-content [fullscreen]="true" class="MainContent">
-
+<ion-content [fullscreen]="true" scrollY="false" class="MainContent">
   <div class="ContentA">
-    <p>
-      Welcome to the app
-    </p>
+    <p>Welcome to the app</p>
   </div>
 
   <div class="ContentB">
-    <ion-button>Login</ion-button>
-    <ion-button>Register</ion-button>
+    <section class="bodyB">
+      <div>
+        <section class="header-min">
+          <h4>HELLO, YOU</h4>
+        <p>
+          Nos encanta tenerte aquí, inicia sesión o regístrate para adentrarte
+          en el mundo de Wise Glot.
+        </p>
+        </section>
+        
+        <section class="body-min">
+          <div>
+            <button routerLink="/login">Iniciar sesión</button>
+          </div>
+          <div>
+            <button routerLink="/register">Registrarse</button>
+          </div>
+        </section>
+      </div>
+    </section>
   </div>
-
 </ion-content>
