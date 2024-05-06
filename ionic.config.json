@@ -1,0 +1,7 @@
+{
+  "name": "WiseGlot",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
