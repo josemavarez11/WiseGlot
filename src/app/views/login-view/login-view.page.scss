@@ -47,7 +47,7 @@ input{
     font-size: 14px;
     background-color: #F0F0F0;
 }
-input::placeholder{
+input{
     padding-left: 25px;
 }
 .Forgot{
@@ -74,6 +74,10 @@ input::placeholder{
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.3s;
+}
+.btnLogin:active{
+    background-color: #0600FF;
     transition: 0.3s;
 }
 article{
