@@ -18,4 +18,17 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () => import('./views/register-view/register-view.page').then( m => m.RegisterViewPage)
   },
+  {
+    path: 'forgot-password',
+    loadComponent: () => import('./views/forgot-password-view/forgot-password-view.page').then( m => m.ForgotPasswordViewPage)
+  },
+  {
+    path: 'password-change',
+    loadComponent: () => import('./views/password-change-view/password-change-view.page').then( m => m.PasswordChangeViewPage)
+  },
+  {
+    path: 'send-email',
+    loadComponent: () => import('./views/send-email-view/send-email-view.page').then( m => m.SendEmailViewPage)
+  },
+
 ];
