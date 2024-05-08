@@ -76,6 +76,10 @@ input{
     cursor: pointer;
     transition: 0.3s;
 }
+.btnLogin:active{
+    background-color: #0600FF;
+    transition: 0.3s;
+}
 article{
     display: flex;
     justify-content: flex-end;
