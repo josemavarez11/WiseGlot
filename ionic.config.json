@@ -1,5 +1,7 @@
 {
   "name": "WiseGlot",
-  "integrations": {},
-  "type": "angular"
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
 }
