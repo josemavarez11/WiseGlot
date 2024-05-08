@@ -25,10 +25,13 @@ ion-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .bodyB{
-    height: 80%;
+    height: 60%;
     width: 80%;
+    padding-top: 50px;
+    // background: red;
 }
 .contentInput{
     padding-top: 15px;
@@ -54,11 +57,12 @@ input::placeholder{
     background: none;
 }
 .contentBtn{
-    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    // background: green;
+    height: 30%;
 }
 .btnLogin{
     width: 200px;

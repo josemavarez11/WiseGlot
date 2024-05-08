@@ -1,13 +1,53 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register-view</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" scrollY="false" class="MainContent">
+  <div class="ContentA">
+    <section class="header">
+      <button class="back" [routerLink]="['/welcome']">
+        <img src="../../../assets/img/back.png" />
+      </button>
+      <img src="../../../assets/img/logoApp.png" class="logoApp" />
+    </section>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register-view</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <section class="bodyA">
+      <h4 class="Greeting">Registrate</h4>
+      <p class="descrip">
+        We have many things to show you, <br />we are sure you will love them.
+      </p>
+    </section>
+  </div>
+
+  <div class="ContentB">
+    <section class="bodyB">
+      <form class="contentInput">
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Name and Surname"
+        />
+        <input type="text" name="email" id="email" placeholder="Email" />
+        <input
+          type="text"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <button class="Forgot">¿Forgot Password?</button>
+      </form>
+    </section>
+
+    <section class="contentBtn">
+      <div class="btn">
+        <button class="btnLogin">Register</button>
+      </div>
+
+      <article>
+        <div class="link">
+          <p class="descriptionRegister">Already have an account?</p>
+          <button class="btnRegister" [routerLink]="['/login']">
+            Login
+          </button>
+        </div>
+      </article>
+    </section>
+  </div>
 </ion-content>
