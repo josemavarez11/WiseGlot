@@ -1,0 +1,84 @@
+@import '/src/global.scss';
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif !important;
+}
+ion-content {
+    --background: #ffffff;
+    height: 100%;
+    width: 100%;
+}
+.ContentA{
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ContentB{
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.bodyA{
+    width: 90%;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+}
+.bard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 21px;
+    background-color: blue;
+    border-radius: 10px;
+}
+h4{
+    font-size: 30px;
+    font-weight: 700;
+    color: #040099;
+    text-align: center;
+}
+img{
+    width: 15px;
+    height: 25px;
+}
+button{
+    background-color: transparent;
+}
+.descrip{
+    width: 90%;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+}
+.select{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    background: #F0F0F0;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.contentSelect{
+    padding-left: 40px;
+}
+.primary{
+    font-size: 17px;
+    font-weight: 500;
+    color: #040099;
+}
+.secondary{
+    font-size: 13px;
+    font-weight: 500;
+    color: #040099;
+}
