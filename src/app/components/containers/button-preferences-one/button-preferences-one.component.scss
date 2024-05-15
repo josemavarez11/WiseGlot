@@ -1,0 +1,30 @@
+.select{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 346px;
+    background: #F0F0F0;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.select:hover{
+    border: 1px solid #0600FF;
+    background-color: rgba(6, 0, 255, 0.2);
+}
+.contentSelect{
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.primary{
+    font-size: 18px;
+    font-weight: 700;
+    color: #040099;
+}
+.secondary{
+    font-size: 14px;
+    font-weight: 700;
+    color: #040099;
+}

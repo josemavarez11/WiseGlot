@@ -49,6 +49,7 @@ input{
 }
 input{
     padding-left: 25px;
+    color: black;
 }
 .Forgot{
     color: #1B1B1B;
@@ -138,15 +139,4 @@ article{
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: 40px;
-}
-.descrip{
-    font-size: 18px;
-    font-weight: 500;
-    color: #ffffff;
-    text-align: justify;
-}
-.Greeting{
-    font-size: 32px;
-    font-weight: 700;
-    color: #ffffff;
 }
