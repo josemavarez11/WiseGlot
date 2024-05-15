@@ -2,8 +2,8 @@
   <div class="ContentA">
     <section class="bodyA">
       <article class="top">
-        <button>
-          <img src="../../../assets/img/back-black.png" alt="" />
+        <button [routerLink]="['/preferences-view1']">
+          <img src="../../../assets/img/back-black.png"/>
         </button>
         <p class="number">2/4</p>
       </article>
@@ -20,18 +20,30 @@
     </div>
   </div>
   <div class="ContentB">
-    <button class="select">
-      <div class="contentSelect">
-        <h6 class="primary">Ingles</h6>
-        <p class="secondary">Ingles</p>
-      </div>
-    </button>
-
-    <button class="select">
-      <div class="contentSelect">
-        <h6 class="primary">Ingles</h6>
-        <p class="secondary">Ingles</p>
-      </div>
-    </button>
+    <app-button-preferences-two
+      img="../../../assets/icon/img1.png"
+      job="Opportunity to work"
+      rute="/preferences-view3"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img2.png"
+      job="Travel"
+      rute="/preferences-view3"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img3.png"
+      job="Study"
+      rute="/preferences-view3"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img4.png"
+      job="Personal interest"
+      rute="/preferences-view3"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img5.png"
+      job="Other"
+      rute="/preferences-view3"
+    />
   </div>
 </ion-content>

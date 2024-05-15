@@ -2,8 +2,8 @@
   <div class="ContentA">
     <section class="bodyA">
       <article class="top">
-        <button>
-          <img src="../../../assets/img/back-black.png" alt="" />
+        <button [routerLink]="['/preferences-view2']">
+          <img src="../../../assets/img/back-black.png"/>
         </button>
         <p class="number">3/4</p>
       </article>
@@ -20,18 +20,20 @@
     </div>
   </div>
   <div class="ContentB">
-    <button class="select">
-      <div class="contentSelect">
-        <h6 class="primary">Ingles</h6>
-        <p class="secondary">Ingles</p>
-      </div>
-    </button>
-
-    <button class="select">
-      <div class="contentSelect">
-        <h6 class="primary">Ingles</h6>
-        <p class="secondary">Ingles</p>
-      </div>
-    </button>
+    <app-button-preferences-two
+    img="../../../assets/icon/level1.png"
+    job="Beginner"
+    rute="/preferences-view4"
+  />
+  <app-button-preferences-two
+    img="../../../assets/icon/level2.png"
+    job="Intermediate"
+    rute="/preferences-view4"
+  />
+  <app-button-preferences-two
+    img="../../../assets/icon/level3.png"
+    job="Advanced"
+    rute="/preferences-view4"
+  />
   </div>
 </ion-content>
