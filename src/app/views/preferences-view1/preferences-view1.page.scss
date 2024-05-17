@@ -17,12 +17,15 @@ ion-content {
     justify-content: center;
     align-items: center;
 }
-.ContentB{
+.ContentB {
     height: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    -webkit-transition: opacity 0.5s ease, transform 0.5s ease; /* Prefijo para Safari y otros navegadores WebKit */
+  }
+  
 .bodyA{
     width: 90%;
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 // Components
 import { ButtonPreferencesOneComponent } from 'src/app/components/containers/button-preferences-one/button-preferences-one.component';
 import { ButtonPreferencesTwoComponent } from 'src/app/components/containers/button-preferences-two/button-preferences-two.component';
@@ -18,6 +19,7 @@ export class PreferencesView1Page implements OnInit {
   step: number = 0;
   titles: string[] = [
     "What's your native languege?",
+    "Que lenguajes deseas practicar?",
     "Por que quieres practicar el ingles?",
     "What's your english level?",
     "Selecciona tus temas de interes",
@@ -25,12 +27,13 @@ export class PreferencesView1Page implements OnInit {
 
   descriptions: string[] = [
     "Describe your level of fluency in your native language",
+    "Select the languages you want to practice",
     "We will use this information to match you with the right people",
     "Usually, how do you feel when you speak in english?",
     "All the topics you select will be used to match you with the right people",
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -47,6 +50,9 @@ export class PreferencesView1Page implements OnInit {
   previousStep(): void {
     if (this.step > 0) {
       this.step--;
+    }
+    else{
+      this.router.navigate(['/login']);
     }
   }
 

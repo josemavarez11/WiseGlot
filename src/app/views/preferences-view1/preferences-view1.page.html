@@ -44,54 +44,94 @@
       subLanguage="Mexico"
       (click)="selectOption(1)"
     />
+    <app-button-preferences-one
+      language="French"
+      subLanguage="France"
+      (click)="selectOption(1)"/>
+    <app-button-preferences-one
+      language="French"
+      subLanguage="Canada"
+      (click)="selectOption(1)"/>
+    <app-button-preferences-one
+      language="Portuguese"
+      subLanguage="Brazil"
+      (click)="selectOption(1)"/>
+    <app-button-preferences-one
+      language="Portuguese"
+      subLanguage="Portugal"
+      (click)="selectOption(1)"/>
+
   </div>
 
-  <div *ngIf="step === 1" class="ContentB">
+  <div class="ContentB" *ngIf="step === 1">
+    <app-button-preferences-two
+      img="../../../assets/icon/Portugal.png"
+      job="Portugues"
+      (click)="selectOption(2)"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/United States.png"
+      job="Ingles"
+      (click)="selectOption(2)"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/Germany.png"
+      job="Aleman"
+      (click)="selectOption(2)"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/Cuba.png"
+      job="Cubano"
+      (click)="selectOption(2)"
+    />
+  </div>
+
+  <div *ngIf="step === 2" class="ContentB">
     <app-button-preferences-two
       img="../../../assets/icon/img1.png"
       job="Opportunity to work"
-      (click)="selectOption(2)"
+      (click)="selectOption(3)"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img2.png"
       job="Travel"
-      (click)="selectOption(2)"
+      (click)="selectOption(3)"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img3.png"
       job="Study"
-      (click)="selectOption(2)"
+      (click)="selectOption(3)"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img4.png"
       job="Personal interest"
-      (click)="selectOption(2)"
+      (click)="selectOption(3)"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img5.png"
       job="Other"
-      (click)="selectOption(2)"
+      (click)="selectOption(3)"
     />
   </div>
-  <div *ngIf="step === 2" class="ContentB">
+  <div *ngIf="step === 3" class="ContentB">
     <app-button-preferences-two
       img="../../../assets/icon/level1.png"
       job="Beginner"
-      (click)="selectOption(3)"
+      (click)="selectOption(4)"
     />
     <app-button-preferences-two
       img="../../../assets/icon/level2.png"
       job="Intermediate"
-      (click)="selectOption(3)"
+      (click)="selectOption(4)"
     />
     <app-button-preferences-two
       img="../../../assets/icon/level3.png"
       job="Advanced"
-      (click)="selectOption(3)"
+      (click)="selectOption(4)"
     />
   </div>
 
-  <div *ngIf="step === 3" class="ContentB">
+  <div *ngIf="step === 4" class="ContentB">
     <app-button-preferences-two
       img="../../../assets/icon/img11.png"
       job="Sports"
@@ -158,5 +198,4 @@
     />
   </div>
 
-  <!-- Agrega más bloques *ngIf para otras opciones -->
 </ion-content>
