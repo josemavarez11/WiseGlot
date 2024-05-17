@@ -2,65 +2,161 @@
   <div class="ContentA">
     <section class="bodyA">
       <article class="top">
-        <button>
-          <img src="../../../assets/img/back-black.png" [routerLink]="['/login']"/>
+        <button (click)="previousStep()">
+          <img
+            src="../../../assets/img/back-black.png"
+          />
         </button>
-        <p>1/4</p>
+        <p class="contador">{{step + 1}}/{{titles.length}}</p>
       </article>
 
       <article>
-        <div class="bard"></div>
-        <h4>What's your native languege?</h4>
+        <div class="bard">
+          <div class="bard-fill" [ngStyle]="{'width': getProgressBardWidth()}"></div>
+        </div>
+        <app-title-preference [title]="titles[step]"/>
       </article>
     </section>
     <div class="descrip">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim aperiam
-        dignissimodd
+        {{descriptions[step]}}
       </p>
     </div>
   </div>
-  <div class="ContentB">
+  <div class="ContentB" *ngIf="step === 0">
     <app-button-preferences-one
       language="English"
       subLanguage="United States"
-    />
+      (click)="selectOption(1)"
+    ></app-button-preferences-one>
     <app-button-preferences-one
       language="English"
       subLanguage="United Kingdom"
-    />
-
+      (click)="selectOption(1)"
+    ></app-button-preferences-one>
     <app-button-preferences-one
-      language="Español"
-      subLanguage="España"
-    />
-    <app-button-preferences-one
-      language="Español"
-      subLanguage="México"
+      language="Spanish"
+      subLanguage="Spain"
+      (click)="selectOption(1)"
     />
     <app-button-preferences-one
-      language="Español"
-      subLanguage="Argentina"
-    />
-    <app-button-preferences-one
-      language="Español"
-      subLanguage="Colombia"
-    />
-    <app-button-preferences-one
-      language="Español"
-      subLanguage="Chile"
-    />
-    <app-button-preferences-one
-      language="Español"
-      subLanguage="Perú"
-    />
-    <app-button-preferences-one
-      language="Español"
-      subLanguage="Venezuela"
-    />
-    <app-button-preferences-one
-      language="Español"
-      subLanguage="Ecuador"
+      language="Spanish"
+      subLanguage="Mexico"
+      (click)="selectOption(1)"
     />
   </div>
+
+  <div *ngIf="step === 1" class="ContentB">
+    <app-button-preferences-two
+      img="../../../assets/icon/img1.png"
+      job="Opportunity to work"
+      (click)="selectOption(2)"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img2.png"
+      job="Travel"
+      (click)="selectOption(2)"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img3.png"
+      job="Study"
+      (click)="selectOption(2)"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img4.png"
+      job="Personal interest"
+      (click)="selectOption(2)"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img5.png"
+      job="Other"
+      (click)="selectOption(2)"
+    />
+  </div>
+  <div *ngIf="step === 2" class="ContentB">
+    <app-button-preferences-two
+      img="../../../assets/icon/level1.png"
+      job="Beginner"
+      (click)="selectOption(3)"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/level2.png"
+      job="Intermediate"
+      (click)="selectOption(3)"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/level3.png"
+      job="Advanced"
+      (click)="selectOption(3)"
+    />
+  </div>
+
+  <div *ngIf="step === 3" class="ContentB">
+    <app-button-preferences-two
+      img="../../../assets/icon/img11.png"
+      job="Sports"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img6.png"
+      job="Culture and Entertainment"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img9.png"
+      job="Literature"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img1.png"
+      job="Work"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img10.png"
+      job="Science"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img7.png"
+      job="Economics"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img5.png"
+      job="Food"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img8.png"
+      job="Art"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img11.png"
+      job="Sports"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img6.png"
+      job="Culture and Entertainment"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img9.png"
+      job="Literature"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img1.png"
+      job="Work"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img10.png"
+      job="Science"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img7.png"
+      job="Economics"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img5.png"
+      job="Food"
+    />
+    <app-button-preferences-two
+      img="../../../assets/icon/img8.png"
+      job="Art"
+    />
+  </div>
+
+  <!-- Agrega más bloques *ngIf para otras opciones -->
 </ion-content>

@@ -34,19 +34,4 @@ export const routes: Routes = [
     path: 'preferences-view1',
     loadComponent: () => import('./views/preferences-view1/preferences-view1.page').then( m => m.PreferencesView1Page)
   },
-  {
-    path: 'preferences-view2',
-    loadComponent: () => import('./views/preferences-view2/preferences-view2.page').then( m => m.PreferencesView2Page)
-  },
-  {
-    path: 'preferences-view3',
-    loadComponent: () => import('./views/preferences-view3/preferences-view3.page').then( m => m.PreferencesView3Page)
-  },
-  {
-    path: 'preferences-view4',
-    loadComponent: () => import('./views/preferences-view4/preferences-view4.page').then( m => m.PreferencesView4Page)
-  },
-
-
-
 ];

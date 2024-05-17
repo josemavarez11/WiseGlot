@@ -19,6 +19,6 @@ export class ButtonPreferencesOneComponent implements OnInit {
     console.log('Language:', this.language);
     console.log('SubLanguage:', this.subLanguage);
     // Redirecciona a otra vista
-    this.router.navigate(['/preferences-view2']);
+    // this.router.navigate(['/preferences-view2']);
   }
 }

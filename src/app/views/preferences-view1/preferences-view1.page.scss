@@ -26,27 +26,31 @@ ion-content {
 .bodyA{
     width: 90%;
 }
+.contador{
+    font-weight: 700;
+    color: #000000;
+}
 .top{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 15px;
 }
-.bard{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.bard {
     height: 21px;
-    background-color: blue;
     border-radius: 10px;
-}
-h4{
-    font-size: 30px;
-    font-weight: 700;
-    color: #040099;
-    text-align: center;
-}
+    border: 1px solid #0600FF;
+    background-color: rgba(6, 0, 255, 0.2);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+.bard-fill {
+    height: 100%;
+    background-color: #0600FF;
+    transition: width 0.3s;
+  }
 img{
     width: 15px;
     height: 25px;

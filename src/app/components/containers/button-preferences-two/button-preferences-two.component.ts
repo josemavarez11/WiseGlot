@@ -19,6 +19,6 @@ export class ButtonPreferencesTwoComponent  implements OnInit {
     console.log('img:', this.img);
     console.log('job:', this.job);
     // Redirecciona a otra vista
-    this.router.navigate([this.rute]);
+    // this.router.navigate([this.rute]);
   }
 }
