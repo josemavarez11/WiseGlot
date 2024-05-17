@@ -39,7 +39,9 @@ export class PreferencesView1Page implements OnInit {
   }
 // Metodo para cambiar de paso
   selectOption(step: number){
-    this.step = step;
+    setTimeout(() => {
+      this.step = step;
+    }, 1100);
   }
 
   getProgressBardWidth(){
