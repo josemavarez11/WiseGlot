@@ -3,5 +3,5 @@
     "@ionic/angular/common",
     "@ionic/angular"
   ],
-  "editor.fontFamily": "Consolas, 'Cascadia code', monospace"
+  "editor.fontFamily": "'Victor Mono', monospace"
 }
