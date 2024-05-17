@@ -3,24 +3,23 @@
     <section class="bodyA">
       <article class="top">
         <button (click)="previousStep()">
-          <img
-            src="../../../assets/img/back-black.png"
-          />
+          <img src="../../../assets/img/back-black.png" />
         </button>
         <p class="contador">{{step + 1}}/{{titles.length}}</p>
       </article>
 
       <article>
         <div class="bard">
-          <div class="bard-fill" [ngStyle]="{'width': getProgressBardWidth()}"></div>
+          <div
+            class="bard-fill"
+            [ngStyle]="{'width': getProgressBardWidth()}"
+          ></div>
         </div>
-        <app-title-preference [title]="titles[step]"/>
+        <app-title-preference [title]="titles[step]" />
       </article>
     </section>
     <div class="descrip">
-      <p>
-        {{descriptions[step]}}
-      </p>
+      <p>{{descriptions[step]}}</p>
     </div>
   </div>
   <div class="ContentB" *ngIf="step === 0">
@@ -28,39 +27,51 @@
       language="English"
       subLanguage="United States"
       (click)="selectOption(1)"
-    ></app-button-preferences-one>
+      [ngClass]="{'animated-item': true}"
+    />
     <app-button-preferences-one
       language="English"
       subLanguage="United Kingdom"
       (click)="selectOption(1)"
-    ></app-button-preferences-one>
+      [ngClass]="{'animated-item': true}"
+    />
     <app-button-preferences-one
       language="Spanish"
       subLanguage="Spain"
       (click)="selectOption(1)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-one
       language="Spanish"
       subLanguage="Mexico"
       (click)="selectOption(1)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-one
       language="French"
       subLanguage="France"
-      (click)="selectOption(1)"/>
+      (click)="selectOption(1)"
+      [ngClass]="{'animated-item': true}"
+    />
+
     <app-button-preferences-one
       language="French"
       subLanguage="Canada"
-      (click)="selectOption(1)"/>
+      (click)="selectOption(1)"
+      [ngClass]="{'animated-item': true}"
+    />
     <app-button-preferences-one
       language="Portuguese"
       subLanguage="Brazil"
-      (click)="selectOption(1)"/>
+      (click)="selectOption(1)"
+      [ngClass]="{'animated-item': true}"
+    />
     <app-button-preferences-one
       language="Portuguese"
       subLanguage="Portugal"
-      (click)="selectOption(1)"/>
-
+      (click)="selectOption(1)"
+      [ngClass]="{'animated-item': true}"
+    />
   </div>
 
   <div class="ContentB" *ngIf="step === 1">
@@ -68,21 +79,25 @@
       img="../../../assets/icon/Portugal.png"
       job="Portugues"
       (click)="selectOption(2)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/United States.png"
       job="Ingles"
       (click)="selectOption(2)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/Germany.png"
       job="Aleman"
       (click)="selectOption(2)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/Cuba.png"
       job="Cubano"
       (click)="selectOption(2)"
+      [ngClass]="{'animated-item': true}"
     />
   </div>
 
@@ -91,26 +106,31 @@
       img="../../../assets/icon/img1.png"
       job="Opportunity to work"
       (click)="selectOption(3)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img2.png"
       job="Travel"
       (click)="selectOption(3)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img3.png"
       job="Study"
       (click)="selectOption(3)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img4.png"
       job="Personal interest"
       (click)="selectOption(3)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img5.png"
       job="Other"
       (click)="selectOption(3)"
+      [ngClass]="{'animated-item': true}"
     />
   </div>
   <div *ngIf="step === 3" class="ContentB">
@@ -118,16 +138,19 @@
       img="../../../assets/icon/level1.png"
       job="Beginner"
       (click)="selectOption(4)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/level2.png"
       job="Intermediate"
       (click)="selectOption(4)"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/level3.png"
       job="Advanced"
       (click)="selectOption(4)"
+      [ngClass]="{'animated-item': true}"
     />
   </div>
 
@@ -135,67 +158,82 @@
     <app-button-preferences-two
       img="../../../assets/icon/img11.png"
       job="Sports"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img6.png"
       job="Culture and Entertainment"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img9.png"
       job="Literature"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img1.png"
       job="Work"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img10.png"
       job="Science"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img7.png"
       job="Economics"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img5.png"
       job="Food"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img8.png"
       job="Art"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img11.png"
       job="Sports"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img6.png"
       job="Culture and Entertainment"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img9.png"
       job="Literature"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img1.png"
       job="Work"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img10.png"
       job="Science"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img7.png"
       job="Economics"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img5.png"
       job="Food"
+      [ngClass]="{'animated-item': true}"
     />
     <app-button-preferences-two
       img="../../../assets/icon/img8.png"
       job="Art"
+      [ngClass]="{'animated-item': true}"
     />
   </div>
-
 </ion-content>
