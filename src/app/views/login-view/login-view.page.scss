@@ -60,10 +60,10 @@ input{
 .contentBtn{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    // background: green;
-    height: 30%;
+    height: 20%;
+    gap: 15px;
 }
 .btnLogin{
     width: 200px;
@@ -80,13 +80,6 @@ input{
 .btnLogin:active{
     background-color: #0600FF;
     transition: 0.3s;
-}
-article{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: column; 
-    height: 50%;
 }
 .btn{
     height: 50%;
@@ -139,4 +132,7 @@ article{
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: 40px;
+}
+.messageError{
+    width: 80%;
 }

@@ -28,9 +28,9 @@ ion-content {
     flex-direction: column;
 }
 .bodyB{
-    height: 80%;
+    height: 60%;
     width: 80%;
-    padding-top: 50px;
+    padding-top: 25px;
 }
 .contentInput{
     padding-top: 15px;
@@ -57,11 +57,12 @@ input{
     background: none;
 }
 .contentBtn{
-    height: 50%;
+    height: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 .btnLogin{
     width: 200px;
@@ -78,13 +79,6 @@ input{
 .btnLogin:active{
     background-color: #0600FF;
     transition: 0.3s;
-}
-article{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: column; 
-    height: 50%;
 }
 .btn{
     display: flex;
@@ -137,4 +131,7 @@ article{
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: 40px;
+}
+.messageError{
+    width: 80%;
 }
