@@ -27,10 +27,6 @@ export const routes: Routes = [
     loadComponent: () => import('./views/password-change-view/password-change-view.page').then( m => m.PasswordChangeViewPage)
   },
   {
-    path: 'send-email',
-    loadComponent: () => import('./views/send-email-view/send-email-view.page').then( m => m.SendEmailViewPage)
-  },
-  {
     path: 'preferences-view1',
     loadComponent: () => import('./views/preferences-view1/preferences-view1.page').then( m => m.PreferencesView1Page)
   },
