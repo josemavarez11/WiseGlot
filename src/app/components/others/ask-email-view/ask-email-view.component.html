@@ -1,0 +1,21 @@
+
+  <article class="modal">
+    <div class="modal-content">
+      <h1>Reset password</h1>
+      <p>
+        Enter the e-mail address you used to register
+      </p>
+      <form>
+        <p>Email</p>
+        <input type="text" name="Email" id="Email" placeholder="Email"/>
+      </form>
+      <button class="btn" (click)="selectOption(1)">Send</button>
+      <div class="link">
+        <p class="descriptionRegister">Already have an account?</p>
+        <button class="btnRegister" [routerLink]="['/login']">
+          Login
+        </button>
+      </div>
+    </div>
+  </article>
+
