@@ -1,0 +1,4 @@
+1. El scroll en las vistas de preferencias debe ser solo de las opciones. La barra de progreso, el titulo y la descripción de la preferencia debe quedarse quieto.
+2. Las contenedores donde están las opciones del idioma nativo están muy largos.
+3. El color de background de esos contenedores no se ve igual al del mockup.
+4. En la barra de progreso, la barra que se va moviendo debe tener la punta redonda, no cuadrada.
