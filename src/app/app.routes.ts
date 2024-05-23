@@ -30,4 +30,8 @@ export const routes: Routes = [
     path: 'preferences-view1',
     loadComponent: () => import('./views/preferences-view1/preferences-view1.page').then( m => m.PreferencesView1Page)
   },
+  {
+    path: 'validate-secret-code',
+    loadComponent: () => import('./views/validate-secret-code/validate-secret-code.page').then( m => m.ValidateSecretCodePage)
+  },
 ];

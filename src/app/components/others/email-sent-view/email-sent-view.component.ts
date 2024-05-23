@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -9,9 +9,14 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink]
 })
 export class EmailSentViewComponent  implements OnInit {
-
+  @Output() stepChange = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit() {}
+
+    // Metodo para cambiar de paso
+    selectOption(step: number){
+      this.stepChange.emit(step);
+    }
 
 }

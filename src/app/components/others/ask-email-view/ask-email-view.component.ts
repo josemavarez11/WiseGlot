@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 // Components
 import { MessageErrorComponent } from '../../containers/message-error/message-error.component';
+
 @Component({
   selector: 'app-ask-email-view',
   templateUrl: './ask-email-view.component.html',
@@ -10,14 +11,15 @@ import { MessageErrorComponent } from '../../containers/message-error/message-er
   standalone: true,
   imports: [CommonModule, RouterLink, MessageErrorComponent]
 })
-export class AskEmailViewComponent  implements OnInit {
-  step: number = 0;
+export class AskEmailViewComponent implements OnInit {
+  @Output() stepChange = new EventEmitter<number>();
+
   constructor() { }
 
   ngOnInit() {}
 
   // Metodo para cambiar de paso
   selectOption(step: number){
-    this.step = step;
+    this.stepChange.emit(step);
   }
 }
