@@ -3,6 +3,7 @@
     justify-content: center;
     flex-direction: column;
     width: 346px;
+    height: 60px;
     background: #F0F0F0;
     border-radius: 10px;
     margin-bottom: 15px;
@@ -14,17 +15,16 @@
 }
 .contentSelect{
     padding-left: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    text-align: left;
 }
 .primary{
+    // background-color: red;
     font-size: 18px;
     font-weight: 700;
     color: #040099;
 }
 .secondary{
+    // background: green;
     font-size: 14px;
     font-weight: 700;
     color: #040099;
