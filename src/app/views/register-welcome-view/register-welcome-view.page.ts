@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 // Components
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
-import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-register-welcome-view',
@@ -15,9 +17,12 @@ import { RouterLink } from '@angular/router';
 })
 export class RegisterWelcomeViewPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  navigateComponent() {
+    this.router.navigate(['/error-wifi']);
+  }
 }

@@ -38,5 +38,9 @@ export const routes: Routes = [
     path: 'register-welcome',
     loadComponent: () => import('./views/register-welcome-view/register-welcome-view.page').then( m => m.RegisterWelcomeViewPage)
   },
+  {
+    path: 'error-wifi',
+    loadComponent: () => import('./components/others/modal-error-wifi/modal-error-wifi.component').then( m => m.ModalErrorWifiComponent)
+  }
 
 ];
