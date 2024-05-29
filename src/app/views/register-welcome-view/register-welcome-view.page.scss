@@ -1,0 +1,62 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background: linear-gradient(to bottom, #0018ff, #00008b);
+}
+.welcome-message {
+    position: absolute;
+    top: 150px;
+    left: 20px;
+    font-size: 24px;
+    color: white;
+    width: 80%;
+}
+.button{
+    width: 200px;
+    height: 50px;
+    background-color: #fafafa;
+    color: black;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 12px;
+}
+.Back{
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    background: none;
+}
+img{
+    width: 15px;
+    height: 25px;
+}
+.circle {
+    position: absolute;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.circle1 {
+    width: 300px;
+    height: 300px;
+    bottom: -100px;
+    left: 50px;
+}
+
+.circle2 {
+    width: 300px;
+    height: 300px;
+    bottom: -150px;
+    right: -150px;
+}
+
+.circle3 {
+    width: 180px;
+    height: 180px;
+    bottom: 400px;
+    right: -100px;
+}

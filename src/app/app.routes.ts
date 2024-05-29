@@ -34,4 +34,9 @@ export const routes: Routes = [
     path: 'validate-secret-code',
     loadComponent: () => import('./views/validate-secret-code/validate-secret-code.page').then( m => m.ValidateSecretCodePage)
   },
+  {
+    path: 'register-welcome',
+    loadComponent: () => import('./views/register-welcome-view/register-welcome-view.page').then( m => m.RegisterWelcomeViewPage)
+  },
+
 ];
