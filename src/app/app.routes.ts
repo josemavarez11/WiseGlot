@@ -41,6 +41,11 @@ export const routes: Routes = [
   {
     path: 'error-wifi',
     loadComponent: () => import('./components/others/modal-error-wifi/modal-error-wifi.component').then( m => m.ModalErrorWifiComponent)
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./views/home-view/home-view.page').then( m => m.HomeViewPage)
   }
+
 
 ];

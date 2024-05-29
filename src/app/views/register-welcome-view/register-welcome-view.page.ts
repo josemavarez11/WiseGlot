@@ -23,6 +23,6 @@ export class RegisterWelcomeViewPage implements OnInit {
   }
 
   navigateComponent() {
-    this.router.navigate(['/error-wifi']);
+    this.router.navigate(['/preferences-view1']);
   }
 }

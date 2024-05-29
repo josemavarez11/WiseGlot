@@ -54,7 +54,7 @@ export class PreferencesView1Page implements OnInit {
       this.step--;
     }
     else{
-      this.router.navigate(['/login']);
+      this.router.navigate(['/register-welcome']);
     }
   }
 
