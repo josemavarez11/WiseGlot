@@ -16,10 +16,25 @@
     width: 95%;
 }
 p{
-    font-size: 11px;
+    font-size: 14px;
     color: black;
+    font-weight: bold;
 }
 img{
     height: 25px;
     width: 25px;
+}
+.messageError {
+    transition: opacity 1s ease;
+    opacity: 0;
+  }
+.contentImage{
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+.contentDescrip{
+    width: 80%;
+    display: flex;
+    align-items: center;
 }

@@ -26,7 +26,7 @@ export class AuthService {
       (u) => u.email === email || u.nickname === nickname
     );
     if (existingUser) {
-      alert('User already exists');
+      console.log('User already exists');
       return false;
     } else {
       this.users.push({ nickname, email, password });

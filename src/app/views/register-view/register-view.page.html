@@ -38,8 +38,9 @@
         </div>
       </article>
     </section>
-    <!-- <div class="messageError">
-      <app-message-error descrip="Los datos de proporcionados ya se encuentran registrados en nuetra base de datos"/>
-    </div> -->
+
+    <div class="messageError" [ngStyle]="{ 'opacity': showErrorMessage ? 1 : 0 }">
+      <app-message-error [descrip]="errorMessage"></app-message-error>
+    </div>
   </div>
 </ion-content>

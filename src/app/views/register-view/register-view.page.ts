@@ -20,6 +20,8 @@ export class RegisterViewPage implements OnInit {
   nickname: string = '';
   email: string = '';
   password: string = '';
+  showErrorMessage: boolean = false;
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -31,12 +33,16 @@ export class RegisterViewPage implements OnInit {
     console.log('Email:', this.email);
     console.log('Password:', this.password);
     if (!this.nickname || !this.email || !this.password) {
-      alert('Please fill in all fields');
+      this.errorMessage = 'Please fill in all fields';
+      this.showErrorMessage = true;
       return;
     }
 
     if (this.authService.register(this.nickname, this.email, this.password)) {
       this.router.navigate(['/register-welcome']);
+    } else {
+      this.errorMessage = 'User already exists';
+      this.showErrorMessage = true;
     }
   }
 }
