@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+
 @Component({
-  selector: 'app-button-preferences-two',
-  templateUrl: './button-preferences-two.component.html',
-  styleUrls: ['./button-preferences-two.component.scss'],
+  selector: 'app-button-preference-three',
+  templateUrl: './button-preference-three.component.html',
+  styleUrls: ['./button-preference-three.component.scss'],
   standalone: true
 })
-export class ButtonPreferencesTwoComponent  implements OnInit {
+export class ButtonPreferenceThreeComponent  implements OnInit {
   @Input() img: string = '';
   @Input() job: string = '';
   @Input() rute: string = '';
@@ -13,7 +14,7 @@ export class ButtonPreferencesTwoComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-
+  
   logValues() {
     this.selected.emit();
     console.log('img:', this.img);

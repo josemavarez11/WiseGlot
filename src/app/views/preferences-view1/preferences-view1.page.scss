@@ -10,6 +10,25 @@ ion-content {
     height: 100%;
     width: 100%;
 }
+.group{
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+.disabled-button{
+    opacity: 0.2;
+}
+.rojo{
+    padding: 5px;
+}
+.selected {
+    border: 2px solid #007bff; /* Estilo de ejemplo para elementos seleccionados */
+  }
+.next{
+    transform: scale(-1);
+}
 .ContentA{
     height: 30%;
     display: flex;

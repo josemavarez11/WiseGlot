@@ -1,0 +1,27 @@
+.select{
+    display: flex;
+    flex-direction: column;
+    width: 346px;
+    height: 60px;
+    background: #F0F0F0;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: background-color 1s ease;
+}
+.contentSelect{
+    padding-left: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.primary{
+    width: 30px;
+    height: 25px;
+}
+.secondary{
+    font-size: 18px;
+    font-weight: 500;
+    color: #040099;
+}
