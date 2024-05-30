@@ -1,47 +1,42 @@
 <ion-content [fullscreen]="true" scrollY="false" class="MainContent">
   <div class="ContentA">
-
     <section class="header">
       <button class="back" [routerLink]="['/welcome']">
         <img src="../../../assets/img/back.png">
       </button>
       <img src="../../../assets/img/logoApp.png" class="logoApp">
     </section>
-
     <section class="bodyA">
-      <!-- <h4 class="Greeting">Login</h4>
-      <p class="descrip">Welcome back, <br> we missed you.</p> -->
       <app-title-lr
         [title]="'Login'"
         [subtitle]="'Welcome back we missed you.'"
       />
     </section>
   </div>
-
   <div class="ContentB">
     <section class="bodyB">
-      <form class="contentInput">
-          <input type="text" name="email" id="email" placeholder="Email">
-          <input type="password" name="password" id="password" placeholder="Password">
-          <button class="Forgot" [routerLink]="['/forgot-password']">¿Forgot Password?</button>
-      </form>
-    </section>
 
-      <section class="contentBtn">
-        <div class="btn">
-          <button class="btnLogin" [routerLink]="['/home']">Login</button>
+      <form class="contentInput">
+          <input type="text" name="email" id="email" placeholder="Email" [(ngModel)]="email">
+          <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password">
+          <button type="button" class="Forgot" [routerLink]="['/forgot-password']">¿Forgot Password?</button>
+      </form>
+      
+    </section>
+    <section class="contentBtn">
+      <div class="btn">
+        <button class="btnLogin" (click)="handleClick()">Login</button>
+      </div>
+      <article>
+        <div class="link">
+          <p class="descriptionRegister">You do not have an account?</p>
+          <button class="btnRegister" [routerLink]="['/register']">Register</button>
         </div>
-        
-        <article>
-          <div class="link">
-            <p class="descriptionRegister">You do not have an account?</p>
-            <button class="btnRegister" [routerLink]="['/register']">Register</button>
-          </div>
-        </article>
-      </section>
-      <!-- Basicamente el componente le pasas la descripcion, osea lo que dira el mensaje -->
-      <!-- <div class="messageError">
-        <app-message-error descrip="El correo electrónico y la contraseña que ingresó no coinciden con nuestros registros. "/>
-      </div> -->
+      </article>
+    </section>
+    <!-- Basicamente el componente le pasas la descripcion, osea lo que dira el mensaje -->
+    <!-- <div class="messageError">
+      <app-message-error descrip="El correo electrónico y la contraseña que ingresó no coinciden con nuestros registros. "/>
+    </div> -->
   </div>
 </ion-content>
