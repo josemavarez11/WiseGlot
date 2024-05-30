@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
@@ -11,7 +11,7 @@ import { MessageErrorComponent } from 'src/app/components/containers/message-err
   templateUrl: './login-view.page.html',
   styleUrls: ['./login-view.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent]
+  imports: [IonicModule, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent]
 })
 export class LoginViewPage implements OnInit {
 

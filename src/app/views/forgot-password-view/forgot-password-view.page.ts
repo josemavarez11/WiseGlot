@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { EmailSentViewComponent } from 'src/app/components/others/email-sent-vie
   templateUrl: './forgot-password-view.page.html',
   styleUrls: ['./forgot-password-view.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, RouterLink, IonicModule, AskEmailViewComponent, EmailSentViewComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, RouterLink, IonicModule, AskEmailViewComponent, EmailSentViewComponent]
 })
 export class ForgotPasswordViewPage implements OnInit {
   step: number = 0;

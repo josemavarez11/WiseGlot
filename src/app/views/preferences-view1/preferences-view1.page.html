@@ -12,7 +12,7 @@
             [disabled]="!selectedOption"
             (click)="selectOption(step)"
             [ngClass]="{'disabled-button': !selectedOption}"
-          >
+            >
             <img src="../../../assets/img/back-black.png" class="next" />
           </button>
         </div>
@@ -33,53 +33,68 @@
     </div>
   </div>
 
-  <div class="ContentB" *ngIf="step === 0">
-    <app-button-preferences-one
-      *ngFor="let item of preferenceOne"
-      [language]="item.language"
-      [subLanguage]="item.subLanguage"
-      [ngClass]="{'animated-item': true}"
-      (click)="selectOne($event)"
-    />
-  </div>
+  @if (step === 0) {
+    <div class="ContentB">
+      @for (item of preferenceOne; track item) {
+        <app-button-preferences-one
+          [language]="item.language"
+          [subLanguage]="item.subLanguage"
+          [ngClass]="{'animated-item': true}"
+          (click)="selectOne($event)"
+          />
+      }
+    </div>
+  }
 
-  <div class="ContentB" *ngIf="step === 1">
-    <app-button-preferences-two
-      *ngFor="let item of preferenceTwo"
-      [img]="item.img"
-      [job]="item.job"
-      [ngClass]="{'animated-item': true}"
-      (click)="selectTwo($event)"
-    />
-  </div>
+  @if (step === 1) {
+    <div class="ContentB">
+      @for (item of preferenceTwo; track item) {
+        <app-button-preferences-two
+          [img]="item.img"
+          [job]="item.job"
+          [ngClass]="{'animated-item': true}"
+          (click)="selectTwo($event)"
+          />
+      }
+    </div>
+  }
 
-  <div *ngIf="step === 2" class="ContentB">
-    <app-button-preferences-two
-      *ngFor="let item of preferenceThree"
-      [img]="item.img"
-      [job]="item.job"
-      [ngClass]="{'animated-item': true}"
-      (click)="selectTwo($event)"
-    />
-  </div>
+  @if (step === 2) {
+    <div class="ContentB">
+      @for (item of preferenceThree; track item) {
+        <app-button-preferences-two
+          [img]="item.img"
+          [job]="item.job"
+          [ngClass]="{'animated-item': true}"
+          (click)="selectTwo($event)"
+          />
+      }
+    </div>
+  }
 
-  <div *ngIf="step === 3" class="ContentB">
-    <app-button-preferences-two
-      *ngFor="let item of preferenceFour"
-      [img]="item.img"
-      [job]="item.job"
-      [ngClass]="{'animated-item': true}"
-      (click)="selectTwo($event)"
-    />
-  </div>
+  @if (step === 3) {
+    <div class="ContentB">
+      @for (item of preferenceFour; track item) {
+        <app-button-preferences-two
+          [img]="item.img"
+          [job]="item.job"
+          [ngClass]="{'animated-item': true}"
+          (click)="selectTwo($event)"
+          />
+      }
+    </div>
+  }
 
-  <div *ngIf="step === 4" class="ContentB">
-    <app-button-preference-three
-    *ngFor="let item of preferenceOptions"
-    [img]="item.img"
-    [job]="item.job"
-    [ngClass]="{'animated-item': true, 'selected': isSelected(item)}"
-    (click)="toggleSelectThree(item)"
-  />
-  </div>
+  @if (step === 4) {
+    <div class="ContentB">
+      @for (item of preferenceOptions; track item) {
+        <app-button-preference-three
+          [img]="item.img"
+          [job]="item.job"
+          [ngClass]="{'animated-item': true, 'selected': isSelected(item)}"
+          (click)="toggleSelectThree(item)"
+          />
+      }
+    </div>
+  }
 </ion-content>
