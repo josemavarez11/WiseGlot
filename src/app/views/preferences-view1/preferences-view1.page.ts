@@ -32,7 +32,7 @@ import { TitlePreferenceComponent } from 'src/app/components/others/title-prefer
 export class PreferencesView1Page implements OnInit {
   step: number = 0;
   selectedOption: boolean = false;
-  selectedPreferences: any[] = []; // Para múltiples selecciones en el último paso
+  selectedPreferences: any[] = [];
 
   titles: string[] = [
     "¿Cuál es tu lengua materna?",
@@ -105,7 +105,6 @@ export class PreferencesView1Page implements OnInit {
 
   selectOption(step: number): void {
     if (this.step === 4) {
-      // Asegurarse de que al menos una preferencia esté seleccionada
       if (this.selectedPreferences.length === 0) {
         alert('Por favor, selecciona al menos una opción antes de continuar.');
         return;
@@ -116,7 +115,7 @@ export class PreferencesView1Page implements OnInit {
     }
 
     this.step = step;
-    this.selectedOption = false; // Restablecer el estado de selección para el siguiente paso
+    this.selectedOption = false;
 
     if (step === 0) {
       this.step = 1;
@@ -130,8 +129,10 @@ export class PreferencesView1Page implements OnInit {
     if (step === 3) {
       this.step = 4;
     }
+    if (step === 4) {
+      this.router.navigate(['/home']);
+    }
   }
-  // Métodos para manejar las selecciones
   selectOne(option: any): void {
     this.selectedOption = true;
   }
