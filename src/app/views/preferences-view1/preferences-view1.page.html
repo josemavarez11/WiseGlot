@@ -75,11 +75,11 @@
 
   <div *ngIf="step === 4" class="ContentB">
     <app-button-preference-three
-      *ngFor="let item of preferenceOptions"
-      [img]="item.img"
-      [job]="item.job"
-      [ngClass]="{'animated-item': true, 'selected': isSelected(item)}"
-      (click)="toggleSelectThree(item)"
-    />
+    *ngFor="let item of preferenceOptions"
+    [img]="item.img"
+    [job]="item.job"
+    [ngClass]="{'animated-item': true, 'selected': isSelected(item)}"
+    (click)="toggleSelectThree(item)"
+  />
   </div>
 </ion-content>

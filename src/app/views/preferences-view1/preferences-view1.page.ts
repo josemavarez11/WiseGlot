@@ -131,7 +131,6 @@ export class PreferencesView1Page implements OnInit {
       this.step = 4;
     }
   }
-
   // Métodos para manejar las selecciones
   selectOne(option: any): void {
     this.selectedOption = true;
