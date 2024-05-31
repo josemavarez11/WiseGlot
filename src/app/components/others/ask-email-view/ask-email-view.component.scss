@@ -6,8 +6,6 @@
     align-items: center;
     color: black;
     border-radius: 10px;
-    width: 100%;
-    z-index: 1;
     box-shadow: 0 0 150px rgba(0, 0, 0, 0.7);
 }
 .modal-content{
@@ -27,10 +25,8 @@ p{
     font-weight: 500;
 }
 form{
-    padding-top: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 input{
     width: 100%;
@@ -61,7 +57,7 @@ input{
     justify-content: center;
     align-items: center;
     gap: 5px;
-    padding: 15px 15px;
+    padding: 5px 5px;
 
 }
 
@@ -76,4 +72,10 @@ input{
     font-weight: 750;
     font-size: 15px;
     background: none;
+}
+
+.messageError{
+    // position: absolute;
+    width: 100%;
+    bottom: 0;
 }

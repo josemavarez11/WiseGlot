@@ -32,6 +32,7 @@ export class RegisterViewPage implements OnInit {
     console.log('Nickname:', this.nickname);
     console.log('Email:', this.email);
     console.log('Password:', this.password);
+    
     if (!this.nickname || !this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;

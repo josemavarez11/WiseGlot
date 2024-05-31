@@ -1,22 +1,20 @@
 <article class="modal">
   <div class="modal-content">
     <h1>Reset password</h1>
-    <p>
-      Enter the e-mail address you used to register
-    </p>
+    <p>Enter the e-mail address you used to register</p>
+
     <form>
       <p>Email</p>
-      <input type="text" name="Email" id="Email" placeholder="Email"/>
+       <input type="text" name="email" id="email" placeholder="Email" [(ngModel)]="email"/>
     </form>
-    <button class="btn" (click)="selectOption(1)">Send</button>
+
+    <button class="btn" (click)="handleClick()">Send</button>
     <div class="link">
       <p class="descriptionRegister">Already have an account?</p>
-      <button class="btnRegister" [routerLink]="['/login']">
-        Login
-      </button>
+      <button class="btnRegister" [routerLink]="['/login']">Login</button>
     </div>
-    <!-- <app-message-error descrip="El correo proporcionado no coincide con nuestra base de datos."/> -->
+    <div class="messageError" [ngStyle]="{ opacity: showErrorMessage ? 1 : 0 }">
+      <app-message-error [descrip]="errorMessage" />
+    </div>
   </div>
 </article>
-
-

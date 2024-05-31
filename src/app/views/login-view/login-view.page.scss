@@ -28,10 +28,8 @@ ion-content {
     flex-direction: column;
 }
 .bodyB{
-    height: 60%;
+    height: 45%;
     width: 80%;
-    padding-top: 50px;
-    // background: red;
 }
 .contentInput{
     padding-top: 15px;
@@ -62,7 +60,7 @@ input{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 20%;
+    height: 30%;
     gap: 15px;
 }
 .btnLogin{
@@ -134,5 +132,7 @@ input{
     padding-bottom: 40px;
 }
 .messageError{
+    position: absolute;
     width: 80%;
+    bottom: 5px;
 }

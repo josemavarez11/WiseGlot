@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
@@ -13,11 +13,13 @@ import { AuthService } from 'src/services/auth.service';
   templateUrl: './login-view.page.html',
   styleUrls: ['./login-view.page.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent]
+  imports: [IonicModule, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule]
 })
 export class LoginViewPage implements OnInit {
   email: string = '';
   password: string = '';
+  showErrorMessage: boolean = false;
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -27,11 +29,17 @@ export class LoginViewPage implements OnInit {
   handleClick(): void{
     console.log('Email:', this.email);
     console.log('Password:', this.password);
+
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Please fill in all fields';
+      this.showErrorMessage = true;
+      return;
+    }
     if (this.authService.login(this.email, this.password)) {
       this.router.navigate(['/home']);
     } else {
-      alert('Email o contraseña incorrectos');
+      this.errorMessage = 'User does not exist';
+      this.showErrorMessage = true;
     }
   }
-
 }
