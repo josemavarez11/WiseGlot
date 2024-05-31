@@ -46,7 +46,6 @@ export class PasswordChangeViewPage implements OnInit {
       return;
     }
     if(this.authService.changePassword(this.password)){
-      // alert('Password changed successfully');
       this.router.navigate(['/login']);
     } else {
       this.errorMessage = 'Password already exists';
