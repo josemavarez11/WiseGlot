@@ -16,12 +16,22 @@
 
         <section class="body-min">
           <div>
-            <button routerLink="/login" class="btnLogin">Login</button>
+            <app-btn-auth
+              [color]="'#FFFFFF'"
+              [textColor]="'#000000'"
+              [borderColor]="'none'"
+              [title]="'Login'"
+              (click)="onLogin()"
+            />
           </div>
           <div>
-            <button routerLink="/register" class="btnRegister">
-              Register
-            </button>
+            <app-btn-auth
+              [color]="'transparent'"
+              [textColor]="'#FFFFFF'"
+              [borderColor]="'2px solid #FFFFFF'"
+              [title]="'Register'"
+              (click)="onRegister()"
+            />
           </div>
         </section>
       </div>

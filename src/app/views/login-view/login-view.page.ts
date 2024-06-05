@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 // Components
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
+import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 // Services
 import { AuthService } from 'src/services/auth.service';
 @Component({
@@ -13,7 +14,7 @@ import { AuthService } from 'src/services/auth.service';
   templateUrl: './login-view.page.html',
   styleUrls: ['./login-view.page.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule]
+  imports: [IonicModule, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule, BtnAuthComponent]
 })
 export class LoginViewPage implements OnInit {
   email: string = '';

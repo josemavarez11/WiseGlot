@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 // Components
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
+import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 // Services
 import { AuthService } from 'src/services/auth.service';
 
@@ -14,7 +15,7 @@ import { AuthService } from 'src/services/auth.service';
   templateUrl: './register-view.page.html',
   styleUrls: ['./register-view.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule, BtnAuthComponent],
 })
 export class RegisterViewPage implements OnInit {
   nickname: string = '';

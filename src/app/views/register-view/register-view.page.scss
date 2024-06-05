@@ -62,22 +62,6 @@ input{
     align-items: center;
     gap: 10px;
 }
-.btnLogin{
-    width: 200px;
-    height: 50px;
-    background-color: #2B2B2B;
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.btnLogin:active{
-    background-color: #0600FF;
-    transition: 0.3s;
-}
 .btn{
     display: flex;
     flex-direction: column;

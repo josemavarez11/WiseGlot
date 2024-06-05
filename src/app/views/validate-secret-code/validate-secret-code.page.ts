@@ -19,13 +19,18 @@ import { AuthService } from 'src/services/auth.service';
   animations: [
     trigger('fadeInOut', [
       state('void', style({
-        opacity: 0
+        opacity: 0,
+        transform: 'translateY(-20px)'
+      })),
+      state('*', style({
+        opacity: 1,
+        transform: 'translateY(0)'
       })),
       transition('void => *', [
-        animate('1000ms ease-in')
+        animate('500ms ease-in')
       ]),
       transition('* => void', [
-        animate('1000ms ease-out')
+        animate('500ms ease-out')
       ])
     ])
   ]

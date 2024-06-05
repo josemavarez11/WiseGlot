@@ -25,7 +25,13 @@
 
     <section class="contentBtn">
       <div class="btn">
-        <button class="btnLogin" (click)="handleClick()">Login</button>
+        <app-btn-auth
+          [color]="'#2B2B2B'"
+          [textColor]="'#FFFFFF'"
+          [borderColor]="'none'"
+          [title]="'Login'"
+          (click)="handleClick()"
+          />
       </div>
       <article>
         <div class="link">

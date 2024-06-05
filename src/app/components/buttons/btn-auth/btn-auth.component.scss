@@ -1,0 +1,13 @@
+button{
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:active{
+    background-color: #0600FF;
+    transition: 0.3s;
+}
