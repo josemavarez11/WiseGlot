@@ -7,9 +7,10 @@
     color: black;
     border-radius: 10px;
     box-shadow: 0 0 150px rgba(0, 0, 0, 0.7);
+    width: 100%;
 }
 .modal-content{
-    width: 90%;
+    width: 85%;
 }
 .logoApp{
     width: 110px;
@@ -20,13 +21,15 @@ h1{
     font-size: 24px;
     font-weight: 700;
 }
-p{
+.p{
     font-size: 16px;
     font-weight: 500;
+    margin-bottom: 4px;
 }
 form{
     display: flex;
     flex-direction: column;
+    text-align: left;
 }
 input{
     width: 100%;
