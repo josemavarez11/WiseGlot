@@ -1,13 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>HomeView</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div>
+    <app-btn-auth
+    [color]="'#2B2B2B'"
+    [textColor]="'#FFFFFF'"
+    [borderColor]="'none'"
+    [title]="'Log Out'"
+    (click)="handleClick()"
+    />
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">HomeView</ion-title>
-    </ion-toolbar>
-  </ion-header>
 </ion-content>
