@@ -28,11 +28,8 @@ ion-content {
     flex-direction: column;
 }
 .bodyB{
-    height: 50%;
+    height: 40%;
     width: 80%;
-}
-.contentInput{
-    height: 50%;
 }
 input{
     width: 100%;
@@ -55,12 +52,12 @@ input{
     background: none;
 }
 .contentBtn{
-    height: 25%;
+    height: 35%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 10px;
+    padding-top: 10px;
 }
 .btn{
     display: flex;
@@ -74,6 +71,7 @@ input{
     align-items: center;
     gap: 5px;
     padding-bottom: 15px;
+    padding-top: 25px;
 }
 .descriptionRegister{
     color: #1B1B1B;
@@ -112,10 +110,10 @@ input{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-bottom: 40px;
+    text-align: left;
 }
 .messageError{
     position: absolute;
     width: 80%;
-    bottom: 0;
+    bottom: 5px;
 }

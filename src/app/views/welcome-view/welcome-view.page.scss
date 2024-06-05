@@ -25,8 +25,9 @@ ion-content {
     justify-content: center;
     align-items: center;
 }
+
 .bodyB{
-    height: 80%;
+    height: 100%;
     width: 80%;
     display: flex;
 }
@@ -36,10 +37,10 @@ ion-content {
 .body-min{
     height: 60%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    gap: 25px;
+    gap: 40px;
 }
 .title{
     font-size: 40px;

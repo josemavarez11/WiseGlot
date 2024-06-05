@@ -60,7 +60,6 @@ ion-content {
 .bard {
     height: 21px;
     border-radius: 10px;
-    border: 1px solid #0600FF;
     background-color: rgba(6, 0, 255, 0.2);
     width: 100%;
     position: relative;
@@ -81,10 +80,11 @@ button{
     background-color: transparent;
 }
 .descrip{
-    width: 90%;
+    width: 80%;
     font-size: 15px;
     font-weight: 500;
     color: #000000;
+    text-align: justify;
 }
 @keyframes slideInLeft {
     from {
