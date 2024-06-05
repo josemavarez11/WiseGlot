@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { RouterLink, Router } from '@angular/router';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 // Componentes
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
@@ -16,24 +15,6 @@ import { AuthService } from 'src/services/auth.service';
   styleUrls: ['./validate-secret-code.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule],
-  animations: [
-    trigger('fadeInOut', [
-      state('void', style({
-        opacity: 0,
-        transform: 'translateY(-20px)'
-      })),
-      state('*', style({
-        opacity: 1,
-        transform: 'translateY(0)'
-      })),
-      transition('void => *', [
-        animate('500ms ease-in')
-      ]),
-      transition('* => void', [
-        animate('500ms ease-out')
-      ])
-    ])
-  ]
 })
 export class ValidateSecretCodePage implements OnInit {
   c1: string = '';
@@ -42,7 +23,6 @@ export class ValidateSecretCodePage implements OnInit {
   c4: string = '';
   showErrorMessage: boolean = false;
   errorMessage: string = '';
-  readonly errorMessageDisplayTime: number = 3000;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -65,7 +45,7 @@ export class ValidateSecretCodePage implements OnInit {
     if (!this.c1 || !this.c2 || !this.c3 || !this.c4) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
-      this.hideErrorMessageAfterTimeout();
+      this.toggleErrorMessage();
       return;
     }
 
@@ -74,13 +54,13 @@ export class ValidateSecretCodePage implements OnInit {
     } else {
       this.errorMessage = 'Code is incorrect';
       this.showErrorMessage = true;
-      this.hideErrorMessageAfterTimeout();
+      this.toggleErrorMessage();
     }
   }
 
-  private hideErrorMessageAfterTimeout(): void {
+  toggleErrorMessage() {
     setTimeout(() => {
       this.showErrorMessage = false;
-    }, this.errorMessageDisplayTime);
+    }, 3000); // Oculta el mensaje después de 3 segundos
   }
 }

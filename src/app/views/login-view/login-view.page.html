@@ -16,9 +16,9 @@
   <div class="ContentB">
     <section class="bodyB">
       <form class="contentInput">
-          <input type="text" name="email" id="email" placeholder="Email" [(ngModel)]="email">
-          <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password">
-          <button type="button" class="Forgot" [routerLink]="['/forgot-password']">¿Forgot Password?</button>
+        <input type="text" name="email" id="email" placeholder="Email" [(ngModel)]="email">
+        <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password">
+        <button type="button" class="Forgot" [routerLink]="['/forgot-password']">¿Forgot Password?</button>
       </form>
     </section>
 
@@ -30,7 +30,7 @@
           [borderColor]="'none'"
           [title]="'Login'"
           (click)="handleClick()"
-          />
+        />
       </div>
       <article>
         <div class="link">
@@ -40,8 +40,8 @@
       </article>
     </section>
 
-    <div class="messageError" [ngStyle]="{ 'opacity': showErrorMessage ? 1 : 0 }">
-      <app-message-error [descrip]="errorMessage"/>
+    <div class="messageError" [ngClass]="{ 'show': showErrorMessage }">
+      <app-message-error [descrip]="errorMessage"></app-message-error>
     </div>
   </div>
 </ion-content>

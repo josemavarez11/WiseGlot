@@ -45,7 +45,7 @@
       </article>
     </section>
 
-    <div class="messageError" [ngStyle]="{ 'opacity': showErrorMessage ? 1 : 0 }">
+    <div class="messageError" [ngClass]="{ 'show': showErrorMessage }">
       <app-message-error [descrip]="errorMessage"/>
     </div>
     

@@ -116,4 +116,9 @@ input{
     position: absolute;
     width: 80%;
     bottom: 5px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.messageError.show {
+    opacity: 1;
 }

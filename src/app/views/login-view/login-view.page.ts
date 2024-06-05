@@ -9,6 +9,7 @@ import { MessageErrorComponent } from 'src/app/components/containers/message-err
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 // Services
 import { AuthService } from 'src/services/auth.service';
+
 @Component({
   selector: 'app-login-view',
   templateUrl: './login-view.page.html',
@@ -27,20 +28,29 @@ export class LoginViewPage implements OnInit {
   ngOnInit() {
   }
 
-  handleClick(): void{
+  handleClick(): void {
     console.log('Email:', this.email);
     console.log('Password:', this.password);
 
     if (!this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
+      this.toggleErrorMessage();
       return;
     }
+
     if (this.authService.login(this.email, this.password)) {
       this.router.navigate(['/home']);
     } else {
       this.errorMessage = 'User does not exist';
       this.showErrorMessage = true;
+      this.toggleErrorMessage();
     }
+  }
+
+  toggleErrorMessage() {
+    setTimeout(() => {
+      this.showErrorMessage = false;
+    }, 3000); // Oculta el mensaje después de 3 segundos
   }
 }

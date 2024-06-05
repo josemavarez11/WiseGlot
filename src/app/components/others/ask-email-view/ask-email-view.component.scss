@@ -78,7 +78,10 @@ input{
 }
 
 .messageError{
-    // position: absolute;
     width: 100%;
-    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.messageError.show {
+    opacity: 1;
 }

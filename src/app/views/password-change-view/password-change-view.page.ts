@@ -38,11 +38,13 @@ export class PasswordChangeViewPage implements OnInit {
     if(!this.password || !this.confirmPassword){
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
+      this.toggleErrorMessage();
       return;
     }
     if(this.password !== this.confirmPassword){
       this.errorMessage = 'Passwords do not match';
       this.showErrorMessage = true;
+      this.toggleErrorMessage();
       return;
     }
     if(this.authService.changePassword(this.password)){
@@ -50,7 +52,14 @@ export class PasswordChangeViewPage implements OnInit {
     } else {
       this.errorMessage = 'Password already exists';
       this.showErrorMessage = true;
+      this.toggleErrorMessage();
     }
   }
 
+  toggleErrorMessage() {
+    setTimeout(() => {
+      this.showErrorMessage = false;
+    }, 3000); // Oculta el mensaje después de 3 segundos
+  }
 }
+

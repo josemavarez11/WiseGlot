@@ -37,6 +37,7 @@ export class RegisterViewPage implements OnInit {
     if (!this.nickname || !this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
+      this.toggleErrorMessage();
       return;
     }
 
@@ -45,6 +46,12 @@ export class RegisterViewPage implements OnInit {
     } else {
       this.errorMessage = 'User already exists';
       this.showErrorMessage = true;
+      this.toggleErrorMessage();
     }
+  }
+  toggleErrorMessage() {
+    setTimeout(() => {
+      this.showErrorMessage = false;
+    }, 3000);
   }
 }

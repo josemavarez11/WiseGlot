@@ -13,7 +13,7 @@
       <p class="descriptionRegister">Already have an account?</p>
       <button class="btnRegister" [routerLink]="['/login']">Login</button>
     </div>
-    <div class="messageError" [ngStyle]="{ opacity: showErrorMessage ? 1 : 0 }">
+    <div class="messageError" [ngClass]="{ 'show': showErrorMessage }">
       <app-message-error [descrip]="errorMessage" />
     </div>
   </div>
