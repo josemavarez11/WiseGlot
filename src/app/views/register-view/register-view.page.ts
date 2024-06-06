@@ -30,12 +30,31 @@ export class RegisterViewPage implements OnInit {
   }
 
   handleClick(): void {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     console.log('Nickname:', this.nickname);
     console.log('Email:', this.email);
     console.log('Password:', this.password);
     
     if (!this.nickname || !this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields';
+      this.showErrorMessage = true;
+      this.toggleErrorMessage();
+      return;
+    }
+    if(this.password.length < 6){
+      this.errorMessage = 'Password must be at least 6 characters';
+      this.showErrorMessage = true;
+      this.toggleErrorMessage();
+      return;
+    }
+    if(this.nickname.length < 3){
+      this.errorMessage = 'Nickname must be at least 3 characters';
+      this.showErrorMessage = true;
+      this.toggleErrorMessage();
+      return;
+    }
+    if(!emailRegex.test(this.email)){
+      this.errorMessage = 'Invalid email';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
       return;

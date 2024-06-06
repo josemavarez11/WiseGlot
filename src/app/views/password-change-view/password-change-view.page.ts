@@ -41,6 +41,12 @@ export class PasswordChangeViewPage implements OnInit {
       this.toggleErrorMessage();
       return;
     }
+    if(this.password.length < 6){
+      this.errorMessage = 'Password must be at least 6 characters';
+      this.showErrorMessage = true;
+      this.toggleErrorMessage();
+      return;
+    }
     if(this.password !== this.confirmPassword){
       this.errorMessage = 'Passwords do not match';
       this.showErrorMessage = true;
@@ -59,7 +65,7 @@ export class PasswordChangeViewPage implements OnInit {
   toggleErrorMessage() {
     setTimeout(() => {
       this.showErrorMessage = false;
-    }, 3000); // Oculta el mensaje después de 3 segundos
+    }, 3000);
   }
 }
 

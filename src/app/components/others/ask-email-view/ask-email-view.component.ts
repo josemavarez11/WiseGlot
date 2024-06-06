@@ -36,11 +36,17 @@ export class AskEmailViewComponent implements OnInit {
     }
     if(this.authService.askEmail(this.email)){
       this.selectOption(1);
-    } else{
-      this.errorMessage = 'User does not exist';
+    } 
+    else{
+      this.errorMessage = 'Invalid email';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
     }
+    // else{
+    //   this.errorMessage = 'User does not exist';
+    //   this.showErrorMessage = true;
+    //   this.toggleErrorMessage();
+    // }
   }
 
   toggleErrorMessage() {

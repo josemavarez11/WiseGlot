@@ -42,7 +42,7 @@ export class LoginViewPage implements OnInit {
     if (this.authService.login(this.email, this.password)) {
       this.router.navigate(['/home']);
     } else {
-      this.errorMessage = 'User does not exist';
+      this.errorMessage = 'Invalid credentials';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
     }
@@ -51,6 +51,6 @@ export class LoginViewPage implements OnInit {
   toggleErrorMessage() {
     setTimeout(() => {
       this.showErrorMessage = false;
-    }, 3000); // Oculta el mensaje después de 3 segundos
+    }, 3000);
   }
 }
