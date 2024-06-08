@@ -28,9 +28,7 @@ export class LoginViewPage implements OnInit {
   ngOnInit() {
   }
 
-  handleClick(): void {
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
+  async handleClick(): Promise<void> {
 
     if (!this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields';
@@ -39,10 +37,40 @@ export class LoginViewPage implements OnInit {
       return;
     }
 
-    if (this.authService.login(this.email, this.password)) {
+    try {
+      const response = await fetch('https://wiseglot-api.onrender.com/auth/login/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: this.email,
+          password: this.password
+        })
+      });
+
+      console.log('Email:', this.email);
+      console.log('Password:', this.password);
+      console.log('Response status:', response.status);
+
+      if(response.status === 404 || response.status === 401) {
+        this.errorMessage = 'The data you provided doesn\'t match our records. Please try again.';
+        this.showErrorMessage = true;
+        this.toggleErrorMessage();
+      }
+
+      console.log('test1')
+
+      if(response.status !== 200 ) {
+        this.errorMessage = 'Unknown error. Try again later.';
+        this.showErrorMessage = true;
+        this.toggleErrorMessage();
+      }
+
+      const data = await response.json();
       this.router.navigate(['/home']);
-    } else {
-      this.errorMessage = 'Invalid credentials';
+
+    } catch (error: any) {
+      console.log(error.message)
+      this.errorMessage = error.message;
       this.showErrorMessage = true;
       this.toggleErrorMessage();
     }
