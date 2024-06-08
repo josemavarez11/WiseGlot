@@ -9,6 +9,7 @@ import { ButtonPreferencesOneComponent } from 'src/app/components/containers/but
 import { ButtonPreferencesTwoComponent } from 'src/app/components/containers/button-preferences-two/button-preferences-two.component';
 import { ButtonPreferenceThreeComponent } from 'src/app/components/containers/button-preference-three/button-preference-three.component';
 import { TitlePreferenceComponent } from 'src/app/components/others/title-preference/title-preference.component';
+import { ModalErrorWifiComponent } from 'src/app/components/others/modal-error-wifi/modal-error-wifi.component';
 
 @Component({
   selector: 'app-preferences-view1',
@@ -27,10 +28,12 @@ import { TitlePreferenceComponent } from 'src/app/components/others/title-prefer
     TitlePreferenceComponent,
     ButtonPreferencesTwoComponent,
     ButtonPreferenceThreeComponent,
+    ModalErrorWifiComponent
   ],
 })
 export class PreferencesView1Page implements OnInit {
   step: number = 0;
+  popup: boolean = false;
   selectedOption: boolean = false;
   selectedPreferences: any[] = [];
 
@@ -121,7 +124,8 @@ export class PreferencesView1Page implements OnInit {
       this.step = 1;
     }
     if (step === 1) {
-      this.step = 2;
+      this.popup = true;
+      // this.step = 2;
     }
     if (step === 2) {
       this.step = 3;
@@ -161,6 +165,7 @@ export class PreferencesView1Page implements OnInit {
   }
 
   previousStep(): void {
+    this.popup = false;
     if (this.step > 0) {
       this.step--;
     } else {
