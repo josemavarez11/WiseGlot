@@ -16,38 +16,62 @@
   </div>
 
   <div class="ContentB">
+
     <section class="bodyB">
-      <form class="contentInput">
-        <input type="text" name="name" id="name" placeholder="Name and Surname" [(ngModel)]="nickname"/>
-        <input type="text" name="email" id="email" placeholder="Email" [(ngModel)]="email"/>
-        <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password"/>
-      </form>
-    </section>
 
-    <section class="contentBtn">
-      <div class="btn">
-        <app-btn-auth
-          [color]="'#2B2B2B'"
-          [textColor]="'#FFFFFF'"
-          [borderColor]="'none'"
-          [title]="'Register'"
-          (click)="handleClick()"
-        />
-      </div>
+      <form class="form">
 
-      <article>
-        <div class="link">
-          <p class="descriptionRegister">Already have an account?</p>
-          <button class="btnRegister" [routerLink]="['/login']">
-            Login
-          </button>
+        <div class="contentInput">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name and Surname"
+            [(ngModel)]="nickname"
+          />
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Email"
+            [(ngModel)]="email"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            [(ngModel)]="password"
+          />
+          <section class="contentBtn">
+            <div class="btn">
+              <app-btn-auth
+                [color]="'#2B2B2B'"
+                [textColor]="'#FFFFFF'"
+                [borderColor]="'none'"
+                [title]="'Register'"
+                (click)="handleClick()"
+              />
+            </div>
+
+            <article>
+              <div class="link">
+                <p class="descriptionRegister">Already have an account?</p>
+                <button class="btnRegister" [routerLink]="['/login']">
+                  Login
+                </button>
+              </div>
+            </article>
+          </section>
+          
         </div>
-      </article>
+
+      </form>
+
     </section>
 
     <div class="messageError" [ngClass]="{ 'show': showErrorMessage }">
-      <app-message-error [descrip]="errorMessage"/>
+      <app-message-error [descrip]="errorMessage" />
     </div>
-    
   </div>
 </ion-content>
