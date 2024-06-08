@@ -8,7 +8,7 @@ import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.co
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 // Services
-import { AuthService } from 'src/services/auth.service';
+
 
 @Component({
   selector: 'app-register-view',
@@ -24,17 +24,17 @@ export class RegisterViewPage implements OnInit {
   showErrorMessage: boolean = false;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  handleClick(): void {
+  async handleClick(): Promise<void> {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     console.log('Nickname:', this.nickname);
     console.log('Email:', this.email);
     console.log('Password:', this.password);
-    
+
     if (!this.nickname || !this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
@@ -60,14 +60,48 @@ export class RegisterViewPage implements OnInit {
       return;
     }
 
-    if (this.authService.register(this.nickname, this.email, this.password)) {
+    try {
+      const response = await fetch('https://wiseglot-api.onrender.com/users/create-user/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nam_user: this.nickname,
+          ema_user: this.email,
+          pas_user: this.password
+        })
+      });
+
+      if(response.status === 409) {
+        this.errorMessage = 'This email is already registered. Please try again.';
+        this.showErrorMessage = true;
+        return this.toggleErrorMessage();
+      }
+
+      if(response.status === 400 ) {
+        this.errorMessage = 'The data you provided is not valid. Please try again.';
+        this.showErrorMessage = true;
+        return this.toggleErrorMessage();
+      }
+
+      if(response.status !== 201 ) {
+        this.errorMessage = 'Unknown error. Try again later.';
+        this.showErrorMessage = true;
+        return this.toggleErrorMessage();
+      }
+
+      console.log('Response:', response.status);
+
+      const data = await response.json();
+      //get token and save it
+      console.log(data.token);
       this.router.navigate(['/register-welcome']);
-    } else {
-      this.errorMessage = 'User already exists';
+    } catch (error: any) {
+      this.errorMessage = error.message;
       this.showErrorMessage = true;
       this.toggleErrorMessage();
     }
   }
+
   toggleErrorMessage() {
     setTimeout(() => {
       this.showErrorMessage = false;

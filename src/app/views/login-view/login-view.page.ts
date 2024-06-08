@@ -8,7 +8,6 @@ import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.co
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 // Services
-import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-login-view',
@@ -23,7 +22,7 @@ export class LoginViewPage implements OnInit {
   showErrorMessage: boolean = false;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -37,6 +36,9 @@ export class LoginViewPage implements OnInit {
       return;
     }
 
+    //validación de correo
+    //validación de pass
+
     try {
       const response = await fetch('https://wiseglot-api.onrender.com/auth/login/', {
         method: 'POST',
@@ -47,29 +49,23 @@ export class LoginViewPage implements OnInit {
         })
       });
 
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
-      console.log('Response status:', response.status);
-
-      if(response.status === 404 || response.status === 401) {
+      if(response.status === 400) {
         this.errorMessage = 'The data you provided doesn\'t match our records. Please try again.';
         this.showErrorMessage = true;
-        this.toggleErrorMessage();
+        return this.toggleErrorMessage();
       }
-
-      console.log('test1')
 
       if(response.status !== 200 ) {
         this.errorMessage = 'Unknown error. Try again later.';
         this.showErrorMessage = true;
-        this.toggleErrorMessage();
+        return this.toggleErrorMessage();
       }
 
       const data = await response.json();
+      console.log(data.token);
+      //get and save token
       this.router.navigate(['/home']);
-
     } catch (error: any) {
-      console.log(error.message)
       this.errorMessage = error.message;
       this.showErrorMessage = true;
       this.toggleErrorMessage();
