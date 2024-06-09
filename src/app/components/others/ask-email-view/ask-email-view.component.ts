@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule} from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, NavigationEnd, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 // Components
 import { MessageErrorComponent } from '../../containers/message-error/message-error.component';
@@ -18,9 +18,25 @@ export class AskEmailViewComponent implements OnInit {
   email: string = '';
   errorMessage: string = '';
   showErrorMessage: boolean = false;
-  constructor(private authService: AuthService) { }
 
-  ngOnInit() {}
+  constructor(private authService: AuthService, private router: Router) { 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        if (this.router.url === '/ask-email') {
+          this.resetForm();
+        }
+      }
+    });
+  }
+
+
+  ngOnInit() {
+    this.resetForm();
+  }
+
+  resetForm(): void{
+    this.email = '';
+  }
 
   // Metodo para cambiar de paso
   selectOption(step: number){
@@ -29,11 +45,18 @@ export class AskEmailViewComponent implements OnInit {
 
   handleClick(): void{
     console.log('Email:', this.email);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!this.email) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
     }
+    else if (!emailRegex.test(this.email)) {
+      this.errorMessage = 'Invalid email';
+      this.showErrorMessage = true;
+      this.toggleErrorMessage();
+    }
+    else
     if(this.authService.askEmail(this.email)){
       this.selectOption(1);
     } 
