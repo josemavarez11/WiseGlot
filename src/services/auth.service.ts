@@ -61,7 +61,6 @@ export class AuthService {
       return false;
     } else {
       this.passwords.push({ password });
-      alert('User registered successfully');
       return true;
     }
   }
