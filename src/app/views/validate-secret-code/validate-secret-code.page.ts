@@ -6,6 +6,7 @@ import { RouterLink, Router } from '@angular/router';
 // Componentes
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
+import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 // Servicios
 import { AuthService } from 'src/services/auth.service';
 
@@ -14,7 +15,7 @@ import { AuthService } from 'src/services/auth.service';
   templateUrl: './validate-secret-code.page.html',
   styleUrls: ['./validate-secret-code.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule],
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule, LoadingComponent],
 })
 export class ValidateSecretCodePage implements OnInit {
   c1: string = '';
@@ -23,6 +24,7 @@ export class ValidateSecretCodePage implements OnInit {
   c4: string = '';
   showErrorMessage: boolean = false;
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -39,7 +41,7 @@ export class ValidateSecretCodePage implements OnInit {
   }
 
   async handleClick(): Promise<void> {
-
+    this.isLoading = true;
     if (!this.c1 || !this.c2 || !this.c3 || !this.c4) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
@@ -61,12 +63,14 @@ export class ValidateSecretCodePage implements OnInit {
         const data = await response.json();
         this.errorMessage = data.error;
         this.showErrorMessage = true;
+        this.isLoading = false;
         return this.toggleErrorMessage();
       }
 
       if(response.status !== 200) {
         this.errorMessage = 'Unknown error. Try again later.';
         this.showErrorMessage = true;
+        this.isLoading = false;
         return this.toggleErrorMessage();
       }
 
@@ -77,7 +81,7 @@ export class ValidateSecretCodePage implements OnInit {
       this.showErrorMessage = true;
       return this.toggleErrorMessage();
     }
-
+    this.isLoading = false;
     console.log('Code:', this.c1, this.c2, this.c3, this.c4);
   }
 

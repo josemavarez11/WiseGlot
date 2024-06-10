@@ -10,7 +10,7 @@
       <app-title-lr
         [title]="'Login'"
         [subtitle]="'Welcome back we missed you.'"
-      />
+      ></app-title-lr>
     </section>
   </div>
   <div class="ContentB">
@@ -38,8 +38,6 @@
           >
             ¿Forgot Password?
           </button>
-
-          
           <div class="contentBtn">
             <div class="btn">
               <app-btn-auth
@@ -48,22 +46,21 @@
                 [borderColor]="'none'"
                 [title]="'Login'"
                 (click)="handleClick()"
-              />
+              ></app-btn-auth>
             </div>
-              <div class="link">
-                <p class="descriptionRegister">You do not have an account?</p>
-                <button class="btnRegister" [routerLink]="['/register']">
-                  Register
-                </button>
-              </div>
+            <div class="link">
+              <p class="descriptionRegister">You do not have an account?</p>
+              <button class="btnRegister" [routerLink]="['/register']">
+                Register
+              </button>
+            </div>
           </div>
-
         </section>
       </form>
     </section>
-
     <div class="messageError" [ngClass]="{ 'show': showErrorMessage }">
       <app-message-error [descrip]="errorMessage"></app-message-error>
     </div>
   </div>
+  <app-loading *ngIf="isLoading"></app-loading>
 </ion-content>

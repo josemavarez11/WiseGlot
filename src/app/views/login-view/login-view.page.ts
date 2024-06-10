@@ -7,6 +7,7 @@ import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
+import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 // Services
 
 @Component({
@@ -22,6 +23,7 @@ import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.c
     MessageErrorComponent,
     CommonModule,
     BtnAuthComponent,
+    LoadingComponent,
   ],
 })
 export class LoginViewPage implements OnInit {
@@ -29,6 +31,7 @@ export class LoginViewPage implements OnInit {
   password: string = '';
   showErrorMessage: boolean = false;
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
@@ -50,23 +53,27 @@ export class LoginViewPage implements OnInit {
   }
 
   async handleClick(): Promise<void> {
+    this.isLoading = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
+      this.isLoading = false;
       return;
     }
     if (!emailRegex.test(this.email)) {
       this.errorMessage = 'Invalid email';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
+      this.isLoading = false;
       return;
     }
     if (this.password.length < 6) {
       this.errorMessage = 'Password must be at least 6 characters long';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
+      this.isLoading = false;
       return;
     }
     try {
@@ -86,13 +93,17 @@ export class LoginViewPage implements OnInit {
         this.errorMessage =
           "The data you provided doesn't match our records. Please try again.";
         this.showErrorMessage = true;
-        return this.toggleErrorMessage();
+        this.toggleErrorMessage();
+        this.isLoading = false;
+        return;
       }
 
       if (response.status !== 200) {
         this.errorMessage = 'Unknown error. Try again later.';
         this.showErrorMessage = true;
-        return this.toggleErrorMessage();
+        this.toggleErrorMessage();
+        this.isLoading = false;
+        return;
       }
 
       const data = await response.json();
@@ -102,8 +113,10 @@ export class LoginViewPage implements OnInit {
     } catch (error: any) {
       this.errorMessage = error.message;
       this.showErrorMessage = true;
+      this.isLoading = false;
       return this.toggleErrorMessage();
     }
+    this.isLoading = false;
   }
 
   toggleErrorMessage() {

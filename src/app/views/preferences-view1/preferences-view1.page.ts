@@ -33,7 +33,7 @@ import { ModalErrorWifiComponent } from 'src/app/components/others/modal-error-w
 })
 export class PreferencesView1Page implements OnInit {
   step: number = 0;
-  popup: boolean = false;
+  // popup: boolean = false;
   selectedOption: boolean = false;
   selectedPreferences: any[] = [];
 
@@ -124,8 +124,8 @@ export class PreferencesView1Page implements OnInit {
       this.step = 1;
     }
     if (step === 1) {
-      this.popup = true;
-      // this.step = 2;
+      // this.popup = true;
+      this.step = 2;
     }
     if (step === 2) {
       this.step = 3;
@@ -165,7 +165,7 @@ export class PreferencesView1Page implements OnInit {
   }
 
   previousStep(): void {
-    this.popup = false;
+    // this.popup = false;
     if (this.step > 0) {
       this.step--;
     } else {

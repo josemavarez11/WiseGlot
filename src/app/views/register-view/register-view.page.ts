@@ -12,6 +12,7 @@ import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
+import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 // Services
 
 @Component({
@@ -30,6 +31,7 @@ import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.c
     MessageErrorComponent,
     CommonModule,
     BtnAuthComponent,
+    LoadingComponent,
   ],
 })
 export class RegisterViewPage implements OnInit {
@@ -38,6 +40,7 @@ export class RegisterViewPage implements OnInit {
   password: string = '';
   showErrorMessage: boolean = false;
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
@@ -60,6 +63,7 @@ export class RegisterViewPage implements OnInit {
   }
 
   async handleClick(): Promise<void> {
+    this.isLoading = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     console.log('Nickname:', this.nickname);
     console.log('Email:', this.email);
@@ -69,18 +73,21 @@ export class RegisterViewPage implements OnInit {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
+      this.isLoading = false;
       return;
     }
     if (this.password.length < 6) {
       this.errorMessage = 'Password must be at least 6 characters';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
+      this.isLoading = false;
       return;
     }
     if (this.nickname.length < 3) {
       this.errorMessage = 'Nickname must be at least 3 characters';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
+      this.isLoading = false;
       return;
     }
     if (!emailRegex.test(this.email)) {
@@ -108,6 +115,7 @@ export class RegisterViewPage implements OnInit {
         this.errorMessage =
           'This email is already registered. Please try again.';
         this.showErrorMessage = true;
+        this.isLoading = false;
         return this.toggleErrorMessage();
       }
 
@@ -115,12 +123,14 @@ export class RegisterViewPage implements OnInit {
         this.errorMessage =
           'The data you provided is not valid. Please try again.';
         this.showErrorMessage = true;
+        this.isLoading = false;
         return this.toggleErrorMessage();
       }
 
       if (response.status !== 201) {
         this.errorMessage = 'Unknown error. Try again later.';
         this.showErrorMessage = true;
+        this.isLoading = false;
         return this.toggleErrorMessage();
       }
 
@@ -135,6 +145,7 @@ export class RegisterViewPage implements OnInit {
       this.showErrorMessage = true;
       return this.toggleErrorMessage();
     }
+    this.isLoading = false;
   }
 
   toggleErrorMessage() {
