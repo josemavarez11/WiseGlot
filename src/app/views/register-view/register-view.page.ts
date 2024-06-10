@@ -133,7 +133,7 @@ export class RegisterViewPage implements OnInit {
     } catch (error: any) {
       this.errorMessage = error.message;
       this.showErrorMessage = true;
-      this.toggleErrorMessage();
+      return this.toggleErrorMessage();
     }
   }
 

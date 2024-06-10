@@ -19,7 +19,7 @@ export class AskEmailViewComponent implements OnInit {
   errorMessage: string = '';
   showErrorMessage: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) { 
+  constructor(private authService: AuthService, private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/ask-email') {
@@ -43,38 +43,55 @@ export class AskEmailViewComponent implements OnInit {
     this.stepChange.emit(step);
   }
 
-  handleClick(): void{
-    console.log('Email:', this.email);
+  async handleClick(): Promise<void>{
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!this.email) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
-      this.toggleErrorMessage();
+      return this.toggleErrorMessage();
     }
-    else if (!emailRegex.test(this.email)) {
+
+    if (!emailRegex.test(this.email)) {
       this.errorMessage = 'Invalid email';
       this.showErrorMessage = true;
-      this.toggleErrorMessage();
+      return this.toggleErrorMessage();
     }
-    else
-    if(this.authService.askEmail(this.email)){
-      this.selectOption(1);
-    } 
-    else{
-      this.errorMessage = 'Invalid email';
+
+    try {
+      const response = await fetch('https://wiseglot-api.onrender.com/auth/send-reset-password-code/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: this.email })
+      });
+
+      console.log(response.status);
+
+      if (response.status === 400) {
+        this.errorMessage = "No user associated with this email was found.";
+        this.showErrorMessage = true;
+        return this.toggleErrorMessage();
+      }
+
+      if (response.status !== 200) {
+        this.errorMessage = 'Unknown error. Try again later.';
+        this.showErrorMessage = true;
+        return this.toggleErrorMessage();
+      }
+
+      return this.selectOption(1);
+    } catch (error: any) {
+      this.errorMessage = error.message;
       this.showErrorMessage = true;
-      this.toggleErrorMessage();
+      return this.toggleErrorMessage();
     }
-    // else{
-    //   this.errorMessage = 'User does not exist';
-    //   this.showErrorMessage = true;
-    //   this.toggleErrorMessage();
-    // }
+
   }
 
   toggleErrorMessage() {
     setTimeout(() => {
       this.showErrorMessage = false;
-    }, 3000); // Oculta el mensaje después de 3 segundos
+    }, 3000);
   }
 }

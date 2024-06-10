@@ -39,8 +39,7 @@ export class ValidateSecretCodePage implements OnInit {
     }
   }
 
-  handleClick(): void {
-    console.log('Code:', this.c1, this.c2, this.c3, this.c4);
+  async handleClick(): Promise<void> {
 
     if (!this.c1 || !this.c2 || !this.c3 || !this.c4) {
       this.errorMessage = 'Please fill in all fields';
@@ -49,18 +48,43 @@ export class ValidateSecretCodePage implements OnInit {
       return;
     }
 
-    if (this.authService.validateCode(this.c1, this.c2, this.c3, this.c4)) {
+    try {
+      const code = this.c1 + this.c2 + this.c3 + this.c4;
+      const response = await fetch('https://wiseglot-api.onrender.com/auth/validate-reset-password-code/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: '', code })
+      });
+
+      if (response.status === 400) {
+        const data = await response.json();
+        this.errorMessage = data.error;
+        this.showErrorMessage = true;
+        return this.toggleErrorMessage();
+      }
+
+      if(response.status !== 200) {
+        this.errorMessage = 'Unknown error. Try again later.';
+        this.showErrorMessage = true;
+        return this.toggleErrorMessage();
+      }
+
       this.router.navigate(['/password-change']);
-    } else {
-      this.errorMessage = 'Code is incorrect';
+
+    } catch (error: any) {
+      this.errorMessage = error.message;
       this.showErrorMessage = true;
-      this.toggleErrorMessage();
+      return this.toggleErrorMessage();
     }
+
+    console.log('Code:', this.c1, this.c2, this.c3, this.c4);
   }
 
   toggleErrorMessage() {
     setTimeout(() => {
       this.showErrorMessage = false;
-    }, 3000); // Oculta el mensaje después de 3 segundos
+    }, 3000);
   }
 }
