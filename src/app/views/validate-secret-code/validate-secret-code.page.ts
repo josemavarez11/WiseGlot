@@ -31,10 +31,9 @@ export class ValidateSecretCodePage implements OnInit {
 
   validateInput(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
-    const char = event.key;
 
     // Permitir solo números y asegurar que solo se ingrese un carácter
-    if (!/^\d$/.test(char) || input.value.length >= 1) {
+    if (input.value.length >= 1) {
       event.preventDefault();
     }
   }
