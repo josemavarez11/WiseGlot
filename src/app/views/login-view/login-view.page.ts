@@ -54,7 +54,7 @@ export class LoginViewPage implements OnInit {
 
   async handleClick(): Promise<void> {
     this.isLoading = true;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
     if (!this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;

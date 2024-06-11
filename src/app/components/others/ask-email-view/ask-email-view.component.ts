@@ -47,7 +47,7 @@ export class AskEmailViewComponent implements OnInit {
 
   async handleClick(): Promise<void>{
     this.isLoading = true;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
 
     if (!this.email) {
       this.errorMessage = 'Please fill in all fields';

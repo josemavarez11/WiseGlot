@@ -64,7 +64,7 @@ export class RegisterViewPage implements OnInit {
 
   async handleClick(): Promise<void> {
     this.isLoading = true;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
     console.log('Nickname:', this.nickname);
     console.log('Email:', this.email);
     console.log('Password:', this.password);
