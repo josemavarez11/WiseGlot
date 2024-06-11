@@ -1,12 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterLink, NavigationEnd, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 // Components
 import { MessageErrorComponent } from '../../containers/message-error/message-error.component';
 import { LoadingComponent } from '../loading/loading.component';
 // Services
-import { AuthService } from 'src/services/auth.service';
+import { ServiceSharedService } from 'src/app/service-shared.service';
+
 @Component({
   selector: 'app-ask-email-view',
   templateUrl: './ask-email-view.component.html',
@@ -21,7 +22,7 @@ export class AskEmailViewComponent implements OnInit {
   showErrorMessage: boolean = false;
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private router: Router, private sharedService: ServiceSharedService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/ask-email') {
@@ -31,21 +32,23 @@ export class AskEmailViewComponent implements OnInit {
     });
   }
 
+  setEmail(email: string) {
+    this.sharedService.setEmail(email);
+  }
 
   ngOnInit() {
     this.resetForm();
   }
 
-  resetForm(): void{
+  resetForm(): void {
     this.email = '';
   }
 
-  // Metodo para cambiar de paso
-  selectOption(step: number){
+  selectOption(step: number) {
     this.stepChange.emit(step);
   }
 
-  async handleClick(): Promise<void>{
+  async handleClick(): Promise<void> {
     this.isLoading = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
 
@@ -70,8 +73,6 @@ export class AskEmailViewComponent implements OnInit {
         body: JSON.stringify({ email: this.email })
       });
 
-      console.log(response.status);
-
       if (response.status === 400) {
         this.errorMessage = "No user associated with this email was found.";
         this.showErrorMessage = true;
@@ -86,15 +87,16 @@ export class AskEmailViewComponent implements OnInit {
         return this.toggleErrorMessage();
       }
 
-      return this.selectOption(1);
+      this.setEmail(this.email); // Asegúrate de llamar a setEmail aquí
+      this.selectOption(1);
     } catch (error: any) {
       this.errorMessage = error.message;
       this.showErrorMessage = true;
       this.isLoading = false;
       return this.toggleErrorMessage();
     }
-
   }
+
   toggleErrorMessage() {
     setTimeout(() => {
       this.showErrorMessage = false;

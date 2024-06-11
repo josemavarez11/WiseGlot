@@ -8,7 +8,6 @@ import { MessageErrorComponent } from 'src/app/components/containers/message-err
 import { ModalComponent } from 'src/app/components/others/modal/modal.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 // Services
-import { AuthService } from 'src/services/auth.service';
 import { IonContent } from '@ionic/angular/standalone';
 
 @Component({
@@ -37,7 +36,7 @@ export class PasswordChangeViewPage implements OnInit {
   showSuccessModal: boolean = false;
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private router: Router) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/password-change') {

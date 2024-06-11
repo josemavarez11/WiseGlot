@@ -7,6 +7,8 @@ import { RouterLink, Router } from '@angular/router';
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+// Service
+import { ServiceSharedService } from 'src/app/service-shared.service';
 
 @Component({
   selector: 'app-validate-secret-code',
@@ -25,10 +27,13 @@ export class ValidateSecretCodePage implements OnInit {
   showErrorMessage: boolean = false;
   errorMessage: string = '';
   isLoading: boolean = false;
+  email: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sharedService: ServiceSharedService) { }
 
   ngOnInit() {
+    this.email = this.sharedService.getEmail();
+    console.log('Email:', this.email); // Asegúrate de que esto está imprimiendo el email correctamente
   }
 
   validateInput(event: KeyboardEvent) {
@@ -56,7 +61,7 @@ export class ValidateSecretCodePage implements OnInit {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email: '', code })
+        body: JSON.stringify({ email: this.email, code }) // Usa el email aquí
       });
 
       if (response.status === 400) {
@@ -75,14 +80,13 @@ export class ValidateSecretCodePage implements OnInit {
       }
 
       this.router.navigate(['/password-change']);
-
     } catch (error: any) {
       this.errorMessage = error.message;
       this.showErrorMessage = true;
       return this.toggleErrorMessage();
     }
     this.isLoading = false;
-    console.log('Code:', this.c1, this.c2, this.c3, this.c4 , this.c5, this.c6);
+    console.log('Code:', this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
   }
 
   toggleErrorMessage() {
