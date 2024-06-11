@@ -77,21 +77,21 @@ export class PasswordChangeViewPage implements OnInit {
   async handleClick(): Promise<void> {
     this.isLoading = true;
     if (!this.password || !this.confirmPassword) {
-      this.errorMessage = 'Please fill in all fields';
+      this.errorMessage = 'Rellene todos los campos';
       this.showErrorMessage = true;
       this.isLoading = false;
       return this.toggleErrorMessage();
     }
 
     if (this.password.length < 8) {
-      this.errorMessage = 'Password must be at least 8 characters';
+      this.errorMessage = 'La contraseña debe tener al menos 6 caracteres';
       this.showErrorMessage = true;
       this.isLoading = false;
       return this.toggleErrorMessage();
     }
 
     if (this.password !== this.confirmPassword) {
-      this.errorMessage = 'Passwords do not match';
+      this.errorMessage = 'Las contraseñas no coinciden';
       this.showErrorMessage = true;
       this.isLoading = false;
       return this.toggleErrorMessage();
@@ -122,7 +122,7 @@ export class PasswordChangeViewPage implements OnInit {
       }
 
       if (response.status !== 200) {
-        this.errorMessage = 'Unknown error. Try again later.';
+        this.errorMessage = 'Ha ocurrido un error inesperado';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();

@@ -70,28 +70,28 @@ export class RegisterViewPage implements OnInit {
     console.log('Password:', this.password);
 
     if (!this.nickname || !this.email || !this.password) {
-      this.errorMessage = 'Please fill in all fields';
+      this.errorMessage = 'Rellene todos los campos';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
       this.isLoading = false;
       return;
     }
     if (this.password.length < 6) {
-      this.errorMessage = 'Password must be at least 6 characters';
+      this.errorMessage = 'La contraseña debe tener al menos 6 caracteres';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
       this.isLoading = false;
       return;
     }
     if (this.nickname.length < 3) {
-      this.errorMessage = 'Nickname must be at least 3 characters';
+      this.errorMessage = 'El apodo debe tener al menos 3 caracteres';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
       this.isLoading = false;
       return;
     }
     if (!emailRegex.test(this.email)) {
-      this.errorMessage = 'Invalid email';
+      this.errorMessage = 'Correo electrónico no válido';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
       return;
@@ -113,7 +113,7 @@ export class RegisterViewPage implements OnInit {
 
       if (response.status === 409) {
         this.errorMessage =
-          'This email is already registered. Please try again.';
+          'Este correo electrónico ya está registrado. Por favor, inténtelo de nuevo.';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();
@@ -121,14 +121,14 @@ export class RegisterViewPage implements OnInit {
 
       if (response.status === 400) {
         this.errorMessage =
-          'The data you provided is not valid. Please try again.';
+          'Los datos facilitados no son válidos. Por favor, inténtelo de nuevo.';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();
       }
 
       if (response.status !== 201) {
-        this.errorMessage = 'Unknown error. Try again later.';
+        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();

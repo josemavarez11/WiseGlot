@@ -56,21 +56,21 @@ export class LoginViewPage implements OnInit {
     this.isLoading = true;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
     if (!this.email || !this.password) {
-      this.errorMessage = 'Please fill in all fields';
+      this.errorMessage = 'Rellene todos los campos';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
       this.isLoading = false;
       return;
     }
     if (!emailRegex.test(this.email)) {
-      this.errorMessage = 'Invalid email';
+      this.errorMessage = 'Correo electrónico no válido';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
       this.isLoading = false;
       return;
     }
     if (this.password.length < 6) {
-      this.errorMessage = 'Password must be at least 6 characters long';
+      this.errorMessage = 'La contraseña debe tener al menos 6 caracteres';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
       this.isLoading = false;
@@ -91,7 +91,7 @@ export class LoginViewPage implements OnInit {
 
       if (response.status === 400) {
         this.errorMessage =
-          "The data you provided doesn't match our records. Please try again.";
+          "Los datos que ha proporcionado no coinciden con nuestros registros. Por favor, inténtelo de nuevo.";
         this.showErrorMessage = true;
         this.toggleErrorMessage();
         this.isLoading = false;
@@ -99,7 +99,7 @@ export class LoginViewPage implements OnInit {
       }
 
       if (response.status !== 200) {
-        this.errorMessage = 'Unknown error. Try again later.';
+        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
         this.showErrorMessage = true;
         this.toggleErrorMessage();
         this.isLoading = false;

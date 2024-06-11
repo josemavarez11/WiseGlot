@@ -12,6 +12,7 @@ export class BtnAuthComponent implements OnInit {
   @Input() textColor: string = '';
   @Input() borderColor: string = '';
   @Input() hoverColor: string = '';
+  @Input() width: string = '200px';
 
   private originalColor: string = '';
 
@@ -25,6 +26,6 @@ export class BtnAuthComponent implements OnInit {
     this.color = this.hoverColor;
     setTimeout(() => {
       this.color = this.originalColor;
-    }, 500);
+    }, 100);
   }
 }

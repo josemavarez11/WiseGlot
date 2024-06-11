@@ -1,15 +1,15 @@
 <article class="modal">
   <div class="modal-content">
-    <h1>Reset password</h1>
-    <p>Enter the e-mail address you used to register</p>
+    <h1>Reestablecer contraseña</h1>
+    <p>Introduce la dirección de correo electrónico asociado a tu cuenta</p>
 
     <form>
-      <p class="p">Email</p>
+      <p class="p">Correo electrónico</p>
       <input
         type="text"
         name="email"
         id="email"
-        placeholder="Email"
+        placeholder="Correo electrónico"
         [(ngModel)]="email"
       />
     </form>
@@ -24,8 +24,8 @@
     ></app-btn-auth>
     </div>
     <div class="link">
-      <p class="descriptionRegister">Already have an account?</p>
-      <button class="btnRegister" [routerLink]="['/login']">Login</button>
+      <p class="descriptionRegister">¿Has recordado tu contraseña?</p>
+      <button class="btnRegister" [routerLink]="['/login']">Inicia sesión</button>
     </div>
     <div class="messageError" [ngClass]="{ show: showErrorMessage }">
       <app-message-error [descrip]="errorMessage" />

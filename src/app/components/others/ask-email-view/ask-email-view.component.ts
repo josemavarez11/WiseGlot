@@ -64,7 +64,7 @@ export class AskEmailViewComponent implements OnInit {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
 
     if (!this.email) {
-      this.errorMessage = 'Please fill in all fields';
+      this.errorMessage = 'Rellene todos los campos';
       this.showErrorMessage = true;
       this.isLoading = false;
       return this.toggleErrorMessage();
@@ -88,14 +88,14 @@ export class AskEmailViewComponent implements OnInit {
       );
 
       if (response.status === 400) {
-        this.errorMessage = 'No user associated with this email was found.';
+        this.errorMessage = 'No se ha encontrado ningún usuario asociado a este correo electrónico.';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();
       }
 
       if (response.status !== 200) {
-        this.errorMessage = 'Unknown error. Try again later.';
+        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();

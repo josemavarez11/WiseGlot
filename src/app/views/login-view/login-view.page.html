@@ -8,8 +8,8 @@
     </section>
     <section class="bodyA">
       <app-title-lr
-        [title]="'Login'"
-        [subtitle]="'Welcome back we missed you.'"
+        [title]="'Inicia Sesión'"
+        [subtitle]="'Bienvenido de nuevo, ya te extrañábamos.'"
       ></app-title-lr>
     </section>
   </div>
@@ -21,14 +21,14 @@
             type="text"
             name="email"
             id="email"
-            placeholder="Email"
+            placeholder="Correo electrónico"
             [(ngModel)]="email"
           />
           <input
             type="password"
             name="password"
             id="password"
-            placeholder="Password"
+            placeholder="Contraseña"
             [(ngModel)]="password"
           />
           <button
@@ -36,21 +36,21 @@
             class="Forgot"
             [routerLink]="['/forgot-password']"
           >
-            ¿Forgot Password?
+            ¿Olvidaste tu contraseña?
           </button>
           <div class="contentBtn">
-              <app-btn-auth
-                [color]="'#2B2B2B'"
-                [textColor]="'#FFFFFF'"
-                [borderColor]="'none'"
-                [title]="'Login'"
-                (click)="handleClick()"
-                [hoverColor]="'#0600FF'"
-              ></app-btn-auth>
+            <app-btn-auth
+              [color]="'#2B2B2B'"
+              [textColor]="'#FFFFFF'"
+              [borderColor]="'none'"
+              [title]="'Inicia sesión'"
+              (click)="handleClick()"
+              [hoverColor]="'#0600FF'"
+            ></app-btn-auth>
             <div class="link">
-              <p class="descriptionRegister">You do not have an account?</p>
+              <p class="descriptionRegister">¿No tienes una cuenta?</p>
               <button class="btnRegister" [routerLink]="['/register']">
-                Register
+                Regístrate
               </button>
             </div>
           </div>

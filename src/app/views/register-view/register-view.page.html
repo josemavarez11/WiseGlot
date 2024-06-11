@@ -9,8 +9,8 @@
 
     <section class="bodyA">
       <app-title-lr
-        [title]="'Register'"
-        [subtitle]="'We have many things to show you, we are sure you will love them.'"
+        [title]="'Registrate'"
+        [subtitle]="'Tenemos muchas cosas que enseñarte, estamos seguros que te encantarán.'"
       />
     </section>
   </div>
@@ -23,21 +23,21 @@
             type="text"
             name="name"
             id="name"
-            placeholder="Name and Surname"
+            placeholder="Nombre y apellido"
             [(ngModel)]="nickname"
           />
           <input
             type="text"
             name="email"
             id="email"
-            placeholder="Email"
+            placeholder="Correo eléctronico"
             [(ngModel)]="email"
           />
           <input
             type="password"
             name="password"
             id="password"
-            placeholder="Password"
+            placeholder="Contraseña"
             [(ngModel)]="password"
           />
           <section class="contentBtn">
@@ -46,7 +46,7 @@
                 [color]="'#2B2B2B'"
                 [textColor]="'#FFFFFF'"
                 [borderColor]="'none'"
-                [title]="'Register'"
+                [title]="'Regístrate'"
                 (click)="handleClick()"
                 [hoverColor]="'#0600FF'"
               />
@@ -54,9 +54,9 @@
 
             <article>
               <div class="link">
-                <p class="descriptionRegister">Already have an account?</p>
+                <p class="descriptionRegister">¿Ya tienes una cuenta?</p>
                 <button class="btnRegister" [routerLink]="['/login']">
-                  Login
+                  Inicia sesión
                 </button>
               </div>
             </article>

@@ -8,8 +8,8 @@
       <div class="ap">
         <section class="header-min">
           <app-title
-            [title]="'HELLO, YOU'"
-            [subtitle]="'We love having you here, login or register to enter the world of Wise Glot.'"
+            [title]="'HOLA, TU'"
+            [subtitle]="'Nos encanta tenerte aquí, inicia sesión o regístrate para adentrarte en el mundo de Wise Glot.'"
             />
         </section>
 
@@ -19,8 +19,9 @@
               [color]="'#FFFFFF'"
               [textColor]="'#000000'"
               [borderColor]="'none'"
-              [title]="'Login'"
+              [title]="'Inicia sesión'"
               (click)="onLogin()"
+              [hoverColor]="'#FFFFFF'"
             />
           </div>
           <div>
@@ -28,8 +29,9 @@
               [color]="'transparent'"
               [textColor]="'#FFFFFF'"
               [borderColor]="'2px solid #FFFFFF'"
-              [title]="'Register'"
+              [title]="'Registrate'"
               (click)="onRegister()"
+              [hoverColor]="'#0600FF'"
             />
           </div>
         </section>

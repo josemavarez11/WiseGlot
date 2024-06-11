@@ -67,7 +67,7 @@ export class ValidateSecretCodePage implements OnInit {
   async handleClick(): Promise<void> {
     this.isLoading = true;
     if (!this.c1 || !this.c2 || !this.c3 || !this.c4 || !this.c5 || !this.c6) {
-      this.errorMessage = 'Please fill in all fields';
+      this.errorMessage = 'Rellene todos los campos';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
       return;
@@ -95,7 +95,7 @@ export class ValidateSecretCodePage implements OnInit {
       }
 
       if (response.status !== 200) {
-        this.errorMessage = 'Unknown error. Try again later.';
+        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();
