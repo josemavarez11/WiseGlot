@@ -54,18 +54,16 @@ export class ValidateSecretCodePage implements OnInit {
 
   ngOnInit() {
     this.email = this.sharedService.getEmail();
-    console.log('Email:', this.email); // Asegúrate de que esto está imprimiendo el email correctamente
+    console.log('Email:', this.email);
   }
 
   validateInput(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
-
     // Permitir solo números y asegurar que solo se ingrese un carácter
     if (input.value.length >= 1) {
       event.preventDefault();
     }
   }
-
   async handleClick(): Promise<void> {
     this.isLoading = true;
     if (!this.c1 || !this.c2 || !this.c3 || !this.c4 || !this.c5 || !this.c6) {
@@ -111,6 +109,7 @@ export class ValidateSecretCodePage implements OnInit {
     }
     this.isLoading = false;
     console.log('Code:', this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
+    this.sharedService.setSecretCode(this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
   }
 
   toggleErrorMessage() {

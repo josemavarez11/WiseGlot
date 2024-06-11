@@ -8,8 +8,9 @@ import { MessageErrorComponent } from 'src/app/components/containers/message-err
 import { ModalComponent } from 'src/app/components/others/modal/modal.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
-// Services
 import { IonContent } from '@ionic/angular/standalone';
+// Services
+import { ServiceSharedService } from '../../../services/service-shared.service';
 
 @Component({
   selector: 'app-password-change-view',
@@ -29,6 +30,15 @@ import { IonContent } from '@ionic/angular/standalone';
   ],
 })
 export class PasswordChangeViewPage implements OnInit {
+  email: string = '';
+  c1: string = '';
+  c2: string = '';
+  c3: string = '';
+  c4: string = '';
+  c5: string = '';
+  c6: string = '';
+
+
   showPassword: boolean = false;
   password: string = '';
   confirmPassword: string = '';
@@ -37,7 +47,7 @@ export class PasswordChangeViewPage implements OnInit {
   showSuccessModal: boolean = false;
   isLoading: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private sharedService: ServiceSharedService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/password-change') {
@@ -49,6 +59,10 @@ export class PasswordChangeViewPage implements OnInit {
 
   ngOnInit() {
     this.resetForm();
+    const [c1, c2, c3, c4, c5, c6] = this.sharedService.getSecretCode();
+    this.email = this.sharedService.getEmail();
+    console.log('Code:', c1, c2, c3, c4, c5, c6);
+    console.log('Email:', this.email);
   }
 
   resetForm(): void {
