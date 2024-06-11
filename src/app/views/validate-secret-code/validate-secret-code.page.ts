@@ -1,21 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-// import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import { RouterLink, Router } from '@angular/router';
 // Componentes
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 // Service
-import { ServiceSharedService } from 'src/app/service-shared.service';
+import { ServiceSharedService } from '../../../services/service-shared.service';
 
 @Component({
   selector: 'app-validate-secret-code',
   templateUrl: './validate-secret-code.page.html',
   styleUrls: ['./validate-secret-code.page.scss'],
   standalone: true,
-  imports: [FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule, LoadingComponent],
+  imports: [
+    FormsModule,
+    RouterLink,
+    TitleLrComponent,
+    MessageErrorComponent,
+    CommonModule,
+    LoadingComponent,
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    BtnAuthComponent,
+  ],
 })
 export class ValidateSecretCodePage implements OnInit {
   c1: string = '';
@@ -29,7 +47,10 @@ export class ValidateSecretCodePage implements OnInit {
   isLoading: boolean = false;
   email: string = '';
 
-  constructor(private router: Router, private sharedService: ServiceSharedService) { }
+  constructor(
+    private router: Router,
+    private sharedService: ServiceSharedService
+  ) {}
 
   ngOnInit() {
     this.email = this.sharedService.getEmail();
@@ -56,13 +77,16 @@ export class ValidateSecretCodePage implements OnInit {
 
     try {
       const code = this.c1 + this.c2 + this.c3 + this.c4 + this.c5 + this.c6;
-      const response = await fetch('https://wiseglot-api.onrender.com/auth/validate-reset-password-code/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: this.email, code }) // Usa el email aquí
-      });
+      const response = await fetch(
+        'https://wiseglot-api.onrender.com/auth/validate-reset-password-code/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: this.email, code }), // Usa el email aquí
+        }
+      );
 
       if (response.status === 400) {
         const data = await response.json();
@@ -72,7 +96,7 @@ export class ValidateSecretCodePage implements OnInit {
         return this.toggleErrorMessage();
       }
 
-      if(response.status !== 200) {
+      if (response.status !== 200) {
         this.errorMessage = 'Unknown error. Try again later.';
         this.showErrorMessage = true;
         this.isLoading = false;

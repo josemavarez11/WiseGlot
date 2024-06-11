@@ -5,15 +5,23 @@ import { FormsModule } from '@angular/forms';
 // Components
 import { MessageErrorComponent } from '../../containers/message-error/message-error.component';
 import { LoadingComponent } from '../loading/loading.component';
+import { BtnAuthComponent } from '../../buttons/btn-auth/btn-auth.component';
 // Services
-import { ServiceSharedService } from 'src/app/service-shared.service';
+import { ServiceSharedService } from '../../../../services/service-shared.service';
 
 @Component({
   selector: 'app-ask-email-view',
   templateUrl: './ask-email-view.component.html',
   styleUrls: ['./ask-email-view.component.scss'],
   standalone: true,
-  imports: [RouterLink, MessageErrorComponent, CommonModule, FormsModule, LoadingComponent],
+  imports: [
+    RouterLink,
+    MessageErrorComponent,
+    CommonModule,
+    FormsModule,
+    LoadingComponent,
+    BtnAuthComponent,
+  ],
 })
 export class AskEmailViewComponent implements OnInit {
   @Output() stepChange = new EventEmitter<number>();
@@ -22,7 +30,10 @@ export class AskEmailViewComponent implements OnInit {
   showErrorMessage: boolean = false;
   isLoading: boolean = false;
 
-  constructor(private router: Router, private sharedService: ServiceSharedService) {
+  constructor(
+    private router: Router,
+    private sharedService: ServiceSharedService
+  ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/ask-email') {
@@ -67,14 +78,17 @@ export class AskEmailViewComponent implements OnInit {
     }
 
     try {
-      const response = await fetch('https://wiseglot-api.onrender.com/auth/send-reset-password-code/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: this.email })
-      });
+      const response = await fetch(
+        'https://wiseglot-api.onrender.com/auth/send-reset-password-code/',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: this.email }),
+        }
+      );
 
       if (response.status === 400) {
-        this.errorMessage = "No user associated with this email was found.";
+        this.errorMessage = 'No user associated with this email was found.';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();

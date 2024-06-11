@@ -5,15 +5,29 @@
 
     <form>
       <p class="p">Email</p>
-       <input type="text" name="email" id="email" placeholder="Email" [(ngModel)]="email"/>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        placeholder="Email"
+        [(ngModel)]="email"
+      />
     </form>
-
-    <button class="btn" (click)="handleClick()">Send</button>
+    <div class="btn">
+      <app-btn-auth
+      [color]="'#2B2B2B'"
+      [textColor]="'#FFFFFF'"
+      [borderColor]="'none'"
+      [title]="'Siguiente'"
+      (click)="handleClick()"
+      [hoverColor]="'#0600FF'"
+    ></app-btn-auth>
+    </div>
     <div class="link">
       <p class="descriptionRegister">Already have an account?</p>
       <button class="btnRegister" [routerLink]="['/login']">Login</button>
     </div>
-    <div class="messageError" [ngClass]="{ 'show': showErrorMessage }">
+    <div class="messageError" [ngClass]="{ show: showErrorMessage }">
       <app-message-error [descrip]="errorMessage" />
     </div>
   </div>

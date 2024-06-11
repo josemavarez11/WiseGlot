@@ -2,10 +2,20 @@
   <div class="modal-contentt">
     <h1>You have requested a new password!</h1>
     <p>
-      A secret code has been sent to your email address. Check your inbox to find it.
+      A secret code has been sent to your email address. Check your inbox to
+      find it.
     </p>
     <div class="content-btnn">
-    <button class="btnn" [routerLink]="['/validate-secret-code']">Next</button>
-  </div>
+      <div class="btn">
+        <app-btn-auth
+        [color]="'#2B2B2B'"
+        [textColor]="'#FFFFFF'"
+        [borderColor]="'none'"
+        [title]="'Siguiente'"
+        (click)="handleClick()"
+        [hoverColor]="'#0600FF'"
+      ></app-btn-auth>
+      </div>
+    </div>
   </div>
 </article>

@@ -7,6 +7,7 @@ import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.co
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { ModalComponent } from 'src/app/components/others/modal/modal.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 // Services
 import { IonContent } from '@ionic/angular/standalone';
 
@@ -23,11 +24,11 @@ import { IonContent } from '@ionic/angular/standalone';
     MessageErrorComponent,
     CommonModule,
     ModalComponent,
-    LoadingComponent
+    LoadingComponent,
+    BtnAuthComponent,
   ],
 })
 export class PasswordChangeViewPage implements OnInit {
-  // Mostrar u ocultar la contraseña
   showPassword: boolean = false;
   password: string = '';
   confirmPassword: string = '';

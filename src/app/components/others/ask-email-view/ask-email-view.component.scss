@@ -1,87 +1,80 @@
-.modal{
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    border-radius: 10px;
-    box-shadow: 0 0 150px rgba(0, 0, 0, 0.7);
-    width: 100%;
+.modal {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0 0 150px rgba(0, 0, 0, 0.7);
+  width: 100%;
 }
-.modal-content{
-    width: 85%;
+.modal-content {
+  width: 85%;
 }
-.logoApp{
-    width: 110px;
-    height: 30px;
-    background: none;
+.logoApp {
+  width: 110px;
+  height: 30px;
+  background: none;
 }
-h1{
-    font-size: 24px;
-    font-weight: 700;
+h1 {
+  font-size: 24px;
+  font-weight: 700;
 }
-.p{
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 4px;
+.p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
 }
-form{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
-input{
-    width: 100%;
-    height: 55px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    margin-bottom: 25px;
-    font-size: 14px;
-    background-color: #F0F0F0;
-    padding-left: 25px;
-    color: black;
+input {
+  width: 100%;
+  height: 55px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-bottom: 25px;
+  font-size: 14px;
+  background-color: #f0f0f0;
+  padding-left: 25px;
+  color: black;
 }
-.btn{
-    width: 100%;
-    height: 55px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    background-color: #2B2B2B;
-    color: white;
-    font-size: 16px;
-    font-weight: 700;
-    
+.btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.link{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 5px;
-
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 5px;
 }
 
-.descriptionRegister{
-    color: #1B1B1B;
-    font-weight: 400;
-    font-size: 15px;
-    background: none;
+.descriptionRegister {
+  color: #1b1b1b;
+  font-weight: 400;
+  font-size: 15px;
+  background: none;
 }
-.btnRegister{
-    color: #1B1B1B;
-    font-weight: 750;
-    font-size: 15px;
-    background: none;
+.btnRegister {
+  color: #1b1b1b;
+  font-weight: 750;
+  font-size: 15px;
+  background: none;
 }
 
-.messageError{
-    width: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+.messageError {
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 .messageError.show {
-    opacity: 1;
+  opacity: 1;
 }
