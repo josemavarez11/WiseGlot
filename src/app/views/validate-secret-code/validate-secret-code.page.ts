@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+// import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { RouterLink, Router } from '@angular/router';
 // Componentes
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
@@ -15,7 +15,7 @@ import { ServiceSharedService } from 'src/app/service-shared.service';
   templateUrl: './validate-secret-code.page.html',
   styleUrls: ['./validate-secret-code.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule, LoadingComponent],
+  imports: [FormsModule, RouterLink, TitleLrComponent, MessageErrorComponent, CommonModule, LoadingComponent],
 })
 export class ValidateSecretCodePage implements OnInit {
   c1: string = '';
