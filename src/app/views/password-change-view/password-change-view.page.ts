@@ -49,33 +49,58 @@ export class PasswordChangeViewPage implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  handleClick(): void {
-    console.log('Password:', this.password);
+  async handleClick(): Promise<void> {
 
     if (!this.password || !this.confirmPassword) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
-      this.toggleErrorMessage();
-      return;
+      return this.toggleErrorMessage();
     }
+
     if (this.password.length < 8) {
       this.errorMessage = 'Password must be at least 8 characters';
       this.showErrorMessage = true;
-      this.toggleErrorMessage();
-      return;
+      return this.toggleErrorMessage();
     }
+
     if (this.password !== this.confirmPassword) {
       this.errorMessage = 'Passwords do not match';
       this.showErrorMessage = true;
-      this.toggleErrorMessage();
-      return;
+      return this.toggleErrorMessage();
     }
-    if (this.authService.changePassword(this.password)) {
+
+    console.log('Password:', this.password);
+
+    try {
+      const response = await fetch('https://wiseglot-api.onrender.com/auth/reset-password/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          code: '',
+          email: '',
+          password: this.password,
+        })
+      });
+
+      if (response.status === 400) {
+        const data = await response.json();
+        this.errorMessage = data.error;
+        this.showErrorMessage = true;
+        return this.toggleErrorMessage();
+      }
+
+      if (response.status !== 200) {
+        this.errorMessage = 'Unknown error. Try again later.';
+        this.showErrorMessage = true;
+        return this.toggleErrorMessage();
+      }
+
       this.showSuccessModal = true;
-    } else {
-      this.errorMessage = 'Password already exists';
+      return;
+    } catch (error: any) {
+      this.errorMessage = error.message;
       this.showErrorMessage = true;
-      this.toggleErrorMessage();
+      return this.toggleErrorMessage();
     }
   }
 
