@@ -7,8 +7,6 @@ import { RouterLink, Router } from '@angular/router';
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
-// Servicios
-import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-validate-secret-code',
@@ -22,11 +20,13 @@ export class ValidateSecretCodePage implements OnInit {
   c2: string = '';
   c3: string = '';
   c4: string = '';
+  c5: string = '';
+  c6: string = '';
   showErrorMessage: boolean = false;
   errorMessage: string = '';
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -42,7 +42,7 @@ export class ValidateSecretCodePage implements OnInit {
 
   async handleClick(): Promise<void> {
     this.isLoading = true;
-    if (!this.c1 || !this.c2 || !this.c3 || !this.c4) {
+    if (!this.c1 || !this.c2 || !this.c3 || !this.c4 || !this.c5 || !this.c6) {
       this.errorMessage = 'Please fill in all fields';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
@@ -50,7 +50,7 @@ export class ValidateSecretCodePage implements OnInit {
     }
 
     try {
-      const code = this.c1 + this.c2 + this.c3 + this.c4;
+      const code = this.c1 + this.c2 + this.c3 + this.c4 + this.c5 + this.c6;
       const response = await fetch('https://wiseglot-api.onrender.com/auth/validate-reset-password-code/', {
         method: 'POST',
         headers: {
@@ -82,7 +82,7 @@ export class ValidateSecretCodePage implements OnInit {
       return this.toggleErrorMessage();
     }
     this.isLoading = false;
-    console.log('Code:', this.c1, this.c2, this.c3, this.c4);
+    console.log('Code:', this.c1, this.c2, this.c3, this.c4 , this.c5, this.c6);
   }
 
   toggleErrorMessage() {
