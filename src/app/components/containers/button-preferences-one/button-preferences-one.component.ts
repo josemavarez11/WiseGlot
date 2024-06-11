@@ -16,7 +16,7 @@ export class ButtonPreferencesOneComponent implements OnInit {
 
   logValues() {
     this.selected.emit();
-    console.log('Language:', this.language);
-    console.log('SubLanguage:', this.subLanguage);
+    // console.log('Language:', this.language);
+    // console.log('SubLanguage:', this.subLanguage);
   }
 }

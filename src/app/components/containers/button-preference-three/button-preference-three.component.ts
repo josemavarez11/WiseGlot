@@ -20,7 +20,7 @@ export class ButtonPreferenceThreeComponent  implements OnInit {
   logValues() {
     this.isSelected = !this.isSelected;
     this.selected.emit();
-    console.log('img:', this.img);
-    console.log('job:', this.job);
+    // console.log('img:', this.img);
+    // console.log('job:', this.job);
   }
 }

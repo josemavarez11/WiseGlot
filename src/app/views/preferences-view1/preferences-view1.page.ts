@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import { RouterLink, Router } from '@angular/router';
 
 // Componentes
@@ -28,17 +33,16 @@ import { ModalErrorWifiComponent } from 'src/app/components/others/modal-error-w
     TitlePreferenceComponent,
     ButtonPreferencesTwoComponent,
     ButtonPreferenceThreeComponent,
-    ModalErrorWifiComponent
+    ModalErrorWifiComponent,
   ],
 })
 export class PreferencesView1Page implements OnInit {
   step: number = 0;
-  // popup: boolean = false;
   selectedOption: boolean = false;
-  selectedPreferences: any[] = [];
+  selectedPreferencesAll: any[] = [];
 
   titles: string[] = [
-    "¿Cuál es tu lengua materna?",
+    '¿Cuál es tu lengua materna?',
     '¿Qué lenguajes deseas practicar?',
     '¿Por qué quieres practicar inglés?',
     '¿Cuál es tu nivel de inglés?',
@@ -54,53 +58,51 @@ export class PreferencesView1Page implements OnInit {
   ];
 
   preferenceOptions = [
-    { img: "../../../assets/icon/img11.png", job: "Deportes" },
-    { img: "../../../assets/icon/img6.png", job: "Cultura y Entretenimiento" },
-    { img: "../../../assets/icon/img9.png", job: "Literatura" },
-    { img: "../../../assets/icon/img1.png", job: "Trabajo" },
-    { img: "../../../assets/icon/img10.png", job: "Ciencia" },
-    { img: "../../../assets/icon/img7.png", job: "Economía" },
-    { img: "../../../assets/icon/img5.png", job: "Comida" },
-    { img: "../../../assets/icon/img8.png", job: "Arte" },
-    { img: "../../../assets/icon/img4.png", job: "Tecnología" },
-    { img: "../../../assets/icon/img3.png", job: "Política" },
+    { img: '../../../assets/icon/img11.png', job: 'Deportes' },
+    { img: '../../../assets/icon/img6.png', job: 'Cultura y Entretenimiento' },
+    { img: '../../../assets/icon/img9.png', job: 'Literatura' },
+    { img: '../../../assets/icon/img1.png', job: 'Trabajo' },
+    { img: '../../../assets/icon/img10.png', job: 'Ciencia' },
+    { img: '../../../assets/icon/img7.png', job: 'Economía' },
+    { img: '../../../assets/icon/img5.png', job: 'Comida' },
+    { img: '../../../assets/icon/img8.png', job: 'Arte' },
+    { img: '../../../assets/icon/img4.png', job: 'Tecnología' },
+    { img: '../../../assets/icon/img3.png', job: 'Política' },
   ];
 
   preferenceOne = [
-    { language: "Español", subLanguage: "Nativo" },
-    { language: "Inglés", subLanguage: "Intermedio" },
-    { language: "Francés", subLanguage: "Básico" },
-    { language: "Alemán", subLanguage: "Intermedio" },
-    { language: "Italiano", subLanguage: "Nativo" },
-    { language: "Portugués", subLanguage: "Intermedio" },
-    { language: "Chino", subLanguage: "Básico" },
-    { language: "Japonés", subLanguage: "Nativo" },
-    { language: "Coreano", subLanguage: "Intermedio" },
-    { language: "Ruso", subLanguage: "Básico" },
-  ]
+    { language: 'Español', subLanguage: 'Nativo' },
+    { language: 'Inglés', subLanguage: 'Intermedio' },
+    { language: 'Francés', subLanguage: 'Básico' },
+    { language: 'Alemán', subLanguage: 'Intermedio' },
+    { language: 'Italiano', subLanguage: 'Nativo' },
+    { language: 'Portugués', subLanguage: 'Intermedio' },
+    { language: 'Chino', subLanguage: 'Básico' },
+    { language: 'Japonés', subLanguage: 'Nativo' },
+    { language: 'Coreano', subLanguage: 'Intermedio' },
+    { language: 'Ruso', subLanguage: 'Básico' },
+  ];
 
   preferenceTwo = [
-    {img:"../../../assets/icon/Portugal.png", job:"Portugués"},
-    {img:"../../../assets/icon/United States.png", job:"Inglés"},
-    {img:"../../../assets/icon/Germany.png", job:"Alemán"},
-    {img:"../../../assets/icon/Cuba.png", job:"Cubano"},
+    { img: '../../../assets/icon/Portugal.png', job: 'Portugués' },
+    { img: '../../../assets/icon/United States.png', job: 'Inglés' },
+    { img: '../../../assets/icon/Germany.png', job: 'Alemán' },
+    { img: '../../../assets/icon/Cuba.png', job: 'Cubano' },
   ];
 
   preferenceThree = [
-    {img:"../../../assets/icon/img1.png", job: "Opportunity to work"},
-    {img:"../../../assets/icon/img2.png", job: "Travel"},
-    {img:"../../../assets/icon/img3.png", job: "Study"},
-    {img:"../../../assets/icon/img4.png", job: "Personal interest"},
-    {img:"../../../assets/icon/img5.png", job: "Other"},
+    { img: '../../../assets/icon/img1.png', job: 'Opportunity to work' },
+    { img: '../../../assets/icon/img2.png', job: 'Travel' },
+    { img: '../../../assets/icon/img3.png', job: 'Study' },
+    { img: '../../../assets/icon/img4.png', job: 'Personal interest' },
+    { img: '../../../assets/icon/img5.png', job: 'Other' },
   ];
 
   preferenceFour = [
-    {img:"../../../assets/icon/level1.png", job: "Beginner"},
-    {img:"../../../assets/icon/level2.png", job: "Intermediate"},
-    {img:"../../../assets/icon/level3.png", job: "Advanced"},
+    { img: '../../../assets/icon/level1.png', job: 'Beginner' },
+    { img: '../../../assets/icon/level2.png', job: 'Intermediate' },
+    { img: '../../../assets/icon/level3.png', job: 'Advanced' },
   ];
-
-  
 
   constructor(private router: Router) {}
 
@@ -108,7 +110,7 @@ export class PreferencesView1Page implements OnInit {
 
   selectOption(step: number): void {
     if (this.step === 4) {
-      if (this.selectedPreferences.length === 0) {
+      if (this.selectedPreferencesAll.length === 0) {
         alert('Por favor, selecciona al menos una opción antes de continuar.');
         return;
       }
@@ -124,39 +126,50 @@ export class PreferencesView1Page implements OnInit {
       this.step = 1;
     }
     if (step === 1) {
-      // this.popup = true;
       this.step = 2;
     }
     if (step === 2) {
       this.step = 3;
     }
     if (step === 3) {
+      console.log('All selected preferences:');
+      console.log(this.selectedPreferencesAll);
       this.step = 4;
     }
     if (step === 4) {
       this.router.navigate(['/home']);
     }
   }
+
   selectOne(option: any): void {
+    option.selected = true;
     this.selectedOption = true;
+    this.selectedPreferencesAll.push(option);
   }
 
   selectTwo(option: any): void {
+    option.selected = true;
     this.selectedOption = true;
+    this.selectedPreferencesAll.push(option);
   }
 
   toggleSelectThree(option: any): void {
-    const index = this.selectedPreferences.indexOf(option);
-    if (index === -1) {
-      this.selectedPreferences.push(option);
+    option.selected = !option.selected;
+    this.selectedOption = this.selectedPreferencesAll.length > 0;
+    if (option.selected) {
+      this.selectedPreferencesAll.push(option);
     } else {
-      this.selectedPreferences.splice(index, 1);
+      const index = this.selectedPreferencesAll.findIndex(
+        (item) => item === option
+      );
+      if (index !== -1) {
+        this.selectedPreferencesAll.splice(index, 1);
+      }
     }
-    this.selectedOption = this.selectedPreferences.length > 0;
   }
 
   isSelected(option: any): boolean {
-    return this.selectedPreferences.includes(option);
+    return this.selectedPreferencesAll.includes(option);
   }
 
   getProgressBardWidth() {
@@ -165,7 +178,6 @@ export class PreferencesView1Page implements OnInit {
   }
 
   previousStep(): void {
-    // this.popup = false;
     if (this.step > 0) {
       this.step--;
     } else {

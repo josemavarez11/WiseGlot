@@ -40,7 +40,7 @@
           [language]="item.language"
           [subLanguage]="item.subLanguage"
           [ngClass]="{'animated-item': true}"
-          (click)="selectOne($event)"
+          (click)="selectOne(item)"
           />
       }
     </div>
@@ -53,7 +53,7 @@
           [img]="item.img"
           [job]="item.job"
           [ngClass]="{'animated-item': true}"
-          (click)="selectTwo($event)"
+          (click)="selectTwo(item)"
           />
       }
     </div>
@@ -66,7 +66,7 @@
           [img]="item.img"
           [job]="item.job"
           [ngClass]="{'animated-item': true}"
-          (click)="selectTwo($event)"
+          (click)="selectTwo(item)"
           />
       }
     </div>
@@ -79,7 +79,7 @@
           [img]="item.img"
           [job]="item.job"
           [ngClass]="{'animated-item': true}"
-          (click)="selectTwo($event)"
+          (click)="selectTwo(item)"
           />
       }
     </div>
