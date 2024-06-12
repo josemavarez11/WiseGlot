@@ -42,6 +42,7 @@ export class ValidateSecretCodePage implements OnInit {
   c4: string = '';
   c5: string = '';
   c6: string = '';
+
   showErrorMessage: boolean = false;
   errorMessage: string = '';
   isLoading: boolean = false;
@@ -54,7 +55,6 @@ export class ValidateSecretCodePage implements OnInit {
 
   ngOnInit() {
     this.email = this.sharedService.getEmail();
-    console.log('Email:', this.email);
   }
 
   validateInput(event: KeyboardEvent) {
@@ -67,6 +67,7 @@ export class ValidateSecretCodePage implements OnInit {
   async handleClick(): Promise<void> {
     this.isLoading = true;
     if (!this.c1 || !this.c2 || !this.c3 || !this.c4 || !this.c5 || !this.c6) {
+      this.isLoading = false;
       this.errorMessage = 'Rellene todos los campos';
       this.showErrorMessage = true;
       this.toggleErrorMessage();
@@ -75,6 +76,8 @@ export class ValidateSecretCodePage implements OnInit {
 
     try {
       const code = this.c1 + this.c2 + this.c3 + this.c4 + this.c5 + this.c6;
+      console.log('Code:', code);
+      console.log('Email:', this.email);
       const response = await fetch(
         'https://wiseglot-api.onrender.com/auth/validate-reset-password-code/',
         {
