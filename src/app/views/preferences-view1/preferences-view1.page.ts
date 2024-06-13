@@ -42,19 +42,19 @@ export class PreferencesView1Page implements OnInit {
   selectedPreferencesAll: any[] = [];
 
   titles: string[] = [
-    '¿Cuál es tu lengua materna?',
-    '¿Qué lenguajes deseas practicar?',
+    '¿Cuál es tu idioma nativo?',
+    '¿Qué idioma quieres aprender?',
     '¿Por qué quieres practicar inglés?',
     '¿Cuál es tu nivel de inglés?',
     'Selecciona tus temas de interés',
   ];
 
   descriptions: string[] = [
-    'Describe tu nivel de fluidez en tu lengua materna',
-    'Selecciona los idiomas que quieres practicar',
-    'Usaremos esta información para emparejarte con las personas adecuadas',
-    '¿Normalmente, cómo te sientes cuando hablas en inglés?',
-    'Todos los temas que selecciones se usarán para emparejarte con las personas adecuadas',
+    '¡Cuéntanos cuál es tu idioma base para empezar esta aventura juntos!',
+    'Elige el idioma que quieres aprender y prepárate para un aprendizaje único.',
+    '¿Qué te motiva a aprender? Cuéntanos, ¡queremos que este viaje sea especial para ti!',
+    'Dinos tu nivel actual, ¡sin importar si eres un novato o un pro!',
+    'Elige tus temas de interés para que el contenido sea más interesante y motivador .',
   ];
 
   preferenceOptions = [
@@ -70,25 +70,7 @@ export class PreferencesView1Page implements OnInit {
     { img: '../../../assets/icon/img3.png', job: 'Política' },
   ];
 
-  preferenceOne = [
-    { language: 'Español', subLanguage: 'Nativo' },
-    { language: 'Inglés', subLanguage: 'Intermedio' },
-    { language: 'Francés', subLanguage: 'Básico' },
-    { language: 'Alemán', subLanguage: 'Intermedio' },
-    { language: 'Italiano', subLanguage: 'Nativo' },
-    { language: 'Portugués', subLanguage: 'Intermedio' },
-    { language: 'Chino', subLanguage: 'Básico' },
-    { language: 'Japonés', subLanguage: 'Nativo' },
-    { language: 'Coreano', subLanguage: 'Intermedio' },
-    { language: 'Ruso', subLanguage: 'Básico' },
-  ];
-
-  preferenceTwo = [
-    { img: '../../../assets/icon/Portugal.png', job: 'Portugués' },
-    { img: '../../../assets/icon/United States.png', job: 'Inglés' },
-    { img: '../../../assets/icon/Germany.png', job: 'Alemán' },
-    { img: '../../../assets/icon/Cuba.png', job: 'Cubano' },
-  ];
+  preferenceOneAndTwo: { id: string, abb_language: string, des_language: string, icon: string }[] = [];
 
   preferenceThree = [
     { img: '../../../assets/icon/img1.png', job: 'Opportunity to work' },
@@ -106,7 +88,23 @@ export class PreferencesView1Page implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    const response = await fetch('https://wiseglot-api.onrender.com/learning/get-languages/', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const data = await response.json();
+
+    for (let item of data) {
+      this.preferenceOneAndTwo.push({
+        id: item.id,
+        abb_language: item.abb_language,
+        des_language: item.des_language,
+        icon: `../../../assets/icon/flags/${item.abb_language}.png`
+      });
+    }
+  }
 
   selectOption(step: number): void {
     if (this.step === 4) {
