@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'welcome',
+    redirectTo: 'splash',
     pathMatch: 'full'
   },
   {
@@ -45,7 +45,12 @@ export const routes: Routes = [
   {
     path: 'home',
     loadComponent: () => import('./views/home-view/home-view.page').then( m => m.HomeViewPage)
+  },
+  {
+    path: 'splash',
+    loadComponent: () => import('./splash/splash.page').then( m => m.SplashPage)
   }
+
 
 
 ];

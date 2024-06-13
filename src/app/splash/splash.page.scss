@@ -1,0 +1,39 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background: linear-gradient(to bottom, #0018ff, #00008b);
+}
+.circle {
+    position: absolute;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.circle1 {
+    width: 200px;
+    height: 200px;
+    bottom: 600px;
+    left: -60px;
+}
+
+.circle2 {
+    width: 300px;
+    height: 300px;
+    bottom: -10px;
+    right: -100px;
+}
+.logo{
+    // background-color: red;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img{
+    width: 260px;
+    height: 64px;
+}
