@@ -11,6 +11,7 @@
 }
 .modal-content {
   width: 85%;
+  // background-color: red;
 }
 .logoApp {
   width: 110px;
@@ -48,13 +49,15 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 15px;
 }
 .link {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  padding: 5px 3px;
+  padding-bottom: 20px;
+  // background-color: green;
 }
 
 .descriptionRegister {

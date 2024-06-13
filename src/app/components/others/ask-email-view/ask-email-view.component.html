@@ -23,13 +23,15 @@
       [hoverColor]="'#0600FF'"
     ></app-btn-auth>
     </div>
+
+    <div class="messageError" [ngClass]="{ show: showErrorMessage }">
+      <app-message-error [descrip]="errorMessage" />
+    </div>
     <div class="link">
       <p class="descriptionRegister">¿Has recordado tu contraseña?</p>
       <button class="btnRegister" [routerLink]="['/login']">Inicia sesión</button>
     </div>
-    <div class="messageError" [ngClass]="{ show: showErrorMessage }">
-      <app-message-error [descrip]="errorMessage" />
-    </div>
+
   </div>
   <app-loading *ngIf="isLoading" />
 </article>

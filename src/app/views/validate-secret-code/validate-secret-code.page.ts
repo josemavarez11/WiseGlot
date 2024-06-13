@@ -7,7 +7,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-import { RouterLink, Router } from '@angular/router';
+import { Router, RouterLink, NavigationEnd } from '@angular/router';
 // Componentes
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
@@ -51,21 +51,47 @@ export class ValidateSecretCodePage implements OnInit {
   constructor(
     private router: Router,
     private sharedService: ServiceSharedService
-  ) {}
+  ) {
+    this.router.events.subscribe((event) =>{
+      if (event instanceof NavigationEnd) {
+        if (this.router.url === '/validate-secret-code') {
+          this.resetForm();
+        }
+      }
+    });
+    this.email = this.sharedService.getEmail();
+  }
+
+  resetForm(): void {
+    this.c1 = '';
+    this.c2 = '';
+    this.c3 = '';
+    this.c4 = '';
+    this.c5 = '';
+    this.c6 = '';
+  };
 
   ngOnInit() {
-    this.email = this.sharedService.getEmail();
+    this.resetForm();
+    console.log('Email: ', this.email);
   }
 
   validateInput(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
-    // Permitir solo números y asegurar que solo se ingrese un carácter
-    if (input.value.length >= 1) {
-      event.preventDefault();
+    const allowedChars = /^[a-zA-Z0-9]$/;
+
+    if (!allowedChars.test(input.value)) {
+      input.value = '';
+    }
+
+    if (input.value.length > 1) {
+      input.value = input.value.charAt(0);
     }
   }
+
   async handleClick(): Promise<void> {
     this.isLoading = true;
+
     if (!this.c1 || !this.c2 || !this.c3 || !this.c4 || !this.c5 || !this.c6) {
       this.isLoading = false;
       this.errorMessage = 'Rellene todos los campos';
@@ -74,10 +100,17 @@ export class ValidateSecretCodePage implements OnInit {
       return;
     }
 
+    const code = this.c1 + this.c2 + this.c3 + this.c4 + this.c5 + this.c6;
+
+    if (!/^[a-zA-Z0-9]{6}$/.test(code)) {
+      this.isLoading = false;
+      this.errorMessage = 'Cada campo debe tener un solo carácter alfanumérico';
+      this.showErrorMessage = true;
+      this.toggleErrorMessage();
+      return;
+    }
+
     try {
-      const code = this.c1 + this.c2 + this.c3 + this.c4 + this.c5 + this.c6;
-      console.log('Code:', code);
-      console.log('Email:', this.email);
       const response = await fetch(
         'https://wiseglot-api.onrender.com/auth/validate-reset-password-code/',
         {
@@ -110,8 +143,8 @@ export class ValidateSecretCodePage implements OnInit {
       this.showErrorMessage = true;
       return this.toggleErrorMessage();
     }
+
     this.isLoading = false;
-    console.log('Code:', this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
     this.sharedService.setSecretCode(this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
   }
 

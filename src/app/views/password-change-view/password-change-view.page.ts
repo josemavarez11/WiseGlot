@@ -48,6 +48,8 @@ export class PasswordChangeViewPage implements OnInit {
   isLoading: boolean = false;
 
   constructor(private router: Router, private sharedService: ServiceSharedService) {
+    this.email = this.sharedService.getEmail();
+    [this.c1, this.c2, this.c3, this.c4, this.c5, this.c6] = this.sharedService.getSecretCode();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/password-change') {
@@ -59,9 +61,7 @@ export class PasswordChangeViewPage implements OnInit {
 
   ngOnInit() {
     this.resetForm();
-    const [c1, c2, c3, c4, c5, c6] = this.sharedService.getSecretCode();
-    this.email = this.sharedService.getEmail();
-    console.log('Code:', c1, c2, c3, c4, c5, c6);
+    console.log('Code:', this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
     console.log('Email:', this.email);
   }
 
