@@ -1,12 +1,12 @@
 <ion-content>
   <div>
     <app-btn-auth
-    [color]="'#2B2B2B'"
-    [textColor]="'#FFFFFF'"
-    [borderColor]="'none'"
-    [title]="'Log Out'"
-    (click)="handleClick()"
-    />
+      [color]="'#2B2B2B'"
+      [textColor]="'#FFFFFF'"
+      [borderColor]="'none'"
+      [title]="'Log Out'"
+      (click)="handleClick()"
+    ></app-btn-auth>
   </div>
-
+  <app-modal-selection *ngIf="showModal" (selection)="handleModalSelection($event)"></app-modal-selection>
 </ion-content>
