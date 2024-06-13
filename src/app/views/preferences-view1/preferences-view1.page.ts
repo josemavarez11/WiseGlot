@@ -73,17 +73,17 @@ export class PreferencesView1Page implements OnInit {
   preferenceOneAndTwo: { id: string, abb_language: string, des_language: string, icon: string }[] = [];
 
   preferenceThree = [
-    { img: '../../../assets/icon/img1.png', job: 'Opportunity to work' },
-    { img: '../../../assets/icon/img2.png', job: 'Travel' },
-    { img: '../../../assets/icon/img3.png', job: 'Study' },
-    { img: '../../../assets/icon/img4.png', job: 'Personal interest' },
-    { img: '../../../assets/icon/img5.png', job: 'Other' },
+    { img: '../../../assets/icon/img1.png', job: 'Oportunidad de Trabajo' },
+    { img: '../../../assets/icon/img2.png', job: 'Viaje' },
+    { img: '../../../assets/icon/img3.png', job: 'Educación' },
+    { img: '../../../assets/icon/img4.png', job: 'Interes Personal' },
+    { img: '../../../assets/icon/img5.png', job: 'Otro' },
   ];
 
   preferenceFour = [
-    { img: '../../../assets/icon/level1.png', job: 'Beginner' },
-    { img: '../../../assets/icon/level2.png', job: 'Intermediate' },
-    { img: '../../../assets/icon/level3.png', job: 'Advanced' },
+    { img: '../../../assets/icon/level1.png', job: 'Principiante' },
+    { img: '../../../assets/icon/level2.png', job: 'Intermedio' },
+    { img: '../../../assets/icon/level3.png', job: 'Avanzado' },
   ];
 
   constructor(private router: Router) {}
