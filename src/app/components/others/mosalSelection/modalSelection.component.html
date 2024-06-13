@@ -1,13 +1,21 @@
 <!-- modalSelection.component.html -->
 <div class="modal-overlay">
   <div class="modal-content">
-    <p>{{ message }}</p>
+
+    <div class="titleModal">
+      <img src="../../../../assets/img/logoModal.png">
+    </div>
+
+    <div class="descrip">
+      <p class="description">{{ message }}</p>
+    </div>
+    
     <div class="contentBtn">
       <app-btn-auth
-        [color]="'#2B2B2B'"
-        [textColor]="'#FFFFFF'"
-        [borderColor]="'none'"
-        [title]="'Si'"
+        [color]="'white'"
+        [textColor]="'#2B2B2B'"
+        [borderColor]="'2px solid #0600FF'"
+        [title]="'No'"
         (click)="handleButtonClick('Si')" 
         width="100px"
       ></app-btn-auth>
@@ -16,10 +24,12 @@
         [color]="'#2B2B2B'"
         [textColor]="'#FFFFFF'"
         [borderColor]="'none'"
-        [title]="'Nativo'"
+        [title]="'Si'"
         (click)="handleButtonClick('Nativo')" 
         width="100px"
       ></app-btn-auth>
     </div>
+
+
   </div>
 </div>
