@@ -8,6 +8,7 @@ import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.co
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+
 // Services
 
 @Component({
@@ -32,6 +33,7 @@ export class LoginViewPage implements OnInit {
   showErrorMessage: boolean = false;
   errorMessage: string = '';
   isLoading: boolean = false;
+  passwordFieldType: string = 'password';
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
@@ -45,6 +47,10 @@ export class LoginViewPage implements OnInit {
 
   ngOnInit() {
     this.resetForm();
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 
   resetForm(): void {
@@ -91,7 +97,7 @@ export class LoginViewPage implements OnInit {
 
       if (response.status === 400) {
         this.errorMessage =
-          "Los datos que ha proporcionado no coinciden con nuestros registros. Por favor, inténtelo de nuevo.";
+          'Los datos que ha proporcionado no coinciden con nuestros registros. Por favor, inténtelo de nuevo.';
         this.showErrorMessage = true;
         this.toggleErrorMessage();
         this.isLoading = false;

@@ -24,13 +24,18 @@
             placeholder="Correo electrónico"
             [(ngModel)]="email"
           />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Contraseña"
-            [(ngModel)]="password"
-          />
+          <div class="password-container">
+            <input
+              [type]="passwordFieldType"
+              name="password"
+              id="password"
+              placeholder="Contraseña"
+              [(ngModel)]="password"
+            />
+            <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+              <img [src]="passwordFieldType === 'password' ? '../../../assets/icon/eyeClosed.png' : '../../../assets/icon/eye.png'" />
+            </button>
+          </div>
           <button
             type="button"
             class="Forgot"
