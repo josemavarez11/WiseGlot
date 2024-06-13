@@ -1,0 +1,25 @@
+<!-- modalSelection.component.html -->
+<div class="modal-overlay">
+  <div class="modal-content">
+    <p>{{ message }}</p>
+    <div class="contentBtn">
+      <app-btn-auth
+        [color]="'#2B2B2B'"
+        [textColor]="'#FFFFFF'"
+        [borderColor]="'none'"
+        [title]="'Si'"
+        (click)="handleButtonClick('Si')" 
+        width="100px"
+      ></app-btn-auth>
+
+      <app-btn-auth
+        [color]="'#2B2B2B'"
+        [textColor]="'#FFFFFF'"
+        [borderColor]="'none'"
+        [title]="'Nativo'"
+        (click)="handleButtonClick('Nativo')" 
+        width="100px"
+      ></app-btn-auth>
+    </div>
+  </div>
+</div>

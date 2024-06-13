@@ -12,7 +12,7 @@
   }
   
   .modal-content {
-    width: 80%;
+    width: 90%;
     height: 20%;
     background: white;
     display: flex;
@@ -27,5 +27,11 @@
     font-size: 18px;
     font-weight: bold;
     color: black;
+    padding: 5px;
   }
   
+  .contentBtn{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }

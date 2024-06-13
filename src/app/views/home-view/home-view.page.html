@@ -7,6 +7,9 @@
       [title]="'Log Out'"
       (click)="handleClick()"
     ></app-btn-auth>
+
   </div>
-  <app-modal-selection *ngIf="showModal" (selection)="handleModalSelection($event)"></app-modal-selection>
+  <app-modalSelection
+    [message]="'Quieres cambiar el idioma de la aplicacion al que tu quieres aprender?'"
+  />
 </ion-content>
