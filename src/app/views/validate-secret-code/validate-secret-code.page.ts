@@ -118,7 +118,7 @@ export class ValidateSecretCodePage implements OnInit {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email: this.email, code }), // Usa el email aquí
+          body: JSON.stringify({ email: this.email, code }),
         }
       );
 

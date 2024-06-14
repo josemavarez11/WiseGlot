@@ -38,7 +38,6 @@ export class PasswordChangeViewPage implements OnInit {
   c5: string = '';
   c6: string = '';
 
-
   showPassword: boolean = false;
   password: string = '';
   confirmPassword: string = '';
@@ -84,7 +83,7 @@ export class PasswordChangeViewPage implements OnInit {
     }
 
     if (this.password.length < 8) {
-      this.errorMessage = 'La contraseña debe tener al menos 6 caracteres';
+      this.errorMessage = 'La contraseña debe tener al menos 8 caracteres';
       this.showErrorMessage = true;
       this.isLoading = false;
       return this.toggleErrorMessage();
@@ -97,21 +96,23 @@ export class PasswordChangeViewPage implements OnInit {
       return this.toggleErrorMessage();
     }
 
-    console.log('Password:', this.password);
-
     try {
+      let code = `${this.c1}${this.c2}${this.c3}${this.c4}${this.c5}${this.c6}`;
       const response = await fetch(
         'https://wiseglot-api.onrender.com/auth/reset-password/',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            code: '',
-            email: '',
+            code,
+            email: this.email,
             password: this.password,
           }),
         }
       );
+
+      console.log('code: ', code);
+      console.log('email: ', this.email);
 
       if (response.status === 400) {
         const data = await response.json();
@@ -122,7 +123,7 @@ export class PasswordChangeViewPage implements OnInit {
       }
 
       if (response.status !== 200) {
-        this.errorMessage = 'Ha ocurrido un error inesperado';
+        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();
