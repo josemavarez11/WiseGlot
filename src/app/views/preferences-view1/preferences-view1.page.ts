@@ -8,7 +8,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { RouterLink, Router } from '@angular/router';
-import { ApiService } from 'src/services/api.service';
+import { ApiService, ApiResponse } from 'src/services/api.service';
 
 // Componentes
 import { ButtonPreferencesOneComponent } from 'src/app/components/containers/button-preferences-one/button-preferences-one.component';
@@ -67,13 +67,19 @@ export class PreferencesView1Page implements OnInit {
 
   async ngOnInit() {
     try {
-      const data = await this.apiService.get('/learning/get-preference-options/');
+      const response: ApiResponse = await this.apiService.get('/learning/get-preference-options/');
+
+      if (response.error) {
+        return console.error('Error al obtener las opciones de preferencias:', response.error); //usar un modal de notificación
+      }
+
+      const data = response.data;
       this.processLanguagesOptions(data.languages);
       this.processReasonsToStudyOptions(data.reasons_to_study);
       this.processLanguageLevelsOptions(data.language_levels);
       this.processTopicsOptions(data.topics);
     } catch (error) {
-      console.error('Error al obtener las opciones de preferencias:', error);
+      console.error('Error al obtener las opciones de preferencias:', error); //usar un modal de notificación
     }
   }
 

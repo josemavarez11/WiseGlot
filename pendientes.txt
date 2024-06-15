@@ -1,4 +1,13 @@
-//1. El scroll en las vistas de preferencias debe ser solo de las opciones. La barra de progreso, el titulo y la descripción de la preferencia debe quedarse quieto.
-// 2. Las contenedores donde están las opciones del idioma nativo están muy largos.
-// 3. El color de background de esos contenedores no se ve igual al del mockup.
-// 4. En la barra de progreso, la barra que se va moviendo debe tener la punta redonda, no cuadrada.
+1. cambiar el nombre de password change view a reset password view
+2. cambiar el nombre de la carpeta icon a icons
+3. borrar iconos que no se están usando y organizar los iconos segun la vista o la función que los use
+4. cambiar el nombre de preferences view 1 a preferences view
+5. en register view, el nombre de variable 'nickname' no tiene sentido, debería ser fullname porque es el nombre real del usuario
+6. pasar ask email view para la carpeta views, está en components/other
+7. pasar email sent view para la carpeta views, está en components/other
+8. ajustar tamaños y ubicaciones de algunos elementos
+
+guardar ruta base de api, endpoints y otras cosas en variables de entorno
+crear json con mensajes
+
+

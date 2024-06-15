@@ -15,6 +15,7 @@ import { LoadingComponent } from 'src/app/components/others/loading/loading.comp
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 // Service
 import { ServiceSharedService } from '../../../services/service-shared.service';
+import { ApiService, ApiResponse } from 'src/services/api.service';
 
 @Component({
   selector: 'app-validate-secret-code',
@@ -49,6 +50,7 @@ export class ValidateSecretCodePage implements OnInit {
   email: string = '';
 
   constructor(
+    private apiService: ApiService,
     private router: Router,
     private sharedService: ServiceSharedService
   ) {
@@ -71,11 +73,6 @@ export class ValidateSecretCodePage implements OnInit {
     this.c6 = '';
   };
 
-  ngOnInit() {
-    this.resetForm();
-    console.log('Email: ', this.email);
-  }
-
   validateInput(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
     const allowedChars = /^[a-zA-Z0-9]$/;
@@ -89,66 +86,61 @@ export class ValidateSecretCodePage implements OnInit {
     }
   }
 
+  ngOnInit() {
+    this.resetForm();
+  }
+
   async handleClick(): Promise<void> {
     this.isLoading = true;
 
-    if (!this.c1 || !this.c2 || !this.c3 || !this.c4 || !this.c5 || !this.c6) {
+    if (!this.areFieldsValid()) {
       this.isLoading = false;
-      this.errorMessage = 'Rellene todos los campos';
-      this.showErrorMessage = true;
-      this.toggleErrorMessage();
+      this.showError('Rellene todos los campos');
       return;
     }
 
-    const code = this.c1 + this.c2 + this.c3 + this.c4 + this.c5 + this.c6;
+    const code = this.getCode();
 
-    if (!/^[a-zA-Z0-9]{6}$/.test(code)) {
+    if (!this.isCodeValid(code)) {
       this.isLoading = false;
-      this.errorMessage = 'Cada campo debe tener un solo carácter alfanumérico';
-      this.showErrorMessage = true;
-      this.toggleErrorMessage();
+      this.showError('Cada campo debe tener un solo carácter alfanumérico');
       return;
     }
 
     try {
-      const response = await fetch(
-        'https://wiseglot-api.onrender.com/auth/validate-reset-password-code/',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: this.email, code }),
-        }
-      );
-
-      console.log('email: ', this.email);
-      console.log('code: ', code);
+      const response: ApiResponse = await this.apiService.post('/auth/validate-reset-password-code/', { email: this.email, code });
 
       if (response.status === 400) {
-        const data = await response.json();
-        this.errorMessage = data.error;
-        this.showErrorMessage = true;
-        this.isLoading = false;
-        return this.toggleErrorMessage();
+        this.showError(response.error || 'Error de validación');
+      } else if (response.status !== 200) {
+        this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+      } else {
+        this.router.navigate(['/password-change']);
+        this.sharedService.setSecretCode(this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
       }
-
-      if (response.status !== 200) {
-        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
-        this.showErrorMessage = true;
-        this.isLoading = false;
-        return this.toggleErrorMessage();
-      }
-
-      this.router.navigate(['/password-change']);
     } catch (error: any) {
-      this.errorMessage = error.message;
-      this.showErrorMessage = true;
-      return this.toggleErrorMessage();
+      this.showError(error.message);
+    } finally {
+      this.isLoading = false;
     }
+  }
 
-    this.isLoading = false;
-    this.sharedService.setSecretCode(this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
+  private areFieldsValid(): boolean {
+    return this.c1 && this.c2 && this.c3 && this.c4 && this.c5 && this.c6 ? true : false;
+  }
+
+  private getCode(): string {
+    return this.c1 + this.c2 + this.c3 + this.c4 + this.c5 + this.c6;
+  }
+
+  private isCodeValid(code: string): boolean {
+    return /^[a-zA-Z0-9]{6}$/.test(code);
+  }
+
+  private showError(message: string): void {
+    this.errorMessage = message;
+    this.showErrorMessage = true;
+    this.toggleErrorMessage();
   }
 
   toggleErrorMessage() {

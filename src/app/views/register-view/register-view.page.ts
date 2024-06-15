@@ -14,6 +14,7 @@ import { MessageErrorComponent } from 'src/app/components/containers/message-err
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 // Services
+import { ApiService, ApiResponse } from 'src/services/api.service';
 
 @Component({
   selector: 'app-register-view',
@@ -42,7 +43,7 @@ export class RegisterViewPage implements OnInit {
   errorMessage: string = '';
   isLoading: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private apiService: ApiService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/register') {
@@ -64,88 +65,65 @@ export class RegisterViewPage implements OnInit {
 
   async handleClick(): Promise<void> {
     this.isLoading = true;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
-    console.log('Nickname:', this.nickname);
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
 
-    if (!this.nickname || !this.email || !this.password) {
-      this.errorMessage = 'Rellene todos los campos';
-      this.showErrorMessage = true;
-      this.toggleErrorMessage();
+    if (!this.areFieldsValid()) {
       this.isLoading = false;
-      return;
-    }
-    if (this.password.length < 6) {
-      this.errorMessage = 'La contraseña debe tener al menos 6 caracteres';
-      this.showErrorMessage = true;
-      this.toggleErrorMessage();
-      this.isLoading = false;
-      return;
-    }
-    if (this.nickname.length < 3) {
-      this.errorMessage = 'El apodo debe tener al menos 3 caracteres';
-      this.showErrorMessage = true;
-      this.toggleErrorMessage();
-      this.isLoading = false;
-      return;
-    }
-    if (!emailRegex.test(this.email)) {
-      this.errorMessage = 'Correo electrónico no válido';
-      this.showErrorMessage = true;
-      this.toggleErrorMessage();
       return;
     }
 
     try {
-      const response = await fetch(
-        'https://wiseglot-api.onrender.com/users/create-user/',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            nam_user: this.nickname,
-            ema_user: this.email,
-            pas_user: this.password,
-          }),
-        }
-      );
+      const response: ApiResponse = await this.apiService.post('/users/create-user/', {
+        nam_user: this.nickname,
+        ema_user: this.email,
+        pas_user: this.password,
+      });
 
       if (response.status === 409) {
-        this.errorMessage =
-          'Este correo electrónico ya está registrado. Por favor, inténtelo de nuevo.';
-        this.showErrorMessage = true;
-        this.isLoading = false;
-        return this.toggleErrorMessage();
+        this.showError('Este correo electrónico ya está registrado. Por favor, inténtelo de nuevo.');
+      } else if (response.status === 400) {
+        this.showError('Los datos ingresados no son válidos. Por favor, inténtelo de nuevo.');
+      } else if (response.status !== 201) {
+        this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+      } else {
+        const data = response.data;
+        //save token
+        console.log(data.token);
+        this.router.navigate(['/register-welcome']);
       }
-
-      if (response.status === 400) {
-        this.errorMessage =
-          'Los datos ingresados no son válidos. Por favor, inténtelo de nuevo.';
-        this.showErrorMessage = true;
-        this.isLoading = false;
-        return this.toggleErrorMessage();
-      }
-
-      if (response.status !== 201) {
-        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
-        this.showErrorMessage = true;
-        this.isLoading = false;
-        return this.toggleErrorMessage();
-      }
-
-      console.log('Response:', response.status);
-
-      const data = await response.json();
-      //get token and save it
-      console.log(data.token);
-      this.router.navigate(['/register-welcome']);
     } catch (error: any) {
-      this.errorMessage = error.message;
-      this.showErrorMessage = true;
-      return this.toggleErrorMessage();
+      this.showError(error.message);
+    } finally {
+      this.isLoading = false;
     }
-    this.isLoading = false;
+  }
+
+  private areFieldsValid(): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
+
+    if (!this.nickname || !this.email || !this.password) {
+      this.showError('Rellene todos los campos');
+      return false;
+    }
+    if (this.password.length < 6) {
+      this.showError('La contraseña debe tener al menos 6 caracteres');
+      return false;
+    }
+    if (this.nickname.length < 3) {
+      this.showError('El nombre debe tener al menos 3 caracteres');
+      return false;
+    }
+    if (!emailRegex.test(this.email)) {
+      this.showError('Dirección de correo electrónico no válida');
+      return false;
+    }
+
+    return true;
+  }
+
+  private showError(message: string): void {
+    this.errorMessage = message;
+    this.showErrorMessage = true;
+    this.toggleErrorMessage();
   }
 
   toggleErrorMessage() {

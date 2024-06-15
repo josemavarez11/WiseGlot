@@ -8,6 +8,7 @@ import { LoadingComponent } from '../loading/loading.component';
 import { BtnAuthComponent } from '../../buttons/btn-auth/btn-auth.component';
 // Services
 import { ServiceSharedService } from '../../../../services/service-shared.service';
+import { ApiResponse, ApiService } from 'src/services/api.service';
 
 @Component({
   selector: 'app-ask-email-view',
@@ -32,7 +33,8 @@ export class AskEmailViewComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private sharedService: ServiceSharedService
+    private sharedService: ServiceSharedService,
+    private apiService: ApiService
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -61,54 +63,52 @@ export class AskEmailViewComponent implements OnInit {
 
   async handleClick(): Promise<void> {
     this.isLoading = true;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
 
-    if (!this.email) {
-      this.errorMessage = 'Rellene todos los campos';
-      this.showErrorMessage = true;
+    if (!this.isEmailValid()) {
       this.isLoading = false;
-      return this.toggleErrorMessage();
-    }
-
-    if (!emailRegex.test(this.email)) {
-      this.errorMessage = 'Invalid email';
-      this.showErrorMessage = true;
-      this.isLoading = false;
-      return this.toggleErrorMessage();
+      return;
     }
 
     try {
-      const response = await fetch(
-        'https://wiseglot-api.onrender.com/auth/send-reset-password-code/',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: this.email }),
-        }
-      );
+      const response: ApiResponse = await this.apiService.post('/auth/send-reset-password-code/', {
+        email: this.email
+      });
 
       if (response.status === 400) {
-        this.errorMessage = 'No se ha encontrado ningún usuario asociado a este correo electrónico.';
-        this.showErrorMessage = true;
-        this.isLoading = false;
-        return this.toggleErrorMessage();
+        this.showError('No se ha encontrado ningún usuario asociado a este correo electrónico.');
+      } else if (response.status !== 200) {
+        this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+      } else {
+        this.setEmail(this.email);
+        this.selectOption(1);
       }
-
-      if (response.status !== 200) {
-        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
-        this.showErrorMessage = true;
-        this.isLoading = false;
-        return this.toggleErrorMessage();
-      }
-
-      this.setEmail(this.email); // Asegúrate de llamar a setEmail aquí
-      this.selectOption(1);
     } catch (error: any) {
-      this.errorMessage = error.message;
-      this.showErrorMessage = true;
+      this.showError(error.message);
+    } finally {
       this.isLoading = false;
-      return this.toggleErrorMessage();
     }
+  }
+
+  private isEmailValid(): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
+
+    if (!this.email) {
+      this.showError('Rellene todos los campos');
+      return false;
+    }
+
+    if (!emailRegex.test(this.email)) {
+      this.showError('Dirección de correo electrónico no válida');
+      return false;
+    }
+
+    return true;
+  }
+
+  private showError(message: string): void {
+    this.errorMessage = message;
+    this.showErrorMessage = true;
+    this.toggleErrorMessage();
   }
 
   toggleErrorMessage() {

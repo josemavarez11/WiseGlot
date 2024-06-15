@@ -11,6 +11,7 @@ import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.c
 import { IonContent } from '@ionic/angular/standalone';
 // Services
 import { ServiceSharedService } from '../../../services/service-shared.service';
+import { ApiService, ApiResponse } from 'src/services/api.service';
 
 @Component({
   selector: 'app-password-change-view',
@@ -46,7 +47,7 @@ export class PasswordChangeViewPage implements OnInit {
   showSuccessModal: boolean = false;
   isLoading: boolean = false;
 
-  constructor(private router: Router, private sharedService: ServiceSharedService) {
+  constructor(private router: Router, private sharedService: ServiceSharedService, private apiService: ApiService) {
     this.email = this.sharedService.getEmail();
     [this.c1, this.c2, this.c3, this.c4, this.c5, this.c6] = this.sharedService.getSecretCode();
     this.router.events.subscribe((event) => {
@@ -60,8 +61,6 @@ export class PasswordChangeViewPage implements OnInit {
 
   ngOnInit() {
     this.resetForm();
-    console.log('Code:', this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
-    console.log('Email:', this.email);
   }
 
   resetForm(): void {
@@ -75,65 +74,57 @@ export class PasswordChangeViewPage implements OnInit {
 
   async handleClick(): Promise<void> {
     this.isLoading = true;
-    if (!this.password || !this.confirmPassword) {
-      this.errorMessage = 'Rellene todos los campos';
-      this.showErrorMessage = true;
-      this.isLoading = false;
-      return this.toggleErrorMessage();
-    }
 
-    if (this.password.length < 8) {
-      this.errorMessage = 'La contraseña debe tener al menos 8 caracteres';
-      this.showErrorMessage = true;
+    if (!this.areFieldsValid()) {
       this.isLoading = false;
-      return this.toggleErrorMessage();
-    }
-
-    if (this.password !== this.confirmPassword) {
-      this.errorMessage = 'Las contraseñas no coinciden';
-      this.showErrorMessage = true;
-      this.isLoading = false;
-      return this.toggleErrorMessage();
+      return;
     }
 
     try {
-      let code = `${this.c1}${this.c2}${this.c3}${this.c4}${this.c5}${this.c6}`;
-      const response = await fetch(
-        'https://wiseglot-api.onrender.com/auth/reset-password/',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            code,
-            email: this.email,
-            password: this.password,
-          }),
-        }
-      );
+      const code = `${this.c1}${this.c2}${this.c3}${this.c4}${this.c5}${this.c6}`;
+      const response: ApiResponse = await this.apiService.post('/auth/reset-password/', {
+        code,
+        email: this.email,
+        password: this.password,
+      });
 
       if (response.status === 400) {
-        const data = await response.json();
-        this.errorMessage = data.error;
-        this.showErrorMessage = true;
-        this.isLoading = false;
-        return this.toggleErrorMessage();
+        this.showError(response.error || 'Los datos ingresados no son válidos. Por favor, inténtelo de nuevo.');
+      } else if (response.status !== 200) {
+        this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+      } else {
+        this.showSuccessModal = true;
       }
-
-      if (response.status !== 200) {
-        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
-        this.showErrorMessage = true;
-        this.isLoading = false;
-        return this.toggleErrorMessage();
-      }
-
-      this.showSuccessModal = true;
-      return;
     } catch (error: any) {
-      this.errorMessage = error.message;
-      this.showErrorMessage = true;
+      this.showError(error.message);
+    } finally {
       this.isLoading = false;
-      return this.toggleErrorMessage();
     }
+  }
+
+  private areFieldsValid(): boolean {
+    if (!this.password || !this.confirmPassword) {
+      this.showError('Rellene todos los campos');
+      return false;
+    }
+
+    if (this.password.length < 8) {
+      this.showError('La contraseña debe tener al menos 8 caracteres');
+      return false;
+    }
+
+    if (this.password !== this.confirmPassword) {
+      this.showError('Las contraseñas no coinciden');
+      return false;
+    }
+
+    return true;
+  }
+
+  private showError(message: string): void {
+    this.errorMessage = message;
+    this.showErrorMessage = true;
+    this.toggleErrorMessage();
   }
 
   toggleErrorMessage() {

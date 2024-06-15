@@ -8,8 +8,8 @@ import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.co
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
-
 // Services
+import { ApiResponse, ApiService } from 'src/services/api.service';
 
 @Component({
   selector: 'app-login-view',
@@ -35,7 +35,7 @@ export class LoginViewPage implements OnInit {
   isLoading: boolean = false;
   passwordFieldType: string = 'password';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private apiService: ApiService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/login') {
@@ -60,69 +60,58 @@ export class LoginViewPage implements OnInit {
 
   async handleClick(): Promise<void> {
     this.isLoading = true;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
-    if (!this.email || !this.password) {
-      this.errorMessage = 'Rellene todos los campos';
-      this.showErrorMessage = true;
-      this.toggleErrorMessage();
+
+    if (!this.areFieldsValid()) {
       this.isLoading = false;
       return;
     }
-    if (!emailRegex.test(this.email)) {
-      this.errorMessage = 'Correo electrónico no válido';
-      this.showErrorMessage = true;
-      this.toggleErrorMessage();
-      this.isLoading = false;
-      return;
-    }
-    if (this.password.length < 6) {
-      this.errorMessage = 'La contraseña debe tener al menos 6 caracteres';
-      this.showErrorMessage = true;
-      this.toggleErrorMessage();
-      this.isLoading = false;
-      return;
-    }
+
     try {
-      const response = await fetch(
-        'https://wiseglot-api.onrender.com/auth/login/',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: this.email,
-            password: this.password,
-          }),
-        }
-      );
+      const response: ApiResponse = await this.apiService.post('/auth/login/', {
+        email: this.email,
+        password: this.password,
+      });
 
       if (response.status === 400) {
-        this.errorMessage =
-          'Los datos que ha proporcionado no coinciden con nuestros registros. Por favor, inténtelo de nuevo.';
-        this.showErrorMessage = true;
-        this.toggleErrorMessage();
-        this.isLoading = false;
-        return;
+        this.showError('Los datos que ha proporcionado no coinciden con nuestros registros. Por favor, inténtelo de nuevo.');
+      } else if (response.status !== 200) {
+        this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+      } else {
+        const data = response.data;
+        console.log(data.token);
+        // Guardar el token
+        this.router.navigate(['/home']);
       }
-
-      if (response.status !== 200) {
-        this.errorMessage = 'Error desconocido. Vuelva a intentarlo más tarde.';
-        this.showErrorMessage = true;
-        this.toggleErrorMessage();
-        this.isLoading = false;
-        return;
-      }
-
-      const data = await response.json();
-      console.log(data.token);
-      //get and save token
-      this.router.navigate(['/home']);
     } catch (error: any) {
-      this.errorMessage = error.message;
-      this.showErrorMessage = true;
+      this.showError(error.message);
+    } finally {
       this.isLoading = false;
-      return this.toggleErrorMessage();
     }
-    this.isLoading = false;
+  }
+
+  private areFieldsValid(): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
+
+    if (!this.email || !this.password) {
+      this.showError('Rellene todos los campos');
+      return false;
+    }
+    if (!emailRegex.test(this.email)) {
+      this.showError('Dirección de correo electrónico no válida');
+      return false;
+    }
+    if (this.password.length < 6) {
+      this.showError('La contraseña debe tener al menos 6 caracteres');
+      return false;
+    }
+
+    return true;
+  }
+
+  private showError(message: string): void {
+    this.errorMessage = message;
+    this.showErrorMessage = true;
+    this.toggleErrorMessage();
   }
 
   toggleErrorMessage() {
