@@ -63,8 +63,8 @@
     <div class="ContentB">
       @for (item of preferenceThree; track item) {
         <app-button-preferences-two
-          [img]="item.img"
-          [job]="item.job"
+          [img]="item.icon"
+          [job]="item.des_reason_to_study"
           [ngClass]="{'animated-item': true}"
           (click)="selectTwo(item)"
           />
@@ -76,8 +76,8 @@
     <div class="ContentB">
       @for (item of preferenceFour; track item) {
         <app-button-preferences-two
-          [img]="item.img"
-          [job]="item.job"
+          [img]="item.icon"
+          [job]="item.des_language_level"
           [ngClass]="{'animated-item': true}"
           (click)="selectTwo(item)"
           />
@@ -87,10 +87,10 @@
 
   @if (step === 4) {
     <div class="ContentB">
-      @for (item of preferenceOptions; track item) {
+      @for (item of preferenceFive; track item) {
         <app-button-preference-three
-          [img]="item.img"
-          [job]="item.job"
+          [img]="item.icon"
+          [job]="item.des_topic"
           [ngClass]="{'animated-item': true, 'selected': isSelected(item)}"
           (click)="toggleSelectThree(item)"
           />

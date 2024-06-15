@@ -8,6 +8,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { RouterLink, Router } from '@angular/router';
+import { ApiService } from 'src/services/api.service';
 
 // Componentes
 import { ButtonPreferencesOneComponent } from 'src/app/components/containers/button-preferences-one/button-preferences-one.component';
@@ -57,53 +58,56 @@ export class PreferencesView1Page implements OnInit {
     'Elige tus temas de interés para que el contenido sea más interesante y motivador .',
   ];
 
-  preferenceOptions = [
-    { img: '../../../assets/icon/img11.png', job: 'Deportes' },
-    { img: '../../../assets/icon/img6.png', job: 'Cultura y Entretenimiento' },
-    { img: '../../../assets/icon/img9.png', job: 'Literatura' },
-    { img: '../../../assets/icon/img1.png', job: 'Trabajo' },
-    { img: '../../../assets/icon/img10.png', job: 'Ciencia' },
-    { img: '../../../assets/icon/img7.png', job: 'Economía' },
-    { img: '../../../assets/icon/img5.png', job: 'Comida' },
-    { img: '../../../assets/icon/img8.png', job: 'Arte' },
-    { img: '../../../assets/icon/img4.png', job: 'Tecnología' },
-    { img: '../../../assets/icon/img3.png', job: 'Política' },
-  ];
-
   preferenceOneAndTwo: { id: string, abb_language: string, des_language: string, icon: string }[] = [];
+  preferenceThree: { id: string, des_reason_to_study: string, icon: string }[] = [];
+  preferenceFour: { id: string, des_language_level: string, icon: string }[] = [];
+  preferenceFive: { id: string, des_topic: string, icon: string }[] = [];
 
-  preferenceThree = [
-    { img: '../../../assets/icon/img1.png', job: 'Oportunidad de Trabajo' },
-    { img: '../../../assets/icon/img2.png', job: 'Viaje' },
-    { img: '../../../assets/icon/img3.png', job: 'Educación' },
-    { img: '../../../assets/icon/img4.png', job: 'Interes Personal' },
-    { img: '../../../assets/icon/img5.png', job: 'Otro' },
-  ];
-
-  preferenceFour = [
-    { img: '../../../assets/icon/level1.png', job: 'Principiante' },
-    { img: '../../../assets/icon/level2.png', job: 'Intermedio' },
-    { img: '../../../assets/icon/level3.png', job: 'Avanzado' },
-  ];
-
-  constructor(private router: Router) {}
+  constructor(private router: Router, private apiService: ApiService) {}
 
   async ngOnInit() {
-    const response = await fetch('https://wiseglot-api.onrender.com/learning/get-languages/', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    const data = await response.json();
-
-    for (let item of data) {
-      this.preferenceOneAndTwo.push({
-        id: item.id,
-        abb_language: item.abb_language,
-        des_language: item.des_language,
-        icon: `../../../assets/icon/flags/${item.abb_language}.png`
-      });
+    try {
+      const data = await this.apiService.get('/learning/get-preference-options/');
+      this.processLanguagesOptions(data.languages);
+      this.processReasonsToStudyOptions(data.reasons_to_study);
+      this.processLanguageLevelsOptions(data.language_levels);
+      this.processTopicsOptions(data.topics);
+    } catch (error) {
+      console.error('Error al obtener las opciones de preferencias:', error);
     }
+  }
+
+  private processLanguagesOptions(languages: any[]) {
+    this.preferenceOneAndTwo = languages.map(item => ({
+      id: item.id,
+      abb_language: item.abb_language,
+      des_language: item.des_language,
+      icon: `../../../assets/icon/flags/${item.abb_language}.png`
+    }));
+  }
+
+  private processReasonsToStudyOptions(reasons: any[]) {
+    this.preferenceThree = reasons.map(item => ({
+      id: item.id,
+      des_reason_to_study: item.des_reason_to_study,
+      icon: `../../../assets/icon/reasons-to-study/${item.des_reason_to_study}.png`
+    }));
+  }
+
+  private processLanguageLevelsOptions(levels: any[]) {
+    this.preferenceFour = levels.map(item => ({
+      id: item.id,
+      des_language_level: item.des_language_level,
+      icon: `../../../assets/icon/language-levels/${item.des_language_level}.png`
+    }));
+  }
+
+  private processTopicsOptions(topics: any[]) {
+    this.preferenceFive = topics.map(item => ({
+      id: item.id,
+      des_topic: item.des_topic,
+      icon: `../../../assets/icon/topics/${item.des_topic}.png`
+    }));
   }
 
   selectOption(step: number): void {
