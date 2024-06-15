@@ -122,6 +122,9 @@ export class ValidateSecretCodePage implements OnInit {
         }
       );
 
+      console.log('email: ', this.email);
+      console.log('code: ', code);
+
       if (response.status === 400) {
         const data = await response.json();
         this.errorMessage = data.error;

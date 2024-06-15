@@ -121,7 +121,7 @@ export class RegisterViewPage implements OnInit {
 
       if (response.status === 400) {
         this.errorMessage =
-          'Los datos facilitados no son válidos. Por favor, inténtelo de nuevo.';
+          'Los datos ingresados no son válidos. Por favor, inténtelo de nuevo.';
         this.showErrorMessage = true;
         this.isLoading = false;
         return this.toggleErrorMessage();

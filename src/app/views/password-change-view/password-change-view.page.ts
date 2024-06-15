@@ -111,9 +111,6 @@ export class PasswordChangeViewPage implements OnInit {
         }
       );
 
-      console.log('code: ', code);
-      console.log('email: ', this.email);
-
       if (response.status === 400) {
         const data = await response.json();
         this.errorMessage = data.error;
