@@ -23,12 +23,12 @@ export const routes: Routes = [
     loadComponent: () => import('./views/forgot-password-view/forgot-password-view.page').then( m => m.ForgotPasswordViewPage)
   },
   {
-    path: 'password-change',
-    loadComponent: () => import('./views/password-change-view/password-change-view.page').then( m => m.PasswordChangeViewPage)
+    path: 'reset-password',
+    loadComponent: () => import('./views/reset-password-view/reset-password-view.page').then( m => m.PasswordChangeViewPage)
   },
   {
-    path: 'preferences-view1',
-    loadComponent: () => import('./views/preferences-view1/preferences-view1.page').then( m => m.PreferencesView1Page)
+    path: 'preferences-view',
+    loadComponent: () => import('./views/preferences-view/preferences-view.page').then( m => m.PreferencesView1Page)
   },
   {
     path: 'validate-secret-code',

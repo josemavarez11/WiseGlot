@@ -14,9 +14,9 @@ import { ServiceSharedService } from '../../../services/service-shared.service';
 import { ApiService, ApiResponse } from 'src/services/api.service';
 
 @Component({
-  selector: 'app-password-change-view',
-  templateUrl: './password-change-view.page.html',
-  styleUrls: ['./password-change-view.page.scss'],
+  selector: 'app-reset-password-view',
+  templateUrl: './reset-password-view.page.html',
+  styleUrls: ['./reset-password-view.page.scss'],
   standalone: true,
   imports: [
     IonContent,

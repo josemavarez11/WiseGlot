@@ -18,9 +18,9 @@ import { TitlePreferenceComponent } from 'src/app/components/others/title-prefer
 import { ModalErrorWifiComponent } from 'src/app/components/others/modal-error-wifi/modal-error-wifi.component';
 
 @Component({
-  selector: 'app-preferences-view1',
-  templateUrl: './preferences-view1.page.html',
-  styleUrls: ['./preferences-view1.page.scss'],
+  selector: 'app-preferences-view',
+  templateUrl: './preferences-view.page.html',
+  styleUrls: ['./preferences-view.page.scss'],
   standalone: true,
   imports: [
     IonContent,
