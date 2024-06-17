@@ -3,7 +3,7 @@
     <section class="bodyA">
       <article class="top">
         <button (click)="previousStep()">
-          <img src="../../../assets/img/back-black.png" />
+          <img src="../../../assets/img/views/back-black.png" />
         </button>
         <div class="group">
           <p class="contador">{{step + 1}}/{{titles.length}}</p>
@@ -13,7 +13,7 @@
             (click)="selectOption(step)"
             [ngClass]="{'disabled-button': !selectedOption}"
             >
-            <img src="../../../assets/img/back-black.png" class="next" />
+            <img src="../../../assets/img/views/back-black.png" class="next" />
           </button>
         </div>
       </article>

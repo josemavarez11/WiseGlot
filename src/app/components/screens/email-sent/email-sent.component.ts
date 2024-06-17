@@ -5,9 +5,9 @@ import { BtnAuthComponent } from '../../buttons/btn-auth/btn-auth.component';
 
 
 @Component({
-  selector: 'app-email-sent-view',
-  templateUrl: './email-sent-view.component.html',
-  styleUrls: ['./email-sent-view.component.scss'],
+  selector: 'app-email-sent',
+  templateUrl: './email-sent.component.html',
+  styleUrls: ['./email-sent.component.scss'],
   standalone: true,
   imports: [RouterLink, BtnAuthComponent]
 })

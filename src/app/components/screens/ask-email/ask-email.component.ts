@@ -4,16 +4,16 @@ import { RouterLink, NavigationEnd, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 // Components
 import { MessageErrorComponent } from '../../containers/message-error/message-error.component';
-import { LoadingComponent } from '../loading/loading.component';
+import { LoadingComponent } from '../../others/loading/loading.component';
 import { BtnAuthComponent } from '../../buttons/btn-auth/btn-auth.component';
 // Services
 import { ServiceSharedService } from '../../../../services/service-shared.service';
 import { ApiResponse, ApiService } from 'src/services/api.service';
 
 @Component({
-  selector: 'app-ask-email-view',
-  templateUrl: './ask-email-view.component.html',
-  styleUrls: ['./ask-email-view.component.scss'],
+  selector: 'app-ask-email',
+  templateUrl: './ask-email.component.html',
+  styleUrls: ['./ask-email.component.scss'],
   standalone: true,
   imports: [
     RouterLink,

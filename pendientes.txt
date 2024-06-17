@@ -1,9 +1,5 @@
 1. cambiar el nombre de la carpeta icon a icons
 2. borrar iconos que no se están usando y organizar los iconos segun la vista o la función que los use
-3. pasar ask email view para la carpeta views, está en components/other
-4. pasar email sent view para la carpeta views, está en components/other
--------------------  Estan en la carpeta de componenetes porque ellos no som una vista cada uno de ellos es un componente distindo
--------------------  Entonces quitale el view del nombre y los pones en una carpeta aparte ej: /components/screens
 
 ajustar tamaños y ubicaciones de algunos elementos (los dos en reunion)
 guardar ruta base de api, endpoints y otras cosas en variables de entorno (jose)

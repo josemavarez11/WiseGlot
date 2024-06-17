@@ -5,9 +5,8 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { RouterLink } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 // Components
-import { AskEmailViewComponent } from '../../components/others/ask-email-view/ask-email-view.component';
-import { EmailSentViewComponent } from 'src/app/components/others/email-sent-view/email-sent-view.component';
-
+import { AskEmailViewComponent } from 'src/app/components/screens/ask-email/ask-email.component';
+import { EmailSentViewComponent } from 'src/app/components/screens/email-sent/email-sent.component';
 @Component({
   selector: 'app-forgot-password-view',
   templateUrl: './forgot-password-view.page.html',
