@@ -23,6 +23,6 @@ export class RegisterWelcomeViewPage implements OnInit {
   }
 
   navigateComponent() {
-    this.router.navigate(['/preferences-view1']);
+    this.router.navigate(['/preferences-view']);
   }
 }

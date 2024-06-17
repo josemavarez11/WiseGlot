@@ -115,7 +115,7 @@ export class ValidateSecretCodePage implements OnInit {
       } else if (response.status !== 200) {
         this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
       } else {
-        this.router.navigate(['/password-change']);
+        this.router.navigate(['/reset-password']);
         this.sharedService.setSecretCode(this.c1, this.c2, this.c3, this.c4, this.c5, this.c6);
       }
     } catch (error: any) {

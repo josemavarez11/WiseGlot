@@ -36,7 +36,7 @@ import { ApiService, ApiResponse } from 'src/services/api.service';
   ],
 })
 export class RegisterViewPage implements OnInit {
-  nickname: string = '';
+  fullname: string = '';
   email: string = '';
   password: string = '';
   showErrorMessage: boolean = false;
@@ -60,7 +60,7 @@ export class RegisterViewPage implements OnInit {
   resetForm(): void {
     this.email = '';
     this.password = '';
-    this.nickname = '';
+    this.fullname = '';
   }
 
   async handleClick(): Promise<void> {
@@ -73,7 +73,7 @@ export class RegisterViewPage implements OnInit {
 
     try {
       const response: ApiResponse = await this.apiService.post('/users/create-user/', {
-        nam_user: this.nickname,
+        nam_user: this.fullname,
         ema_user: this.email,
         pas_user: this.password,
       });
@@ -100,7 +100,7 @@ export class RegisterViewPage implements OnInit {
   private areFieldsValid(): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
 
-    if (!this.nickname || !this.email || !this.password) {
+    if (!this.fullname || !this.email || !this.password) {
       this.showError('Rellene todos los campos');
       return false;
     }
@@ -108,7 +108,7 @@ export class RegisterViewPage implements OnInit {
       this.showError('La contraseña debe tener al menos 6 caracteres');
       return false;
     }
-    if (this.nickname.length < 3) {
+    if (this.fullname.length < 3) {
       this.showError('El nombre debe tener al menos 3 caracteres');
       return false;
     }
