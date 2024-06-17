@@ -102,7 +102,6 @@ export class LoginViewPage implements OnInit {
       return;
     } finally {
       this.isLoading = false;
-      return;
     }
   }
 

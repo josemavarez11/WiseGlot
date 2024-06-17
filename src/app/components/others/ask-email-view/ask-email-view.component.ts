@@ -93,7 +93,6 @@ export class AskEmailViewComponent implements OnInit {
       return;
     } finally {
       this.isLoading = false;
-      return;
     }
   }
 
