@@ -4,7 +4,7 @@ import { GetResult, Preferences } from '@capacitor/preferences';
 @Injectable({
   providedIn: 'root'
 })
-export class TokenSessionService {
+export class CapacitorPreferencesService {
   constructor() {}
 
   async setToken(token: string): Promise<void> {

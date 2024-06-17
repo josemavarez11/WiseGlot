@@ -8,8 +8,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { RouterLink, Router } from '@angular/router';
-import { TokenSessionService } from 'src/services/tokenSession.service';
-import { GetResult, Preferences } from '@capacitor/preferences';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { ApiService, ApiResponse } from 'src/services/api.service';
 // Componentes
 import { ButtonPreferencesOneComponent } from 'src/app/components/containers/button-preferences-one/button-preferences-one.component';
@@ -64,23 +63,33 @@ export class PreferencesView1Page implements OnInit {
   preferenceFour: { id: string, des_language_level: string, icon: string }[] = [];
   preferenceFive: { id: string, des_topic: string, icon: string }[] = [];
 
-  constructor(private router: Router, private apiService: ApiService, private tokenSessionService: TokenSessionService) {}
+  constructor(private router: Router, private apiService: ApiService, private capacitorPreferencesService: CapacitorPreferencesService) {}
 
   async ngOnInit() {
+    const options = await this.getPreferencesOptions();
+
+    if(!options) return;
+
+    this.processLanguagesOptions(options.languages);
+    this.processReasonsToStudyOptions(options.reasons_to_study);
+    this.processLanguageLevelsOptions(options.language_levels);
+    this.processTopicsOptions(options.topics);
+  }
+
+  private async getPreferencesOptions(): Promise<any> {
     try {
       const response: ApiResponse = await this.apiService.get('/learning/get-preference-options/');
 
       if (response.error) {
-        return console.error('Error al obtener las opciones de preferencias:', response.error); //usar un modal de notificación
+        console.error('Error al obtener las opciones de preferencias:', response.error); //usar un modal de notificación
+        return;
       }
 
       const data = response.data;
-      this.processLanguagesOptions(data.languages);
-      this.processReasonsToStudyOptions(data.reasons_to_study);
-      this.processLanguageLevelsOptions(data.language_levels);
-      this.processTopicsOptions(data.topics);
+      return data;
     } catch (error) {
       console.error('Error al obtener las opciones de preferencias:', error); //usar un modal de notificación
+      return;
     }
   }
 
@@ -141,7 +150,7 @@ export class PreferencesView1Page implements OnInit {
       this.step = 3;
     }
     if (step === 3) {
-      const token = await this.tokenSessionService.getToken();
+      const token = await this.capacitorPreferencesService.getToken();
       console.log('All selected preferences:');
       console.log(this.selectedPreferencesAll);
       console. log('Token value from service:', token);

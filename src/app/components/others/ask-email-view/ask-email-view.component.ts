@@ -69,23 +69,31 @@ export class AskEmailViewComponent implements OnInit {
       return;
     }
 
+    await this.sendEmailAsked(this.email);
+    return;
+  }
+
+  private async sendEmailAsked(email: string): Promise<void> {
     try {
-      const response: ApiResponse = await this.apiService.post('/auth/send-reset-password-code/', {
-        email: this.email
-      });
+      const response: ApiResponse = await this.apiService.post('/auth/send-reset-password-code/', { email });
 
       if (response.status === 400) {
         this.showError('No se ha encontrado ningún usuario asociado a este correo electrónico.');
+        return;
       } else if (response.status !== 200) {
         this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+        return;
       } else {
         this.setEmail(this.email);
         this.selectOption(1);
+        return;
       }
     } catch (error: any) {
       this.showError(error.message);
+      return;
     } finally {
       this.isLoading = false;
+      return;
     }
   }
 

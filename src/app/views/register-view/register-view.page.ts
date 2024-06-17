@@ -8,7 +8,6 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { Router, RouterLink, NavigationEnd } from '@angular/router';
-import { Preferences } from '@capacitor/preferences';
 // Components
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
@@ -16,6 +15,7 @@ import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.c
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 // Services
 import { ApiService, ApiResponse } from 'src/services/api.service';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 
 @Component({
   selector: 'app-register-view',
@@ -44,7 +44,11 @@ export class RegisterViewPage implements OnInit {
   errorMessage: string = '';
   isLoading: boolean = false;
 
-  constructor(private router: Router, private apiService: ApiService) {
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private capacitorPreferencesService: CapacitorPreferencesService
+  ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/register') {
@@ -64,7 +68,7 @@ export class RegisterViewPage implements OnInit {
     this.fullname = '';
   }
 
-  async handleClick(): Promise<void> {
+  async handleClick(): Promise<any> {
     this.isLoading = true;
 
     if (!this.areFieldsValid()) {
@@ -72,28 +76,42 @@ export class RegisterViewPage implements OnInit {
       return;
     }
 
+    const response = await this.register(this.fullname, this.email, this.password)
+
+    if (!response) return;
+
+    const { token } = response;
+    await this.capacitorPreferencesService.setToken(token);
+    return this.router.navigate(['/register-welcome']);
+  }
+
+  private async register(fullname: string, email: string, password: string): Promise<any> {
     try {
       const response: ApiResponse = await this.apiService.post('/users/create-user/', {
-        nam_user: this.fullname,
-        ema_user: this.email,
-        pas_user: this.password,
+        nam_user: fullname,
+        ema_user: email,
+        pas_user: password,
       });
 
       if (response.status === 409) {
         this.showError('Este correo electrónico ya está registrado. Por favor, inténtelo de nuevo.');
+        return;
       } else if (response.status === 400) {
         this.showError('Los datos ingresados no son válidos. Por favor, inténtelo de nuevo.');
+        return;
       } else if (response.status !== 201) {
         this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+        return;
       } else {
         const data = response.data;
-        await Preferences.set({ key: 'token', value: data.token });
-        this.router.navigate(['/register-welcome']);
+        return data;
       }
     } catch (error: any) {
       this.showError(error.message);
+      return;
     } finally {
       this.isLoading = false;
+      return;
     }
   }
 

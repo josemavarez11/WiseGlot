@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink, NavigationEnd } from '@angular/router';
-import { Preferences } from '@capacitor/preferences';
 // Components
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
@@ -11,6 +10,7 @@ import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.c
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 // Services
 import { ApiResponse, ApiService } from 'src/services/api.service';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 
 @Component({
   selector: 'app-login-view',
@@ -36,7 +36,11 @@ export class LoginViewPage implements OnInit {
   isLoading: boolean = false;
   passwordFieldType: string = 'password';
 
-  constructor(private router: Router, private apiService: ApiService) {
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private capacitorPreferencesService: CapacitorPreferencesService
+  ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (this.router.url === '/login') {
@@ -59,7 +63,7 @@ export class LoginViewPage implements OnInit {
     this.password = '';
   }
 
-  async handleClick(): Promise<void> {
+  async handleClick(): Promise<any> {
     this.isLoading = true;
 
     if (!this.areFieldsValid()) {
@@ -67,25 +71,38 @@ export class LoginViewPage implements OnInit {
       return;
     }
 
+    const response = await this.login(this.email, this.password);
+
+    if(!response) return;
+
+    const { token } = response;
+    await this.capacitorPreferencesService.setToken(token);
+    return this.router.navigate(['/home']);
+  }
+
+  private async login(email: string, password: string): Promise<any> {
     try {
       const response: ApiResponse = await this.apiService.post('/auth/login/', {
-        email: this.email,
-        password: this.password,
+        email,
+        password
       });
 
       if (response.status === 400) {
         this.showError('Los datos que ha proporcionado no coinciden con nuestros registros. Por favor, inténtelo de nuevo.');
+        return;
       } else if (response.status !== 200) {
         this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+        return;
       } else {
         const data = response.data;
-        await Preferences.set({ key: 'token', value: data.token });
-        this.router.navigate(['/home']);
+        return data;
       }
     } catch (error: any) {
       this.showError(error.message);
+      return;
     } finally {
       this.isLoading = false;
+      return;
     }
   }
 

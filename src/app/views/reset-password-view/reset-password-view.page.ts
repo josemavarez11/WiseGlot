@@ -12,6 +12,7 @@ import { IonContent } from '@ionic/angular/standalone';
 // Services
 import { ServiceSharedService } from '../../../services/service-shared.service';
 import { ApiService, ApiResponse } from 'src/services/api.service';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 
 @Component({
   selector: 'app-reset-password-view',
@@ -47,7 +48,12 @@ export class PasswordChangeViewPage implements OnInit {
   showSuccessModal: boolean = false;
   isLoading: boolean = false;
 
-  constructor(private router: Router, private sharedService: ServiceSharedService, private apiService: ApiService) {
+  constructor(
+    private router: Router,
+    private sharedService: ServiceSharedService,
+    private apiService: ApiService,
+    private capacitorPreferencesService: CapacitorPreferencesService
+  ) {
     this.email = this.sharedService.getEmail();
     [this.c1, this.c2, this.c3, this.c4, this.c5, this.c6] = this.sharedService.getSecretCode();
     this.router.events.subscribe((event) => {
@@ -80,25 +86,35 @@ export class PasswordChangeViewPage implements OnInit {
       return;
     }
 
+    const code = `${this.c1}${this.c2}${this.c3}${this.c4}${this.c5}${this.c6}`;
+    await this.resetPassword(code, this.email, this.password)
+    return;
+  }
+
+  private async resetPassword(code: string, email: string, password: string): Promise<void> {
     try {
-      const code = `${this.c1}${this.c2}${this.c3}${this.c4}${this.c5}${this.c6}`;
       const response: ApiResponse = await this.apiService.post('/auth/reset-password/', {
         code,
-        email: this.email,
-        password: this.password,
+        email: email,
+        password: password,
       });
 
       if (response.status === 400) {
         this.showError(response.error || 'Los datos ingresados no son válidos. Por favor, inténtelo de nuevo.');
+        return;
       } else if (response.status !== 200) {
         this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+        return;
       } else {
         this.showSuccessModal = true;
+        return;
       }
     } catch (error: any) {
       this.showError(error.message);
+      return;
     } finally {
       this.isLoading = false;
+      return;
     }
   }
 
