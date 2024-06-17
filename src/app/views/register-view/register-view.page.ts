@@ -8,6 +8,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { Router, RouterLink, NavigationEnd } from '@angular/router';
+import { Preferences } from '@capacitor/preferences';
 // Components
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
@@ -86,8 +87,7 @@ export class RegisterViewPage implements OnInit {
         this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
       } else {
         const data = response.data;
-        //save token
-        console.log(data.token);
+        await Preferences.set({ key: 'token', value: data.token });
         this.router.navigate(['/register-welcome']);
       }
     } catch (error: any) {

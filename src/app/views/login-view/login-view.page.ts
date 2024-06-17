@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink, NavigationEnd } from '@angular/router';
+import { Preferences } from '@capacitor/preferences';
 // Components
 import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.component';
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
@@ -78,8 +79,7 @@ export class LoginViewPage implements OnInit {
         this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
       } else {
         const data = response.data;
-        console.log(data.token);
-        // Guardar el token
+        await Preferences.set({ key: 'token', value: data.token });
         this.router.navigate(['/home']);
       }
     } catch (error: any) {
