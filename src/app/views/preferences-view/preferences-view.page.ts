@@ -41,6 +41,7 @@ export class PreferencesView1Page implements OnInit {
   step: number = 0;
   selectedOption: boolean = false;
   selectedPreferencesAll: any[] = [];
+  selectedTopics: any[] = [];
 
   titles: string[] = [
     '¿Cuál es tu idioma nativo?',
@@ -137,6 +138,9 @@ export class PreferencesView1Page implements OnInit {
       return;
     }
 
+    const token = await this.capacitorPreferencesService.getToken();
+    var id_user_preference = '';
+
     this.step = step;
     this.selectedOption = false;
 
@@ -150,18 +154,46 @@ export class PreferencesView1Page implements OnInit {
       this.step = 3;
     }
     if (step === 3) {
-      await this.savePreferences(this.selectedPreferencesAll);
+      if (token) {
+        id_user_preference = await this.savePreferences(this.selectedPreferencesAll, token);
+      }
       this.step = 4;
     }
     if (step === 4) {
+      // if(token && id_user_preference !== '') {
+      //   for (const topic of this.selectedTopics) {
+      //     await this.saveTopicPreference(id_user_preference, '', token);
+      //   }
+      // }
       this.router.navigate(['/home']);
     }
   }
 
-  private async savePreferences(preferences: any[]): Promise<void> {
+  private async saveTopicPreference(id_user_preference: string, id_topic: string, token: string): Promise<void> {
     //empezar loader
     try {
-      const token = await this.capacitorPreferencesService.getToken();
+      const response: ApiResponse = await this.apiService.post(
+        '/learning/create-user-preference-topic/',
+        { id_user_preference, id_topic },
+        [['Authorization', `Bearer ${token}`]]
+      );
+
+      if (response.error) {
+        console.error('Error al guardar los temas de preferencia. Intente de nuevo. ', response);
+        //usar un modal de notificación
+        this.router.navigate(['/register-welcome']);
+        return;
+      }
+    } catch (error) {
+      return console.error('Error al guardar los temas de preferencia:', error); //usar un modal de notificación
+    } finally {
+      //terminar loader
+    }
+  }
+
+  private async savePreferences(preferences: any[], token: string): Promise<any> {
+    //empezar loader
+    try {
       const response: ApiResponse = await this.apiService.post(
         '/learning/create-user-preference/',
         {
@@ -176,10 +208,11 @@ export class PreferencesView1Page implements OnInit {
       if (response.error) {
         console.error('Error al guardar las preferencias. Intente de nuevo. ', response);
         //usar un modal de notificación
-        //devolver a welcome register view
         this.router.navigate(['/register-welcome']);
         return;
       }
+
+      return response.data.id;
     } catch (error) {
       return console.error('Error al guardar las preferencias:', error); //usar un modal de notificación
     } finally {
