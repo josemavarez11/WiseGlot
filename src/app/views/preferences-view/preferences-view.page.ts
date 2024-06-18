@@ -150,14 +150,40 @@ export class PreferencesView1Page implements OnInit {
       this.step = 3;
     }
     if (step === 3) {
-      const token = await this.capacitorPreferencesService.getToken();
-      console.log('All selected preferences:');
-      console.log(this.selectedPreferencesAll);
-      console. log('Token value from service:', token);
+      await this.savePreferences(this.selectedPreferencesAll);
       this.step = 4;
     }
     if (step === 4) {
       this.router.navigate(['/home']);
+    }
+  }
+
+  private async savePreferences(preferences: any[]): Promise<void> {
+    //empezar loader
+    try {
+      const token = await this.capacitorPreferencesService.getToken();
+      const response: ApiResponse = await this.apiService.post(
+        '/learning/create-user-preference/',
+        {
+          id_native_language: preferences[0].id,
+          id_language_to_study: preferences[1].id,
+          id_language_to_study_level: preferences[3].id,
+          id_reason_to_study: preferences[2].id,
+        },
+        [['Authorization', `Bearer ${token}`]]
+      );
+
+      if (response.error) {
+        console.error('Error al guardar las preferencias. Intente de nuevo. ', response);
+        //usar un modal de notificación
+        //devolver a welcome register view
+        this.router.navigate(['/register-welcome']);
+        return;
+      }
+    } catch (error) {
+      return console.error('Error al guardar las preferencias:', error); //usar un modal de notificación
+    } finally {
+      //terminar loader
     }
   }
 

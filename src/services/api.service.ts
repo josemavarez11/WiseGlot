@@ -14,14 +14,19 @@ export class ApiService {
 
   constructor() {}
 
-  async request(endpoint: string, method: string = 'GET', body?: any, headers?: HeadersInit, parseJson: boolean = true): Promise<ApiResponse> {
+  async request(endpoint: string, method: string = 'GET', body?: any, extraHeaders?: [string, string][], parseJson: boolean = true): Promise<ApiResponse> {
+    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
+    if (extraHeaders) {
+      for (const [key, value] of extraHeaders) {
+        headers[key] = value;
+      }
+    }
+
     const url = `${this.baseUrl}${endpoint}`;
+
     const config: RequestInit = {
       method,
-      headers: {
-        'Content-Type': 'application/json',
-        ...headers
-      },
+      headers,
       body: body ? JSON.stringify(body) : undefined,
     };
 
@@ -51,19 +56,19 @@ export class ApiService {
     }
   }
 
-  get(endpoint: string, headers?: HeadersInit, parseJson: boolean = true): Promise<ApiResponse> {
-    return this.request(endpoint, 'GET', null, headers, parseJson);
+  get(endpoint: string, extraHeaders?: [string, string][], parseJson: boolean = true): Promise<ApiResponse> {
+    return this.request(endpoint, 'GET', null, extraHeaders, parseJson);
   }
 
-  post(endpoint: string, body: any, headers?: HeadersInit, parseJson: boolean = true): Promise<ApiResponse> {
-    return this.request(endpoint, 'POST', body, headers, parseJson);
+  post(endpoint: string, body: any, extraHeaders?: [string, string][], parseJson: boolean = true): Promise<ApiResponse> {
+    return this.request(endpoint, 'POST', body, extraHeaders, parseJson);
   }
 
-  put(endpoint: string, body: any, headers?: HeadersInit, parseJson: boolean = true): Promise<ApiResponse> {
-    return this.request(endpoint, 'PUT', body, headers, parseJson);
+  put(endpoint: string, body: any, extraHeaders?: [string, string][], parseJson: boolean = true): Promise<ApiResponse> {
+    return this.request(endpoint, 'PUT', body, extraHeaders, parseJson);
   }
 
-  delete(endpoint: string, headers?: HeadersInit, parseJson: boolean = true): Promise<ApiResponse> {
-    return this.request(endpoint, 'DELETE', null, headers, parseJson);
+  delete(endpoint: string, extraHeaders?: [string, string][], parseJson: boolean = true): Promise<ApiResponse> {
+    return this.request(endpoint, 'DELETE', null, extraHeaders, parseJson);
   }
 }
