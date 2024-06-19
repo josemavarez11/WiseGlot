@@ -22,4 +22,8 @@ export class HomeViewPage implements OnInit {
   handleClick(){
     this.router.navigate(['/login']);
   }
+
+  handleViewToken(){
+    console.log('View Token');
+  }
 }
