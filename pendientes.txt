@@ -1,5 +1,4 @@
 1. cambiar el nombre de la carpeta icon a icons.
-2. llenar array de selectedTopics en preferences view.
 3. ajustes del método saveTopicPreference e implementarlo con el array de selected topics.
 4. ajustes del método savePreferences.
 5. quitar boton de regreso en user preferences 5.

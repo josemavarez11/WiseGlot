@@ -93,8 +93,11 @@
           [job]="item.des_topic"
           [ngClass]="{'animated-item': true, 'selected': isSelected(item)}"
           (click)="toggleSelectThree(item)"
+          [topic]="item"
+          (selected)="onTopicSelected(item)"
           />
       }
     </div>
   }
+  <app-loading *ngIf="isLoading"></app-loading>
 </ion-content>

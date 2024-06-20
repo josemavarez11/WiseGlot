@@ -16,6 +16,7 @@ import { ButtonPreferencesTwoComponent } from 'src/app/components/containers/but
 import { ButtonPreferenceThreeComponent } from 'src/app/components/containers/button-preference-three/button-preference-three.component';
 import { TitlePreferenceComponent } from 'src/app/components/others/title-preference/title-preference.component';
 import { ModalErrorWifiComponent } from 'src/app/components/others/modal-error-wifi/modal-error-wifi.component';
+import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 
 @Component({
   selector: 'app-preferences-view',
@@ -35,10 +36,12 @@ import { ModalErrorWifiComponent } from 'src/app/components/others/modal-error-w
     ButtonPreferencesTwoComponent,
     ButtonPreferenceThreeComponent,
     ModalErrorWifiComponent,
+    LoadingComponent,
   ],
 })
 export class PreferencesView1Page implements OnInit {
   step: number = 0;
+  isLoading: boolean = false;
   selectedOption: boolean = false;
   selectedPreferencesAll: any[] = [];
   selectedTopics: any[] = [];
@@ -56,13 +59,14 @@ export class PreferencesView1Page implements OnInit {
     'Elige el idioma que quieres aprender y prepárate para un aprendizaje único.',
     '¿Qué te motiva a aprender? Cuéntanos, ¡queremos que este viaje sea especial para ti!',
     'Dinos tu nivel actual, ¡sin importar si eres un novato o un pro!',
-    'Elige tus temas de interés para que el contenido sea más interesante y motivador .',
+    'Elige tus temas de interés para que el contenido sea más interesante y motivador.',
   ];
 
   preferenceOneAndTwo: { id: string, abb_language: string, des_language: string, icon: string }[] = [];
   preferenceThree: { id: string, des_reason_to_study: string, icon: string }[] = [];
   preferenceFour: { id: string, des_language_level: string, icon: string }[] = [];
   preferenceFive: { id: string, des_topic: string, icon: string }[] = [];
+  preferenceTopic: any[] = []; // Array to store selected topics
 
   constructor(private router: Router, private apiService: ApiService, private capacitorPreferencesService: CapacitorPreferencesService) {}
 
@@ -141,25 +145,20 @@ export class PreferencesView1Page implements OnInit {
     const token = await this.capacitorPreferencesService.getToken();
     var id_user_preference = '';
 
-    this.step = step;
-    this.selectedOption = false;
-
     if (step === 0) {
       this.step = 1;
-    }
-    if (step === 1) {
+    } else if (step === 1) {
       this.step = 2;
-    }
-    if (step === 2) {
+    } else if (step === 2) {
       this.step = 3;
-    }
-    if (step === 3) {
+    } else if (step === 3) {
       if (token) {
         id_user_preference = await this.savePreferences(this.selectedPreferencesAll, token);
       }
       this.step = 4;
-    }
-    if (step === 4) {
+    } else if (step === 4) {
+      console.log('Selected Topics:', this.preferenceTopic);
+
       // if(token && id_user_preference !== '') {
       //   for (const topic of this.selectedTopics) {
       //     await this.saveTopicPreference(id_user_preference, '', token);
@@ -170,7 +169,7 @@ export class PreferencesView1Page implements OnInit {
   }
 
   private async saveTopicPreference(id_user_preference: string, id_topic: string, token: string): Promise<void> {
-    //empezar loader
+    this.isLoading = true;
     try {
       const response: ApiResponse = await this.apiService.post(
         '/learning/create-user-preference-topic/',
@@ -187,12 +186,12 @@ export class PreferencesView1Page implements OnInit {
     } catch (error) {
       return console.error('Error al guardar los temas de preferencia:', error); //usar un modal de notificación
     } finally {
-      //terminar loader
+      this.isLoading = false;
     }
   }
 
   private async savePreferences(preferences: any[], token: string): Promise<any> {
-    //empezar loader
+    this.isLoading = true;
     try {
       const response: ApiResponse = await this.apiService.post(
         '/learning/create-user-preference/',
@@ -216,7 +215,7 @@ export class PreferencesView1Page implements OnInit {
     } catch (error) {
       return console.error('Error al guardar las preferencias:', error); //usar un modal de notificación
     } finally {
-      //terminar loader
+      this.isLoading = false;
     }
   }
 
@@ -244,6 +243,15 @@ export class PreferencesView1Page implements OnInit {
       if (index !== -1) {
         this.selectedPreferencesAll.splice(index, 1);
       }
+    }
+  }
+
+  onTopicSelected(topic: any): void {
+    const index = this.preferenceTopic.findIndex(t => t.id === topic.id);
+    if (index === -1) {
+      this.preferenceTopic.push(topic);
+    } else {
+      this.preferenceTopic.splice(index, 1);
     }
   }
 
