@@ -1,6 +1,10 @@
 1. cambiar el nombre de la carpeta icon a icons.
+
+--- No recuerdo a que te referias con esto
 3. ajustes del método saveTopicPreference e implementarlo con el array de selected topics.
 4. ajustes del método savePreferences.
+---
+
 5. quitar boton de regreso en user preferences 5.
 6. quitar flechas de avanzar en preferences 1, 2, 3 y 4.
 

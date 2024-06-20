@@ -61,6 +61,7 @@ input{
     justify-content: space-evenly;
     align-items: center;
     gap: 30px;
+    margin-top: 20px;
 }
 .btn{
     display: flex;
@@ -125,3 +126,25 @@ input{
 .messageError.show {
     opacity: 1;
 }
+.password-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    bottom: 42px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+  }
+  
+  .toggle-password img {
+    width: 25px;
+    height: 20px;
+  }

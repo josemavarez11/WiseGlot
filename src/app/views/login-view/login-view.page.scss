@@ -72,7 +72,7 @@ input {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  margin-top: 25px;
+  margin-top: 50px;
 }
 .descriptionRegister {
   color: #1b1b1b;
@@ -126,25 +126,24 @@ input {
   opacity: 1;
 }
 .password-container {
-    position: relative;
-    width: 100%;
-  }
-  
-  .toggle-password {
-    position: absolute;
-    bottom: 42px;
-    right: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.5;
-  }
-  
-  .toggle-password img {
-    width: 25px;
-    height: 20px;
-  }
-  
+  position: relative;
+  width: 100%;
+}
+
+.toggle-password {
+  position: absolute;
+  bottom: 42px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+}
+
+.toggle-password img {
+  width: 25px;
+  height: 20px;
+}

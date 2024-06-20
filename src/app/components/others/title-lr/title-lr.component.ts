@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TitleLrComponent  implements OnInit {
   @Input() title: string = '';
   @Input() subtitle: string = '';
+  @Input() width: string = '';
   constructor() { }
 
   ngOnInit() {}

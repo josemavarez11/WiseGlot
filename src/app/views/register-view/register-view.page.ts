@@ -43,6 +43,7 @@ export class RegisterViewPage implements OnInit {
   showErrorMessage: boolean = false;
   errorMessage: string = '';
   isLoading: boolean = false;
+  passwordFieldType: string = 'password';
 
   constructor(
     private router: Router,
@@ -60,6 +61,10 @@ export class RegisterViewPage implements OnInit {
 
   ngOnInit() {
     this.resetForm();
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 
   resetForm(): void {

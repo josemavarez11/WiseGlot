@@ -11,7 +11,8 @@
       <app-title-lr
         [title]="'REGÍSTRATE'"
         [subtitle]="'Tenemos muchas cosas que enseñarte, estamos seguros que te encantarán.'"
-      />
+        width="80%"
+        />
     </section>
   </div>
 
@@ -33,13 +34,18 @@
             placeholder="Correo eléctronico"
             [(ngModel)]="email"
           />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Contraseña"
-            [(ngModel)]="password"
-          />
+          <div class="password-container">
+            <input
+              [type]="passwordFieldType"
+              name="password"
+              id="password"
+              placeholder="Contraseña"
+              [(ngModel)]="password"
+            />
+            <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+              <img [src]="passwordFieldType === 'password' ? '../../../assets/icon/eyeClosed.png' : '../../../assets/icon/eye.png'" />
+            </button>
+          </div>
           <section class="contentBtn">
             <div class="btn">
               <app-btn-auth
