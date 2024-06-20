@@ -1,0 +1,18 @@
+<div class="button-container">
+  <button class="button" (click)="selectOption('home')" [ngClass]="{'active': selectedOption === 'home'}">
+    <img src="../../../../assets/icon/home.png" alt="">
+    <div class="indicator"></div>
+  </button>
+  <button class="button" (click)="selectOption('mazo')" [ngClass]="{'active': selectedOption === 'mazo'}">
+    <img src="../../../../assets/icon/mazo.png" alt="">
+    <div class="indicator"></div>
+  </button>
+  <button class="button" (click)="selectOption('message')" [ngClass]="{'active': selectedOption === 'message'}">
+    <img src="../../../../assets/icon/message.png" alt="">
+    <div class="indicator"></div>
+  </button>
+  <button class="button" (click)="selectOption('user')" [ngClass]="{'active': selectedOption === 'user'}">
+    <img src="../../../../assets/icon/user.png" class="user">
+    <div class="indicator"></div>
+  </button>
+</div>

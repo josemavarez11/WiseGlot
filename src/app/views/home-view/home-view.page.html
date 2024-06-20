@@ -1,22 +1,42 @@
 <ion-content>
-  <div>
-    <app-btn-auth
-      [color]="'#2B2B2B'"
-      [textColor]="'#FFFFFF'"
-      [borderColor]="'none'"
-      [title]="'Log Out'"
-      (click)="handleClick()"
-    ></app-btn-auth>
+  <ion-content>
+    <!-- Componente Home -->
+    <div *ngIf="selectedOption === 'home'">
+      <app-btn-auth
+        [color]="'#2B2B2B'"
+        [textColor]="'#FFFFFF'"
+        [borderColor]="'none'"
+        [title]="'Log Out'"
+        (click)="handleClick()"
+      ></app-btn-auth>
 
-    <app-btn-auth
-    [color]="'#2B2B2B'"
-    [textColor]="'#FFFFFF'"
-    [borderColor]="'none'"
-    [title]="'ShowToken'"
-    (click)="handleViewToken()"
-  ></app-btn-auth>
-  </div>
+      <app-btn-auth
+        [color]="'#2B2B2B'"
+        [textColor]="'#FFFFFF'"
+        [borderColor]="'none'"
+        [title]="'ShowToken'"
+        (click)="handleViewToken()"
+      ></app-btn-auth>
+    </div>
+
+    <!-- Componente View-Mazo -->
+    <div *ngIf="selectedOption === 'mazo'">
+      <h1>Mazo-View</h1>
+    </div>
+
+    <!-- Componente View-Chat -->
+    <div *ngIf="selectedOption === 'message'">
+      <h1>Chat-View</h1>
+    </div>
+
+    <!-- Componente View-User -->
+    <div *ngIf="selectedOption === 'user'">
+      <h1>User-View</h1>
+    </div>
+  </ion-content>
+
   <!-- <app-modalSelection
     [message]="'Quieres cambiar el idioma de la aplicacion al que tu quieres aprender?'"
   /> -->
+  <app-navbar />
 </ion-content>
