@@ -1,0 +1,23 @@
+{
+  "ERROR": {
+    "EmptyFields": "Por favor, rellene todos los campos." ,
+    "AlphanumericFields": "Cada campo debe tener un solo carácter alfanumérico.",
+    "Validation": "Error de validación." ,
+    "Unknown": "Error desconocido. Intente más tarde." ,
+    "InvalidInputs": "Los datos ingresads no son válidos." ,
+    "PasswordExtension": "La contraseña debe tener al menos 6 caracteres." ,
+    "NameExtension": "El nombre debe tener al menos 3 caracteres." ,
+    "PasswordsDoNotMatch": "Las contraseñas no coinciden." ,
+    "EmailAlreadyRegistered": "El correo ingresado ya está registrado." ,
+    "InvalidEmail": "La dirección de correo no es válida." ,
+    "GetPreferences": "Error al obtener las opciones de preferencias." ,
+    "SelectOption": "Por favor, seleccione al menos una opción." ,
+    "SavePreferencesTopics": "Error al guardar los temas de preferencia. " ,
+    "SavePrefereces": "Error al guardar las preferencias." ,
+    "InvalidCredentials": "Los datos ingresados no coinciden con nuestros registros." ,
+    "UserNotFound": "No se ha encontrado ningún usuario asociado a este correo electrónico."
+  },
+  "SUCCESS": {
+
+  }
+}

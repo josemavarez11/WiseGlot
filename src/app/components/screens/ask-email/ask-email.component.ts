@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MessageErrorComponent } from '../../containers/message-error/message-error.component';
 import { LoadingComponent } from '../../others/loading/loading.component';
 import { BtnAuthComponent } from '../../buttons/btn-auth/btn-auth.component';
+import message from '../../../json/messages.json';
 // Services
 import { ServiceSharedService } from '../../../../services/service-shared.service';
 import { ApiResponse, ApiService } from 'src/services/api.service';
@@ -78,10 +79,10 @@ export class AskEmailViewComponent implements OnInit {
       const response: ApiResponse = await this.apiService.post('/auth/send-reset-password-code/', { email });
 
       if (response.status === 400) {
-        this.showError('No se ha encontrado ningún usuario asociado a este correo electrónico.');
+        this.showError(message.ERROR.UserNotFound);
         return;
       } else if (response.status !== 200) {
-        this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+        this.showError(message.ERROR.Unknown);
         return;
       } else {
         this.setEmail(this.email);
@@ -100,12 +101,12 @@ export class AskEmailViewComponent implements OnInit {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
 
     if (!this.email) {
-      this.showError('Rellene todos los campos');
+      this.showError(message.ERROR.EmptyFields);
       return false;
     }
 
     if (!emailRegex.test(this.email)) {
-      this.showError('Dirección de correo electrónico no válida');
+      this.showError(message.ERROR.InvalidEmail);
       return false;
     }
 

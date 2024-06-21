@@ -13,6 +13,7 @@ import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.co
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
+import message from '../../json/messages.json';
 // Service
 import { ServiceSharedService } from '../../../services/service-shared.service';
 import { ApiService, ApiResponse } from 'src/services/api.service';
@@ -95,7 +96,7 @@ export class ValidateSecretCodePage implements OnInit {
 
     if (!this.areFieldsValid()) {
       this.isLoading = false;
-      this.showError('Rellene todos los campos');
+      this.showError(message.ERROR.EmptyFields);
       return;
     }
 
@@ -103,7 +104,7 @@ export class ValidateSecretCodePage implements OnInit {
 
     if (!this.isCodeValid(code)) {
       this.isLoading = false;
-      this.showError('Cada campo debe tener un solo carácter alfanumérico');
+      this.showError(message.ERROR.AlphanumericFields);
       return;
     }
 
@@ -115,10 +116,10 @@ export class ValidateSecretCodePage implements OnInit {
       const response: ApiResponse = await this.apiService.post('/auth/validate-reset-password-code/', { email, code });
 
       if (response.status === 400) {
-        this.showError(response.error || 'Error de validación');
+        this.showError(response.error || message.ERROR.Validation);
         return;
       } else if (response.status !== 200) {
-        this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+        this.showError(message.ERROR.Unknown);
         return;
       } else {
         this.router.navigate(['/reset-password']);

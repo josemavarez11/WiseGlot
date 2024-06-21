@@ -9,6 +9,7 @@ import { ModalComponent } from 'src/app/components/others/modal/modal.component'
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { IonContent } from '@ionic/angular/standalone';
+import message from '../../json/messages.json';
 // Services
 import { ServiceSharedService } from '../../../services/service-shared.service';
 import { ApiService, ApiResponse } from 'src/services/api.service';
@@ -98,10 +99,10 @@ export class PasswordChangeViewPage implements OnInit {
       });
 
       if (response.status === 400) {
-        this.showError(response.error || 'Los datos ingresados no son válidos. Por favor, inténtelo de nuevo.');
+        this.showError(response.error || message.ERROR.InvalidInputs);
         return;
       } else if (response.status !== 200) {
-        this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+        this.showError(message.ERROR.Unknown);
         return;
       } else {
         this.showSuccessModal = true;
@@ -117,17 +118,17 @@ export class PasswordChangeViewPage implements OnInit {
 
   private areFieldsValid(): boolean {
     if (!this.password || !this.confirmPassword) {
-      this.showError('Rellene todos los campos');
+      this.showError(message.ERROR.EmptyFields);
       return false;
     }
 
     if (this.password.length < 8) {
-      this.showError('La contraseña debe tener al menos 8 caracteres');
+      this.showError(message.ERROR.PasswordExtension);
       return false;
     }
 
     if (this.password !== this.confirmPassword) {
-      this.showError('Las contraseñas no coinciden');
+      this.showError(message.ERROR.PasswordsDoNotMatch);
       return false;
     }
 

@@ -1,14 +1,11 @@
 1. cambiar el nombre de la carpeta icon a icons.
-
---- No recuerdo a que te referias con esto
-3. ajustes del método saveTopicPreference e implementarlo con el array de selected topics.
-4. ajustes del método savePreferences.
----
-
+2. ojito de visualizar contraseña en reset-passowrd-view y quitar el checkbox.
+3. justificar el titulo y el subtitulo de reset-password-view a la derecha (como en login o register).
+4. cambiar los idiomas en preferences view 1 se deben ver igual que en prefernces view 2 (es decir, con la banderita y el puro nombre del idioma).
 5. quitar boton de regreso en user preferences 5.
-6. quitar flechas de avanzar en preferences 1, 2, 3 y 4.
+6. quitar flechas de avanzar en preferences 1, 2, 3 y 4. solo dejar en la 5.
+7. modal de notificaciones para los métodos savePreferences, saveTopicPreference y getPreferencesOptions en preferences-view.
 
-ajustar tamaños y ubicaciones de algunos elementos (los dos en reunion)
 guardar ruta base de api, endpoints y otras cosas en variables de entorno (jose)
 crear json con mensajes (jose)
 

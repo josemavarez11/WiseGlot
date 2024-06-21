@@ -43,7 +43,7 @@ ion-content {
     transition: opacity 0.5s ease, transform 0.5s ease;
     -webkit-transition: opacity 0.5s ease, transform 0.5s ease;
 }
-  
+
 .bodyA{
     width: 90%;
 }
@@ -65,7 +65,7 @@ ion-content {
     position: relative;
     overflow: hidden;
   }
-  
+
 .bard-fill {
     height: 100%;
     background-color: #0600FF;
@@ -78,6 +78,7 @@ img{
 }
 button{
     background-color: transparent;
+    font-weight: bold;
 }
 .descrip{
     width: 80%;
@@ -96,8 +97,8 @@ button{
       opacity: 1;
     }
   }
-  
+
   .animated-item {
     animation: slideInLeft 0.5s forwards;
   }
-  
+

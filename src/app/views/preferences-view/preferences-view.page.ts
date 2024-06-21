@@ -17,6 +17,7 @@ import { ButtonPreferenceThreeComponent } from 'src/app/components/containers/bu
 import { TitlePreferenceComponent } from 'src/app/components/others/title-preference/title-preference.component';
 import { ModalErrorWifiComponent } from 'src/app/components/others/modal-error-wifi/modal-error-wifi.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import message from '../../json/messages.json';
 
 @Component({
   selector: 'app-preferences-view',
@@ -44,7 +45,12 @@ export class PreferencesView1Page implements OnInit {
   isLoading: boolean = false;
   selectedOption: boolean = false;
   selectedPreferencesAll: any[] = [];
-  selectedTopics: any[] = [];
+  id_user_preference: string = '';
+  preferenceTopic: any[] = [];
+  preferenceOneAndTwo: { id: string, abb_language: string, des_language: string, icon: string }[] = [];
+  preferenceThree: { id: string, des_reason_to_study: string, icon: string }[] = [];
+  preferenceFour: { id: string, des_language_level: string, icon: string }[] = [];
+  preferenceFive: { id: string, des_topic: string, icon: string }[] = [];
 
   titles: string[] = [
     '¿Cuál es tu idioma nativo?',
@@ -62,13 +68,12 @@ export class PreferencesView1Page implements OnInit {
     'Elige tus temas de interés para que el contenido sea más interesante y motivador.',
   ];
 
-  preferenceOneAndTwo: { id: string, abb_language: string, des_language: string, icon: string }[] = [];
-  preferenceThree: { id: string, des_reason_to_study: string, icon: string }[] = [];
-  preferenceFour: { id: string, des_language_level: string, icon: string }[] = [];
-  preferenceFive: { id: string, des_topic: string, icon: string }[] = [];
-  preferenceTopic: any[] = []; // Array to store selected topics
 
-  constructor(private router: Router, private apiService: ApiService, private capacitorPreferencesService: CapacitorPreferencesService) {}
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private capacitorPreferencesService: CapacitorPreferencesService
+  ) {}
 
   async ngOnInit() {
     const options = await this.getPreferencesOptions();
@@ -86,14 +91,14 @@ export class PreferencesView1Page implements OnInit {
       const response: ApiResponse = await this.apiService.get('/learning/get-preference-options/');
 
       if (response.error) {
-        console.error('Error al obtener las opciones de preferencias:', response.error); //usar un modal de notificación
+        console.error(message.ERROR.GetPreferences, response.error); //usar un modal de notificación
         return;
       }
 
       const data = response.data;
       return data;
     } catch (error) {
-      console.error('Error al obtener las opciones de preferencias:', error); //usar un modal de notificación
+      console.error(message.ERROR.GetPreferences, error); //usar un modal de notificación
       return;
     }
   }
@@ -134,16 +139,15 @@ export class PreferencesView1Page implements OnInit {
   async selectOption(step: number): Promise<void> {
     if (this.step === 4) {
       if (this.selectedPreferencesAll.length === 0) {
-        alert('Por favor, selecciona al menos una opción antes de continuar.');
+        alert(message.ERROR.SelectOption);
         return;
       }
     } else if (!this.selectedOption) {
-      alert('Por favor, selecciona una opción antes de continuar.');
+      alert(message.ERROR.SelectOption);
       return;
     }
 
     const token = await this.capacitorPreferencesService.getToken();
-    var id_user_preference = '';
 
     if (step === 0) {
       this.step = 1;
@@ -153,17 +157,15 @@ export class PreferencesView1Page implements OnInit {
       this.step = 3;
     } else if (step === 3) {
       if (token) {
-        id_user_preference = await this.savePreferences(this.selectedPreferencesAll, token);
+        this.id_user_preference = await this.savePreferences(this.selectedPreferencesAll, token);
       }
       this.step = 4;
     } else if (step === 4) {
-      console.log('Selected Topics:', this.preferenceTopic);
-
-      // if(token && id_user_preference !== '') {
-      //   for (const topic of this.selectedTopics) {
-      //     await this.saveTopicPreference(id_user_preference, '', token);
-      //   }
-      // }
+      if(token && this.id_user_preference !== '') {
+        for (const topic of this.preferenceTopic) {
+          await this.saveTopicPreference(this.id_user_preference, topic.id, token);
+        }
+      }
       this.router.navigate(['/home']);
     }
   }
@@ -178,13 +180,13 @@ export class PreferencesView1Page implements OnInit {
       );
 
       if (response.error) {
-        console.error('Error al guardar los temas de preferencia. Intente de nuevo. ', response);
+        console.error(message.ERROR.SavePreferencesTopics, response);
         //usar un modal de notificación
         this.router.navigate(['/register-welcome']);
         return;
       }
     } catch (error) {
-      return console.error('Error al guardar los temas de preferencia:', error); //usar un modal de notificación
+      return console.error(message.ERROR.SavePreferencesTopics, error); //usar un modal de notificación
     } finally {
       this.isLoading = false;
     }
@@ -205,7 +207,7 @@ export class PreferencesView1Page implements OnInit {
       );
 
       if (response.error) {
-        console.error('Error al guardar las preferencias. Intente de nuevo. ', response);
+        console.error(message.ERROR.SavePrefereces, response);
         //usar un modal de notificación
         this.router.navigate(['/register-welcome']);
         return;
@@ -213,7 +215,7 @@ export class PreferencesView1Page implements OnInit {
 
       return response.data.id;
     } catch (error) {
-      return console.error('Error al guardar las preferencias:', error); //usar un modal de notificación
+      return console.error(message.ERROR.SavePrefereces, error); //usar un modal de notificación
     } finally {
       this.isLoading = false;
     }

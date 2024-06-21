@@ -13,6 +13,7 @@ import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.co
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import message from '../../json/messages.json';
 // Services
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
@@ -99,13 +100,13 @@ export class RegisterViewPage implements OnInit {
       });
 
       if (response.status === 409) {
-        this.showError('Este correo electrónico ya está registrado. Por favor, inténtelo de nuevo.');
+        this.showError(message.ERROR.EmailAlreadyRegistered);
         return;
       } else if (response.status === 400) {
-        this.showError('Los datos ingresados no son válidos. Por favor, inténtelo de nuevo.');
+        this.showError(message.ERROR.InvalidInputs);
         return;
       } else if (response.status !== 201) {
-        this.showError('Error desconocido. Vuelva a intentarlo más tarde.');
+        this.showError(message.ERROR.Unknown);
         return;
       } else {
         const data = response.data;
@@ -123,19 +124,19 @@ export class RegisterViewPage implements OnInit {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
 
     if (!this.fullname || !this.email || !this.password) {
-      this.showError('Rellene todos los campos');
+      this.showError(message.ERROR.EmptyFields);
       return false;
     }
     if (this.password.length < 6) {
-      this.showError('La contraseña debe tener al menos 6 caracteres');
+      this.showError(message.ERROR.PasswordExtension);
       return false;
     }
     if (this.fullname.length < 3) {
-      this.showError('El nombre debe tener al menos 3 caracteres');
+      this.showError(message.ERROR.NameExtension);
       return false;
     }
     if (!emailRegex.test(this.email)) {
-      this.showError('Dirección de correo electrónico no válida');
+      this.showError(message.ERROR.InvalidEmail);
       return false;
     }
 
