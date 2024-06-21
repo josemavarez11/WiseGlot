@@ -7,6 +7,5 @@
 7. modal de notificaciones para los métodos savePreferences, saveTopicPreference y getPreferencesOptions en preferences-view.
 
 guardar ruta base de api, endpoints y otras cosas en variables de entorno (jose)
-crear json con mensajes (jose)
 
 
