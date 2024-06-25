@@ -1,4 +1,3 @@
-1. cambiar el nombre de la carpeta icon a icons.
 2. ojito de visualizar contraseña en reset-passowrd-view y quitar el checkbox.
 3. justificar el titulo y el subtitulo de reset-password-view a la derecha (como en login o register).
 4. cambiar los idiomas en preferences view 1 se deben ver igual que en prefernces view 2 (es decir, con la banderita y el puro nombre del idioma).

@@ -47,6 +47,7 @@ export class PasswordChangeViewPage implements OnInit {
   errorMessage: string = '';
   showSuccessModal: boolean = false;
   isLoading: boolean = false;
+  passwordFieldType: string = 'password';
 
   constructor(
     private router: Router,
@@ -75,6 +76,10 @@ export class PasswordChangeViewPage implements OnInit {
 
   togglePassword() {
     this.showPassword = !this.showPassword;
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 
   async handleClick(): Promise<void> {
