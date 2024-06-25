@@ -108,7 +108,7 @@ export class PreferencesView1Page implements OnInit {
       id: item.id,
       abb_language: item.abb_language,
       des_language: item.des_language,
-      icon: `../../../assets/icon/flags/${item.abb_language}.png`
+      icon: `../../../assets/icons/flags/${item.abb_language}.png`
     }));
   }
 
@@ -116,7 +116,7 @@ export class PreferencesView1Page implements OnInit {
     this.preferenceThree = reasons.map(item => ({
       id: item.id,
       des_reason_to_study: item.des_reason_to_study,
-      icon: `../../../assets/icon/reasons-to-study/${item.des_reason_to_study}.png`
+      icon: `../../../assets/icons/reasons-to-study/${item.des_reason_to_study}.png`
     }));
   }
 
@@ -124,7 +124,7 @@ export class PreferencesView1Page implements OnInit {
     this.preferenceFour = levels.map(item => ({
       id: item.id,
       des_language_level: item.des_language_level,
-      icon: `../../../assets/icon/language-levels/${item.des_language_level}.png`
+      icon: `../../../assets/icons/language-levels/${item.des_language_level}.png`
     }));
   }
 
@@ -132,7 +132,7 @@ export class PreferencesView1Page implements OnInit {
     this.preferenceFive = topics.map(item => ({
       id: item.id,
       des_topic: item.des_topic,
-      icon: `../../../assets/icon/topics/${item.des_topic}.png`
+      icon: `../../../assets/icons/topics/${item.des_topic}.png`
     }));
   }
 
