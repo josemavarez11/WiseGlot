@@ -102,3 +102,26 @@ button{
     animation: slideInLeft 0.5s forwards;
   }
 
+  .button-container {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
+  
+  .next-view-button {
+    padding: 10px;
+    background-color: #0600FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: scaleX(-1);
+  }
+  
+  .next-view-button:hover {
+    background-color: #0600FF;
+  }

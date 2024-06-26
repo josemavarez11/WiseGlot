@@ -68,7 +68,6 @@ export class PreferencesView1Page implements OnInit {
     'Elige tus temas de interés para que el contenido sea más interesante y motivador.',
   ];
 
-
   constructor(
     private router: Router,
     private apiService: ApiService,
@@ -78,7 +77,7 @@ export class PreferencesView1Page implements OnInit {
   async ngOnInit() {
     const options = await this.getPreferencesOptions();
 
-    if(!options) return;
+    if (!options) return;
 
     this.processLanguagesOptions(options.languages);
     this.processReasonsToStudyOptions(options.reasons_to_study);
@@ -142,7 +141,6 @@ export class PreferencesView1Page implements OnInit {
         alert(message.ERROR.SelectOption);
         return;
       }
-    } else if (!this.selectedOption) {
       alert(message.ERROR.SelectOption);
       return;
     }
@@ -161,7 +159,7 @@ export class PreferencesView1Page implements OnInit {
       }
       this.step = 4;
     } else if (step === 4) {
-      if(token && this.id_user_preference !== '') {
+      if (token && this.id_user_preference !== '') {
         for (const topic of this.preferenceTopic) {
           await this.saveTopicPreference(this.id_user_preference, topic.id, token);
         }
@@ -225,12 +223,16 @@ export class PreferencesView1Page implements OnInit {
     option.selected = true;
     this.selectedOption = true;
     this.selectedPreferencesAll.push(option);
+    console.log('Selected preferences:', this.selectedPreferencesAll);
+    this.step++;
   }
 
   selectTwo(option: any): void {
     option.selected = true;
     this.selectedOption = true;
     this.selectedPreferencesAll.push(option);
+    console.log('Selected preferences:', this.selectedPreferencesAll);
+    this.step++;
   }
 
   toggleSelectThree(option: any): void {
@@ -246,6 +248,7 @@ export class PreferencesView1Page implements OnInit {
         this.selectedPreferencesAll.splice(index, 1);
       }
     }
+    console.log('Selected preferences:', this.selectedPreferencesAll);
   }
 
   onTopicSelected(topic: any): void {
@@ -255,6 +258,7 @@ export class PreferencesView1Page implements OnInit {
     } else {
       this.preferenceTopic.splice(index, 1);
     }
+    console.log('Selected topics:', this.preferenceTopic);
   }
 
   isSelected(option: any): boolean {
@@ -272,5 +276,9 @@ export class PreferencesView1Page implements OnInit {
     } else {
       this.router.navigate(['/register-welcome']);
     }
+  }
+
+  goToNextView(): void {
+    this.router.navigate(['/home']);
   }
 }

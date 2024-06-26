@@ -2,19 +2,8 @@
   <div class="ContentA">
     <section class="bodyA">
       <article class="top">
-        <button (click)="previousStep()">
-          <img src="../../../assets/img/views/back-black.png" />
-        </button>
         <div class="group">
           <p class="contador">{{step + 1}}/{{titles.length}}</p>
-          <button
-            class="rojo"
-            [disabled]="!selectedOption"
-            (click)="selectOption(step)"
-            [ngClass]="{'disabled-button': !selectedOption}"
-            >
-            <img src="../../../assets/img/views/back-black.png" class="next" />
-          </button>
         </div>
       </article>
 
@@ -33,71 +22,63 @@
     </div>
   </div>
 
-  @if (step === 0) {
-    <div class="ContentB">
-      @for (item of preferenceOneAndTwo; track item) {
-        <app-button-preferences-one
-          [language]="item.des_language"
-          [subLanguage]="item.abb_language"
-          [ngClass]="{'animated-item': true}"
-          (click)="selectOne(item)"
-          />
-      }
+  <div *ngIf="step === 0" class="ContentB">
+    <div *ngFor="let item of preferenceOneAndTwo" (click)="selectOne(item)">
+      <app-button-preferences-one
+        [language]="item.des_language"
+        [subLanguage]="item.abb_language"
+        [ngClass]="{'animated-item': true}"
+      ></app-button-preferences-one>
     </div>
-  }
+  </div>
 
-  @if (step === 1) {
-    <div class="ContentB">
-      @for (item of preferenceOneAndTwo; track item) {
-        <app-button-preferences-two
-          [img]="item.icon"
-          [job]="item.des_language"
-          [ngClass]="{'animated-item': true}"
-          (click)="selectTwo(item)"
-          />
-      }
+  <div *ngIf="step === 1" class="ContentB">
+    <div *ngFor="let item of preferenceOneAndTwo" (click)="selectTwo(item)">
+      <app-button-preferences-two
+        [img]="item.icon"
+        [job]="item.des_language"
+        [ngClass]="{'animated-item': true}"
+      ></app-button-preferences-two>
     </div>
-  }
+  </div>
 
-  @if (step === 2) {
-    <div class="ContentB">
-      @for (item of preferenceThree; track item) {
-        <app-button-preferences-two
-          [img]="item.icon"
-          [job]="item.des_reason_to_study"
-          [ngClass]="{'animated-item': true}"
-          (click)="selectTwo(item)"
-          />
-      }
+  <div *ngIf="step === 2" class="ContentB">
+    <div *ngFor="let item of preferenceThree" (click)="selectTwo(item)">
+      <app-button-preferences-two
+        [img]="item.icon"
+        [job]="item.des_reason_to_study"
+        [ngClass]="{'animated-item': true}"
+      ></app-button-preferences-two>
     </div>
-  }
+  </div>
 
-  @if (step === 3) {
-    <div class="ContentB">
-      @for (item of preferenceFour; track item) {
-        <app-button-preferences-two
-          [img]="item.icon"
-          [job]="item.des_language_level"
-          [ngClass]="{'animated-item': true}"
-          (click)="selectTwo(item)"
-          />
-      }
+  <div *ngIf="step === 3" class="ContentB">
+    <div *ngFor="let item of preferenceFour" (click)="selectTwo(item)">
+      <app-button-preferences-two
+        [img]="item.icon"
+        [job]="item.des_language_level"
+        [ngClass]="{'animated-item': true}"
+      ></app-button-preferences-two>
     </div>
-  }
+  </div>
 
-  @if (step === 4) {
-    <div class="ContentB">
-      @for (item of preferenceFive; track item) {
-        <app-button-preference-three
-          [img]="item.icon"
-          [job]="item.des_topic"
-          [ngClass]="{'animated-item': true, 'selected': isSelected(item)}"
-          (click)="toggleSelectThree(item)"
-          [topic]="item"
-          (selected)="onTopicSelected(item)"
-          />
-      }
+  <div *ngIf="step === 4" class="ContentB">
+    <div *ngFor="let item of preferenceFive" (click)="toggleSelectThree(item)">
+      <app-button-preference-three
+        [img]="item.icon"
+        [job]="item.des_topic"
+        [ngClass]="{'animated-item': true, 'selected': isSelected(item)}"
+        [topic]="item"
+        (selected)="onTopicSelected(item)"
+      ></app-button-preference-three>
     </div>
-  }
+    <!-- Aquí agregamos el botón dentro del div del paso 4 -->
+    <div *ngIf="preferenceTopic.length > 0" class="button-container">
+      <button (click)="goToNextView()" class="next-view-button">
+        <img src="../../../assets/img/views/back-black.png" alt="">
+      </button>
+    </div>
+  </div>
+
   <app-loading *ngIf="isLoading"></app-loading>
 </ion-content>
