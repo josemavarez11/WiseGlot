@@ -136,17 +136,8 @@ export class PreferencesView1Page implements OnInit {
   }
 
   async selectOption(step: number): Promise<void> {
-    if (this.step === 4) {
-      if (this.selectedPreferencesAll.length === 0) {
-        alert(message.ERROR.SelectOption);
-        return;
-      }
-      alert(message.ERROR.SelectOption);
-      return;
-    }
-
     const token = await this.capacitorPreferencesService.getToken();
-
+  
     if (step === 0) {
       this.step = 1;
     } else if (step === 1) {
@@ -155,42 +146,31 @@ export class PreferencesView1Page implements OnInit {
       this.step = 3;
     } else if (step === 3) {
       if (token) {
-        this.id_user_preference = await this.savePreferences(this.selectedPreferencesAll, token);
-      }
-      this.step = 4;
-    } else if (step === 4) {
-      if (token && this.id_user_preference !== '') {
-        for (const topic of this.preferenceTopic) {
-          await this.saveTopicPreference(this.id_user_preference, topic.id, token);
+        const userPreferenceId = await this.savePreferences(this.selectedPreferencesAll, token);
+        if (userPreferenceId) {
+          this.id_user_preference = userPreferenceId;
+          this.step = 4;
         }
       }
-      this.router.navigate(['/home']);
-    }
-  }
-
-  private async saveTopicPreference(id_user_preference: string, id_topic: string, token: string): Promise<void> {
-    this.isLoading = true;
-    try {
-      const response: ApiResponse = await this.apiService.post(
-        '/learning/create-user-preference-topic/',
-        { id_user_preference, id_topic },
-        [['Authorization', `Bearer ${token}`]]
-      );
-
-      if (response.error) {
-        console.error(message.ERROR.SavePreferencesTopics, response);
-        //usar un modal de notificación
-        this.router.navigate(['/register-welcome']);
-        return;
+    } else if (step === 4) {
+      if (token && this.id_user_preference !== '') {
+        let allTopicsSaved = true;
+        for (const topic of this.preferenceTopic) {
+          const success = await this.saveTopicPreference(this.id_user_preference, topic.id, token);
+          if (!success) {
+            allTopicsSaved = false;
+            break;
+          }
+        }
+        if (allTopicsSaved) {
+          this.router.navigate(['/home']);
+        }
       }
-    } catch (error) {
-      return console.error(message.ERROR.SavePreferencesTopics, error); //usar un modal de notificación
-    } finally {
-      this.isLoading = false;
     }
   }
+  
 
-  private async savePreferences(preferences: any[], token: string): Promise<any> {
+  private async savePreferences(preferences: any[], token: string): Promise<string | null> {
     this.isLoading = true;
     try {
       const response: ApiResponse = await this.apiService.post(
@@ -203,21 +183,48 @@ export class PreferencesView1Page implements OnInit {
         },
         [['Authorization', `Bearer ${token}`]]
       );
-
+  
       if (response.error) {
         console.error(message.ERROR.SavePrefereces, response);
-        //usar un modal de notificación
         this.router.navigate(['/register-welcome']);
-        return;
+        return null;
       }
-
+  
       return response.data.id;
     } catch (error) {
-      return console.error(message.ERROR.SavePrefereces, error); //usar un modal de notificación
+      console.error(message.ERROR.SavePrefereces, error);
+      this.router.navigate(['/register-welcome']);
+      return null;
     } finally {
       this.isLoading = false;
     }
   }
+  
+  private async saveTopicPreference(id_user_preference: string, id_topic: string, token: string): Promise<boolean> {
+    this.isLoading = true;
+    try {
+      const response: ApiResponse = await this.apiService.post(
+        '/learning/create-user-preference-topic/',
+        { id_user_preference, id_topic },
+        [['Authorization', `Bearer ${token}`]]
+      );
+  
+      if (response.error) {
+        console.error(message.ERROR.SavePreferencesTopics, response);
+        this.router.navigate(['/register-welcome']);
+        return false;
+      }
+  
+      return true;
+    } catch (error) {
+      console.error(message.ERROR.SavePreferencesTopics, error);
+      this.router.navigate(['/register-welcome']);
+      return false;
+    } finally {
+      this.isLoading = false;
+    }
+  }
+  
 
   selectOne(option: any): void {
     option.selected = true;

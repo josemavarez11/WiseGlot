@@ -1,7 +1,7 @@
 <ion-content>
   <ion-content>
     <!-- Componente Home -->
-    <div *ngIf="selectedOption === 'home'">
+    <div *ngIf="selectedOption === 'home'" class="Home">
       <app-btn-auth
         [color]="'#2B2B2B'"
         [textColor]="'#FFFFFF'"
@@ -42,6 +42,71 @@
 
 
       </div>
+
+      <div class="ContentB">
+
+        <div class="ContainerArt">
+
+          <div class="ContainerName">
+            <p class="title">Account status</p>
+            <p class="subTitle">FREE</p>
+          </div>
+
+          <div class="ContainerBtn">
+            <button class="btn">
+              <p>Upgrade</p>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="ContainerArt">
+
+          <div class="ContainerName">
+            <p class="title">Name</p>
+            <p class="subTitle">Misael Reverol</p>
+          </div>
+
+          <div class="ContainerBtn">
+            <button class="btn1">
+              <img src="../../../assets/icons/pencil.png">
+            </button>
+          </div>
+
+        </div>
+
+        <div class="ContainerArt">
+
+          <div class="ContainerName">
+            <p class="title">Email address</p>
+            <p class="subTitle">Misa24jrgmail.com</p>
+          </div>
+
+          <div class="ContainerBtn">
+            <button class="btn1">
+              <img src="../../../assets/icons/pencil.png">
+            </button>
+          </div>
+
+        </div>
+
+        <div class="ContainerArt">
+
+          <div class="ContainerName">
+            <p class="title">App language</p>
+            <p class="subTitle">English</p>
+          </div>
+
+          <div class="ContainerBtn">
+            <button class="btn1">
+              <img src="../../../assets/icons/pencil.png">
+            </button>
+          </div>
+
+        </div>
+
+
+      </div>    
     </div>
   </ion-content>
 
