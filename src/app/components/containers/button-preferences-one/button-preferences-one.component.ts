@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ButtonPreferencesOneComponent implements OnInit {
   @Input() language: string = '';
-  @Input() subLanguage: string = '';
+  @Input() img: string = '';
   @Output() selected = new EventEmitter<void>();
   constructor() { }
 
@@ -16,7 +16,5 @@ export class ButtonPreferencesOneComponent implements OnInit {
 
   logValues() {
     this.selected.emit();
-    // console.log('Language:', this.language);
-    // console.log('SubLanguage:', this.subLanguage);
   }
 }

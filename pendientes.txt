@@ -1,4 +1,4 @@
-4. cambiar los idiomas en preferences view 1 se deben ver igual que en prefernces view 2 (es decir, con la banderita y el puro nombre del idioma).
+- Help Mario -
 ---
 5. quitar boton de regreso en user preferences 5.
 6. quitar flechas de avanzar en preferences 1, 2, 3 y 4. solo dejar en la 5.

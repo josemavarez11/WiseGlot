@@ -16,7 +16,5 @@ export class ButtonPreferencesTwoComponent  implements OnInit {
 
   logValues() {
     this.selected.emit();
-    // console.log('img:', this.img);
-    // console.log('job:', this.job);
   }
 }

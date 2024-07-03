@@ -14,18 +14,19 @@
     background-color: rgba(6, 0, 255, 0.2);
 }
 .contentSelect{
-    padding-left: 40px;
-    text-align: left;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 .primary{
-    font-size: 17px;
-    font-weight: 700;
-    color: #040099;
-    margin-bottom: 4px;
+    width: 30px;
+    height: 25px;
 }
 .secondary{
-    font-size: 13px;
-    font-weight: normal;
-    color: #0600FF;
-    margin-top: 0;
+    font-size: 17px;
+    font-weight: 500;
+    color: #040099;
 }
