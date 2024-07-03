@@ -5,12 +5,22 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  background: linear-gradient(
-    to bottom, 
-    rgb(5, 1, 159) 0%, 
-    rgb(5, 0, 236) 100%
-);
-
+  background: linear-gradient(135deg, #00004b 0%, transparent 40%),
+    linear-gradient(315deg, #00004b 0%, transparent 40%),
+    radial-gradient(
+      circle at 20% 30%,
+      #0000ff 0%,
+      #0000ff 40%,
+      #00008b 80%,
+      #00004b 100%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      #0000ff 0%,
+      #0000ff 40%,
+      #00008b 80%,
+      #00004b 100%
+    );
 }
 
 .circle {
