@@ -18,35 +18,33 @@
         (click)="handleViewToken()"
       ></app-btn-auth>
     </div>
+    <!-- Componente Home -->
 
     <!-- Componente View-Mazo -->
     <div *ngIf="selectedOption === 'mazo'">
       <h1>Mazo-View</h1>
     </div>
+    <!-- Componente View-Mazo -->
 
     <!-- Componente View-Chat -->
     <div *ngIf="selectedOption === 'message'">
       <h1>Chat-View</h1>
     </div>
+    <!-- Componente View-Chat -->
 
     <!-- Componente View-User -->
     <div *ngIf="selectedOption === 'user'" class="userSettings">
       <div class="ContentA">
-        
         <div class="circle circle1"></div>
         <div class="circle circle2"></div>
         <!-- <div class="circle circleUser">
           <img src="" alt="">
           <img src="" alt="">
         </div> -->
-
-
       </div>
 
       <div class="ContentB">
-
         <div class="ContainerArt">
-
           <div class="ContainerName">
             <p class="title">Account status</p>
             <p class="subTitle">FREE</p>
@@ -57,11 +55,9 @@
               <p>Upgrade</p>
             </button>
           </div>
-
         </div>
 
         <div class="ContainerArt">
-
           <div class="ContainerName">
             <p class="title">Name</p>
             <p class="subTitle">Misael Reverol</p>
@@ -69,14 +65,12 @@
 
           <div class="ContainerBtn">
             <button class="btn1">
-              <img src="../../../assets/icons/pencil.png">
+              <img src="../../../assets/icons/pencil.png" />
             </button>
           </div>
-
         </div>
 
         <div class="ContainerArt">
-
           <div class="ContainerName">
             <p class="title">Email address</p>
             <p class="subTitle">Misa24jrgmail.com</p>
@@ -84,14 +78,12 @@
 
           <div class="ContainerBtn">
             <button class="btn1">
-              <img src="../../../assets/icons/pencil.png">
+              <img src="../../../assets/icons/pencil.png" />
             </button>
           </div>
-
         </div>
 
         <div class="ContainerArt">
-
           <div class="ContainerName">
             <p class="title">App language</p>
             <p class="subTitle">English</p>
@@ -99,15 +91,13 @@
 
           <div class="ContainerBtn">
             <button class="btn1">
-              <img src="../../../assets/icons/pencil.png">
+              <img src="../../../assets/icons/pencil.png" />
             </button>
           </div>
-
         </div>
-
-
-      </div>    
+      </div>
     </div>
+    <!-- Componente View-User -->
   </ion-content>
 
   <!-- <app-modalSelection

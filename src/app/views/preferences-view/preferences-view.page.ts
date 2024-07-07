@@ -137,7 +137,8 @@ export class PreferencesView1Page implements OnInit {
 
   async selectOption(step: number): Promise<void> {
     const token = await this.capacitorPreferencesService.getToken();
-  
+    console.log('Token:', token);
+    console.log('Token:', step);
     if (step === 0) {
       this.step = 1;
     } else if (step === 1) {
@@ -153,19 +154,7 @@ export class PreferencesView1Page implements OnInit {
         }
       }
     } else if (step === 4) {
-      if (token && this.id_user_preference !== '') {
-        let allTopicsSaved = true;
-        for (const topic of this.preferenceTopic) {
-          const success = await this.saveTopicPreference(this.id_user_preference, topic.id, token);
-          if (!success) {
-            allTopicsSaved = false;
-            break;
-          }
-        }
-        if (allTopicsSaved) {
-          this.router.navigate(['/home']);
-        }
-      }
+
     }
   }
   
@@ -231,7 +220,8 @@ export class PreferencesView1Page implements OnInit {
     this.selectedOption = true;
     this.selectedPreferencesAll.push(option);
     console.log('Selected preferences:', this.selectedPreferencesAll);
-    this.step++;
+    this.selectOption(this.step);
+    // this.step++;
   }
 
   selectTwo(option: any): void {
@@ -239,7 +229,8 @@ export class PreferencesView1Page implements OnInit {
     this.selectedOption = true;
     this.selectedPreferencesAll.push(option);
     console.log('Selected preferences:', this.selectedPreferencesAll);
-    this.step++;
+    // this.step++;
+    this.selectOption(this.step);
   }
 
   toggleSelectThree(option: any): void {
@@ -285,7 +276,20 @@ export class PreferencesView1Page implements OnInit {
     }
   }
 
-  goToNextView(): void {
-    this.router.navigate(['/home']);
+  async goToNextView(): Promise<void> {
+    const token = await this.capacitorPreferencesService.getToken();
+    if (token && this.id_user_preference !== '') {
+      let allTopicsSaved = true;
+      for (const topic of this.preferenceTopic) {
+        const success = await this.saveTopicPreference(this.id_user_preference, topic.id, token);
+        if (!success) {
+          allTopicsSaved = false;
+          break;
+        }
+      }
+      if (allTopicsSaved) {
+        this.router.navigate(['/home']);
+      }
+    }
   }
 }
