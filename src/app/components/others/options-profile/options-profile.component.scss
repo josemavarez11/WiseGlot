@@ -1,0 +1,53 @@
+.ContainerArt {
+  max-width: 380px;
+  min-width: 380px;
+  width: 380px;
+  height: 70px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-top: 25px;
+}
+.ContainerName {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  padding-left: 30px;
+}
+.ContainerBtn {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+.title {
+  color: #040099;
+  font-weight: normal;
+  font-size: 13px;
+}
+.subTitle {
+  color: #040099;
+  font-weight: normal;
+  font-size: 17px;
+}
+.btn1 {
+  background-color: #0600ff;
+  width: 28px;
+  height: 28px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  margin-right: 30px;
+}
+img {
+  width: 15px;
+  height: 15px;
+}
