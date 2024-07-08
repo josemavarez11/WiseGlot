@@ -185,6 +185,7 @@ h5{
   font-size: 24px;
   font-weight: 700;
   color: white;
+  padding-left: 20px;
 }
 .imgHome{
   width: 108px;
@@ -200,8 +201,66 @@ h5{
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background-color: #F0F0F0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .MainContent{
   width: 90%;
-  height: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+h3{
+  font-size: 24px;
+  font-weight: 700;
+  color: #040099;
+}
+img{
+  width: 134px;
+  height: 120.22px;
+}
+.description{
+  width: 50%;
+}
+.imagen{
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.descriptionCard{
+  font-size: 13px;
+  color: #040099;
+  line-height: 20px;
+}
+.phone{
+  height: 163px;
+  width: 135.95px;
+}
+.imgCircle{
+  width: 40px;
+  height: 40px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.subCircle{
+  width: 30px;
+  height: 30px;
+  background-color: #211EA4;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgProfile{
+  width: 16px;
+  height: 20.04px;
 }
