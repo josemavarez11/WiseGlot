@@ -7,16 +7,18 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { ModalSComponent } from 'src/app/components/others/mosalSelection/modalSelection.component';
 import { NavbarComponent } from 'src/app/components/others/navbar/navbar.component';
-import { NavBarSelectionService } from 'src/services/nav-bar-selection.service';
+import { HomeComponent } from 'src/app/components/screens/home/home.component';
+
 //Services
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+import { NavBarSelectionService } from 'src/services/nav-bar-selection.service';
 
 @Component({
   selector: 'app-home-view',
   templateUrl: './home-view.page.html',
   styleUrls: ['./home-view.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, BtnAuthComponent, ModalSComponent, NavbarComponent]
+  imports: [CommonModule, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, BtnAuthComponent, ModalSComponent, NavbarComponent, HomeComponent],
 })
 export class HomeViewPage implements OnInit {
   selectedOption: string = 'home';

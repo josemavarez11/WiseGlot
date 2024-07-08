@@ -29,9 +29,9 @@
   position: relative; 
 }
 
-.button img {
-  width: 30px;
-  height: 30px;
+.button svg {
+  width: 31px;
+  height: 31px;
   transition: transform 0.3s ease; 
 }
 
@@ -53,10 +53,17 @@
   transition: opacity 0.3s ease;
 }
 
-.button.active img {
+.button.active svg {
   transform: translateY(-10px); 
 }
 
 .button.active .indicator {
   opacity: 1; 
+}
+.icon {
+  fill: #ACACAC; 
+}
+
+.active-icon {
+  fill: #040099; 
 }
