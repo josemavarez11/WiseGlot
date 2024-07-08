@@ -2,21 +2,46 @@
   <ion-content>
     <!-- Componente Home -->
     <div *ngIf="selectedOption === 'home'" class="Home">
-      <app-btn-auth
-        [color]="'#2B2B2B'"
-        [textColor]="'#FFFFFF'"
-        [borderColor]="'none'"
-        [title]="'Log Out'"
-        (click)="handleClick()"
-      ></app-btn-auth>
+      <div class="titleHome">
+        <img src="../../../assets/img/views/logoApp.png" class="imgHome" />
+        <div class="subTitleHome">
+          <img src="" alt="" />
+          <h5>Bienvenido, Jose</h5>
+        </div>
+        <div class="mazoCartas">
+          <div class="subContent">
+            <h3>Mazo de Cartas</h3>
+          </div>
+          <div class="backContent">
+            <div class="MainContent">
+              <p>
+                Crea cartas personalizadas o generadas por IA para memorizar
+                vocabulario y frases comunes en tu idioma de estudio utilizando la
+                repetición espaciada.
+              </p>
+              <img src="" alt="" />
+            </div>
+          </div>
+        </div>
 
-      <app-btn-auth
-        [color]="'#2B2B2B'"
-        [textColor]="'#FFFFFF'"
-        [borderColor]="'none'"
-        [title]="'ShowToken'"
-        (click)="handleViewToken()"
-      ></app-btn-auth>
+        <div class="partner">
+          <div class="subContent">
+            <h3>IA Partner</h3>
+          </div>
+          <div class="backContent">
+            <p>
+              Mantén conversaciones reales con un modelo de IA en tu idioma de
+              estudio. La IA te responderá y corregirá tu escritura, estructura
+              de oraciones, y te ofrecerá alternativas de frases y palabras.
+            </p>
+            <img src="" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="circles circle11"></div>
+      <div class="circles circle22"></div>
+      <div class="circles circle33"></div>
     </div>
     <!-- Componente Home -->
 
@@ -32,7 +57,7 @@
     </div>
     <!-- Componente View-Chat -->
 
-    <!-- Componente View-User -->
+    <!-- Componente View-Profile -->
     <div *ngIf="selectedOption === 'user'" class="userSettings">
       <div class="ContentA">
         <div class="circle circle1"></div>
@@ -97,7 +122,7 @@
         </div>
       </div>
     </div>
-    <!-- Componente View-User -->
+    <!-- Componente View-Profile -->
   </ion-content>
 
   <!-- <app-modalSelection
