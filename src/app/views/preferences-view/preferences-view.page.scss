@@ -104,7 +104,7 @@ button{
 
   .button-container {
     position: fixed;
-    top: 50%;
+    top: 5%;
     right: 0;
     transform: translateY(-50%);
     z-index: 1000;
@@ -112,16 +112,9 @@ button{
   
   .next-view-button {
     padding: 10px;
-    background-color: #0600FF;
-    color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     font-size: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transform: scaleX(-1);
   }
   
-  .next-view-button:hover {
-    background-color: #0600FF;
-  }

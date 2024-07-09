@@ -2,6 +2,13 @@
   <div class="ContentA">
     <section class="bodyA">
       <article class="top">
+        <button class="back" (click)="previousStep()" [ngStyle]="{
+          'display': step === 4 ? 'none' : 'block',
+          'opacity': step === 4 ? 0 : 1 
+        }">
+          <img src="../../../assets/img/views/back-black.png" />
+        </button>
+
         <div class="group">
           <p class="contador">{{step + 1}}/{{titles.length}}</p>
         </div>
@@ -75,7 +82,7 @@
     <!-- Aquí agregamos el botón dentro del div del paso 4 -->
     <div *ngIf="preferenceTopic.length > 0" class="button-container">
       <button (click)="goToNextView()" class="next-view-button">
-        <img src="../../../assets/img/views/back-black.png" alt="">
+        <img src="../../../assets/img/views/back-black.png" alt="" />
       </button>
     </div>
   </div>

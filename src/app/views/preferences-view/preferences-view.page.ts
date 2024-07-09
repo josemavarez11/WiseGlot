@@ -137,8 +137,6 @@ export class PreferencesView1Page implements OnInit {
 
   async selectOption(step: number): Promise<void> {
     const token = await this.capacitorPreferencesService.getToken();
-    console.log('Token:', token);
-    console.log('Token:', step);
     if (step === 0) {
       this.step = 1;
     } else if (step === 1) {
@@ -270,6 +268,11 @@ export class PreferencesView1Page implements OnInit {
 
   previousStep(): void {
     if (this.step > 0) {
+      // Remove the preferences corresponding to the current step from the selectedPreferencesAll array
+      if (this.step === 1 || this.step === 2 || this.step === 3) {
+        const indexToRemove = this.step - 1;
+        this.selectedPreferencesAll.splice(indexToRemove, 1);
+      }
       this.step--;
     } else {
       this.router.navigate(['/register-welcome']);
