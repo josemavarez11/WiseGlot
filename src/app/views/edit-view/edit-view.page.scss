@@ -1,0 +1,71 @@
+.Container{
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h3{
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    padding-left: 60px;
+}
+label{
+    font-size: 13px;
+    color: #040099;
+}
+input{
+    outline: none;
+    border-bottom: 1px solid #000000;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
+    width: 100%;
+    color: #040099;
+}
+button{
+    width: 100%;
+    height: 50px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.containerBtn button:active{
+    background-color: #0600FF;
+}
+
+.top{
+    width: 90%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.button{
+    width: 90%;
+    height: 90%;
+}
+.back{
+    width: 15px;
+    height: 25px;
+    background-color: transparent;
+}
+.containerInput{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.containerBtn{
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+    margin-bottom: 30px;
+}

@@ -49,7 +49,12 @@ export const routes: Routes = [
   {
     path: 'splash',
     loadComponent: () => import('./splash/splash.page').then( m => m.SplashPage)
+  },
+  {
+    path: 'edit-view',
+    loadComponent: () => import('./views/edit-view/edit-view.page').then( m => m.EditViewPage)
   }
+
 
 
 

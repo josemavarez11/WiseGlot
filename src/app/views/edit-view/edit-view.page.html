@@ -1,0 +1,40 @@
+<div *ngIf="option === 'Nombre'" class="Container">
+  <div class="top">
+    <button class="back" (click)="back()">
+      <img src="../../../assets/img/views/back-black.png" />
+    </button>
+    <h3>Actualizar nombre</h3>
+  </div>
+
+  <div class="button">
+    <div class="containerInput">
+      <label>Nombre</label>
+      <input type="text" value="{{title}}" />
+    </div>
+
+    <div class="containerBtn">
+      <button>Hecho</button>
+    </div>
+  </div>
+</div>
+
+<!-- Correo -->
+<div *ngIf="option === 'Dirección de correo'" class="Container">
+  <div class="top">
+    <button class="back" (click)="back()">
+      <img src="../../../assets/img/views/back-black.png" />
+    </button>
+    <h3>Actualizar correo</h3>
+  </div>
+
+  <div class="button">
+    <div class="containerInput">
+      <label>Dirección de correo</label>
+      <input type="text" value="{{title}}" />
+    </div>
+
+    <div class="containerBtn">
+      <button>Hecho</button>
+    </div>
+  </div>
+</div>
