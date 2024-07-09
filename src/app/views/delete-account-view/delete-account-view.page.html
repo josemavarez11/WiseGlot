@@ -1,0 +1,21 @@
+<div class="Container">
+  <div class="top">
+    <button class="back" (click)="back()">
+      <img src="../../../assets/img/views/back-black.png" />
+    </button>
+    <h3>Actualizar correo</h3>
+  </div>
+  
+  <div class="button">
+    <div class="containerInput">
+      <p>¿Estás seguro de que deseas eliminar permanentemente tu cuenta en WiseGlot? Esta acción no se puede revertir y perderás todos tus datos y progresos.</p>
+      <p>Por favor, escribe “Eliminar mi cuenta” para confirmar.</p>
+      <input type="text" placeholder="Escribe aquí “Eliminar mi cuenta”" [(ngModel)]="confirmationText">
+    </div>
+  
+    <div class="containerBtn">
+      <button>Cancelar</button>
+      <button class="btnA" (click)="confirmDeletion()">Si, eliminar</button>
+    </div>
+  </div>
+</div>

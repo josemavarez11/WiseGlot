@@ -53,7 +53,12 @@ export const routes: Routes = [
   {
     path: 'edit-view',
     loadComponent: () => import('./views/edit-user-data-view/edit-user-data-view.page').then( m => m.EditUserDataViewPage)
+  },
+  {
+    path: 'delete-account',
+    loadComponent: () => import('./views/delete-account-view/delete-account-view.page').then( m => m.DeleteAccountViewPage)
   }
+
 
 
 
