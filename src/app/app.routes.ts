@@ -52,7 +52,7 @@ export const routes: Routes = [
   },
   {
     path: 'edit-view',
-    loadComponent: () => import('./views/edit-view/edit-view.page').then( m => m.EditViewPage)
+    loadComponent: () => import('./views/edit-user-data-view/edit-user-data-view.page').then( m => m.EditUserDataViewPage)
   }
 
 

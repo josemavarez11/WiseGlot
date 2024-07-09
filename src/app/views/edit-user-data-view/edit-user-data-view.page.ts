@@ -5,13 +5,13 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-edit-view',
-  templateUrl: './edit-view.page.html',
-  styleUrls: ['./edit-view.page.scss'],
+  selector: 'app-edit-user-data-view',
+  templateUrl: './edit-user-data-view.page.html',
+  styleUrls: ['./edit-user-data-view.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class EditViewPage implements OnInit {
+export class EditUserDataViewPage implements OnInit {
   option: string = '';
   title: string = '';
   constructor(private route: ActivatedRoute, private routerBack: Router) { }
