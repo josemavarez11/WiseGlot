@@ -6,6 +6,29 @@
     flex-direction: column;
     align-items: center;
 }
+.ContainerProximamente{
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.btnProximamente{
+    width: 80%;
+    height: 50px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.ContainerProximamente button:active{
+    background-color: #0600FF;
+}
 h3{
     font-size: 24px;
     font-weight: bold;
