@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 // Components
 import { OptionsProfileComponent } from '../../others/options-profile/options-profile.component';
 import { OptionProfileSubComponent } from '../../others/option-profile-sub/option-profile-sub.component';
+// Services
+import { ApiService, ApiResponse } from 'src/services/api.service';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -11,10 +15,48 @@ import { OptionProfileSubComponent } from '../../others/option-profile-sub/optio
   imports: [OptionsProfileComponent, OptionProfileSubComponent]
 })
 export class ProfileComponent  implements OnInit {
+  subscription: string = ''
+  name: string = ''
+  email: string = ''
+  systemLanguage: string = 'Español'
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private capacitorPreferencesService: CapacitorPreferencesService
+  ) { }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    const userData = await this.getUserData();
+    this.name = userData.nam_user;
+    this.email = userData.ema_user;
+    this.subscription = 'GRATIS'
+  }
+
+  private async getUserData(): Promise<any> {
+    const token = await this.capacitorPreferencesService.getToken();
+    try {
+      const response: ApiResponse = await this.apiService.get('/users/get-user-data/',
+        [['Authorization', `Bearer ${token}`]]
+      );
+
+      if (response.error) {
+        console.log(response.error) ////
+      }
+
+      return response.data
+    } catch (error: any) {
+      console.log(error) ////
+      return;
+    } finally {
+      ////
+    }
+  }
+
+  async handleLogOut() {
+    await this.capacitorPreferencesService.deleteToken();
+    this.router.navigate(['/login'])
+  }
 
   deleteUser(){
     this.router.navigate(['/delete-account']);

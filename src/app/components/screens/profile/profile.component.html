@@ -4,7 +4,7 @@
 
   <div class="top">
     <img src="../../../../assets/img/views/logoApp.png" alt="" class="logo" />
-    <button class="btnLogOut">
+    <button class="btnLogOut" (click)='handleLogOut()'>
       <svg
         version="1.1"
         id="Capa_1"
@@ -121,16 +121,13 @@
 </div>
 
 <div class="ContentB">
-  <app-option-profile-sub option="Suscripción"/>
+  <app-option-profile-sub option="Suscripción" subTitle={{subscription}}/>
 
-  <app-options-profile option="Nombre" title="Misael"/>
+  <app-options-profile option="Nombre" title={{name}}/>
 
-  <app-options-profile
-    option="Dirección de correo"
-    title="Misa24jr@gmail.com"
-  />
+  <app-options-profile option="Dirección de correo" title={{email}}/>
 
-  <app-options-profile option="Idioma del sistema" title="Español" />
+  <app-options-profile option="Idioma del sistema" title={{systemLanguage}} />
 
   <div class="delete">
     <a (click)="deleteUser()">Eliminar mi cuenta</a>

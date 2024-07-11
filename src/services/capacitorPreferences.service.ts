@@ -16,4 +16,9 @@ export class CapacitorPreferencesService {
     const { value } = await Preferences.get({ key: 'token' });
     return value;
   }
+
+  async deleteToken(): Promise<void> {
+    await Preferences.remove({ key: 'token' });
+    return;
+  }
 }

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class OptionProfileSubComponent  implements OnInit {
   @Input() option: string = '';
+  @Input() subTitle: string = '';
   constructor(private router: Router) { }
 
   ngOnInit() {}
