@@ -46,12 +46,13 @@
           </button>
           <div class="contentBtn">
             <app-btn-auth
-              [color]="'#2B2B2B'"
-              [textColor]="'#FFFFFF'"
+              [color]="areFieldsEmpty() ? '#CCCCCC' : '#2B2B2B'"
+              [textColor]="areFieldsEmpty()? '#000000' : '#FFFFFF'"
               [borderColor]="'none'"
               [title]="'Inicia sesión'"
               (click)="handleClick()"
               [hoverColor]="'#0600FF'"
+              [disabled]="areFieldsEmpty()"
             ></app-btn-auth>
             <div class="link">
               <p class="descriptionRegister">¿No tienes una cuenta?</p>

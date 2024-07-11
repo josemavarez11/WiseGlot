@@ -2,11 +2,11 @@
   <div class="ContentA">
     <section class="bodyA">
       <article class="top">
-        <button class="back" (click)="previousStep()" [ngStyle]="{
+        <button (click)="previousStep()" [ngStyle]="{
           'display': step === 4 ? 'none' : 'block',
           'opacity': step === 4 ? 0 : 1 
         }">
-          <img src="../../../assets/img/views/back-black.png" />
+          <img src="../../../assets/img/views/back-black.png"/>
         </button>
 
         <div class="group">

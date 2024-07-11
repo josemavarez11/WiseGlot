@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-btn-auth',
@@ -13,6 +13,8 @@ export class BtnAuthComponent implements OnInit {
   @Input() borderColor: string = '';
   @Input() hoverColor: string = '';
   @Input() width: string = '200px';
+  @Input() disabled: boolean = false;
+  @Output() click = new EventEmitter<void>();
 
   private originalColor: string = '';
 
@@ -23,9 +25,12 @@ export class BtnAuthComponent implements OnInit {
   }
 
   handleChangeColor() {
-    this.color = this.hoverColor;
-    setTimeout(() => {
-      this.color = this.originalColor;
-    }, 100);
+    if (!this.disabled) {
+      this.color = this.hoverColor;
+      setTimeout(() => {
+        this.color = this.originalColor;
+      }, 100);
+      this.click.emit();
+    }
   }
 }

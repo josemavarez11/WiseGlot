@@ -68,6 +68,10 @@ export class RegisterViewPage implements OnInit {
     this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 
+  areFieldsEmpty() {
+    return this.email.trim() === '' || this.password.trim() === '' || this.fullname.trim() === '';
+  }
+
   resetForm(): void {
     this.email = '';
     this.password = '';
@@ -123,10 +127,6 @@ export class RegisterViewPage implements OnInit {
   private areFieldsValid(): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
 
-    if (!this.fullname || !this.email || !this.password) {
-      this.showError(message.ERROR.EmptyFields);
-      return false;
-    }
     if (this.password.length < 6) {
       this.showError(message.ERROR.PasswordExtension);
       return false;

@@ -1,11 +1,8 @@
-1. falta por deshabilitar y opacar color cuando no haya valor en los campos para los botones de:
-login, register, reestablecer contraseña, validar código secreto, cambiar contraseña
-
 2. que las opciones de preferencias aparezcan con la animación deslizandose de izq a derecha.
 
 3. filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior.
 
-5. la flecha de la ultima preferencia está invisible.
+5. la flecha de la ultima preferencia está invisible. (Raro)
 
 7. cuando te sales de la sesión con el botón de log out y vuelves a loguearte, apareces en profile view en vez de home view.
 

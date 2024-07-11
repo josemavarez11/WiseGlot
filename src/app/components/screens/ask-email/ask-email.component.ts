@@ -54,6 +54,10 @@ export class AskEmailViewComponent implements OnInit {
     this.resetForm();
   }
 
+  areFieldsEmpty() {
+    return this.email.trim() === '';
+  }
+
   resetForm(): void {
     this.email = '';
   }
@@ -99,11 +103,6 @@ export class AskEmailViewComponent implements OnInit {
 
   private isEmailValid(): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
-
-    if (!this.email) {
-      this.showError(message.ERROR.EmptyFields);
-      return false;
-    }
 
     if (!emailRegex.test(this.email)) {
       this.showError(message.ERROR.InvalidEmail);

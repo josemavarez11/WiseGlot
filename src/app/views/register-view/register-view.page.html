@@ -49,12 +49,13 @@
           <section class="contentBtn">
             <div class="btn">
               <app-btn-auth
-                [color]="'#2B2B2B'"
-                [textColor]="'#FFFFFF'"
-                [borderColor]="'none'"
-                [title]="'Regístrate'"
-                (click)="handleClick()"
-                [hoverColor]="'#0600FF'"
+              [color]="areFieldsEmpty() ? '#CCCCCC' : '#2B2B2B'"
+              [textColor]="areFieldsEmpty()? '#000000' : '#FFFFFF'"
+              [borderColor]="'none'"
+              [title]="'Regístrate'"
+              (click)="handleClick()"
+              [hoverColor]="'#0600FF'"
+              [disabled]="areFieldsEmpty()"
               />
             </div>
 

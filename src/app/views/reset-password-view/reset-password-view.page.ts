@@ -95,6 +95,10 @@ export class PasswordChangeViewPage implements OnInit {
     return;
   }
 
+  areFieldsEmpty(){
+    return this.password.trim() === '' || this.confirmPassword.trim() === '';
+  }
+
   private async resetPassword(code: string, email: string, password: string): Promise<void> {
     try {
       const response: ApiResponse = await this.apiService.post('/auth/reset-password/', {
@@ -122,11 +126,6 @@ export class PasswordChangeViewPage implements OnInit {
   }
 
   private areFieldsValid(): boolean {
-    if (!this.password || !this.confirmPassword) {
-      this.showError(message.ERROR.EmptyFields);
-      return false;
-    }
-
     if (this.password.length < 8) {
       this.showError(message.ERROR.PasswordExtension);
       return false;

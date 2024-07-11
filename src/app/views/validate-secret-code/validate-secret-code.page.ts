@@ -93,13 +93,6 @@ export class ValidateSecretCodePage implements OnInit {
 
   async handleClick(): Promise<void> {
     this.isLoading = true;
-
-    if (!this.areFieldsValid()) {
-      this.isLoading = false;
-      this.showError(message.ERROR.EmptyFields);
-      return;
-    }
-
     const code = this.getCode();
 
     if (!this.isCodeValid(code)) {
@@ -109,6 +102,10 @@ export class ValidateSecretCodePage implements OnInit {
     }
 
     await this.validateSecretCode(this.email, code);
+  }
+
+  areFieldsEmpty() {
+    return this.c1.trim() === '' || this.c2.trim() === '' || this.c3.trim() === '' || this.c4.trim() === '' || this.c5.trim() === '' || this.c6.trim() === '';
   }
 
   private async validateSecretCode(email: string, code: string): Promise<void> {

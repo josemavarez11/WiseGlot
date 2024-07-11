@@ -30,6 +30,7 @@ import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.s
   ],
 })
 export class LoginViewPage implements OnInit {
+
   email: string = '';
   password: string = '';
   showErrorMessage: boolean = false;
@@ -57,6 +58,10 @@ export class LoginViewPage implements OnInit {
 
   togglePasswordVisibility() {
     this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+  }
+
+  areFieldsEmpty() {
+    return this.email.trim() === '' || this.password.trim() === '';
   }
 
   resetForm(): void {
@@ -109,10 +114,6 @@ export class LoginViewPage implements OnInit {
   private areFieldsValid(): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[cC][oO][mM]$/;
 
-    if (!this.email || !this.password) {
-      this.showError(message.ERROR.EmptyFields);
-      return false;
-    }
     if (!emailRegex.test(this.email)) {
       this.showError(message.ERROR.InvalidEmail);
       return false;

@@ -1,6 +1,5 @@
 {
   "ERROR": {
-    "EmptyFields": "Por favor, rellene todos los campos." ,
     "AlphanumericFields": "Cada campo debe tener un solo carácter alfanumérico.",
     "Validation": "Error de validación." ,
     "Unknown": "Error desconocido. Intente más tarde." ,
