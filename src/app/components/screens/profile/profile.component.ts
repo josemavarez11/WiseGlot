@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 // Components
 import { OptionsProfileComponent } from '../../others/options-profile/options-profile.component';
 import { OptionProfileSubComponent } from '../../others/option-profile-sub/option-profile-sub.component';
+import { LoadingComponent } from '../../others/loading/loading.component';
 // Services
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
@@ -12,13 +14,14 @@ import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.s
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: [OptionsProfileComponent, OptionProfileSubComponent]
+  imports: [OptionsProfileComponent, OptionProfileSubComponent, LoadingComponent, CommonModule]
 })
 export class ProfileComponent  implements OnInit {
   subscription: string = ''
   name: string = ''
   email: string = ''
   systemLanguage: string = 'Español'
+  isLoading: boolean = true;
 
   constructor(
     private router: Router,
@@ -27,10 +30,12 @@ export class ProfileComponent  implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.isLoading = true;
     const userData = await this.getUserData();
     this.name = userData.nam_user;
     this.email = userData.ema_user;
     this.subscription = 'GRATIS'
+    this.isLoading = false;
   }
 
   private async getUserData(): Promise<any> {

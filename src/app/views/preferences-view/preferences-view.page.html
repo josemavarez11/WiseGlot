@@ -16,10 +16,7 @@
 
       <article>
         <div class="bard">
-          <div
-            class="bard-fill"
-            [ngStyle]="{'width': getProgressBardWidth()}"
-          ></div>
+          <div class="bard-fill" [ngStyle]="{'width': getProgressBardWidth()}"></div>
         </div>
         <app-title-preference [title]="titles[step]" />
       </article>
@@ -30,47 +27,43 @@
   </div>
 
   <div *ngIf="step === 0" class="ContentB">
-    <div *ngFor="let item of preferenceOneAndTwo" (click)="selectOne(item)">
+    <div *ngFor="let item of preferenceOneAndTwo" (click)="selectOne(item)" [ngClass]="{'animated-item': step === 0}">
       <app-button-preferences-one
         [language]="item.des_language"
         [img]="item.icon"
-        [ngClass]="{'animated-item': true}"
       ></app-button-preferences-one>
     </div>
   </div>
 
   <div *ngIf="step === 1" class="ContentB">
-    <div *ngFor="let item of preferenceOneAndTwo" (click)="selectTwo(item)">
+    <div *ngFor="let item of preferenceOneAndTwo" (click)="selectTwo(item)" [ngClass]="{'animated-item': step === 1}">
       <app-button-preferences-two
         [img]="item.icon"
         [job]="item.des_language"
-        [ngClass]="{'animated-item': true}"
       ></app-button-preferences-two>
     </div>
   </div>
 
   <div *ngIf="step === 2" class="ContentB">
-    <div *ngFor="let item of preferenceThree" (click)="selectTwo(item)">
+    <div *ngFor="let item of preferenceThree" (click)="selectTwo(item)" [ngClass]="{'animated-item': step === 2}">
       <app-button-preferences-two
         [img]="item.icon"
         [job]="item.des_reason_to_study"
-        [ngClass]="{'animated-item': true}"
       ></app-button-preferences-two>
     </div>
   </div>
 
   <div *ngIf="step === 3" class="ContentB">
-    <div *ngFor="let item of preferenceFour" (click)="selectTwo(item)">
+    <div *ngFor="let item of preferenceFour" (click)="selectTwo(item)" [ngClass]="{'animated-item': step === 3}">
       <app-button-preferences-two
         [img]="item.icon"
         [job]="item.des_language_level"
-        [ngClass]="{'animated-item': true}"
       ></app-button-preferences-two>
     </div>
   </div>
 
   <div *ngIf="step === 4" class="ContentB">
-    <div *ngFor="let item of preferenceFive" (click)="toggleSelectThree(item)">
+    <div *ngFor="let item of preferenceFive" (click)="toggleSelectThree(item)" [ngClass]="{'animated-item': step === 4}">
       <app-button-preference-three
         [img]="item.icon"
         [job]="item.des_topic"
@@ -79,7 +72,6 @@
         (selected)="onTopicSelected(item)"
       ></app-button-preference-three>
     </div>
-    <!-- Aquí agregamos el botón dentro del div del paso 4 -->
     <div *ngIf="preferenceTopic.length > 0" class="button-container">
       <button (click)="goToNextView()" class="next-view-button">
         <img src="../../../assets/img/views/back-black.png" alt="" />

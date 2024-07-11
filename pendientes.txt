@@ -5,20 +5,9 @@ login, register, reestablecer contraseña, validar código secreto, cambiar cont
 
 3. filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior.
 
-4. que no aparezca seleccionada la opción en la misma posición de la que se seleccionó en la opción anterior.
-
 5. la flecha de la ultima preferencia está invisible.
 
-6. que aparezca el loader en profile view mientras se eejcuta el metodo de getUserData en el ngoninit.
-
 7. cuando te sales de la sesión con el botón de log out y vuelves a loguearte, apareces en profile view en vez de home view.
-
-8. deshabilitar la navegación deslizando la pantalla de izq a derecha, porque cuando te deslogueas y
-estás en el home, puedes volver al interior de la app deslizando la pantalla de izq a derecha.
-
-
-
-
 
 guardar ruta base de api, endpoints y otras cosas en variables de entorno (jose)
 

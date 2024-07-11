@@ -137,6 +137,7 @@ export class PreferencesView1Page implements OnInit {
 
   async selectOption(step: number): Promise<void> {
     const token = await this.capacitorPreferencesService.getToken();
+    this.selectedOption = false;
     if (step === 0) {
       this.step = 1;
     } else if (step === 1) {
