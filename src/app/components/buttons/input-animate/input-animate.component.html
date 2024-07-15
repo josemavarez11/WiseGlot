@@ -1,0 +1,10 @@
+<div class="input-container">
+  <input
+    type="text"
+    [(ngModel)]="inputValue"
+    (input)="onInput()"
+    [class.shrink]="inputValue.length > 0"
+    placeholder="Escribe tu mensaje..."
+  />
+  <button *ngIf="inputValue.length > 0" class="show" (click)="sendMessage()">Enviar</button>
+</div>

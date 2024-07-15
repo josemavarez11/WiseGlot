@@ -9,6 +9,7 @@ import { ModalSComponent } from 'src/app/components/others/mosalSelection/modalS
 import { NavbarComponent } from 'src/app/components/others/navbar/navbar.component';
 import { HomeComponent } from 'src/app/components/screens/home/home.component';
 import { ProfileComponent } from 'src/app/components/screens/profile/profile.component';
+import { InputAnimateComponent } from 'src/app/components/buttons/input-animate/input-animate.component';
 
 //Services
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
@@ -19,7 +20,7 @@ import { NavBarSelectionService } from 'src/services/nav-bar-selection.service';
   templateUrl: './home-view.page.html',
   styleUrls: ['./home-view.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, BtnAuthComponent, ModalSComponent, NavbarComponent, HomeComponent, ProfileComponent],
+  imports: [CommonModule, IonContent, IonHeader, IonTitle, IonToolbar, FormsModule, BtnAuthComponent, ModalSComponent, NavbarComponent, HomeComponent, ProfileComponent, InputAnimateComponent],
 })
 export class HomeViewPage implements OnInit {
   selectedOption: string = 'home';

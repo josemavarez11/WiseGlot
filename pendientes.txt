@@ -1,7 +1,5 @@
 3. filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior. (Mario Help)
 
-5. la flecha de la ultima preferencia está invisible. (Raro)
-
 7. cuando te sales de la sesión con el botón de log out y vuelves a loguearte, apareces en profile view en vez de home view.
 
 guardar ruta base de api, endpoints y otras cosas en variables de entorno (jose)
