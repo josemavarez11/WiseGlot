@@ -1,6 +1,4 @@
-2. que las opciones de preferencias aparezcan con la animación deslizandose de izq a derecha.
-
-3. filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior.
+3. filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior. (Mario Help)
 
 5. la flecha de la ultima preferencia está invisible. (Raro)
 
