@@ -8,6 +8,7 @@ import { LoadingComponent } from '../../others/loading/loading.component';
 // Services
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-profile',
@@ -22,12 +23,18 @@ export class ProfileComponent  implements OnInit {
   email: string = ''
   systemLanguage: string = 'Español'
   isLoading: boolean = true;
+  countImg: number;
+  images: string[];
 
   constructor(
     private router: Router,
     private apiService: ApiService,
-    private capacitorPreferencesService: CapacitorPreferencesService
-  ) { }
+    private capacitorPreferencesService: CapacitorPreferencesService,
+    private storage: Storage
+  ) {
+    this.countImg = 0;
+    this.images = [];
+  }
 
   async ngOnInit() {
     this.isLoading = true;
@@ -66,4 +73,20 @@ export class ProfileComponent  implements OnInit {
   deleteUser(){
     this.router.navigate(['/delete-account']);
   }
+
+  // Funciones de firebase
+    //Subir una imagen  
+    async uploadImage(event: any){
+      const file = event.target.files[0];
+      const imgRef = ref(this.storage, `images/${file.name}`);
+  
+      try {
+        await uploadBytes(imgRef, file);
+      } catch (error) {
+       console.log(error);
+      }
+  
+      this.images.push(await getDownloadURL(imgRef));
+      return this.countImg = this.images.length, console.log(this.countImg);
+    }
 }

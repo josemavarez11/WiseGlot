@@ -100,3 +100,34 @@ a{
   color: #040099;
   border-bottom: 1px solid #040099;
 }
+.file-label {
+  cursor: pointer;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #0600FF;
+  color: #fff;
+  line-height: 50px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-label .icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  margin-top: 13px; /* Adjust as needed for vertical centering */
+}
+
+.file-label:hover {
+  background-color: #0056b3;
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
