@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -10,7 +10,9 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule]
 })
 export class InputAnimateComponent  implements OnInit {
-  inputValue: string = '';
+  message: string = '';
+  @Output() send = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit() {}
@@ -18,8 +20,11 @@ export class InputAnimateComponent  implements OnInit {
   onInput(): void {
     // Aquí se puede agregar cualquier lógica adicional al escribir en el input
   }
-  sendMessage(): void {
-    alert('Mensaje enviado: ' + this.inputValue);
-    this.inputValue = '';
+
+  onSend(): void {
+    if (this.message.trim()) {
+      this.send.emit(this.message);
+      this.message = '';  // Limpiar el campo de entrada después de enviar
+    }
   }
 }

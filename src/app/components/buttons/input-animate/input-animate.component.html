@@ -1,10 +1,31 @@
 <div class="input-container">
   <input
     type="text"
-    [(ngModel)]="inputValue"
+    [(ngModel)]="message"
     (input)="onInput()"
-    [class.shrink]="inputValue.length > 0"
+    [class.shrink]="message.length > 0"
     placeholder="Escribe tu mensaje..."
   />
-  <button *ngIf="inputValue.length > 0" class="show" (click)="sendMessage()">Enviar</button>
+  <button *ngIf="message.length > 0" class="show" (click)="onSend()">
+    <svg
+      version="1.1"
+      id="Capa_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 0 344.95 346"
+      style="enable-background: new 0 0 344.95 346"
+      xml:space="preserve"
+    >
+      <path
+        d="M230.67,346c-2.47,0-4.95,0-7.42,0c-8.98-2.57-14.02-8.57-16.91-17.45c-12.32-37.81-24.99-75.51-37.63-113.22
+	c-0.81-2.41-0.46-4.09,0.98-6.14c24.65-35.18,49.22-70.42,73.81-105.65c0.73-1.04,1.39-2.13,2.08-3.19
+	c-1.35,0.19-2.26,0.74-3.14,1.36c-35.52,24.7-71.05,49.39-106.52,74.16c-2.06,1.44-3.71,1.67-6.11,0.86
+	c-37.1-12.49-74.19-25.05-111.42-37.16C9.23,136.58,2.64,131.81,0,122.32c0-2.48,0-4.96,0-7.43c2.58-8.65,8.16-13.87,16.9-16.57
+	c23.9-7.4,47.66-15.26,71.47-22.94c67.59-21.8,135.19-43.6,202.77-65.42c10-3.23,19.94-6.63,29.91-9.95c2.47,0,4.95,0,7.42,0
+	c15.3,4.17,19.03,17.43,14.96,30c-32.07,98.87-63.84,197.83-95.46,296.84C244.97,336.19,240.43,343.22,230.67,346z"
+      />
+    </svg>
+  </button>
 </div>

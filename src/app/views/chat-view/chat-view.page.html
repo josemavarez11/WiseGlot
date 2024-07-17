@@ -1,0 +1,48 @@
+<div class="Chat">
+  <div class="ContentA">
+    <section class="header">
+      <button class="back" [routerLink]="['/home']">
+        <img src="../../../assets/img/views/back.png" />
+      </button>
+      <img src="../../../assets/img/views/logoApp.png" class="logoApp" />
+    </section>
+  </div>
+  <div class="ContentB">
+    <div class="containerHeader">
+      <article>
+        <h3>IA Partner</h3>
+      </article>
+    </div>
+
+    <div class="contentChat" #chatContainer>
+      <div *ngFor="let message of messages" [ngClass]="{'sent': message.sent, 'received': !message.sent}">
+        <ng-container *ngIf="!message.loading">
+          <div class="message-container" [ngClass]="{'sent-container': message.sent, 'received-container': !message.sent}">
+            <div *ngIf="message.sent" class="message">{{ message.text }}</div>
+            <div *ngIf="message.sent" class="circle">
+              <img
+              src="../../../assets/img/views/home-view/profile.png"
+              class="imgProfile"
+            />
+            </div>
+            <div *ngIf="!message.sent" class="circle"><b>W</b>g</div>
+            <div *ngIf="!message.sent" class="message">{{ message.text }}</div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="message.loading">
+          <div class="message-container" [ngClass]="{'received-container': !message.sent}">
+            <div class="circle"><b>W</b>g</div>
+            <div class="loader">
+              <li class="dots" id="dot-1"></li>
+              <li class="dots" id="dot-2"></li>
+              <li class="dots" id="dot-3"></li>
+          </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="contentInput">
+      <app-input-animate (send)="handleSend($event)"></app-input-animate>
+    </div>
+  </div>
+</div>

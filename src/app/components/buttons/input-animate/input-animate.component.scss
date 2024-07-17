@@ -4,31 +4,49 @@
 }
 
 input {
-  width: 300px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: width 0.3s ease;
+  width: 350px;
+  height: 52px;
+  border: none;
+  outline: none;
+  border-radius: 26px;
+  transition: width 0.3s ease, box-shadow 0.3s ease;
   font-size: 16px;
+  background-color: #F0F0F0;
+  color: black;
+  padding-left: 25px;
 }
 
 input.shrink {
-  width: 200px;
+  width: 300px;
+}
+
+input:focus{
+  box-shadow: 2px 10px 24px -2px #0600FF;
+  border: 1px solid #0600FF; 
 }
 
 button {
   margin-left: 10px;
-  padding: 10px 20px;
-  background-color: #007BFF;
+  width: 52px;
+  height: 52px;
+  background-color: #0600FF;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 50%;
   cursor: pointer;
   font-size: 16px;
   opacity: 0;
   transition: opacity 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button.show {
   opacity: 1;
+}
+svg{
+  width: 24px;
+  height: 24px;
+  fill: white;
 }

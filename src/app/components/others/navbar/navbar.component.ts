@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 // Service
 import { NavBarSelectionService } from 'src/services/nav-bar-selection.service';
 @Component({
@@ -7,7 +8,7 @@ import { NavBarSelectionService } from 'src/services/nav-bar-selection.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true, 
-  imports: [CommonModule]
+  imports: [CommonModule, RouterLink]
 })
 export class NavbarComponent  implements OnInit {
   selectedOption: string = 'home';
