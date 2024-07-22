@@ -1,11 +1,4 @@
 1. filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior.
-2. el titulo "IA Partner" no se ve igual en el telefono que en el mockup, creo que la fuente no es la misma
-3. la flecha del icono para enviar el mensaje está en diagonal, la flecha debe es apuntar a la derecha
-4. que en vez de puntos, hayan estrellas en la animación de la generación del mensaje.
-5. cuando le doy a actualizar suscripción o idioma del sistema sale una pantalla con un boton "atrás". quitar eso y simplemente que salte una alerta
-que diga opcion no disponible
-6. a eliminar mi cuenta le falta el texto y todo eso.
-
 guardar ruta base de api, endpoints y otras cosas en variables de entorno (jose)
 
 

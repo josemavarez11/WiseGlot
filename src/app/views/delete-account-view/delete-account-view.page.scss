@@ -24,6 +24,7 @@ input{
     height: 56px;
     color: #000000;
     border-radius: 10px;
+    padding-left: 25px;
 }
 button{
     width: 180px;
@@ -87,4 +88,7 @@ button{
 .btnA:active{
     background-color: #0600FF;
     color: #FFFFFF;
+}
+p{
+    color: #000000;
 }
