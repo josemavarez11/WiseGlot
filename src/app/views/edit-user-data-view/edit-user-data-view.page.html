@@ -9,13 +9,14 @@
   <div class="button">
     <div class="containerInput">
       <label>Nombre</label>
-      <input type="text" value="{{title}}" />
+      <input [(ngModel)]="title" type="text" />
     </div>
 
     <div class="containerBtn">
-      <button>Hecho</button>
+      <button (click)='handleDoneClick()'>Hecho</button>
     </div>
   </div>
+  <app-loading *ngIf="isLoading"></app-loading>
 </div>
 
 <!-- Correo -->
@@ -30,13 +31,15 @@
   <div class="button">
     <div class="containerInput">
       <label>Dirección de correo</label>
-      <input type="text" value="{{title}}" />
+      <input [(ngModel)]="title" type="text" />
     </div>
 
     <div class="containerBtn">
-      <button>Hecho</button>
+      <button (click)='handleDoneClick()'>Hecho</button>
     </div>
   </div>
+
+  <app-loading *ngIf="isLoading"></app-loading>
 </div>
 
 <div *ngIf="option === 'Idioma del sistema'" class="ContainerProximamente">
