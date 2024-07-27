@@ -9,6 +9,10 @@ import {
   AlertController,
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+// Services
+import { ApiResponse, ApiService } from 'src/services/api.service';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 
 @Component({
   selector: 'app-delete-account-view',
@@ -22,41 +26,48 @@ import { Router } from '@angular/router';
     IonToolbar,
     CommonModule,
     FormsModule,
+    LoadingComponent,
   ],
 })
 export class DeleteAccountViewPage implements OnInit {
   confirmationText: string = '';
+  isLoading: boolean = false;
+
   constructor(
     private alertController: AlertController,
-    private router: Router
+    private router: Router,
+    private apiService: ApiService,
+    private capacitorPreferencesService: CapacitorPreferencesService
   ) {}
 
   ngOnInit() {}
 
-  async confirmDeletion() {
+  async handleDeleteButton() {
     if (this.confirmationText === 'Eliminar mi cuenta') {
-      const alert = await this.alertController.create({
-        header: 'Confirmación',
-        message: 'Texto correcto. Cuenta eliminada.',
-        buttons: ['OK'],
-      });
-      await alert.present();
+      this.isLoading = true;
+      try {
+        const token = await this.capacitorPreferencesService.getToken();
+        if (token) {
+          await this.deleteAccount(token);
+          this.router.navigate(['/welcome']);
+        }
+      } catch (error) {
+        console.error(error);
+        return;
+      } finally {
+        this.isLoading = false;
+      }
     }
-    if (this.confirmationText === '') {
-      const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'Por favor, escribe “Eliminar mi cuenta”.',
-        buttons: ['OK'],
-      });
-      await alert.present();
-    } else {
-      const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'Texto incorrecto. Por favor, escribe “Eliminar mi cuenta”.',
-        buttons: ['OK'],
-      });
-      await alert.present();
-    }
+  }
+
+  private async deleteAccount(token: string) {
+    await this.apiService.delete(
+      '/users/delete-user/',
+      [['Authorization', `Bearer ${token}`]],
+      false
+    );
+
+    this.capacitorPreferencesService.clearAll();
   }
 
   back() {

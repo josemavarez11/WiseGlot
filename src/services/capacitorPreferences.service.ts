@@ -21,4 +21,9 @@ export class CapacitorPreferencesService {
     await Preferences.remove({ key: 'token' });
     return;
   }
+
+  async clearAll(): Promise<void> {
+    await Preferences.clear();
+    return;
+  }
 }

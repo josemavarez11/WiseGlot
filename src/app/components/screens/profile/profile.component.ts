@@ -74,19 +74,46 @@ export class ProfileComponent  implements OnInit {
     this.router.navigate(['/delete-account']);
   }
 
-  // Funciones de firebase
-    //Subir una imagen  
-    async uploadImage(event: any){
-      const file = event.target.files[0];
-      const imgRef = ref(this.storage, `images/${file.name}`);
-  
-      try {
-        await uploadBytes(imgRef, file);
-      } catch (error) {
-       console.log(error);
+  private async updateProfileImage(profile_img_url: string): Promise<boolean> {
+    try {
+      this.isLoading = true;
+      const token = this.capacitorPreferencesService.getToken();
+      if (token) {
+        const response = await this.apiService.put(
+          '/users/update-user/',
+          { profile_img_url },
+          [['Authorization', `Bearer ${token}`]]
+        );
+
+        if (response.error) {
+          console.log(response.error);
+          return false;
+        }
+
+        return true;
       }
-  
-      this.images.push(await getDownloadURL(imgRef));
-      return this.countImg = this.images.length, console.log(this.countImg);
+    } catch (error) {
+      console.log(error);
+      return false;
+    } finally {
+      this.isLoading = false;
+      return false;
     }
+  }
+
+  async uploadImage(event: any){
+    const file = event.target.files[0];
+    const imgRef = ref(this.storage, `images/${file.name}`);
+
+    try {
+      await uploadBytes(imgRef, file);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // await this.updateProfileImage(await getDownloadURL(imgRef));
+
+    this.images.push(await getDownloadURL(imgRef));
+    return this.countImg = this.images.length, console.log(this.countImg);
+  }
 }

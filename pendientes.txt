@@ -1,4 +1,10 @@
-1. filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior.
+filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior.
 guardar ruta base de api, endpoints y otras cosas en variables de entorno (jose)
 
+1. el botón que dice "Sí, eliminar" debe ser de un color más opaco y las letras también mientras en el input no esté escrito
+"Eliminar mi cuenta". Cuando esté escrito, poner los colores de background y de fuente normales. También deshabilitar el botón
+siempre y cuando el texto no coincida.
 
+2. necesito que el metodo que sube la foto a firebase retorne la url de la imagen subida para poder enviarla a la bd y actualizar la foto
+
+3. organizar nombres de las pantallas según el figma
