@@ -21,10 +21,11 @@ export class ProfileComponent  implements OnInit {
   subscription: string = ''
   name: string = ''
   email: string = ''
+  profile_img_url: string = ''
   systemLanguage: string = 'Español'
   isLoading: boolean = true;
-  countImg: number;
-  images: string[];
+  //countImg: number;
+  //images: string[];
 
   constructor(
     private router: Router,
@@ -32,8 +33,8 @@ export class ProfileComponent  implements OnInit {
     private capacitorPreferencesService: CapacitorPreferencesService,
     private storage: Storage
   ) {
-    this.countImg = 0;
-    this.images = [];
+    //this.countImg = 0;
+    //this.images = [];
   }
 
   async ngOnInit() {
@@ -41,6 +42,7 @@ export class ProfileComponent  implements OnInit {
     const userData = await this.getUserData();
     this.name = userData.nam_user;
     this.email = userData.ema_user;
+    this.profile_img_url = userData.profile_img_url;
     this.subscription = 'GRATIS'
     this.isLoading = false;
   }
@@ -76,8 +78,7 @@ export class ProfileComponent  implements OnInit {
 
   private async updateProfileImage(profile_img_url: string): Promise<boolean> {
     try {
-      this.isLoading = true;
-      const token = this.capacitorPreferencesService.getToken();
+      const token = await this.capacitorPreferencesService.getToken();
       if (token) {
         const response = await this.apiService.put(
           '/users/update-user/',
@@ -86,34 +87,40 @@ export class ProfileComponent  implements OnInit {
         );
 
         if (response.error) {
-          console.log(response.error);
+          console.error(response.error);
           return false;
         }
 
         return true;
       }
-    } catch (error) {
-      console.log(error);
+
       return false;
-    } finally {
-      this.isLoading = false;
+    } catch (error) {
+      console.error(error);
       return false;
     }
   }
 
   async uploadImage(event: any){
+    this.isLoading = true;
     const file = event.target.files[0];
     const imgRef = ref(this.storage, `images/${file.name}`);
 
     try {
       await uploadBytes(imgRef, file);
+      const imgURL = await getDownloadURL(imgRef);
+      const result = await this.updateProfileImage(imgURL);
+
+      if (!result) {
+        console.error('Error al subir la imagen');
+        return;
+      }
+
+      this.profile_img_url = imgURL;
     } catch (error) {
-      console.log(error);
+      console.error(error);
+    } finally {
+      this.isLoading = false;
     }
-
-    // await this.updateProfileImage(await getDownloadURL(imgRef));
-
-    this.images.push(await getDownloadURL(imgRef));
-    return this.countImg = this.images.length, console.log(this.countImg);
   }
 }
