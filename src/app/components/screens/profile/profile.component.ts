@@ -24,18 +24,13 @@ export class ProfileComponent  implements OnInit {
   profile_img_url: string = ''
   systemLanguage: string = 'Español'
   isLoading: boolean = true;
-  //countImg: number;
-  //images: string[];
 
   constructor(
     private router: Router,
     private apiService: ApiService,
     private capacitorPreferencesService: CapacitorPreferencesService,
     private storage: Storage
-  ) {
-    //this.countImg = 0;
-    //this.images = [];
-  }
+  ) {}
 
   async ngOnInit() {
     this.isLoading = true;
@@ -43,7 +38,7 @@ export class ProfileComponent  implements OnInit {
     this.name = userData.nam_user;
     this.email = userData.ema_user;
     this.profile_img_url = userData.profile_img_url;
-    this.subscription = 'GRATIS'
+    this.subscription = userData.des_subscription;
     this.isLoading = false;
   }
 
@@ -56,14 +51,13 @@ export class ProfileComponent  implements OnInit {
 
       if (response.error) {
         console.log(response.error) ////
+        return;
       }
 
       return response.data
     } catch (error: any) {
       console.log(error) ////
       return;
-    } finally {
-      ////
     }
   }
 
@@ -83,7 +77,8 @@ export class ProfileComponent  implements OnInit {
         const response = await this.apiService.put(
           '/users/update-user/',
           { profile_img_url },
-          [['Authorization', `Bearer ${token}`]]
+          [['Authorization', `Bearer ${token}`]],
+          false
         );
 
         if (response.error) {

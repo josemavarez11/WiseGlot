@@ -50,7 +50,8 @@ export class EditUserDataViewPage implements OnInit {
       const response: ApiResponse = await this.apiService.put(
         '/users/update-user/',
         { [prop as string]: newData },
-        [['Authorization', `Bearer ${token}`]]
+        [['Authorization', `Bearer ${token}`]],
+        false
       );
 
       if (response.error) {
