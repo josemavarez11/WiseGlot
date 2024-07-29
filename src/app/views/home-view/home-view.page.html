@@ -5,8 +5,16 @@
     </div>
 
     <!-- Componente View-Mazo -->
-    <div *ngIf="selectedOption === 'mazo'">
-      <h1>Mazo-View</h1>
+    <div *ngIf="selectedOption === 'mazo'" class="Mazo">
+
+      <div class="contentOption1">
+        <img src="../../../assets/img/views/logoModal.png" class="imgHome" />
+        <button class="contentTouch">
+          <img src="../../../assets/img/views/decks/manito.png" class="manito">
+          <p>Toca para crear un nuevo mazo</p>
+        </button>
+      </div>
+      <!-- <app-modal-create-decks/> -->
     </div>
     <!-- Componente View-Mazo -->
     <div *ngIf="selectedOption === 'user'" class="userSettings">
