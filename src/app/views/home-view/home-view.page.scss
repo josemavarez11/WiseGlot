@@ -20,12 +20,13 @@
   justify-content: center;
   background: #FFFFFF;
 }
+// Empty Decks View
 img{
   width: 108px;
   height: 28.03px;
   margin-top: 45px;
 }
-.contentOption1{
+.contentOption2{
   width: 100%;
   height: 50%;
   display: flex;
@@ -47,5 +48,43 @@ img{
 .Mazo p{
   color: #CDCCFF;
 }
+// Empty Decks View
+
+// Decks View
+.contentOption1{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+.body{
+  margin-top: 30px;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.add{
+  width: 52px;
+  height: 52px;
+  background-color: #C5C4F7;
+  position: absolute;
+  bottom: 100px;
+  left: 85%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imgAdd{
+  width: 35px;
+  height: 35px;
+  margin-bottom: 45px;
+}
+// Decks View
 
 

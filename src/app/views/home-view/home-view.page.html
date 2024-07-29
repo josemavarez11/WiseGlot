@@ -1,22 +1,36 @@
 <ion-content>
   <ion-content>
     <div *ngIf="selectedOption === 'home'" class="Home">
-      <app-home/>
+      <app-home />
     </div>
 
     <!-- Componente View-Mazo -->
-    <div *ngIf="selectedOption === 'mazo'" class="Mazo">
-      <div class="contentOption1">
-        <img src="../../../assets/img/views/logoModal.png" class="imgHome" />
-        <button class="contentTouch" (click)="openModal()">
-          <img src="../../../assets/img/views/decks/manito.png" class="manito">
-          <p>Toca para crear un nuevo mazo</p>
-        </button>
+      <div *ngIf="selectedOption === 'mazo'" class="Mazo">
+        <div *ngIf="decks.length === 0" class="contentOption2">
+          <img src="../../../assets/img/views/logoModal.png" class="imgHome" />
+          <button class="contentTouch" (click)="openModal()">
+            <img src="../../../assets/img/views/decks/manito.png" class="manito">
+            <p>Toca para crear un nuevo mazo</p>
+          </button>
+        </div>
+  
+        <div *ngIf="decks.length > 0" class="contentOption1">
+          <img src="../../../assets/img/views/logoModal.png" class="imgHome" />
+          <div class="body">
+            <app-decks
+              *ngFor="let deck of decks"
+              [title]="deck.title"
+              [description]="deck.description"
+            ></app-decks>
+          </div>
+          <button class="add" (click)="openModal()">
+            <img src="../../../assets/img/views/decks/add.png" class="imgAdd">
+          </button>
+        </div>
       </div>
-    </div>
     <!-- Componente View-Mazo -->
     <div *ngIf="selectedOption === 'user'" class="userSettings">
-      <app-profile/>
+      <app-profile />
     </div>
   </ion-content>
 
@@ -24,8 +38,5 @@
     [message]="'Quieres cambiar el idioma de la aplicacion al que tu quieres aprender?'"
   /> -->
   <app-navbar />
-  <app-modal-create-decks
-  [isVisible]="isModalVisible"
-  (close)="closeModal()"
-/>
+  <app-modal-create-decks [isVisible]="isModalVisible" (close)="closeModal()" />
 </ion-content>
