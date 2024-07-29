@@ -9,6 +9,8 @@ import {
   AlertController,
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+// Components
+import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 // Services
 import { ApiResponse, ApiService } from 'src/services/api.service';
@@ -27,6 +29,7 @@ import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.s
     CommonModule,
     FormsModule,
     LoadingComponent,
+    BtnAuthComponent,
   ],
 })
 export class DeleteAccountViewPage implements OnInit {
@@ -41,6 +44,13 @@ export class DeleteAccountViewPage implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  areFieldsEmpty() {
+    return this.confirmationText.trim() === '';
+  }
+  onInputChange() {
+    // Esto provocará una reevaluación del template y, por lo tanto, cambiará el color del botón
+  }
 
   async handleDeleteButton() {
     if (this.confirmationText === 'Eliminar mi cuenta') {

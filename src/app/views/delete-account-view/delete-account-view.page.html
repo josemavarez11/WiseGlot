@@ -12,18 +12,24 @@
       <strong><p>Por favor, escribe <em>“Eliminar mi cuenta”</em> para confirmar.</p></strong>
       <input
         type="text"
-        placeholder="Escribe aquí “Eliminar mi cuenta”"
+        placeholder="Escribe aquí"
         [(ngModel)]="confirmationText"
+        (input)="onInputChange()"
 
       >
     </div>
 
     <div class="containerBtn">
       <button (click)="back()">Cancelar</button>
-      <button
-        class="btnA"
-        (click)="handleDeleteButton()">Si, eliminar
-      </button>
+      <app-btn-auth
+      [color]="areFieldsEmpty() ? '#CCCCCC' : '#0600FF'"
+      [textColor]="areFieldsEmpty()? '#000000' : '#FFFFFF'"
+      [borderColor]="'none'"
+      [title]="'Si, Eliminar'"
+      (click)="handleDeleteButton()"
+      [hoverColor]="'#0600FF'"
+      [disabled]="areFieldsEmpty()"
+    ></app-btn-auth>
     </div>
   </div>
 </div>
