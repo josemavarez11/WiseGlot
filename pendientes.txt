@@ -10,5 +10,3 @@ siempre y cuando el texto no coincida.
 2. acomodar estilos de imagen de perfil porque se desacomodaron haciendo el metodo de subir imagen de perfil.
 
 3. organizar nombres de las pantallas según el figma.
-
-4. organizar nombres de las rutas porque algunos están locos.
