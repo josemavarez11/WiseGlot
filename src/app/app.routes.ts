@@ -27,7 +27,7 @@ export const routes: Routes = [
     loadComponent: () => import('./views/reset-password-view/reset-password-view.page').then( m => m.PasswordChangeViewPage)
   },
   {
-    path: 'preferences',
+    path: 'preferences-view',
     loadComponent: () => import('./views/preferences-view/preferences-view.page').then( m => m.PreferencesView1Page)
   },
   {
@@ -51,7 +51,7 @@ export const routes: Routes = [
     loadComponent: () => import('./splash/splash.page').then( m => m.SplashPage)
   },
   {
-    path: 'edit',
+    path: 'edit-view',
     loadComponent: () => import('./views/edit-user-data-view/edit-user-data-view.page').then( m => m.EditUserDataViewPage)
   },
   {
@@ -59,7 +59,7 @@ export const routes: Routes = [
     loadComponent: () => import('./views/delete-account-view/delete-account-view.page').then( m => m.DeleteAccountViewPage)
   },
   {
-    path: 'chat',
+    path: 'chat-view',
     loadComponent: () => import('./views/chat-view/chat-view.page').then( m => m.ChatViewPage)
   }
 
