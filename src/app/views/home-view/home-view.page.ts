@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent,
@@ -46,6 +46,7 @@ import { NavBarSelectionService } from 'src/services/nav-bar-selection.service';
     InputAnimateComponent,
     ModalCreateDecksComponent,
     DecksComponent,
+    RouterLink,
   ],
 })
 export class HomeViewPage implements OnInit {

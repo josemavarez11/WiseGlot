@@ -61,7 +61,12 @@ export const routes: Routes = [
   {
     path: 'chat-view',
     loadComponent: () => import('./views/chat-view/chat-view.page').then( m => m.ChatViewPage)
+  },
+  {
+    path: 'inside-deck-view',
+    loadComponent: () => import('./views/inside-deck-view/inside-deck-view.page').then( m => m.InsideDeckViewPage)
   }
+
 
 
 

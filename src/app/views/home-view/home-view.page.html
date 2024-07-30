@@ -21,6 +21,7 @@
               *ngFor="let deck of decks"
               [title]="deck.title"
               [description]="deck.description"
+              [routerLink]="['/inside-deck-view']"
             ></app-decks>
           </div>
           <button class="add" (click)="openModal()">
