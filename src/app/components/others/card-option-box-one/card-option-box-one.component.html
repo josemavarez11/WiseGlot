@@ -1,0 +1,26 @@
+<div class="modal-overlay" *ngIf="isVisible">
+  <div class="modal-background" (click)="closeModal()"></div>
+  <div class="modal-content">
+    <div class="body">
+      <app-btn-auth
+        [color]="'#D9D9D9'"
+        [textColor]="'#000000'"
+        [borderColor]="'none'"
+        [title]="'Agregar carta personalizada'"
+        (click)="handleClick()"
+        [hoverColor]="'#0600FF'"
+        width="385px"
+      ></app-btn-auth>
+      <app-btn-auth
+      [color]="'#000000'"
+      [textColor]="'#FFFFFF'"
+      [borderColor]="'none'"
+      [title]="'Generar cartas con IA'"
+      (click)="handleClick()"
+      [hoverColor]="'#0600FF'"
+      width="385px"
+    ></app-btn-auth>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

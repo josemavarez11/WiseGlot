@@ -38,12 +38,19 @@ img {
   width: 100%;
   height: 90%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 
 }
 .top {
+  width: 90%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top2 {
   width: 90%;
   height: 10%;
   display: flex;
@@ -79,6 +86,11 @@ h3 {
   width: 62px;
   height: 62px;
 }
+.icon2 {
+  fill: #0600FF;
+  width: 62px;
+  height: 62px;
+}
 .contentBtn {
   display: flex;
   justify-content: center;
@@ -93,4 +105,160 @@ svg{
 }
 button{
   background-color: transparent;
+}
+
+.body2{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.topBody{
+  width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 25px;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+.contentNumberCard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+.study{
+  background-color: #F0F0F0;
+  width: 168px;
+  height: 66px;
+  border-radius: 10px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+p{
+  margin: 0;
+  padding: 0;
+}
+.character{
+  color: #040099;
+  font-size: 13px;
+  font-weight: lighter;
+}
+.number{
+  font-size: 17px;
+  color: #040099;
+  font-weight: 700;
+}
+.topBody button{
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    #0600ff 0%,
+    #0400a8 29%,
+    #0400a7 73%,
+    #0600ff 100%
+  );
+  height: 50px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+}
+.bottomBody{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bottomBody img{
+  width: 23px;
+  height: 14.43px;
+}
+.contentCard{
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.card{
+  width: 100%;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F0F0F0;
+  border-radius: 10px;
+  padding: 10px;
+  flex-direction: column;
+}
+.eye{
+  color: #040099;
+  font-size: 17px;
+}
+.contentEye{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
+.line1{
+  width: 90%;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+.line2{
+  width: 90%;
+  height: 50%;
+}
+h6{
+  padding: 0;
+  margin: 0;
+  color: #040099;
+  font-size: 17px;
+  font-weight: bold;
+}
+.line2 p{
+  color: #040099;
+  font-size: 13px;
+  font-weight: lighter;
+} 
+.line1 button{
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
+}
+.addCard{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 40px;
+}
+
+.addCard button{
+  width: 90%;
+  background: #000000;
+  height: 50px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.options{
+  width: 8px;
+  height: 18px;
 }
