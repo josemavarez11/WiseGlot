@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 // Components
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { CardOptionBoxOneComponent } from 'src/app/components/others/card-option-box-one/card-option-box-one.component';
+import { CardOptionBoxTwoComponent } from 'src/app/components/others/card-option-box-two/card-option-box-two.component';
 import {
   IonContent,
   IonHeader,
@@ -27,10 +28,12 @@ import {
     RouterLink,
     BtnAuthComponent,
     CardOptionBoxOneComponent,
+    CardOptionBoxTwoComponent,
   ],
 })
 export class InsideDeckViewPage implements OnInit {
   isModalVisible = false;
+  isModalVisibleTwo = false;
   constructor() {}
 
   ngOnInit() {}
@@ -52,6 +55,14 @@ export class InsideDeckViewPage implements OnInit {
 
   openModal() {
     this.isModalVisible = true;
+  }
+
+  openModalTwo() {
+    this.isModalVisibleTwo = true;
+  }
+
+  closeModalTwo() {
+    this.isModalVisibleTwo = false;
   }
 
   closeModal() {

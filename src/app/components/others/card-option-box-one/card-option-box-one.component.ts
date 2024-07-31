@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // Components
 import { BtnAuthComponent } from '../../buttons/btn-auth/btn-auth.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-option-box-one',
@@ -14,7 +15,7 @@ export class CardOptionBoxOneComponent  implements OnInit {
   @Input() isVisible = false;
   @Output() close = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
 
@@ -23,7 +24,12 @@ export class CardOptionBoxOneComponent  implements OnInit {
     this.close.emit();
   }
 
-  handleClick() {
-    console.log('click');
+  handleClickAdd() {
+    this.router.navigate(['/add-edit-card-view']);
+    this.closeModal();
+  }
+
+  handleClickGenerate(){
+    this.router.navigate(['/generate']);
   }
 }

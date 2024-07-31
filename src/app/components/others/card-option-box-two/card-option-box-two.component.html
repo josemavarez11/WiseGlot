@@ -1,0 +1,28 @@
+<div class="modal-overlay" *ngIf="isVisible">
+  <div class="modal-background" (click)="closeModal()"></div>
+  <div class="modal-content">
+    <div class="body">
+      <app-btn-option-card
+      [color]="'#F0F0F0'"
+      [textColor]="'#000000'"
+      [borderColor]="'none'"
+      [title]="'Freeze'"
+      (click)="handleClick()"
+      [hoverColor]="'#0600FF'"
+      width="385px"
+      [icon]="'../../../../assets/icons/freeze.png'"
+      />
+      <app-btn-option-card
+      [color]="'#F0F0F0'"
+      [textColor]="'red'"
+      [borderColor]="'none'"
+      [title]="'Eliminar'"
+      (click)="handleClick()"
+      [hoverColor]="'#0600FF'"
+      width="385px"
+      [icon]="'../../../../assets/icons/trashRed.png'"
+      />
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

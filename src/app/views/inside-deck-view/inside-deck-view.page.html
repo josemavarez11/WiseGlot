@@ -211,7 +211,7 @@ c-0.08,44.24-35.87,79.98-80.08,79.96C139.91,264.24,104.14,228.49,104.09,184.26z"
           <div class="card" *ngFor="let card of cards; let i = index">
             <div class="line1">
               <h6>{{ card.front }}</h6>
-              <button>
+              <button (click)="openModalTwo()">
                 <svg class="options" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="2" cy="2" r="2" fill="#040099"/>
                   <circle cx="2" cy="9" r="2" fill="#040099"/>
@@ -232,4 +232,5 @@ c-0.08,44.24-35.87,79.98-80.08,79.96C139.91,264.24,104.14,228.49,104.09,184.26z"
     </div>
   </div>
   <app-card-option-box-one [isVisible]="isModalVisible" (close)="closeModal()"/>
+  <app-card-option-box-two [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()"/>
 </div>

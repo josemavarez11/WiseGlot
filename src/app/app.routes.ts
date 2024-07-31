@@ -65,7 +65,12 @@ export const routes: Routes = [
   {
     path: 'inside-deck-view',
     loadComponent: () => import('./views/inside-deck-view/inside-deck-view.page').then( m => m.InsideDeckViewPage)
+  },
+  {
+    path: 'add-edit-card-view',
+    loadComponent: () => import('./views/add-edit-card-view/add-edit-card-view.page').then( m => m.AddEditCardViewPage)
   }
+
 
 
 
