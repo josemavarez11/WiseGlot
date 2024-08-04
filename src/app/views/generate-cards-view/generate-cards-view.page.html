@@ -1,0 +1,73 @@
+<div class="Container">
+  <div class="top">
+    <button class="back" (click)="back()">
+      <img src="../../../assets/img/views/back-black.png" />
+    </button>
+    <h3>Generar cartas con IA</h3>
+  </div>
+
+  <div class="button">
+    <div class="Estudio">
+      <div class="write">
+        <h6 class="writeTitle">Genera tus cartas de estudio.</h6>
+        <p class="writeSubtitle">
+          Ingresa un tema específico o elige uno de la lista proporcionada. La
+          IA ofrecerá contenido educativo relacionado al tema seleccionado.
+        </p>
+      </div>
+    </div>
+    <h2>¿Sobre qué quieres que se trate tu mazo?</h2>
+    <div class="containerInput">
+      <div class="input-group">
+        <div class="custom-checkbox">
+          <input
+            type="checkbox"
+            id="text-checkbox"
+            [(ngModel)]="isTextInputSelected"
+            (change)="onCheckboxChange('text')"
+          />
+          <label for="text-checkbox"></label>
+        </div>
+        <input
+          #textInput
+          type="text"
+          placeholder="Introducir texto aquí"
+          [disabled]="!isTextInputSelected"
+        />
+      </div>
+
+      <div class="ContentLine">
+        <div class="line"></div>
+        <p class="writeLine">O</p>
+        <div class="line"></div>
+      </div>
+
+      <div class="input-group">
+        <div class="custom-checkbox">
+          <input
+            class="inputSelect"
+            type="checkbox"
+            id="select-checkbox"
+            [(ngModel)]="isSelectInputSelected"
+            (change)="onCheckboxChange('select')"
+          />
+          <label for="select-checkbox"></label>
+        </div>
+
+        <select
+          #selectInput
+          [disabled]="!isSelectInputSelected"
+          [class.red]="isSelectInputSelected"
+        >
+          <option class="green" value="" disabled selected>Selecciona algún tema</option>
+           <option *ngFor="let tema of temas" [value]="tema.value" class="green">
+            {{ tema.display }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="containerBtn">
+      <button (click)="createCard()">Hecho</button>
+    </div>
+  </div>
+</div>

@@ -16,15 +16,20 @@ label{
     font-size: 17px;
     color: #040099;
 }
-input{
-    outline: none;
-    background-color: #F0F0F0;
+input {
     width: 100%;
-    height: 56px;
-    color: #000000;
-    border-radius: 10;
+    height: 55px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-bottom: 25px;
+    font-size: 14px;
+    background-color: #f0f0f0;
+  }
+  input {
     padding-left: 25px;
-}
+    color: black;
+  }
 button{
     width: 100%;
     height: 50px;

@@ -30,6 +30,7 @@ export class CardOptionBoxOneComponent  implements OnInit {
   }
 
   handleClickGenerate(){
-    this.router.navigate(['/generate']);
+    this.router.navigate(['/generate-cards-view']);
+    this.closeModal();
   }
 }

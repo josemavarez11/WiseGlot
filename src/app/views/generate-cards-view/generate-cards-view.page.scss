@@ -1,0 +1,198 @@
+.Container {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  padding-left: 15%;
+}
+label {
+  font-size: 17px;
+  color: #040099;
+}
+button {
+  width: 100%;
+  height: 50px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.containerBtn button:active {
+  background-color: #0600ff;
+}
+
+.top {
+  width: 90%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.button {
+  width: 90%;
+  height: 90%;
+}
+.back {
+  width: 15px;
+  height: 25px;
+  background-color: transparent;
+}
+.containerInput {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.containerBtn {
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  margin-bottom: 30px;
+}
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+}
+.Estudio {
+  width: 100%;
+  height: 145px;
+  background-color: #CDCCFF;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.write {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.writeTitle {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 5px;
+  color: #040099;
+  font-size: 17px;
+  font-weight: bold;
+}
+.writeSubtitle {
+  margin: 0;
+  padding: 0;
+  color: #040099;
+  font-size: 17px;
+  font-weight: normal;
+}
+h2 {
+  font-size: 19px;
+  font-weight: bold;
+  color: #040099;
+}
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+input[type="text"], select {
+  width: 100%;
+  height: 55px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background-color: #f0f0f0;
+  padding-left: 25px;
+  color: black;
+}
+.custom-checkbox {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.custom-checkbox input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.custom-checkbox label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.custom-checkbox input[type="checkbox"]:checked + label {
+  background-color: white;
+  border: 1px solid #0600FF;
+}
+.custom-checkbox label::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.custom-checkbox input[type="checkbox"]:checked + label::after {
+  display: block;
+}
+.custom-checkbox label::after {
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #0600FF;
+  transform: translate(-50%, -50%);
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #f0f0f0;
+  background-image: none;
+}
+
+select.red {
+  background-color: #0600FF; /* Rojo claro */
+  color: #ffffff;
+}
+
+option.green {
+  background-color: #CDCCFF;
+  color: #000000; /* Verde claro */
+}
+
+.ContentLine{
+  width: 100%;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.line{
+  width: 56px;
+  height: 2px;
+  background-color: #000000;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.writeLine{
+  color: #040099;
+  font-size: 17px;
+  font-weight: 900;
+}

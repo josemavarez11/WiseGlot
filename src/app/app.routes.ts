@@ -69,7 +69,12 @@ export const routes: Routes = [
   {
     path: 'add-edit-card-view',
     loadComponent: () => import('./views/add-edit-card-view/add-edit-card-view.page').then( m => m.AddEditCardViewPage)
+  },
+  {
+    path: 'generate-cards-view',
+    loadComponent: () => import('./views/generate-cards-view/generate-cards-view.page').then( m => m.GenerateCardsViewPage)
   }
+
 
 
 
