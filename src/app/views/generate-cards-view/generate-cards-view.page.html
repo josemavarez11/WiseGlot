@@ -33,6 +33,8 @@
           type="text"
           placeholder="Introducir texto aquí"
           [disabled]="!isTextInputSelected"
+          [(ngModel)]="textValue"
+          (ngModelChange)="onTextInputChange()"
         />
       </div>
 
@@ -58,12 +60,21 @@
           #selectInput
           [disabled]="!isSelectInputSelected"
           [class.red]="isSelectInputSelected"
+          [(ngModel)]="selectedValue"
+          (ngModelChange)="onSelectChange()"
         >
           <option class="green" value="" disabled selected>Selecciona algún tema</option>
-           <option *ngFor="let tema of temas" [value]="tema.value" class="green">
+          <option *ngFor="let tema of temas" [value]="tema.value" class="green">
             {{ tema.display }}
           </option>
         </select>
+      </div>
+
+      <div class="newCard" *ngIf="showNewCard">
+        <div class="lineSeparate"></div>
+        <button class="counterCard">
+          <p>Cartas a generar: 10</p>
+        </button>
       </div>
     </div>
     <div class="containerBtn">

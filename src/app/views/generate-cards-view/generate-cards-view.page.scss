@@ -96,7 +96,7 @@ h1 {
   font-weight: normal;
 }
 h2 {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: bold;
   color: #040099;
 }
@@ -195,4 +195,23 @@ option.green {
   color: #040099;
   font-size: 17px;
   font-weight: 900;
+}
+.lineSeparate{
+  width: 100%;
+  height: 2px;
+  background-color: #000000;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.counterCard {
+  width: 100%;
+  height: 50px;
+  background-color: #D3D3D3;
+  border-radius: 10px;
+}
+.counterCard p{
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
 }

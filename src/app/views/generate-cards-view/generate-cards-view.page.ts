@@ -16,6 +16,7 @@ export class GenerateCardsViewPage implements OnInit {
   isSelectInputSelected = false;
   textValue: string = '';
   selectedValue: string = '';
+  showNewCard: boolean = false;
 
   temas = [
     { value: 'Cultura y Entretenimiento', display: 'Cultura y Entretenimiento' },
@@ -28,16 +29,17 @@ export class GenerateCardsViewPage implements OnInit {
   ];
 
   ngOnInit(): void {
-      
+    this.updateShowNewCard();
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
   @ViewChild('textInput') textInput!: ElementRef;
   @ViewChild('selectInput') selectInput!: ElementRef;
 
   onCheckboxChange(type: string) {
     if (type === 'text') {
       this.isSelectInputSelected = false;
+      this.resetSelectInput();
       setTimeout(() => this.textInput.nativeElement.focus(), 0);
     } else if (type === 'select') {
       this.isTextInputSelected = false;
@@ -46,6 +48,26 @@ export class GenerateCardsViewPage implements OnInit {
         this.selectInput.nativeElement.click(); // Simulate click to open the select
       }, 0);
     }
+    this.updateShowNewCard();
+  }
+
+  onTextInputChange() {
+    this.updateShowNewCard();
+  }
+
+  onSelectChange() {
+    this.updateShowNewCard();
+  }
+
+  updateShowNewCard() {
+    this.showNewCard = this.textValue.length > 0 || this.selectedValue.length > 0;
+  }
+
+  resetSelectInput() {
+    this.selectInput.nativeElement.value = '';
+    this.selectedValue = '';
+    this.selectInput.nativeElement.options[0].selected = true; // Reset to the default option
+    this.updateShowNewCard();
   }
 
   createCard() {
@@ -57,9 +79,8 @@ export class GenerateCardsViewPage implements OnInit {
       console.log('No input selected');
     }
   }
-  back(){
+
+  back() {
     this.router.navigate(['/inside-deck-']);
   }
 }
-
-
