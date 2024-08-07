@@ -12,6 +12,9 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { CardOptionDaySelectorComponent } from "../../components/others/card-option-day-selector/card-option-day-selector.component";
+import { CardOptionThreeComponent } from 'src/app/components/others/card-option-three/card-option-three.component';
+import { DeleteResetModalComponent } from 'src/app/components/others/delete-reset-modal/delete-reset-modal.component';
 
 @Component({
   selector: 'app-inside-deck-view',
@@ -29,7 +32,10 @@ import {
     BtnAuthComponent,
     CardOptionBoxOneComponent,
     CardOptionBoxTwoComponent,
-  ],
+    CardOptionDaySelectorComponent,
+    CardOptionThreeComponent,
+    DeleteResetModalComponent
+],
 })
 export class InsideDeckViewPage implements OnInit {
   isModalVisible = false;
@@ -67,6 +73,12 @@ export class InsideDeckViewPage implements OnInit {
 
   closeModal() {
     this.isModalVisible = false;
+  }
+  resetear(){
+
+  }
+  delete(){
+    
   }
 }
 

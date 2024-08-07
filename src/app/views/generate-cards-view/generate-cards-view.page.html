@@ -1,4 +1,5 @@
 <div class="Container">
+  
   <div class="top">
     <button class="back" (click)="back()">
       <img src="../../../assets/img/views/back-black.png" />
@@ -68,17 +69,27 @@
             {{ tema.display }}
           </option>
         </select>
+        
       </div>
-
+      <!-- Siguiente Paso -->
       <div class="newCard" *ngIf="showNewCard">
         <div class="lineSeparate"></div>
-        <button class="counterCard">
+        <button class="counterCard" (click)="openModal()">
           <p>Cartas a generar: 10</p>
         </button>
       </div>
+      <!-- Siguiente Paso -->
+       
     </div>
     <div class="containerBtn">
       <button (click)="createCard()">Hecho</button>
     </div>
   </div>
+
+
+  <app-card-option-day-selector
+    [isVisible]="isModalVisible"
+    (close)="closeModal()"
+  />
 </div>
+

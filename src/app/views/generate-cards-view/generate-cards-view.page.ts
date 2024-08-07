@@ -1,15 +1,30 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+// Components
+import { CardOptionDaySelectorComponent } from 'src/app/components/others/card-option-day-selector/card-option-day-selector.component';
 
 @Component({
   selector: 'app-generate-cards-view',
   templateUrl: './generate-cards-view.page.html',
   styleUrls: ['./generate-cards-view.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+    CardOptionDaySelectorComponent
+  ],
 })
 export class GenerateCardsViewPage implements OnInit {
   isTextInputSelected = false;
@@ -17,9 +32,13 @@ export class GenerateCardsViewPage implements OnInit {
   textValue: string = '';
   selectedValue: string = '';
   showNewCard: boolean = false;
+  isModalVisible = false;
 
   temas = [
-    { value: 'Cultura y Entretenimiento', display: 'Cultura y Entretenimiento' },
+    {
+      value: 'Cultura y Entretenimiento',
+      display: 'Cultura y Entretenimiento',
+    },
     { value: 'Literatura', display: 'Literatura' },
     { value: 'Trabajo', display: 'Trabajo' },
     { value: 'Ciencias', display: 'Ciencias' },
@@ -60,7 +79,8 @@ export class GenerateCardsViewPage implements OnInit {
   }
 
   updateShowNewCard() {
-    this.showNewCard = this.textValue.length > 0 || this.selectedValue.length > 0;
+    this.showNewCard =
+      this.textValue.length > 0 || this.selectedValue.length > 0;
   }
 
   resetSelectInput() {
@@ -82,5 +102,11 @@ export class GenerateCardsViewPage implements OnInit {
 
   back() {
     this.router.navigate(['/inside-deck-']);
+  }
+  closeModal() {
+    this.isModalVisible = false;
+  }
+  openModal() {
+    this.isModalVisible = true;
   }
 }

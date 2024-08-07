@@ -1,0 +1,19 @@
+<div class="modal-overlay" *ngIf="isVisible">
+  <div class="modal-background" (click)="closeModal()"></div>
+  <div class="modal-content">
+    <div class="body">
+      <mat-slider
+      min="10"
+      max="80"
+      step="1"
+      thumbLabel
+      tickInterval="10"
+      [(ngModel)]="value"
+      aria-labelledby="custom-range-label"
+    >
+      <span id="custom-range-label" matSliderThumbLabel>{{ value }}</span>
+    </mat-slider>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>
