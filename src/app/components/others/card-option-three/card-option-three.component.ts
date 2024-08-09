@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 // Components
 import { BtnOptionCardComponent } from '../../buttons/btn-option-card/btn-option-card.component';
 
@@ -14,7 +15,7 @@ export class CardOptionThreeComponent  implements OnInit {
   @Input() isVisible = false;
   @Output() close = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
 
@@ -23,7 +24,19 @@ export class CardOptionThreeComponent  implements OnInit {
     this.close.emit();
   }
 
-  handleClick() {
-    console.log('click');
+  handleEdit() {
+    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'editar' } });
+  }
+
+  handleDelete() {
+    console.log('Deleted');
+  }
+
+  handleSelect(){
+    console.log('Selected');
+  }
+
+  handleFreeze(){
+    console.log('Freezed');
   }
 }

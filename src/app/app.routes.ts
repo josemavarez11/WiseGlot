@@ -73,7 +73,12 @@ export const routes: Routes = [
   {
     path: 'generate-cards-view',
     loadComponent: () => import('./views/generate-cards-view/generate-cards-view.page').then( m => m.GenerateCardsViewPage)
+  },
+  {
+    path: 'deck-settings-view',
+    loadComponent: () => import('./views/deck-settings-view/deck-settings-view.page').then( m => m.DeckSettingsViewPage)
   }
+
 
 
 

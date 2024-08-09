@@ -25,7 +25,7 @@ export class CardOptionBoxOneComponent  implements OnInit {
   }
 
   handleClickAdd() {
-    this.router.navigate(['/add-edit-card-view']);
+    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'agregar' }});
     this.closeModal();
   }
 

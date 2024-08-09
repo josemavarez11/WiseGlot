@@ -1,0 +1,79 @@
+<div class="Chat">
+  <div class="ContentA">
+    <section class="header">
+      <button class="back" [routerLink]="['/inside-deck-view']">
+        <img src="../../../assets/img/views/back-black.png" />
+      </button>
+      <img src="../../../assets/img/views/logoModal.png" class="logoApp" />
+    </section>
+  </div>
+
+  <div class="ContentB">
+    <div class="title">
+      <p>Configuración de baraja</p>
+    </div>
+    <app-btn-option-card
+      [color]="'#F0F0F0'"
+      [textColor]="'#000000'"
+      [borderColor]="'none'"
+      [title]="'Cartas nuevas por día'"
+      [hoverColor]="'#0600FF'"
+      width="385px"
+      [icon]="'../../../../assets/icons/songs.png'"
+    />
+
+    <app-btn-option-card
+      [color]="'#F0F0F0'"
+      [textColor]="'#000000'"
+      [borderColor]="'none'"
+      [title]="'Intervalo de graduación'"
+      [hoverColor]="'#0600FF'"
+      width="385px"
+      [icon]="'../../../../assets/icons/intervalo.png'"
+    />
+    <app-btn-option-card
+      [color]="'#F0F0F0'"
+      [textColor]="'#000000'"
+      [borderColor]="'none'"
+      [title]="'Paso'"
+      [hoverColor]="'#0600FF'"
+      width="385px"
+      [icon]="'../../../../assets/icons/huellas.png'"
+    />
+
+    <app-btn-option-card
+      [color]="'#F0F0F0'"
+      [textColor]="'#000000'"
+      [borderColor]="'none'"
+      [title]="'Intervalo máximo de graduación'"
+      [hoverColor]="'#0600FF'"
+      width="385px"
+      [icon]="'../../../../assets/icons/fecha.png'"
+    />
+
+    <app-btn-option-card
+      [color]="'#F0F0F0'"
+      [textColor]="'#000000'"
+      [borderColor]="'none'"
+      [title]="'Reiniciar progreso'"
+      [hoverColor]="'#0600FF'"
+      width="385px"
+      [icon]="'../../../../assets/icons/retroceso.png'"
+      (click)="openModal()"
+    />
+
+    <app-btn-option-card
+      [color]="'#F0F0F0'"
+      [textColor]="'red'"
+      [borderColor]="'none'"
+      [title]="'Eliminar'"
+      [hoverColor]="'#0600FF'"
+      width="385px"
+      [icon]="'../../../../assets/icons/trashRed.png'"
+      (click)="openModalTwo()"
+
+    />
+  </div>
+  <app-delete-reset-modal [isVisible]="isModalVisible" (close)="closeModal()" title="Resetea progreso" option="Si, resetear" (action)="resetear()"/>
+   <app-delete-reset-modal [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()" title="Eliminar mazo" option="Si, eliminar" (action)="delete()"/>
+</div>

@@ -95,6 +95,7 @@
           title="Agregar cartas Personalizadas"
           [color]="'#D9D9D9'"
           [textColor]="'#000000'"
+          (click)="handleClickAdd()"
         />
         <app-btn-auth
           title="Generar cartas con IA"
@@ -109,7 +110,7 @@
     <!-- Inside deck view -->
     <div class="top2">
       <h3>MAZO 1</h3>
-      <button>
+      <button (click)="settings()">
         <svg
           version="1.1"
           id="Capa_1"
@@ -235,8 +236,7 @@
   <!-- Modal de dos botones Freeze y Eliminar -->
   <!-- <app-card-option-box-two [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()"/> -->
   <!-- Modal de tres opciones Seleccionar, Editar y Eliminar -->
-  <!-- <app-card-option-three [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()"/> -->
+  <app-card-option-three [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()"/>
   <!-- Modal de Resetear y Eliminar -->
-   <app-delete-reset-modal [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()" title="Resetea progreso" option="Si, resetear" (action)="resetear()"/>
-   <app-delete-reset-modal [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()" title="Eliminar mazo" option="Si, eliminar" (action)="delete()"/>
+   
 </div>

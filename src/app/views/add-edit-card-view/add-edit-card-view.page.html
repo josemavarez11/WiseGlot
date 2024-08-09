@@ -1,4 +1,29 @@
-<div class="Container">
+<!-- Container for "Editar Carta" -->
+<div class="Container" *ngIf="mode === 'editar'">
+  <div class="top">
+    <button class="back" (click)="back()">
+      <img src="../../../assets/img/views/back-black.png" />
+    </button>
+    <h3>Editar Carta</h3>
+  </div>
+
+  <div class="button">
+    <div class="containerInput">
+      <label>Parte delantera</label>
+      <input type="text" placeholder="Introducir texto aquí" />
+
+      <label>Parte trasera</label>
+      <input type="text" placeholder="Introducir texto aquí" />
+    </div>
+
+    <div class="containerBtn">
+      <button (click)="createCard()">Hecho</button>
+    </div>
+  </div>
+</div>
+
+<!-- Container for "Agregar Carta" -->
+<div class="Container" *ngIf="mode === 'agregar'">
   <div class="top">
     <button class="back" (click)="back()">
       <img src="../../../assets/img/views/back-black.png" />
@@ -9,10 +34,10 @@
   <div class="button">
     <div class="containerInput">
       <label>Parte delantera</label>
-      <input type="text" placeholder="Introducir texto aquí"/>
+      <input type="text" placeholder="Introducir texto aquí" />
 
       <label>Parte trasera</label>
-      <input type="text" placeholder="Introducir texto aquí"/>
+      <input type="text" placeholder="Introducir texto aquí" />
     </div>
 
     <div class="containerBtn">

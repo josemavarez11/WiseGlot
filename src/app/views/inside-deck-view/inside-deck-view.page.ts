@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 // Components
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { CardOptionBoxOneComponent } from 'src/app/components/others/card-option-box-one/card-option-box-one.component';
@@ -40,7 +40,7 @@ import { DeleteResetModalComponent } from 'src/app/components/others/delete-rese
 export class InsideDeckViewPage implements OnInit {
   isModalVisible = false;
   isModalVisibleTwo = false;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -74,11 +74,12 @@ export class InsideDeckViewPage implements OnInit {
   closeModal() {
     this.isModalVisible = false;
   }
-  resetear(){
-
+  handleClickAdd() {
+    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'agregar' }});
+    this.closeModal();
   }
-  delete(){
-    
+  settings(){
+    this.router.navigate(['/deck-settings-view']);
   }
 }
 
