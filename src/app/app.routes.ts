@@ -77,7 +77,17 @@ export const routes: Routes = [
   {
     path: 'deck-settings-view',
     loadComponent: () => import('./views/deck-settings-view/deck-settings-view.page').then( m => m.DeckSettingsViewPage)
+  },
+  {
+    path: 'deck-completed-animation',
+    loadComponent: () => import('./views/deck-completed-animation/deck-completed-animation.page').then( m => m.DeckCompletedAnimationPage)
+  },
+  {
+    path: 'study-deck-view',
+    loadComponent: () => import('./views/study-deck-view/study-deck-view.page').then( m => m.StudyDeckViewPage)
   }
+
+
 
 
 

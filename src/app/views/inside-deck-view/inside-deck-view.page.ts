@@ -81,5 +81,8 @@ export class InsideDeckViewPage implements OnInit {
   settings(){
     this.router.navigate(['/deck-settings-view']);
   }
+  Study(){
+    this.router.navigate(['/study-deck-view']);
+  }
 }
 
