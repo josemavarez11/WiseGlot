@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 // Components
 import { BtnCardComponent } from '../../buttons/btn-card/btn-card.component';
 @Component({
@@ -10,10 +11,14 @@ import { BtnCardComponent } from '../../buttons/btn-card/btn-card.component';
   imports: [CommonModule, BtnCardComponent]
 })
 export class HomeComponent  implements OnInit {
+  userName: string = '';
 
-  constructor() { }
+  constructor(private capacitorPreferencesService: CapacitorPreferencesService) { }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    const getUserNameResponse = await this.capacitorPreferencesService.getUserName();
+    this.userName = getUserNameResponse ? getUserNameResponse : '';
+  }
 
 
   proximaVista(){

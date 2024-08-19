@@ -10,7 +10,7 @@ export interface ApiResponse<T = any> {
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly baseUrl = 'https://wiseglot-api.onrender.com';
+  private readonly baseUrl = 'https://wg-api-linux2.onrender.com';
 
   constructor() {}
 

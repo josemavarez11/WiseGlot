@@ -1,5 +1,15 @@
-filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior.
-guardar ruta base de api, endpoints y otras cosas en variables de entorno (jose)
+1. Falta subir la flecha de preferences 5. NO puede quedar a un lado.
+2. Cuando en la vista del chat, uso la flecha de retroceder, aparezco en una pantalla negra.
+3. El proceso de reestablecimiento de contraseña está fallando. (José)
+4. Organizar nombres de las pantallas según el figma.
+5. Se necesita urgente el modal de error.
+6. Corregir problemas en la vista de crear mazo
 
-***** SUBIR FLECHA, POR FAVOR ******
-3. organizar nombres de las pantallas según el figma.
+DE LA API:
+1. Que el metodo de login devuelva la url de la foto de perfil.
+
+** Filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior. (José)
+** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
+** Guardar los datos del usuario en local storage y usarlos en user settings view. (José)
+** Renderizar foto del usuario en el home. (José)
+** Renderizar el nombre del idioma a estudiar en preferences 2. (José)

@@ -23,12 +23,13 @@
         [textColor]="areFieldsEmpty() ? '#9896FD' : '#FFFFFF'"
         [borderColor]="'none'"
         [title]="'Crear mazo'"
-        (click)="handleClick()"
         [hoverColor]="'#0600FF'"
         [disabled]="areFieldsEmpty()"
+        (click)="handleCreateDeck()"
         width="385px"
       ></app-btn-auth>
     </div>
     <ng-content></ng-content>
   </div>
+  <app-loading *ngIf="isLoading"></app-loading>
 </div>
