@@ -13,6 +13,7 @@ import { BtnOptionCardComponent } from '../../buttons/btn-option-card/btn-option
 })
 export class CardOptionThreeComponent  implements OnInit {
   @Input() isVisible = false;
+  @Input() deckId: string = '';
   @Output() close = new EventEmitter<void>();
 
   constructor(private router: Router) { }
@@ -25,7 +26,7 @@ export class CardOptionThreeComponent  implements OnInit {
   }
 
   handleEdit() {
-    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'editar' } });
+    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'editar', deckId: this.deckId } });
   }
 
   handleDelete() {

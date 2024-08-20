@@ -9,10 +9,10 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 // Interfaces
-interface Deck {
-  title: string;
-  description: string;
-}
+// interface Deck {
+//   title: string;
+//   description: string;
+// }
 // Components
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { ModalSComponent } from 'src/app/components/others/mosalSelection/modalSelection.component';
@@ -57,7 +57,7 @@ export class HomeViewPage implements OnInit {
   isModalVisible = false;
   isLoading: boolean = false;
 
-  decks: Deck[] = [];
+  decks: Array<any> = [];
 
   constructor(
     private router: Router,
@@ -71,15 +71,20 @@ export class HomeViewPage implements OnInit {
       this.selectedOption = option;
     });
 
-    this.isLoading = true;
-    const token = await this.capacitorPreferencesService.getToken();
-    if (token) {
-      const decksResponse = await this.getDecksByUser(token);
-      for (const deck of decksResponse) {
-        this.decks.push({ title: deck.nam_deck, description: '' });
+    try {
+      this.isLoading = true;
+      const token = await this.capacitorPreferencesService.getToken();
+      if (token) {
+        const decksResponse = await this.getDecksByUser(token);
+        for (const deck of decksResponse) {
+          this.decks.push({ id: deck.id, title: deck.nam_deck, description: '' });
+        }
       }
+    } catch (error) {
+      return console.error(error);
+    } finally {
+      this.isLoading = false;
     }
-    this.isLoading = false;
   }
 
   handleClick() {

@@ -14,7 +14,6 @@ export class CapacitorPreferencesService {
 
   async getUserName(): Promise<string | null> {
     const response = await Preferences.get({ key: 'userName' });
-    console.log(response);
     const { value } = response;
     return value;
   }

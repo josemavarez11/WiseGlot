@@ -232,11 +232,11 @@
       </div>
     </div>
   </div>
-  <app-card-option-box-one [isVisible]="isModalVisible" (close)="closeModal()"/>
+  <app-card-option-box-one [isVisible]="isModalVisible" [deckId]="deckId" (close)="closeModal()"/>
   <!-- Modal de dos botones Freeze y Eliminar -->
   <!-- <app-card-option-box-two [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()"/> -->
   <!-- Modal de tres opciones Seleccionar, Editar y Eliminar -->
-  <app-card-option-three [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()"/>
+  <app-card-option-three [isVisible]="isModalVisibleTwo" [deckId]="deckId" (close)="closeModalTwo()"/>
   <!-- Modal de Resetear y Eliminar -->
-   
+  <app-loading *ngIf="isLoading"></app-loading>
 </div>

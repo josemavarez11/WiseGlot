@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, Router } from '@angular/router';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 // Components
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { CardOptionBoxOneComponent } from 'src/app/components/others/card-option-box-one/card-option-box-one.component';
@@ -15,6 +15,9 @@ import {
 import { CardOptionDaySelectorComponent } from "../../components/others/card-option-day-selector/card-option-day-selector.component";
 import { CardOptionThreeComponent } from 'src/app/components/others/card-option-three/card-option-three.component';
 import { DeleteResetModalComponent } from 'src/app/components/others/delete-reset-modal/delete-reset-modal.component';
+import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { ApiResponse, ApiService } from 'src/services/api.service';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 
 @Component({
   selector: 'app-inside-deck-view',
@@ -34,24 +37,59 @@ import { DeleteResetModalComponent } from 'src/app/components/others/delete-rese
     CardOptionBoxTwoComponent,
     CardOptionDaySelectorComponent,
     CardOptionThreeComponent,
-    DeleteResetModalComponent
+    DeleteResetModalComponent,
+    LoadingComponent,
 ],
 })
 export class InsideDeckViewPage implements OnInit {
   isModalVisible = false;
   isModalVisibleTwo = false;
-  constructor(private router: Router) {}
-
-  ngOnInit() {}
-
   showReverso = false;
-  cards = [
-    { front: 'Frente A', back: 'Reverso A' },
-    { front: 'Frente B', back: 'Reverso B' }
-  ];
+  deckId: string = '';
+  isLoading: boolean = false;
+  cards: Array<any> = [];
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private capacitorPreferencesService: CapacitorPreferencesService
+  ) {}
+
+  async ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.deckId = params['deckId'];
+    });
+
+    try {
+      this.isLoading = true;
+      const token = await this.capacitorPreferencesService.getToken();
+      if (token) {
+        const getCardsResponse = await this.getCardsByDeck(this.deckId, token);
+        if (getCardsResponse.length === 0) this.cards = []; //Añadir mensaje visual de que no hay cartas aún
+
+        for (const card of getCardsResponse) {
+          this.cards.push({ id: card.id, front: card.val_card, back: card.mea_card });
+        }
+      }
+    } catch (error) {
+      return console.error(error);
+    } finally {
+      this.isLoading = false;
+    }
+  }
 
   toggleVisibility() {
     this.showReverso = !this.showReverso;
+  }
+
+  private async getCardsByDeck(deckId: string, token: string): Promise<any> {
+    const response: ApiResponse = await this.apiService.get(
+      `/cards/get-cards-by-deck/${deckId}/`,
+      [['Authorization', `Bearer ${token}`]]
+    );
+
+    return response.data;
   }
 
   addCard() {
@@ -75,7 +113,7 @@ export class InsideDeckViewPage implements OnInit {
     this.isModalVisible = false;
   }
   handleClickAdd() {
-    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'agregar' }});
+    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'agregar', deckId: this.deckId } });
     this.closeModal();
   }
   settings(){

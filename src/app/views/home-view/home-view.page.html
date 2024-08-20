@@ -22,6 +22,7 @@
               [title]="deck.title"
               [description]="deck.description"
               [routerLink]="['/inside-deck-view']"
+              [queryParams]="{ deckId: deck.id }"
             ></app-decks>
           </div>
           <button class="add" (click)="openModal()">

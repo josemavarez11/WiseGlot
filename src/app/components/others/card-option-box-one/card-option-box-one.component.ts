@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CardOptionBoxOneComponent  implements OnInit {
   @Input() isVisible = false;
+  @Input() deckId: string = '';
   @Output() close = new EventEmitter<void>();
 
   constructor(private router: Router) { }
@@ -25,7 +26,7 @@ export class CardOptionBoxOneComponent  implements OnInit {
   }
 
   handleClickAdd() {
-    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'agregar' }});
+    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'agregar', deckId: this.deckId } });
     this.closeModal();
   }
 

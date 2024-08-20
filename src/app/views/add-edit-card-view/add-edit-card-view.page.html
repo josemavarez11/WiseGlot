@@ -10,14 +10,22 @@
   <div class="button">
     <div class="containerInput">
       <label>Parte delantera</label>
-      <input type="text" placeholder="Introducir texto aquí" />
+      <input
+        type="text"
+        placeholder="Introducir texto aquí"
+        [(ngModel)]="frontSide"
+      />
 
       <label>Parte trasera</label>
-      <input type="text" placeholder="Introducir texto aquí" />
+      <input
+        type="text"
+        placeholder="Introducir texto aquí"
+        [(ngModel)]="backSide"
+      />
     </div>
 
     <div class="containerBtn">
-      <button (click)="createCard()">Hecho</button>
+      <button (click)="handleDoneClick()">Hecho</button>
     </div>
   </div>
 </div>
@@ -34,14 +42,22 @@
   <div class="button">
     <div class="containerInput">
       <label>Parte delantera</label>
-      <input type="text" placeholder="Introducir texto aquí" />
+      <input
+        type="text"
+        placeholder="Introducir texto aquí"
+        [(ngModel)]="frontSide"
+      />
 
       <label>Parte trasera</label>
-      <input type="text" placeholder="Introducir texto aquí" />
+      <input
+        type="text"
+        placeholder="Introducir texto aquí"
+        [(ngModel)]="backSide"
+      />
     </div>
 
     <div class="containerBtn">
-      <button (click)="createCard()">Hecho</button>
+      <button (click)="handleDoneClick()">Hecho</button>
     </div>
   </div>
 </div>

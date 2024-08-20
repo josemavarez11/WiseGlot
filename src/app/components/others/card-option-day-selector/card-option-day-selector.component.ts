@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CardOptionDaySelectorComponent implements OnInit {
   @Input() isVisible = false;
+  @Input() deckId: string = '';
   @Output() close = new EventEmitter<void>();
   value = 40;
   min = 10;
@@ -28,7 +29,7 @@ export class CardOptionDaySelectorComponent implements OnInit {
   }
 
   handleClickAdd() {
-    this.router.navigate(['/add-edit-card-view']);
+    this.router.navigate(['/add-edit-card-view', { mode: 'agregar', deckId: this.deckId }]);
     this.closeModal();
   }
 
