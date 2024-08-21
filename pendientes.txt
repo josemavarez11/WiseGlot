@@ -1,5 +1,4 @@
 1. Falta subir la flecha de preferences 5. NO puede quedar a un lado.
-2. Cuando en la vista del chat, uso la flecha de retroceder, aparezco en una pantalla negra.
 3. El proceso de reestablecimiento de contraseña está fallando. (José)
 4. Organizar nombres de las pantallas según el figma.
 5. Se necesita urgente el modal de error.
@@ -13,7 +12,6 @@ Esto solo para cuando se edita la carta, no para cuando la carta se crea nueva.
 12. Los botones del modal de resetar progreso y eliminar mazo no tienen cambio de color en el hover.
 13. En la vista de confirmacion para borrar la cuenta sale de título actualizar correo.
 También, el botón de "sí, eliminar" aparece pegado al de cancelar.
-14. En la vista de home, arreglar el estilo de la foto de perfil para que se ajuste bien a la forma redonda de su contenedor.
 
 DE LA API:
 1. Modificar método de getDecksByuser para traer la cantidad de cartas de cada mazo.

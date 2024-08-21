@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 // Components
 import { InputAnimateComponent } from 'src/app/components/buttons/input-animate/input-animate.component';
 
@@ -14,6 +14,8 @@ import { InputAnimateComponent } from 'src/app/components/buttons/input-animate/
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, InputAnimateComponent, RouterLink]
 })
 export class ChatViewPage implements OnInit {
+
+  constructor(private router: Router) { }
   messages: { text: string, sent: boolean, loading?: boolean }[] = [];
   @ViewChild('chatContainer') chatContainer!: ElementRef;
 
@@ -67,5 +69,8 @@ export class ChatViewPage implements OnInit {
     try {
       this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
     } catch (err) { }
+  }
+  back(){
+    this.router.navigate(['/home']);
   }
 }
