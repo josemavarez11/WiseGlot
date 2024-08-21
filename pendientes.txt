@@ -12,14 +12,13 @@ Esto solo para cuando se edita la carta, no para cuando la carta se crea nueva.
 11. Deshabilitar y cambiar color del boton de Hecho cuando no hayan valores en los inputs de edit-add-card
 12. Los botones del modal de resetar progreso y eliminar mazo no tienen cambio de color en el hover.
 13. En la vista de confirmacion para borrar la cuenta sale de título actualizar correo.
-También, el botón de sí, eliminar aparece pegado al de cancelar
+También, el botón de "sí, eliminar" aparece pegado al de cancelar.
+14. En la vista de home, arreglar el estilo de la foto de perfil para que se ajuste bien a la forma redonda de su contenedor.
 
 DE LA API:
-1. Que el metodo de login devuelva la url de la foto de perfil.
-2. Hacer método getAllDataByDeck para obtener todas las cartas, y todos los datos de un mazo según su id (cantidad de cartas, cartas por repasar, etc).
+1. Modificar método de getDecksByuser para traer la cantidad de cartas de cada mazo.
 
 ** Filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior. (José)
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
 ** Guardar los datos del usuario en local storage y usarlos en user settings view. (José)
-** Renderizar foto del usuario en el home. (José)
 ** Renderizar el nombre del idioma a estudiar en preferences 2. (José)

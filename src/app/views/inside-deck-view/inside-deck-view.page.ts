@@ -46,8 +46,13 @@ export class InsideDeckViewPage implements OnInit {
   isModalVisibleTwo = false;
   showReverso = false;
   deckId: string = '';
+  deckName: string = '';
   isLoading: boolean = false;
   cards: Array<any> = [];
+  cardsNotStudiedAmount: number = 0;
+  cardsToReviewAmount: number = 0;
+  cardsNotStudied: Array<any> = [];
+  cardsToReview: Array<any> = [];
 
   constructor(
     private router: Router,
@@ -66,11 +71,17 @@ export class InsideDeckViewPage implements OnInit {
       const token = await this.capacitorPreferencesService.getToken();
       if (token) {
         const getCardsResponse = await this.getCardsByDeck(this.deckId, token);
-        if (getCardsResponse.length === 0) this.cards = []; //Añadir mensaje visual de que no hay cartas aún
+        if (getCardsResponse.cards_details.length === 0) this.cards = []; //Añadir mensaje visual de que no hay cartas aún
 
-        for (const card of getCardsResponse) {
+        for (const card of getCardsResponse.cards_details) {
           this.cards.push({ id: card.id, front: card.val_card, back: card.mea_card });
         }
+
+        this.deckName = getCardsResponse.deck_details.name;
+        this.cardsNotStudiedAmount = getCardsResponse.deck_details.cards_not_studied.amount;
+        this.cardsToReviewAmount = getCardsResponse.deck_details.cards_to_review.amount;
+        this.cardsNotStudied = getCardsResponse.deck_details.cards_not_studied.cards;
+        this.cardsToReview = getCardsResponse.deck_details.cards_to_review.cards;
       }
     } catch (error) {
       return console.error(error);
@@ -85,7 +96,7 @@ export class InsideDeckViewPage implements OnInit {
 
   private async getCardsByDeck(deckId: string, token: string): Promise<any> {
     const response: ApiResponse = await this.apiService.get(
-      `/cards/get-cards-by-deck/${deckId}/`,
+      `/cards/get-all-data-by-deck/${deckId}/`,
       [['Authorization', `Bearer ${token}`]]
     );
 

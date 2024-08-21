@@ -84,6 +84,7 @@ export class LoginViewPage implements OnInit {
     const { user, token } = response;
     await this.capacitorPreferencesService.setToken(token);
     await this.capacitorPreferencesService.setUserName(user.name);
+    await this.capacitorPreferencesService.setUserURLProfilePic(user.profile_img_url);
     return this.router.navigate(['/home']);
   }
 

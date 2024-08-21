@@ -109,7 +109,7 @@
 
     <!-- Inside deck view -->
     <div class="top2">
-      <h3>MAZO 1</h3>
+      <h3>{{deckName}}</h3>
       <button (click)="settings()">
         <svg
           version="1.1"
@@ -188,12 +188,12 @@
         </svg>
         <div class="contentNumberCard">
           <div class="study">
-            <p class="number">3</p>
+            <p class="number">{{cardsNotStudiedAmount}}</p>
             <p class="character">Sin estudiar</p>
           </div>
 
           <div class="study">
-            <p class="number">5</p>
+            <p class="number">{{cardsToReviewAmount}}</p>
             <p class="character">Por Repasar</p>
           </div>
         </div>
