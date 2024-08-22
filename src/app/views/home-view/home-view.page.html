@@ -20,7 +20,7 @@
             <app-decks
               *ngFor="let deck of decks"
               [title]="deck.title"
-              [description]="deck.description"
+              [description]="deck.description + ' cartas agregadas'"
               [routerLink]="['/inside-deck-view']"
               [queryParams]="{ deckId: deck.id }"
             ></app-decks>

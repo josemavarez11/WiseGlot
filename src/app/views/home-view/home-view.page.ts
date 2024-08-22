@@ -77,7 +77,7 @@ export class HomeViewPage implements OnInit {
       if (token) {
         const decksResponse = await this.getDecksByUser(token);
         for (const deck of decksResponse) {
-          this.decks.push({ id: deck.id, title: deck.nam_deck, description: '' });
+          this.decks.push({ id: deck.id, title: deck.nam_deck, description: deck.cards_amount });
         }
       }
     } catch (error) {

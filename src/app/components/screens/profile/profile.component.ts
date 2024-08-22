@@ -62,7 +62,7 @@ export class ProfileComponent  implements OnInit {
   }
 
   async handleLogOut() {
-    await this.capacitorPreferencesService.deleteToken();
+    await this.capacitorPreferencesService.clearAll();
     this.router.navigate(['/login'])
   }
 

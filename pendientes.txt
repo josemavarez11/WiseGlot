@@ -1,22 +1,19 @@
 1. Falta subir la flecha de preferences 5. NO puede quedar a un lado.
-3. El proceso de reestablecimiento de contraseña está fallando. (José)
-4. Organizar nombres de las pantallas según el figma.
-5. Se necesita urgente el modal de error.
-6. Corregir problemas en la vista de crear mazo
-7. La lista de cartas en inside deck view parece no tener scrolling activo
-8. No se ve bien el modal de opciones de una carta
-9. Los tres botones que abren el modal de opciones de una carta parecen no estar correctamente centrados en el contenedor.
-10. Cuando se le da a editar una carta, en ambos inputs debería aparecer los valores actuales que corresponden ahí para la carta-
+2. El proceso de reestablecimiento de contraseña está fallando. (José)
+3. Organizar nombres de las pantallas según el figma.
+4. Se necesita urgente el modal de error.
+5. Corregir problemas en la vista de crear mazo
+6. La lista de cartas en inside deck view parece no tener scrolling activo
+7. No se ve bien el modal de opciones de una carta
+8. Los tres botones que abren el modal de opciones de una carta parecen no estar correctamente centrados en el contenedor.
+9. Cuando se le da a editar una carta, en ambos inputs debería aparecer los valores actuales que corresponden ahí para la carta-
 Esto solo para cuando se edita la carta, no para cuando la carta se crea nueva.
-11. Deshabilitar y cambiar color del boton de Hecho cuando no hayan valores en los inputs de edit-add-card
-12. Los botones del modal de resetar progreso y eliminar mazo no tienen cambio de color en el hover.
-13. En la vista de confirmacion para borrar la cuenta sale de título actualizar correo.
+10. Deshabilitar y cambiar color del boton de Hecho cuando no hayan valores en los inputs de edit-add-card
+11. Los botones del modal de resetar progreso y eliminar mazo no tienen cambio de color en el hover.
+12. En la vista de confirmacion para borrar la cuenta sale de título actualizar correo.
 También, el botón de "sí, eliminar" aparece pegado al de cancelar.
 
-DE LA API:
-1. Modificar método de getDecksByuser para traer la cantidad de cartas de cada mazo.
 
 ** Filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior. (José)
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
 ** Guardar los datos del usuario en local storage y usarlos en user settings view. (José)
-** Renderizar el nombre del idioma a estudiar en preferences 2. (José)

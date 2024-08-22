@@ -51,12 +51,11 @@ export class PreferencesView1Page implements OnInit {
   preferenceThree: { id: string, des_reason_to_study: string, icon: string }[] = [];
   preferenceFour: { id: string, des_language_level: string, icon: string }[] = [];
   preferenceFive: { id: string, des_topic: string, icon: string }[] = [];
-
-  titles: string[] = [
+  titles = [
     '¿Cuál es tu idioma nativo?',
     '¿Qué idioma quieres aprender?',
-    '¿Por qué quieres practicar inglés?',
-    '¿Cuál es tu nivel de inglés?',
+    `¿Por qué quieres practicar Inglés?`,
+    `¿Cuál es tu nivel de Inglés?`,
     'Selecciona tus temas de interés',
   ];
 
@@ -75,6 +74,7 @@ export class PreferencesView1Page implements OnInit {
   ) {}
 
   async ngOnInit() {
+
     const options = await this.getPreferencesOptions();
 
     if (!options) return;
@@ -142,6 +142,9 @@ export class PreferencesView1Page implements OnInit {
       this.step = 1;
     } else if (step === 1) {
       this.step = 2;
+      const languageToStudySelected = this.selectedPreferencesAll[1].des_language;
+      this.titles[2] = `¿Por qué quieres practicar ${languageToStudySelected}?`;
+      this.titles[3] = `¿Cuál es tu nivel de ${languageToStudySelected}?`;
     } else if (step === 2) {
       this.step = 3;
     } else if (step === 3) {
@@ -156,7 +159,7 @@ export class PreferencesView1Page implements OnInit {
 
     }
   }
-  
+
 
   private async savePreferences(preferences: any[], token: string): Promise<string | null> {
     this.isLoading = true;
@@ -171,13 +174,13 @@ export class PreferencesView1Page implements OnInit {
         },
         [['Authorization', `Bearer ${token}`]]
       );
-  
+
       if (response.error) {
         console.error(message.ERROR.SavePrefereces, response);
         this.router.navigate(['/register-welcome']);
         return null;
       }
-  
+
       return response.data.id;
     } catch (error) {
       console.error(message.ERROR.SavePrefereces, error);
@@ -187,7 +190,7 @@ export class PreferencesView1Page implements OnInit {
       this.isLoading = false;
     }
   }
-  
+
   private async saveTopicPreference(id_user_preference: string, id_topic: string, token: string): Promise<boolean> {
     this.isLoading = true;
     try {
@@ -196,13 +199,13 @@ export class PreferencesView1Page implements OnInit {
         { id_user_preference, id_topic },
         [['Authorization', `Bearer ${token}`]]
       );
-  
+
       if (response.error) {
         console.error(message.ERROR.SavePreferencesTopics, response);
         this.router.navigate(['/register-welcome']);
         return false;
       }
-  
+
       return true;
     } catch (error) {
       console.error(message.ERROR.SavePreferencesTopics, error);
@@ -212,23 +215,19 @@ export class PreferencesView1Page implements OnInit {
       this.isLoading = false;
     }
   }
-  
+
 
   selectOne(option: any): void {
     option.selected = true;
     this.selectedOption = true;
     this.selectedPreferencesAll.push(option);
-    console.log('Selected preferences:', this.selectedPreferencesAll);
     this.selectOption(this.step);
-    // this.step++;
   }
 
   selectTwo(option: any): void {
     option.selected = true;
     this.selectedOption = true;
     this.selectedPreferencesAll.push(option);
-    console.log('Selected preferences:', this.selectedPreferencesAll);
-    // this.step++;
     this.selectOption(this.step);
   }
 
@@ -245,7 +244,6 @@ export class PreferencesView1Page implements OnInit {
         this.selectedPreferencesAll.splice(index, 1);
       }
     }
-    console.log('Selected preferences:', this.selectedPreferencesAll);
   }
 
   onTopicSelected(topic: any): void {
@@ -255,7 +253,6 @@ export class PreferencesView1Page implements OnInit {
     } else {
       this.preferenceTopic.splice(index, 1);
     }
-    console.log('Selected topics:', this.preferenceTopic);
   }
 
   isSelected(option: any): boolean {
