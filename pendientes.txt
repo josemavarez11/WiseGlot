@@ -13,7 +13,5 @@ Esto solo para cuando se edita la carta, no para cuando la carta se crea nueva.
 12. En la vista de confirmacion para borrar la cuenta sale de título actualizar correo.
 También, el botón de "sí, eliminar" aparece pegado al de cancelar.
 
-
-** Filtrar la lista de idioma en preferences 2 para que no salga el idioma que se seleccionó en la anterior. (José)
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
 ** Guardar los datos del usuario en local storage y usarlos en user settings view. (José)

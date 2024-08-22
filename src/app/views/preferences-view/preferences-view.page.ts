@@ -139,6 +139,7 @@ export class PreferencesView1Page implements OnInit {
     const token = await this.capacitorPreferencesService.getToken();
     this.selectedOption = false;
     if (step === 0) {
+      this.preferenceOneAndTwo = this.preferenceOneAndTwo.filter(item => item.id !== this.selectedPreferencesAll[0].id);
       this.step = 1;
     } else if (step === 1) {
       this.step = 2;

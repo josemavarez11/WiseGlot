@@ -90,8 +90,10 @@ export class RegisterViewPage implements OnInit {
 
     if (!response) return;
 
-    const { token } = response;
+    const { user, token } = response;
     await this.capacitorPreferencesService.setToken(token);
+    await this.capacitorPreferencesService.setUserName(user.nam_user);
+    await this.capacitorPreferencesService.setUserURLProfilePic(user.profile_img_url);
     return this.router.navigate(['/register-welcome']);
   }
 
