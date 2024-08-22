@@ -84,6 +84,14 @@ p{
   width: 170px;
   height: 50px;
 }
+.btn-primary:hover{
+  background-color: #FF0000;
+  color: white;
+}
+.btn-secondary:hover{
+  background-color: #0600FF;
+  color: white;
+}
 .contentBtn{
   display: flex;
   justify-content: center;

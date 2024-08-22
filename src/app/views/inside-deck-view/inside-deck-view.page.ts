@@ -53,6 +53,7 @@ export class InsideDeckViewPage implements OnInit {
   cardsToReviewAmount: number = 0;
   cardsNotStudied: Array<any> = [];
   cardsToReview: Array<any> = [];
+  selectedCard: any;
 
   constructor(
     private router: Router,
@@ -112,9 +113,18 @@ export class InsideDeckViewPage implements OnInit {
     this.isModalVisible = true;
   }
 
-  openModalTwo() {
+  openModalTwo(card: any) {
+    this.selectedCard = card; 
     this.isModalVisibleTwo = true;
-  }
+    console.log('Front:', card.front);
+    console.log('Back:', card.back);
+
+    // Pasar la carta seleccionada al modal
+    const modalComponent = new CardOptionThreeComponent(this.router); // Crea una instancia del modal
+    modalComponent.card = card; // Asigna la carta al modal
+    modalComponent.isVisible = true; // Muestra el modal
+}
+
 
   closeModalTwo() {
     this.isModalVisibleTwo = false;

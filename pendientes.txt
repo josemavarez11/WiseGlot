@@ -3,15 +3,9 @@
 3. Organizar nombres de las pantallas según el figma.
 4. Se necesita urgente el modal de error.
 5. Corregir problemas en la vista de crear mazo
-6. La lista de cartas en inside deck view parece no tener scrolling activo
-7. No se ve bien el modal de opciones de una carta
-8. Los tres botones que abren el modal de opciones de una carta parecen no estar correctamente centrados en el contenedor.
-9. Cuando se le da a editar una carta, en ambos inputs debería aparecer los valores actuales que corresponden ahí para la carta-
-Esto solo para cuando se edita la carta, no para cuando la carta se crea nueva.
-10. Deshabilitar y cambiar color del boton de Hecho cuando no hayan valores en los inputs de edit-add-card
-11. Los botones del modal de resetar progreso y eliminar mazo no tienen cambio de color en el hover.
-12. En la vista de confirmacion para borrar la cuenta sale de título actualizar correo.
-También, el botón de "sí, eliminar" aparece pegado al de cancelar.
 
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
 ** Guardar los datos del usuario en local storage y usarlos en user settings view. (José)
+
+edmundog04@gmail.com
+jose.3011

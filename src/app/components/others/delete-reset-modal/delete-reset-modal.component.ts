@@ -28,5 +28,6 @@ export class DeleteResetModalComponent implements OnInit {
 
   executeAction() {
     this.action.emit(); // Emitir el evento de acción
+    this.isVisible = false;
   }
 }

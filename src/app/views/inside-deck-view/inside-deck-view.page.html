@@ -212,7 +212,7 @@
           <div class="card" *ngFor="let card of cards; let i = index">
             <div class="line1">
               <h6>{{ card.front }}</h6>
-              <button (click)="openModalTwo()">
+              <button (click)="openModalTwo(card)">
                 <svg class="options" viewBox="0 0 4 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="2" cy="2" r="2" fill="#040099"/>
                   <circle cx="2" cy="9" r="2" fill="#040099"/>
@@ -233,10 +233,7 @@
     </div>
   </div>
   <app-card-option-box-one [isVisible]="isModalVisible" [deckId]="deckId" (close)="closeModal()"/>
-  <!-- Modal de dos botones Freeze y Eliminar -->
-  <!-- <app-card-option-box-two [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()"/> -->
   <!-- Modal de tres opciones Seleccionar, Editar y Eliminar -->
-  <app-card-option-three [isVisible]="isModalVisibleTwo" [deckId]="deckId" (close)="closeModalTwo()"/>
-  <!-- Modal de Resetear y Eliminar -->
+  <app-card-option-three [isVisible]="isModalVisibleTwo" [deckId]="deckId" (close)="closeModalTwo()" [card]="selectedCard"/>
   <app-loading *ngIf="isLoading"></app-loading>
 </div>

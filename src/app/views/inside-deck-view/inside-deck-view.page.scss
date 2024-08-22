@@ -189,6 +189,9 @@ p{
   align-items: center;
   flex-direction: column;
   gap: 10px;
+  max-height: 365px; /* Ajusta este valor según el tamaño deseado */
+  overflow-y: auto;
+  border-radius: 10px;
 }
 .card{
   width: 100%;
@@ -259,5 +262,5 @@ h6{
 
 .options{
   width: 8px;
-  height: 18px;
+  height: 16px;
 }

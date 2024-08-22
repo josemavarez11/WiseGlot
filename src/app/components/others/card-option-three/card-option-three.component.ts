@@ -11,12 +11,13 @@ import { BtnOptionCardComponent } from '../../buttons/btn-option-card/btn-option
   standalone: true,
   imports: [CommonModule, BtnOptionCardComponent],
 })
-export class CardOptionThreeComponent  implements OnInit {
+export class CardOptionThreeComponent implements OnInit {
   @Input() isVisible = false;
   @Input() deckId: string = '';
+  @Input() card: any; // Recibir la carta seleccionada como input
   @Output() close = new EventEmitter<void>();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -26,18 +27,30 @@ export class CardOptionThreeComponent  implements OnInit {
   }
 
   handleEdit() {
-    this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'editar', deckId: this.deckId } });
+    if (!this.card || !this.card.front || !this.card.back) {
+      console.error('Card data is missing:', this.card);
+      return;
+    }
+
+    this.router.navigate(['/add-edit-card-view'], {
+      queryParams: {
+        mode: 'editar',
+        deckId: this.deckId,
+        front: this.card.front,
+        back: this.card.back,
+      },
+    });
   }
 
   handleDelete() {
     console.log('Deleted');
   }
 
-  handleSelect(){
+  handleSelect() {
     console.log('Selected');
   }
 
-  handleFreeze(){
+  handleFreeze() {
     console.log('Freezed');
   }
 }

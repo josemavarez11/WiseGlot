@@ -1,7 +1,7 @@
 <!-- Container for "Editar Carta" -->
 <div class="Container" *ngIf="mode === 'editar'">
   <div class="top">
-    <button class="back" (click)="back()">
+    <button class="back" (click)="backk()">
       <img src="../../../assets/img/views/back-black.png" />
     </button>
     <h3>Editar Carta</h3>
@@ -33,7 +33,7 @@
 <!-- Container for "Agregar Carta" -->
 <div class="Container" *ngIf="mode === 'agregar'">
   <div class="top">
-    <button class="back" (click)="back()">
+    <button class="back" (click)="backk()">
       <img src="../../../assets/img/views/back-black.png" />
     </button>
     <h3>Agregar Carta</h3>
@@ -57,7 +57,18 @@
     </div>
 
     <div class="containerBtn">
-      <button (click)="handleDoneClick()">Hecho</button>
+      <button
+        [disabled]="isButtonDisabled"
+        [ngStyle]="{
+          'background-color': isButtonDisabled ? 'gray' : 'black',
+          'color': isButtonDisabled ? 'white' : 'white',
+          'cursor': isButtonDisabled ? 'not-allowed' : 'pointer'
+        }"
+        (click)="handleDoneClick()"
+      >
+        Hecho
+      </button>
     </div>
   </div>
 </div>
+
