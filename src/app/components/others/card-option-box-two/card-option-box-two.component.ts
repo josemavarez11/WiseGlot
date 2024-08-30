@@ -12,6 +12,7 @@ import { BtnOptionCardComponent } from '../../buttons/btn-option-card/btn-option
 })
 export class CardOptionBoxTwoComponent  implements OnInit {
   @Input() isVisible = false;
+  @Input() cardId: string = '';
   @Output() close = new EventEmitter<void>();
 
   constructor() { }

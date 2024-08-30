@@ -51,8 +51,7 @@ export class ApiService {
 
       return { data, status: response.status, error };
     } catch (error) {
-      console.log('entró en el catch del service')
-      console.error('API request error:', error);
+      console.log('entró en el catch del service', error)
       throw error;
     }
   }

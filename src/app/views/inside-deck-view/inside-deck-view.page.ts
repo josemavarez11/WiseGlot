@@ -114,13 +114,13 @@ export class InsideDeckViewPage implements OnInit {
   }
 
   openModalTwo(card: any) {
-    this.selectedCard = card; 
+    this.selectedCard = card;
     this.isModalVisibleTwo = true;
     console.log('Front:', card.front);
     console.log('Back:', card.back);
 
     // Pasar la carta seleccionada al modal
-    const modalComponent = new CardOptionThreeComponent(this.router); // Crea una instancia del modal
+    const modalComponent = new CardOptionThreeComponent(this.router, this.apiService, this.capacitorPreferencesService); // Crea una instancia del modal
     modalComponent.card = card; // Asigna la carta al modal
     modalComponent.isVisible = true; // Muestra el modal
 }
@@ -138,7 +138,7 @@ export class InsideDeckViewPage implements OnInit {
     this.closeModal();
   }
   settings(){
-    this.router.navigate(['/deck-settings-view']);
+    this.router.navigate(['/deck-settings-view'], { queryParams: { deckId: this.deckId } });
   }
   Study(){
     this.router.navigate(['/study-deck-view']);

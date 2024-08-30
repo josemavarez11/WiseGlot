@@ -3,6 +3,14 @@
 3. Organizar nombres de las pantallas según el figma.
 4. Se necesita urgente el modal de error.
 5. Corregir problemas en la vista de crear mazo
+6. Evitar el spanglish en el código. Por ejemplo,  en add-edit-card el mode se llamada "agregar"
+en vez de "add" y varias cosas están así.
+7. Al borrar una carta también debe aparecer el modal que dice que esta acción es irreversible.
+
+en api:
+- chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar
+- modificar el metodo de update card para que devuelva la carta actualizada para poder insertarla en el array de cartas en el front.
+- mejorar los códigos de estatus devueltos por los métodos que actualizan.
 
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
 ** Guardar los datos del usuario en local storage y usarlos en user settings view. (José)

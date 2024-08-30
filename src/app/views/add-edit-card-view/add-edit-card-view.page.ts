@@ -63,7 +63,12 @@ export class AddEditCardViewPage implements OnInit {
 
         return this.router.navigate(['/inside-deck-view']);
       } else {
-        // Edit card
+        const updateCardResponse = await this.updateCard(this.frontSide, this.backSide, token);
+
+        if (updateCardResponse.status !== 204) {
+          console.error('Error updating card');
+        }
+
         return this.router.navigate(['/inside-deck-view']);
       }
     } else {
@@ -83,7 +88,13 @@ export class AddEditCardViewPage implements OnInit {
     return response;
   }
 
-  private async updateCard(frontSide: string, backSide: string, token: string) {
-    // Update card
+  private async updateCard(val_card: string, mea_card: string, token: string) {
+    const response = await this.apiService.put(
+      `/cards/update-card/${this.cardId}/`,
+      { val_card, mea_card },
+      [['Authorization', `Bearer ${token}`]],
+    );
+
+    return response;
   }
 }

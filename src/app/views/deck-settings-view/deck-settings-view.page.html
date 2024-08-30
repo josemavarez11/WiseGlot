@@ -1,7 +1,7 @@
 <div class="Chat">
   <div class="ContentA">
     <section class="header">
-      <button class="back" [routerLink]="['/inside-deck-view']">
+      <button class="back" [routerLink]="['/inside-deck-view']" [queryParams]="{ deckId }">
         <img src="../../../assets/img/views/back-black.png" />
       </button>
       <img src="../../../assets/img/views/logoModal.png" class="logoApp" />
@@ -74,6 +74,6 @@
 
     />
   </div>
-  <app-delete-reset-modal [isVisible]="isModalVisible" (close)="closeModal()" title="Resetea progreso" option="Si, resetear" (action)="resetear()"/>
-   <app-delete-reset-modal [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()" title="Eliminar mazo" option="Si, eliminar" (action)="delete()"/>
+  <app-delete-reset-modal [isVisible]="isModalVisible" (close)="closeModal()" title="Reiniciar progreso" option="Si, reiniciar" (action)="handleResetDeck()"/>
+   <app-delete-reset-modal [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()" title="Eliminar mazo" option="Si, eliminar" (action)="handleDeleteDeck()"/>
 </div>
