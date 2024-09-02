@@ -5,13 +5,6 @@
 5. Corregir problemas en la vista de crear mazo
 
 11. está fallando el scroll to botom cuando se envía un mensaje nuevo y cuando se recibe un mensaje nuevo. (No entiendo)
-
-12. En generate cards, el boton de hecho debe estar opaco mientras no se haya seleccionado ninguna opción de las ofrecidas.
-
-13. El generate cards, el boton de cartas a generar solo está apareciendo al seleccionar una opción del menu.
-También debe aparecer al introducir manual el texto.
-En generate cards, debería haber un poco más de margenes a los lados, se ve el contenido muy pegado a los bordes. Comparar con el figma.
-
 en api:
 - chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar
 - modificar el metodo de update card para que devuelva la carta actualizada para poder insertarla en el array de cartas en el front.

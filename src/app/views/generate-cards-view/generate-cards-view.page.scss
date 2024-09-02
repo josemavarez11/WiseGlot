@@ -43,6 +43,9 @@ button {
 .button {
   width: 90%;
   height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .back {
   width: 15px;
@@ -53,6 +56,8 @@ button {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 90%;
+  justify-content: center;
 }
 .containerBtn {
   position: absolute;
@@ -100,6 +105,9 @@ h2 {
   font-size: 18px;
   font-weight: bold;
   color: #040099;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 15px;
 }
 .input-group {
   display: flex;
@@ -215,4 +223,15 @@ option.green {
   font-size: 14px;
   font-weight: bold;
   color: #000000;
+}
+button.disabled-btn {
+  background-color: #F0F0F0;
+  color: #ACACAC;
+  cursor: not-allowed;
+}
+
+button.enabled-btn {
+  background-color: #000;
+  color: #fff; 
+  cursor: pointer;
 }

@@ -1,12 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 // Components
 import { CardOptionDaySelectorComponent } from 'src/app/components/others/card-option-day-selector/card-option-day-selector.component';
@@ -35,16 +30,13 @@ export class GenerateCardsViewPage implements OnInit {
   isModalVisible = false;
 
   temas = [
-    {
-      value: 'Cultura y Entretenimiento',
-      display: 'Cultura y Entretenimiento',
-    },
+    { value: 'Cultura y Entretenimiento', display: 'Cultura y Entretenimiento' },
     { value: 'Literatura', display: 'Literatura' },
     { value: 'Trabajo', display: 'Trabajo' },
     { value: 'Ciencias', display: 'Ciencias' },
     { value: 'Economía', display: 'Economía' },
     { value: 'Comida', display: 'Comida' },
-    { value: 'Arte ', display: 'Arte ' },
+    { value: 'Arte', display: 'Arte' },
   ];
 
   ngOnInit(): void {
@@ -52,8 +44,13 @@ export class GenerateCardsViewPage implements OnInit {
   }
 
   constructor(private router: Router) {}
+
   @ViewChild('textInput') textInput!: ElementRef;
   @ViewChild('selectInput') selectInput!: ElementRef;
+
+  get isButtonEnabled(): boolean {
+    return this.textValue.trim().length > 0 || this.selectedValue.length > 0;
+  }
 
   onCheckboxChange(type: string) {
     if (type === 'text') {
@@ -64,7 +61,7 @@ export class GenerateCardsViewPage implements OnInit {
       this.isTextInputSelected = false;
       setTimeout(() => {
         this.selectInput.nativeElement.focus();
-        this.selectInput.nativeElement.click(); // Simulate click to open the select
+        this.selectInput.nativeElement.click();
       }, 0);
     }
     this.updateShowNewCard();
@@ -79,14 +76,13 @@ export class GenerateCardsViewPage implements OnInit {
   }
 
   updateShowNewCard() {
-    this.showNewCard =
-      this.textValue.length > 0 || this.selectedValue.length > 0;
+    this.showNewCard = this.isButtonEnabled;
   }
 
   resetSelectInput() {
     this.selectInput.nativeElement.value = '';
     this.selectedValue = '';
-    this.selectInput.nativeElement.options[0].selected = true; // Reset to the default option
+    this.selectInput.nativeElement.options[0].selected = true;
     this.updateShowNewCard();
   }
 
