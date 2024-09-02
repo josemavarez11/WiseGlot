@@ -197,8 +197,10 @@ h3{
   }
 }
 .imgProfile{
-  width: 14.79px;
-  height: 20.04px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 
