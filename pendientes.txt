@@ -1,7 +1,7 @@
 1. Falta subir la flecha de preferences 5. NO puede quedar a un lado.
 2. El proceso de reestablecimiento de contraseña está fallando. (José)
 3. Organizar nombres de las pantallas según el figma.
-4. Se necesita urgente el modal de error.
+4. Se necesita urgente el modal de error. (Me faltan los estilos)
 11. está fallando el scroll to botom cuando se envía un mensaje nuevo y cuando se recibe un mensaje nuevo. (No entiendo)
 
 en api:
