@@ -45,31 +45,41 @@ export class ChatViewPage implements OnInit, OnDestroy {
   async ngOnInit() {
     try {
       this.isLoading = true;
-
+  
       const getUrlProfilePicResponse = await this.capacitorPreferencesService.getUserURLProfilePic();
       this.url_profile_pic = getUrlProfilePicResponse ? getUrlProfilePicResponse : '';
-
+  
       const token = await this.capacitorPreferencesService.getToken();
-
-      if(token) {
+  
+      if (token) {
         this.webSocketService.connect(token);
         this.subscription = this.webSocketService.messages$.subscribe((message) => {
           console.log('Message received:', message);
+  
+          // Eliminar la animación de carga
+          const loadingIndex = this.messages.findIndex(msg => msg.loading);
+          if (loadingIndex !== -1) {
+            this.messages.splice(loadingIndex, 1);
+          }
+  
+          // Agregar la respuesta de la API
           this.messages.push({ text: message, sent: false });
+  
+          // Desplazar hacia abajo para mostrar la respuesta
           this.scrollToBottom();
         });
-
+  
         const getMessagesResponse = await this.getMessagesByUser(token);
-
+  
         if (getMessagesResponse.status !== 200 || 204) return console.error('Error getting messages');
-
-        for(let message of getMessagesResponse.data){
+  
+        for (let message of getMessagesResponse.data) {
           if (message.con_message) {
             this.messages.push({ text: message.con_message, sent: true });
             if (message.con_response) this.messages.push({ text: message.con_response, sent: false });
           }
         }
-
+  
       } else return console.error('No token found');
     } catch (error) {
       console.error(error);
@@ -91,20 +101,11 @@ export class ChatViewPage implements OnInit, OnDestroy {
       // Añadir el mensaje de carga
       this.messages.push({ text: '', sent: false, loading: true });
   
-      // Guardar el índice del mensaje de carga
-      const loadingIndex = this.messages.length - 1;
-  
       console.log('Message sent:', message);
   
       this.webSocketService.sendMessage(message);
   
-      // Simular la recepción de la respuesta después de un tiempo
-      setTimeout(() => {
-        // Eliminar la animación de carga
-        this.messages.splice(loadingIndex, 1);
-        this.scrollToBottom();
-      }, 500);
-  
+      // Desplazar hacia abajo para mostrar el mensaje y la animación
       this.scrollToBottom();
     }
   }
