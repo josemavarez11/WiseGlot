@@ -2,9 +2,8 @@
 2. El proceso de reestablecimiento de contraseña está fallando. (José)
 3. Organizar nombres de las pantallas según el figma.
 4. Se necesita urgente el modal de error.
-5. Corregir problemas en la vista de crear mazo
-
 11. está fallando el scroll to botom cuando se envía un mensaje nuevo y cuando se recibe un mensaje nuevo. (No entiendo)
+
 en api:
 - chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar
 - modificar el metodo de update card para que devuelva la carta actualizada para poder insertarla en el array de cartas en el front.

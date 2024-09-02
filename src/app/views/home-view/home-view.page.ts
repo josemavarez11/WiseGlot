@@ -66,6 +66,9 @@ export class HomeViewPage implements OnInit {
     private apiService: ApiService
   ) {}
 
+  test(){
+    console.log('test');
+  }
   async ngOnInit() {
     this.navbarSelectionService.selectedOption$.subscribe((option) => {
       this.selectedOption = option;
@@ -86,11 +89,6 @@ export class HomeViewPage implements OnInit {
       this.isLoading = false;
     }
   }
-
-  handleClick() {
-    this.router.navigate(['/login']);
-  }
-
   openModal() {
     this.isModalVisible = true;
   }

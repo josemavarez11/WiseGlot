@@ -16,6 +16,8 @@ import { LoadingComponent } from 'src/app/components/others/loading/loading.comp
 export class ModalCreateDecksComponent {
   @Input() isVisible = false;
   @Output() close = new EventEmitter<void>();
+  @Output() click = new EventEmitter<void>();
+  @Input() externalFunction: (() => void) | null = null; // Propiedad para la función externa
   nameDecks: string = '';
   isLoading: boolean = false;
 
@@ -35,38 +37,44 @@ export class ModalCreateDecksComponent {
     return this.nameDecks.trim() === '';
   }
 
-  async handleCreateDeck() {
-    if (this.nameDecks.trim() !== '') {
-      this.isLoading = true;
-      const token = await this.capacitorPreferencesService.getToken();
-
-      if (token) {
-        const createDeckResponse = await this.createDeck(token, this.nameDecks);
-      }
-
-      this.isLoading = false;
-      this.closeModal();
+  handleClick(){
+    if (this.externalFunction) {
+      this.externalFunction(); // Ejecuta la función externa si está definida
     }
-    this.closeModal();
-  }
-
-  private async createDeck(token: string, nam_deck: string): Promise<any> {
-    const response: ApiResponse = await this.apiService.post(
-      '/cards/create-deck/',
-      { nam_deck },
-      [['Authorization', `Bearer ${token}`]],
-      true
-    )
-
-    if (response.error) {
-      console.error('Error creating deck: ', response.error);
-      return;
-    }
-
-    return response.data;
   }
 
   onInputChange() {
     // Esto provocará una reevaluación del template y, por lo tanto, cambiará el color del botón
   }
+
+  // async handleCreateDeck() {
+  //   if (this.nameDecks.trim() !== '') {
+  //     this.isLoading = true;
+  //     const token = await this.capacitorPreferencesService.getToken();
+
+  //     if (token) {
+  //       const createDeckResponse = await this.createDeck(token, this.nameDecks);
+  //     }
+
+  //     this.isLoading = false;
+  //     this.closeModal();
+  //   }
+  //   this.closeModal();
+  // }
+
+  // private async createDeck(token: string, nam_deck: string): Promise<any> {
+  //   const response: ApiResponse = await this.apiService.post(
+  //     '/cards/create-deck/',
+  //     { nam_deck },
+  //     [['Authorization', `Bearer ${token}`]],
+  //     true
+  //   )
+
+  //   if (response.error) {
+  //     console.error('Error creating deck: ', response.error);
+  //     return;
+  //   }
+
+  //   return response.data;
+  // }
 }

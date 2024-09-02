@@ -9,8 +9,8 @@
     </div>
     <div class="body">
       <p>
-        <b>Crea tu propio mazo.</b> Controla tu progreso y mejora constantemente con un
-        enfoque personalizado.
+        <b>Crea tu propio mazo.</b> Controla tu progreso y mejora constantemente
+        con un enfoque personalizado.
       </p>
       <input
         type="text"
@@ -18,16 +18,27 @@
         [(ngModel)]="nameDecks"
         (input)="onInputChange()"
       />
-      <app-btn-auth
+      <!-- <app-btn-auth
         [color]="areFieldsEmpty() ? '#CDCCFF' : '#0600FF'"
         [textColor]="areFieldsEmpty() ? '#9896FD' : '#FFFFFF'"
         [borderColor]="'none'"
         [title]="'Crear mazo'"
         [hoverColor]="'#0600FF'"
         [disabled]="areFieldsEmpty()"
-        (click)="handleCreateDeck()"
+        (click)="handleClick()"
         width="385px"
-      ></app-btn-auth>
+      ></app-btn-auth> -->
+      <button
+      class="btn-create"
+      [ngStyle]="{
+        'background-color': areFieldsEmpty() ? '#CDCCFF' : '#0600FF',
+        'color': areFieldsEmpty() ? '#9896FD' : '#FFFFFF'
+      }"
+      [disabled]="areFieldsEmpty()"
+      (click)="handleClick()"
+    >
+      Crear nuevo mazo
+    </button>
     </div>
     <ng-content></ng-content>
   </div>
