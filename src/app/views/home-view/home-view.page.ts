@@ -65,9 +65,9 @@ export class HomeViewPage implements OnInit {
     private capacitorPreferencesService: CapacitorPreferencesService,
     private apiService: ApiService
   ) {}
-
-  test(){
-    console.log('test');
+// Funcion de crear mazo que se le pasa al modal
+  createDeck(){
+    console.log('Funcion de Creacion de mazo');
   }
   async ngOnInit() {
     this.navbarSelectionService.selectedOption$.subscribe((option) => {

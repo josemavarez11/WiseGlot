@@ -43,7 +43,7 @@
   <app-modal-create-decks
    [isVisible]="isModalVisible"
    (close)="closeModal()"
-   [externalFunction]="test"
+   [externalFunction]="createDeck"
    />
    <app-loading *ngIf="isLoading"></app-loading>
 </ion-content>
