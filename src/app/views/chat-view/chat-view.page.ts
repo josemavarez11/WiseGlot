@@ -85,21 +85,30 @@ export class ChatViewPage implements OnInit, OnDestroy {
 
   handleSend(message: string): void {
     if (message.trim()) {
-      // Encuentra la posición del mensaje en carga, si existe
-      const loadingIndex = this.messages.findIndex(message => message.loading);
-
-      // Inserta el mensaje enviado antes del mensaje en carga
-      if (loadingIndex !== -1) this.messages.splice(loadingIndex, 0, { text: message, sent: true });
-      // Agrega el mensaje al final si no hay mensaje en carga
-      else this.messages.push({ text: message, sent: true });
-
+      // Añadir el mensaje enviado por el usuario
+      this.messages.push({ text: message, sent: true });
+  
+      // Añadir el mensaje de carga
+      this.messages.push({ text: '', sent: false, loading: true });
+  
+      // Guardar el índice del mensaje de carga
+      const loadingIndex = this.messages.length - 1;
+  
       console.log('Message sent:', message);
-
+  
       this.webSocketService.sendMessage(message);
-
+  
+      // Simular la recepción de la respuesta después de un tiempo
+      setTimeout(() => {
+        // Eliminar la animación de carga
+        this.messages.splice(loadingIndex, 1);
+        this.scrollToBottom();
+      }, 500);
+  
       this.scrollToBottom();
     }
   }
+  
 
   private scrollToBottom(): void {
     try {
