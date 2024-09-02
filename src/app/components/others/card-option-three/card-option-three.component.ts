@@ -43,7 +43,7 @@ export class CardOptionThreeComponent implements OnInit {
 
     this.router.navigate(['/add-edit-card-view'], {
       queryParams: {
-        mode: 'editar',
+        mode: 'edit',
         deckId: this.deckId,
         front: this.card.front,
         back: this.card.back,

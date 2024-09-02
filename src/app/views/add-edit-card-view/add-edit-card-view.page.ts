@@ -30,7 +30,7 @@ export class AddEditCardViewPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.mode = params['mode'] || 'agregar'; // 'agregar' es el valor predeterminado
+      this.mode = params['mode'] || 'add'; // 'agregar' es el valor predeterminado
       this.deckId = params['deckId'] || '';
       this.frontSide = params['front'] || '';
       this.backSide = params['back'] || '';
@@ -44,7 +44,7 @@ export class AddEditCardViewPage implements OnInit {
   }
 
   get isButtonDisabled(): boolean {
-    return this.mode === 'agregar' && !(this.frontSide && this.backSide);
+    return this.mode === 'add' && !(this.frontSide && this.backSide);
   }
 
   backk() {
@@ -54,7 +54,7 @@ export class AddEditCardViewPage implements OnInit {
   async handleDoneClick() {
     const token = await this.capacitorPreferencesService.getToken();
     if (token) {
-      if (this.mode === 'agregar') {
+      if (this.mode === 'add') {
         const createCardResponse = await this.createCard(this.frontSide, this.backSide, token, this.deckId);
 
         if (createCardResponse.status !== 201) {
