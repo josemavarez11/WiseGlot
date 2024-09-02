@@ -235,5 +235,7 @@
   <app-card-option-box-one [isVisible]="isModalVisible" [deckId]="deckId" (close)="closeModal()"/>
   <!-- Modal de tres opciones Seleccionar, Editar y Eliminar -->
   <app-card-option-three [isVisible]="isModalVisibleTwo" [deckId]="deckId" (close)="closeModalTwo()" [card]="selectedCard"/>
+  <!-- Modal de acciones ireversibles -->
+   
   <app-loading *ngIf="isLoading"></app-loading>
 </div>

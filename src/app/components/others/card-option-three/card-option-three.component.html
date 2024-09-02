@@ -39,7 +39,7 @@
       [textColor]="'red'"
       [borderColor]="'none'"
       [title]="'Eliminar'"
-      (click)="handleDelete()"
+      (click)="handleDeleteModal()"
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/trashRed.png'"
@@ -47,4 +47,5 @@
     </div>
     <ng-content></ng-content>
   </div>
+  <app-delete-reset-modal [isVisible]="isModalVisible" (close)="closeModalTwo()" title="Reiniciar progreso" option="Si, reiniciar" (action)="handleDelete()"/>
 </div>

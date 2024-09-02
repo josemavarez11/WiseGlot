@@ -6,19 +6,21 @@ import { BtnOptionCardComponent } from '../../buttons/btn-option-card/btn-option
 import { LoadingComponent } from '../loading/loading.component';
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+import { DeleteResetModalComponent } from '../delete-reset-modal/delete-reset-modal.component';
 
 @Component({
   selector: 'app-card-option-three',
   templateUrl: './card-option-three.component.html',
   styleUrls: ['./card-option-three.component.scss'],
   standalone: true,
-  imports: [CommonModule, BtnOptionCardComponent, LoadingComponent],
+  imports: [CommonModule, BtnOptionCardComponent, LoadingComponent, DeleteResetModalComponent],
 })
 export class CardOptionThreeComponent implements OnInit {
   @Input() isVisible = false;
   @Input() deckId: string = '';
   @Input() card: any; // Recibir la carta seleccionada como input
   @Output() close = new EventEmitter<void>();
+  isModalVisible = false;
 
   isLoading: boolean = false;
 
@@ -33,6 +35,9 @@ export class CardOptionThreeComponent implements OnInit {
   closeModal() {
     this.isVisible = false;
     this.close.emit();
+  }
+  closeModalTwo() {
+    this.isModalVisible = false;
   }
 
   handleEdit() {
@@ -81,6 +86,11 @@ export class CardOptionThreeComponent implements OnInit {
       this.isLoading = false;
       return this.closeModal();
     }
+  }
+
+  handleDeleteModal(){
+    
+    this.isModalVisible = true;
   }
 
   handleSelect() {

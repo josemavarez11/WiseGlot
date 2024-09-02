@@ -4,9 +4,6 @@
 4. Se necesita urgente el modal de error.
 5. Corregir problemas en la vista de crear mazo
 
-6. Evitar el spanglish en el código. Por ejemplo,  en add-edit-card el mode se llamada "agregar"
-en vez de "add" y varias cosas están así.
-7. Al borrar una carta también debe aparecer el modal que dice que esta acción es irreversible.
 9. No se está viendo la animación de las estrellas mientras se genera el mensaje.
 10. Las estrellas de la animación deben ser iguales a las que tiene el icono de los mazos en el navbar.
 11. está fallando el scroll to botom cuando se envía un mensaje nuevo y cuando se recibe un mensaje nuevo.
