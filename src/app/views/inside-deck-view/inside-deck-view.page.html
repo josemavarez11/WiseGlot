@@ -236,6 +236,6 @@
   <!-- Modal de tres opciones Seleccionar, Editar y Eliminar -->
   <app-card-option-three [isVisible]="isModalVisibleTwo" [deckId]="deckId" (close)="closeModalTwo()" [card]="selectedCard"/>
   <!-- Modal Error -->
-  <app-modal-error [isVisible]="isModalErrorVisible" (close)="closeModalError()" title="cmskfmskfknksksn" option="skfnskfsnbgfs" [redirectTo]="'/login'"/>
+  <app-modal-error [isVisible]="isModalErrorVisible" (close)="closeModalError()"/>
   <app-loading *ngIf="isLoading"></app-loading>
 </div>

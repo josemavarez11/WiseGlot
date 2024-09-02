@@ -1,16 +1,48 @@
 <div class="modal-overlay" *ngIf="isVisible">
   <div class="modal-background"></div>
   <div class="modal-content">
-    <div class="body">
-      <div class="top">
-        <h2>{{title}}</h2>
+    <article class="modal">
+      <div class="modal-content-A">
+        <svg
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 362 361.9"
+          style="enable-background: new 0 0 362 361.9"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M0,192.23c0-7.54,0-15.08,0-22.62c0.21-1.14,0.45-2.28,0.63-3.42c1.34-8.71,2.08-17.57,4.1-26.12
+		C27.63,43.03,122.02-16.6,219.65,4.1c79.93,16.95,139.67,88.06,142.25,169.66c1.51,47.98-13.28,90.44-44.97,126.58
+		c-27.9,31.82-62.98,51.41-104.73,58.82c-6.58,1.17-13.24,1.84-19.87,2.74c-7.54,0-15.08,0-22.63,0c-0.9-0.2-1.8-0.51-2.72-0.58
+		c-19.29-1.44-37.99-5.56-55.66-13.42C51.74,321.41,15.35,276.2,2.77,212.1C1.48,205.55,0.91,198.86,0,192.23z M181.23,28.21
+		C97,28.03,28.62,96.12,28.29,180.52c-0.33,84.28,68.03,152.91,152.51,153.11c84.22,0.19,152.6-67.89,152.95-152.31
+		C334.1,97.02,265.74,28.4,181.23,28.21z"
+            />
+            <path
+              d="M166.88,150.69c0-14.72-0.01-29.43,0-44.15c0.01-9.21,5.82-15.48,14.24-15.44c8.24,0.04,14.03,6.31,14.03,15.3
+		c0.02,29.55,0.02,59.1,0,88.66c-0.01,8.87-5.94,15.29-14.07,15.35c-8.08,0.06-14.18-6.44-14.2-15.21
+		C166.85,180.36,166.88,165.52,166.88,150.69z"
+            />
+            <path
+              d="M180.97,265.8c-10.55-0.01-19.05-8.53-19.04-19.08c0.02-10.47,8.66-19.09,19.12-19.06c10.47,0.03,19.06,8.66,19.04,19.15
+		C200.08,257.36,191.56,265.82,180.97,265.8z"
+            />
+          </g>
+        </svg>
+        <p class="p">!Error!</p>
       </div>
-      <div class="bottom">
-        <p>Esta acción es irreversible</p>
-        <div class="contentBtn">
-        </div>
+      <div class="modal-content-B">
+        <p>
+          Ocurrió un error al realizar la operación, por favor intente nuevamente.
+        </p>
+        <button (click)="closeModal()">Aceptar</button>
       </div>
-    </div>
+    </article>
     <ng-content></ng-content>
   </div>
 </div>
