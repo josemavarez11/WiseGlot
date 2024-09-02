@@ -18,6 +18,7 @@ import { DeleteResetModalComponent } from 'src/app/components/others/delete-rese
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 
 @Component({
   selector: 'app-inside-deck-view',
@@ -39,11 +40,13 @@ import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.s
     CardOptionThreeComponent,
     DeleteResetModalComponent,
     LoadingComponent,
+    ModalErrorComponent,
 ],
 })
 export class InsideDeckViewPage implements OnInit {
   isModalVisible = false;
   isModalVisibleTwo = false;
+  isModalErrorVisible = false;
   showReverso = false;
   deckId: string = '';
   deckName: string = '';
@@ -141,7 +144,10 @@ export class InsideDeckViewPage implements OnInit {
     this.router.navigate(['/deck-settings-view'], { queryParams: { deckId: this.deckId } });
   }
   Study(){
-    this.router.navigate(['/study-deck-view']);
+    this.isModalErrorVisible = true;
+  }
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }
 

@@ -1,0 +1,16 @@
+<div class="modal-overlay" *ngIf="isVisible">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="body">
+      <div class="top">
+        <h2>{{title}}</h2>
+      </div>
+      <div class="bottom">
+        <p>Esta acción es irreversible</p>
+        <div class="contentBtn">
+        </div>
+      </div>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>
