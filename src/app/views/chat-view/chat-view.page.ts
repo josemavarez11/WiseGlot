@@ -52,9 +52,16 @@ export class ChatViewPage implements OnInit, OnDestroy {
       const token = await this.capacitorPreferencesService.getToken();
 
       if(token) {
+        this.webSocketService.connect(token);
+        this.subscription = this.webSocketService.messages$.subscribe((message) => {
+          console.log('Message received:', message);
+          this.messages.push({ text: message, sent: false });
+          this.scrollToBottom();
+        });
+
         const getMessagesResponse = await this.getMessagesByUser(token);
 
-        if (getMessagesResponse.status !== 200) return console.error('Error getting messages');
+        if (getMessagesResponse.status !== 200 || 204) return console.error('Error getting messages');
 
         for(let message of getMessagesResponse.data){
           if (message.con_message) {
@@ -63,12 +70,6 @@ export class ChatViewPage implements OnInit, OnDestroy {
           }
         }
 
-        this.webSocketService.connect(token);
-        this.subscription = this.webSocketService.messages$.subscribe((message) => {
-          console.log('Message received:', message);
-          this.messages.push({ text: message, sent: false });
-          this.scrollToBottom();
-        });
       } else return console.error('No token found');
     } catch (error) {
       console.error(error);

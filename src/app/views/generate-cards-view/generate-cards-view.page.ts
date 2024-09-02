@@ -103,9 +103,11 @@ export class GenerateCardsViewPage implements OnInit {
   back() {
     this.router.navigate(['/inside-deck-']);
   }
+
   closeModal() {
     this.isModalVisible = false;
   }
+
   openModal() {
     this.isModalVisible = true;
   }

@@ -10,6 +10,10 @@ en vez de "add" y varias cosas están así.
 9. No se está viendo la animación de las estrellas mientras se genera el mensaje.
 10. Las estrellas de la animación deben ser iguales a las que tiene el icono de los mazos en el navbar.
 11. está fallando el scroll to botom cuando se envía un mensaje nuevo y cuando se recibe un mensaje nuevo.
+12. En generate cards, el boton de hecho debe estar opaco mientras no se haya seleccionado ninguna opción de las ofrecidas.
+13. El generate cards, el boton de cartas a generar solo está apareciendo al seleccionar una opción del menu.
+También debe aparecer al introducir manual el texto.
+En generate cards, debería haber un poco más de margenes a los lados, se ve el contenido muy pegado a los bordes. Comparar con el figma.
 
 en api:
 - chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar
