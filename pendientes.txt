@@ -4,10 +4,10 @@
 4. Se necesita urgente el modal de error.
 5. Corregir problemas en la vista de crear mazo
 
-9. No se está viendo la animación de las estrellas mientras se genera el mensaje.
-10. Las estrellas de la animación deben ser iguales a las que tiene el icono de los mazos en el navbar.
-11. está fallando el scroll to botom cuando se envía un mensaje nuevo y cuando se recibe un mensaje nuevo.
+11. está fallando el scroll to botom cuando se envía un mensaje nuevo y cuando se recibe un mensaje nuevo. (No entiendo)
+
 12. En generate cards, el boton de hecho debe estar opaco mientras no se haya seleccionado ninguna opción de las ofrecidas.
+
 13. El generate cards, el boton de cartas a generar solo está apareciendo al seleccionar una opción del menu.
 También debe aparecer al introducir manual el texto.
 En generate cards, debería haber un poco más de margenes a los lados, se ve el contenido muy pegado a los bordes. Comparar con el figma.
