@@ -34,38 +34,45 @@ export class EditUserDataViewPage implements OnInit {
   }
 
   async handleDoneClick(){
-    const token = await this.capacitorPreferencesService.getToken();
-    if (token) await this.updateData(this.option, this.title, token);
-    return this.routerBack.navigate(['/home']);
+    try {
+      const token = await this.capacitorPreferencesService.getToken();
+      if (token) {
+        const updateUserResponse = await this.updateUser(this.option, this.title, token);
+        const userData = await this.capacitorPreferencesService.getUserData();
+
+        if(updateUserResponse) {
+          if(this.option === 'Dirección de correo') userData.email = updateUserResponse.email;
+          if(this.option === 'Nombre') userData.name = updateUserResponse.name;
+          await this.capacitorPreferencesService.setUserData(userData);
+        }
+      }
+    } catch (error) {
+      return console.error('Error updating: ', error);
+    } finally {
+      this.isLoading = false;
+      return this.routerBack.navigate(['/home']);
+    }
   }
 
-  private async updateData(option: string, newData: string, token: string) {
-    this.isLoading = true;
-
+  private async updateUser(option: string, newData: string, token: string) {
     let prop;
     if (option === 'Dirección de correo') prop = 'ema_user';
     if (option === 'Nombre') prop = 'nam_user';
 
-    try {
-      const response: ApiResponse = await this.apiService.put(
-        '/users/update-user/',
-        { [prop as string]: newData },
-        [['Authorization', `Bearer ${token}`]],
-        false
-      );
 
-      if (response.error) {
-        console.error('Error updating email: ', response.error);
-        return;
-      }
+    const response: ApiResponse = await this.apiService.put(
+      '/users/update-user/',
+      { [prop as string]: newData },
+      [['Authorization', `Bearer ${token}`]],
+      true
+    );
 
+    if (response.error) {
+      console.error('Error updating email: ', response.error);
       return;
-    } catch (error) {
-      console.error('Error updating email: ', error);
-      return;
-    } finally {
-      this.isLoading = false;
     }
+
+    return response.data;
   }
 
   back(){

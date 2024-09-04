@@ -70,46 +70,49 @@ export class LoginViewPage implements OnInit {
   }
 
   async handleClick(): Promise<any> {
-    this.isLoading = true;
+    try {
+      this.isLoading = true;
 
-    if (!this.areFieldsValid()) {
+      if (!this.areFieldsValid()) return;
+
+      const response = await this.login(this.email, this.password);
+
+      if(!response) return;
+
+      const { user, token } = response;
+      await this.loadAppContent(user, token);
+
+      return this.router.navigate(['/home']);
+    } catch (error) {
+      console.error('Error logging in: ', error);
+    } finally {
       this.isLoading = false;
-      return;
     }
+  }
 
-    const response = await this.login(this.email, this.password);
-
-    if(!response) return;
-
-    const { user, token } = response;
-    await this.capacitorPreferencesService.setToken(token);
-    await this.capacitorPreferencesService.setUserName(user.name);
-    await this.capacitorPreferencesService.setUserURLProfilePic(user.profile_img_url);
-    return this.router.navigate(['/home']);
+  private async loadAppContent(user: any, token: string): Promise<any> {
+    await Promise.all([
+      this.capacitorPreferencesService.setToken(token),
+      this.capacitorPreferencesService.setUserData(user),
+      this.capacitorPreferencesService.saveAppTopics()
+    ]);
   }
 
   private async login(email: string, password: string): Promise<any> {
-    try {
-      const response: ApiResponse = await this.apiService.post('/auth/login/', {
-        email,
-        password
-      });
+    const response: ApiResponse = await this.apiService.post('/auth/login/', {
+      email,
+      password
+    });
 
-      if (response.status === 400) {
-        this.showError(message.ERROR.InvalidCredentials);
-        return;
-      } else if (response.status !== 200) {
-        this.showError(message.ERROR.Unknown);
-        return;
-      } else {
-        const data = response.data;
-        return data;
-      }
-    } catch (error: any) {
-      this.showError(error.message);
+    if (response.status === 400) {
+      this.showError(message.ERROR.InvalidCredentials);
       return;
-    } finally {
-      this.isLoading = false;
+    } else if (response.status !== 200) {
+      this.showError(message.ERROR.Unknown);
+      return;
+    } else {
+      const data = response.data;
+      return data;
     }
   }
 

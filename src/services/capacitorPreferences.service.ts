@@ -1,31 +1,48 @@
 import { Injectable } from '@angular/core';
 import { GetResult, Preferences } from '@capacitor/preferences';
+import { ApiService, ApiResponse } from './api.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CapacitorPreferencesService {
-  constructor() {}
+  private userDataSubject = new BehaviorSubject<any>(null);
+  data$ = this.userDataSubject.asObservable();
 
-  async setUserName(userName: string): Promise<void> {
-    await Preferences.set({ key: 'userName', value: userName });
-    return;
+  constructor(private apiService: ApiService) {}
+
+  async saveAppTopics(): Promise<void> {
+    try {
+      const response = await this.apiService.get('/learning/get-topics/')
+      await Preferences.set({ key: 'appTopics', value: JSON.stringify(response.data) });
+    } catch (error) {
+      console.error('Failed to fetch and store app topics:', error);
+    }
   }
 
-  async getUserName(): Promise<string | null> {
-    const response = await Preferences.get({ key: 'userName' });
+  async getAppTopics(): Promise<Array<any> | null> {
+    const response = await Preferences.get({ key: 'appTopics' })
     const { value } = response;
-    return value;
+
+    if(value === null) return null;
+
+    return JSON.parse(value);
   }
 
-  async setUserURLProfilePic(url: string): Promise<void> {
-    await Preferences.set({ key: 'userURLProfilePic', value: url });
+  async getUserData(): Promise<any> {
+    const response = await Preferences.get({ key: 'userData' });
+    const { value } = response;
+
+    if(value === null) return null;
+
+    return JSON.parse(value);
+  }
+
+  async setUserData(userData: any): Promise<void> {
+    await Preferences.set({ key: 'userData', value: JSON.stringify(userData) });
+    this.userDataSubject.next(JSON.stringify(userData));
     return;
-  }
-
-  async getUserURLProfilePic(): Promise<string | null> {
-    const { value } = await Preferences.get({ key: 'userURLProfilePic' });
-    return value;
   }
 
   async setToken(token: string): Promise<void> {

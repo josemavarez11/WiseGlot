@@ -17,10 +17,10 @@ export class HomeComponent  implements OnInit {
   constructor(private capacitorPreferencesService: CapacitorPreferencesService) { }
 
   async ngOnInit() {
-    const getUserNameResponse = await this.capacitorPreferencesService.getUserName();
-    this.userName = getUserNameResponse ? getUserNameResponse : '';
-    const getUrlProfilePicResponse = await this.capacitorPreferencesService.getUserURLProfilePic();
-    this.url_profile_pic = getUrlProfilePicResponse ? getUrlProfilePicResponse : '';
+
+    const getUserDataResponse = await this.capacitorPreferencesService.getUserData();
+    this.userName = getUserDataResponse ? getUserDataResponse.name : '';
+    this.url_profile_pic = getUserDataResponse ? getUserDataResponse.profile_img_url : '';
   }
 
 

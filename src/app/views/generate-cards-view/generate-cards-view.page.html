@@ -1,5 +1,5 @@
 <div class="Container">
-  
+
   <div class="top">
     <button class="back" (click)="back()">
       <img src="../../../assets/img/views/back-black.png" />
@@ -65,11 +65,11 @@
           (ngModelChange)="onSelectChange()"
         >
           <option class="green" value="" disabled selected>Selecciona algún tema</option>
-          <option *ngFor="let tema of temas" [value]="tema.value" class="green">
-            {{ tema.display }}
+          <option *ngFor="let topic of topics" [value]="topic.des_topic" class="green">
+            {{ topic.des_topic }}
           </option>
         </select>
-        
+
       </div>
       <!-- Siguiente Paso -->
       <div class="newCard" *ngIf="showNewCard">
@@ -79,7 +79,7 @@
         </button>
       </div>
       <!-- Siguiente Paso -->
-       
+
     </div>
     <div class="containerBtn">
       <button (click)="createCard()"

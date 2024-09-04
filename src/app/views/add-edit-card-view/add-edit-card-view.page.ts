@@ -48,7 +48,7 @@ export class AddEditCardViewPage implements OnInit {
   }
 
   backk() {
-    this.router.navigate(['/inside-deck-view']);
+    this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId }});
   }
 
   async handleDoneClick() {
@@ -61,15 +61,15 @@ export class AddEditCardViewPage implements OnInit {
           console.error('Error creating card');
         }
 
-        return this.router.navigate(['/inside-deck-view']);
+        return this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId }});
       } else {
         const updateCardResponse = await this.updateCard(this.frontSide, this.backSide, token);
 
-        if (updateCardResponse.status !== 204) {
+        if (updateCardResponse.status !== 200) {
           console.error('Error updating card');
         }
 
-        return this.router.navigate(['/inside-deck-view']);
+        return this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId }});
       }
     } else {
       console.error('No token found');
@@ -93,6 +93,7 @@ export class AddEditCardViewPage implements OnInit {
       `/cards/update-card/${this.cardId}/`,
       { val_card, mea_card },
       [['Authorization', `Bearer ${token}`]],
+      true
     );
 
     return response;

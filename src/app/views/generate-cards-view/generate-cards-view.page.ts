@@ -5,6 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { Router } from '@angular/router';
 // Components
 import { CardOptionDaySelectorComponent } from 'src/app/components/others/card-option-day-selector/card-option-day-selector.component';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 
 @Component({
   selector: 'app-generate-cards-view',
@@ -28,22 +29,16 @@ export class GenerateCardsViewPage implements OnInit {
   selectedValue: string = '';
   showNewCard: boolean = false;
   isModalVisible = false;
+  topics: Array<any> = [];
 
-  temas = [
-    { value: 'Cultura y Entretenimiento', display: 'Cultura y Entretenimiento' },
-    { value: 'Literatura', display: 'Literatura' },
-    { value: 'Trabajo', display: 'Trabajo' },
-    { value: 'Ciencias', display: 'Ciencias' },
-    { value: 'Economía', display: 'Economía' },
-    { value: 'Comida', display: 'Comida' },
-    { value: 'Arte', display: 'Arte' },
-  ];
+  constructor(private router: Router, private capacitorPreferencesService: CapacitorPreferencesService) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.updateShowNewCard();
-  }
 
-  constructor(private router: Router) {}
+    const topics = await this.capacitorPreferencesService.getAppTopics();
+    this.topics = topics ? topics : [];
+  }
 
   @ViewChild('textInput') textInput!: ElementRef;
   @ViewChild('selectInput') selectInput!: ElementRef;

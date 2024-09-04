@@ -91,10 +91,32 @@ export class RegisterViewPage implements OnInit {
     if (!response) return;
 
     const { user, token } = response;
-    await this.capacitorPreferencesService.setToken(token);
-    await this.capacitorPreferencesService.setUserName(user.nam_user);
-    await this.capacitorPreferencesService.setUserURLProfilePic(user.profile_img_url);
+    await this.loadAppContent(user, token);
     return this.router.navigate(['/register-welcome']);
+  }
+
+  private async loadAppContent(userRegisterResponse: any, token: string): Promise<any> {
+    await this.capacitorPreferencesService.setToken(token);
+    await this.capacitorPreferencesService.saveAppTopics();
+
+    const userDataResponse = await this.apiService.get(
+      '/users/get-user-data/',
+      [['Authorization', `Bearer ${token}`]],
+      true
+    );
+
+    if(userDataResponse.error) return;
+
+    await this.capacitorPreferencesService.setUserData({
+      id: userDataResponse.data.id,
+      name: userDataResponse.data.nam_user,
+      email: userDataResponse.data.ema_user,
+      subscription: {
+        id: userRegisterResponse.id_subscription_user,
+        description: userDataResponse.data.des_subscription
+      },
+      profile_img_url: userDataResponse.data.profile_img_url
+    });
   }
 
   private async register(fullname: string, email: string, password: string): Promise<any> {

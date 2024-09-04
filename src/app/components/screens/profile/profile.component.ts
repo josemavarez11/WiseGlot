@@ -33,13 +33,45 @@ export class ProfileComponent  implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.isLoading = true;
-    const userData = await this.getUserData();
-    this.name = userData.nam_user;
-    this.email = userData.ema_user;
-    this.profile_img_url = userData.profile_img_url;
-    this.subscription = userData.des_subscription;
-    this.isLoading = false;
+    console.log('se inició profile')
+    try {
+      this.isLoading = true;
+      await this.loadUserProfileData();
+    } catch (error) {
+      return console.error('Error al cargar la información del usuario:', error);
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  private async loadUserProfileData() {
+    var userDataCP;
+    this.capacitorPreferencesService.data$.subscribe(async (userData) => {
+      userDataCP = JSON.parse(userData)
+      if(userDataCP !== null) {
+        this.name = userDataCP.name;
+        this.email = userDataCP.email;
+        this.profile_img_url = userDataCP.profile_img_url;
+        this.subscription = userDataCP.subscription.description;
+      }
+    });
+
+    userDataCP = await this.capacitorPreferencesService.getUserData();
+
+    if (userDataCP !== null) {
+      this.name = userDataCP.name;
+      this.email = userDataCP.email;
+      this.profile_img_url = userDataCP.profile_img_url;
+      this.subscription = userDataCP.subscription.description;
+    } else {
+      const userDataAPI = await this.getUserData();
+      if (userDataAPI) {
+        this.name = userDataAPI.nam_user;
+        this.email = userDataAPI.ema_user;
+        this.profile_img_url = userDataAPI.profile_img_url;
+        this.subscription = userDataAPI.des_subscription;
+      }
+    }
   }
 
   private async getUserData(): Promise<any> {
@@ -110,6 +142,10 @@ export class ProfileComponent  implements OnInit {
         console.error('Error al subir la imagen');
         return;
       }
+
+      const userData = await this.capacitorPreferencesService.getUserData();
+      userData.profile_img_url = imgURL;
+      await this.capacitorPreferencesService.setUserData(userData);
 
       this.profile_img_url = imgURL;
     } catch (error) {
