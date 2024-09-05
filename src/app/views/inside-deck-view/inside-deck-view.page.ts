@@ -19,6 +19,7 @@ import { LoadingComponent } from 'src/app/components/others/loading/loading.comp
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
+import { addIcons } from "ionicons";
 
 @Component({
   selector: 'app-inside-deck-view',
