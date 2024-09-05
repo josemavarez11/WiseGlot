@@ -2,7 +2,6 @@
 2. El proceso de reestablecimiento de contraseña está fallando. (José)
 3. Organizar nombres de las pantallas según el figma.
 5. Url NavBar
-7. Cuando no hay cartas
 
 en api:
 - chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar
