@@ -279,3 +279,11 @@ h6{
   flex-direction: column;
   gap: 10px;
 }
+
+.empty-deck{
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
