@@ -1,7 +1,9 @@
 1. Falta subir la flecha de preferences 5. NO puede quedar a un lado.
 2. El proceso de reestablecimiento de contraseña está fallando. (José)
 3. Organizar nombres de las pantallas según el figma.
-11. está fallando el scroll to botom cuando se envía un mensaje nuevo y cuando se recibe un mensaje nuevo. (No entiendo)
+5. Url NavBar
+6. Editar nombre del mazo 
+7. Cuando no hay cartas
 
 en api:
 - chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar
