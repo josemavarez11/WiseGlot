@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { OptionsProfileComponent } from '../../others/options-profile/options-profile.component';
 import { OptionProfileSubComponent } from '../../others/option-profile-sub/option-profile-sub.component';
 import { LoadingComponent } from '../../others/loading/loading.component';
-import { ConfirmLogOutComponent } from '../../others/confirm-log-out/confirm-log-out.component';
 // Services
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
@@ -16,7 +15,7 @@ import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fir
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: [OptionsProfileComponent, OptionProfileSubComponent, LoadingComponent, CommonModule, ConfirmLogOutComponent]
+  imports: [OptionsProfileComponent, OptionProfileSubComponent, LoadingComponent, CommonModule]
 })
 export class ProfileComponent  implements OnInit {
   subscription: string = ''
@@ -157,10 +156,8 @@ export class ProfileComponent  implements OnInit {
     }
   }
 
-  openModal(){
-    this.isVisibleModal = true;
+  navigate(){
+    this.router.navigate(['/confirm-log-out-view'])
   }
-  closeModal(){
-    this.isVisibleModal = false;
-  }
+
 }

@@ -85,7 +85,11 @@ export const routes: Routes = [
   {
     path: 'study-deck-view',
     loadComponent: () => import('./views/study-deck-view/study-deck-view.page').then( m => m.StudyDeckViewPage)
+  },  {
+    path: 'confirm-log-out-view',
+    loadComponent: () => import('./confirm-log-out-view/confirm-log-out-view.page').then( m => m.ConfirmLogOutViewPage)
   }
+
 
 
 
