@@ -45,6 +45,7 @@ import { addIcons } from "ionicons";
 ],
 })
 export class InsideDeckViewPage implements OnInit {
+  isEditing: boolean = false;
   isModalVisible = false;
   isModalVisibleTwo = false;
   isModalErrorVisible = false;
@@ -65,6 +66,16 @@ export class InsideDeckViewPage implements OnInit {
     private apiService: ApiService,
     private capacitorPreferencesService: CapacitorPreferencesService
   ) {}
+
+
+  // Funciones para habilitar y deshabilitar la edición del nombre del mazo
+  enableEditing() {
+    this.isEditing = true;
+  }
+
+  disableEditing() {
+    this.isEditing = false;
+  }
 
   async ngOnInit() {
     this.route.queryParams.subscribe(params => {

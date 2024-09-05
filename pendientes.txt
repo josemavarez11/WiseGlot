@@ -2,7 +2,6 @@
 2. El proceso de reestablecimiento de contraseña está fallando. (José)
 3. Organizar nombres de las pantallas según el figma.
 5. Url NavBar
-6. Editar nombre del mazo 
 7. Cuando no hay cartas
 
 en api:
