@@ -1,12 +1,9 @@
 1. Falta subir la flecha de preferences 5. NO puede quedar a un lado.
-2. El proceso de reestablecimiento de contraseña está fallando. (José)
-3. Organizar nombres de las pantallas según el figma.
-5. Url NavBar
+2. Organizar nombres de las pantallas según el figma.
+3. Url NavBar
 
 en api:
 - chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar
-- modificar el metodo de update card para que devuelva la carta actualizada para poder insertarla en el array de cartas en el front.
-- mejorar los códigos de estatus devueltos por los métodos que actualizan.
 
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
 ** Guardar los datos del usuario en local storage y usarlos en user settings view. (José)
