@@ -4,7 +4,7 @@
 
   <div class="top">
     <img src="../../../../assets/img/views/logoApp.png" alt="" class="logo" />
-    <button class="btnLogOut" (click)="handleLogOut()">
+    <button class="btnLogOut" (click)="openModal()">
       <svg
         version="1.1"
         id="Capa_1"
@@ -106,4 +106,10 @@
   <div class="delete">
     <a (click)="deleteUser()">Eliminar mi cuenta</a>
   </div>
+
+  <app-confirm-log-out
+    [isVisible]="isVisibleModal"
+    (close)="closeModal()"
+    [externalFunction]="handleLogOut"
+  />
 </div>
