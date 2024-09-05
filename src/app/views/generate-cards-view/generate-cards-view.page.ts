@@ -93,7 +93,7 @@ export class GenerateCardsViewPage implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/inside-deck-']);
+    this.router.navigate(['/inside-deck-view']);
   }
 
   closeModal() {

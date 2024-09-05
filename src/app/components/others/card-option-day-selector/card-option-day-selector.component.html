@@ -4,7 +4,7 @@
     <div class="body">
       <div class="top">
         <button (click)="closeModal()" class="closeModal">
-          <img src="../../../../assets/icons/equisBlue.png" alt="">
+          <img src="../../../../assets/icons/equisBlue.png" alt="" />
         </button>
       </div>
       <div class="middle">
@@ -12,36 +12,44 @@
           Establece la cantidad de cartas nuevas que deseas generar al día
         </h3>
         <div class="contentDay">
-          <button 
-            class="nextNum" 
-            *ngIf="!isCustomInput" 
-            (touchstart)="startDecreasing()" 
+          <button
+            class="nextNum"
+            *ngIf="!isCustomInput"
+            (touchstart)="startDecreasing()"
             (touchend)="stopAdjusting()"
             (touchcancel)="stopAdjusting()"
-          ><span><</span></button>
-          
+          >
+            <span><</span>
+          </button>
+
           <div class="contentInput">
-            <input type="number" [(ngModel)]="numberOfCards" [readonly]="!isCustomInput"/>
-            <p>cartas</p>
+            <input
+              type="number"
+              [(ngModel)]="numberOfCards"
+              [readonly]="!isCustomInput"
+            />
+            <p>{{ title }}</p>
           </div>
 
-          <button 
-            class="nextNum" 
-            *ngIf="!isCustomInput" 
-            (touchstart)="startIncreasing()" 
+          <button
+            class="nextNum"
+            *ngIf="!isCustomInput"
+            (touchstart)="startIncreasing()"
             (touchend)="stopAdjusting()"
             (touchcancel)="stopAdjusting()"
-          ><span>></span></button>
+          >
+            <span>></span>
+          </button>
         </div>
-
-        <button 
-          class="personalizado" 
-          [ngClass]="{'active': isCustomInput}" 
+        <p class="subTitle">{{ subTitle }}</p>
+        <button
+          class="personalizado"
+          [ngClass]="{ active: isCustomInput }"
           (click)="toggleCustomInput()"
         >
           Establecer número personalizado
         </button>
-        
+
         <button class="save" (click)="save()">Guardar</button>
       </div>
     </div>

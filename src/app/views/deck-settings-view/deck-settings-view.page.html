@@ -1,7 +1,11 @@
 <div class="Chat">
   <div class="ContentA">
     <section class="header">
-      <button class="back" [routerLink]="['/inside-deck-view']" [queryParams]="{ deckId }">
+      <button
+        class="back"
+        [routerLink]="['/inside-deck-view']"
+        [queryParams]="{ deckId }"
+      >
         <img src="../../../assets/img/views/back-black.png" />
       </button>
       <img src="../../../assets/img/views/logoModal.png" class="logoApp" />
@@ -20,6 +24,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/songs.png'"
+      (click)="openModalThree()"
     />
 
     <app-btn-option-card
@@ -30,6 +35,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/intervalo.png'"
+      (click)="openModalFour()"
     />
     <app-btn-option-card
       [color]="'#F0F0F0'"
@@ -39,6 +45,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/huellas.png'"
+      (click)="openModalFive()"
     />
 
     <app-btn-option-card
@@ -49,6 +56,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/fecha.png'"
+      (click)="openModalSix()"
     />
 
     <app-btn-option-card
@@ -71,9 +79,46 @@
       width="385px"
       [icon]="'../../../../assets/icons/trashRed.png'"
       (click)="openModalTwo()"
-
     />
   </div>
-  <app-delete-reset-modal [isVisible]="isModalVisible" (close)="closeModal()" title="Reiniciar progreso" option="Si, reiniciar" (action)="handleResetDeck()"/>
-   <app-delete-reset-modal [isVisible]="isModalVisibleTwo" (close)="closeModalTwo()" title="Eliminar mazo" option="Si, eliminar" (action)="handleDeleteDeck()"/>
+  <app-delete-reset-modal
+    [isVisible]="isModalVisible"
+    (close)="closeModal()"
+    title="Reiniciar progreso"
+    option="Si, reiniciar"
+    (action)="handleResetDeck()"
+  />
+  <app-delete-reset-modal
+    [isVisible]="isModalVisibleTwo"
+    (close)="closeModalTwo()"
+    title="Eliminar mazo"
+    option="Si, eliminar"
+    (action)="handleDeleteDeck()"
+  />
+  <!-- Modal de Creacion de Cartas -->
+  <app-card-option-day-selector
+    [isVisible]="isModalVisibleThree"
+    (close)="closeModalThree()"
+    title="cartas"
+    subTitle="(1200 nuevas cartas/mes)"
+  />
+  <app-card-option-day-selector
+    [isVisible]="isModalVisibleFour"
+    (close)="closeModalFour()"
+    title="cartas"
+    subTitle="(1200 nuevas cartas/mes)"
+  />
+
+  <app-card-option-day-selector
+    [isVisible]="isModalVisibleFive"
+    (close)="closeModalFive()"
+    title="cartas"
+    subTitle="(1200 nuevas cartas/mes)"
+  />
+  <app-card-option-day-selector
+    [isVisible]="isModalVisibleSix"
+    (close)="closeModalSix()"
+    title="cartas"
+    subTitle="(1200 nuevas cartas/mes)"
+  />
 </div>

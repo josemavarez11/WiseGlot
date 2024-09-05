@@ -9,6 +9,7 @@ import { DeleteResetModalComponent } from 'src/app/components/others/delete-rese
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+import { CardOptionDaySelectorComponent } from 'src/app/components/others/card-option-day-selector/card-option-day-selector.component';
 
 @Component({
   selector: 'app-deck-settings-view',
@@ -25,13 +26,19 @@ import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.s
     RouterLink,
     BtnOptionCardComponent,
     DeleteResetModalComponent,
-    LoadingComponent
+    LoadingComponent,
+    CardOptionDaySelectorComponent
   ],
 })
 export class DeckSettingsViewPage implements OnInit {
   isLoading: boolean = false;
   isModalVisible = false;
   isModalVisibleTwo = false;
+  // 
+  isModalVisibleThree = false;
+  isModalVisibleFour = false;
+  isModalVisibleFive = false;
+  isModalVisibleSix = false;
   deckId: string = '';
 
   constructor(
@@ -61,6 +68,37 @@ export class DeckSettingsViewPage implements OnInit {
 
   closeModal() {
     this.isModalVisible = false;
+  }
+  openModalThree() {
+    this.isModalVisibleThree = true;
+  }
+
+  openModalFour() {
+    this.isModalVisibleFour = true;
+  }
+
+  openModalFive() {
+    this.isModalVisibleFive = true;
+  }
+
+  openModalSix() {
+    this.isModalVisibleSix = true;
+  }
+
+  closeModalThree() {
+    this.isModalVisibleThree = false;
+  }
+
+  closeModalFour() {
+    this.isModalVisibleFour = false;
+  }
+
+  closeModalFive() {
+    this.isModalVisibleFive = false;
+  }
+
+  closeModalSix() {
+    this.isModalVisibleSix = false;
   }
 
   async handleResetDeck(){

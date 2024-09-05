@@ -15,6 +15,8 @@ export class CardOptionDaySelectorComponent implements OnInit {
   @Input() isVisible = false;
   @Output() close = new EventEmitter<void>();
   @Output() numberOfCardsChange = new EventEmitter<number>();
+  @Input() title: string = '';
+  @Input() subTitle: string = '';
 
   numberOfCards: number = 40;
   isCustomInput: boolean = false; // Variable para controlar el modo personalizado
@@ -74,6 +76,7 @@ export class CardOptionDaySelectorComponent implements OnInit {
   }
 
   save() {
+    console.log('Número de cartas a generar:', this.numberOfCards);
     this.numberOfCardsChange.emit(this.numberOfCards); // Emitir el número de cartas seleccionado
     this.closeModal();
   }
