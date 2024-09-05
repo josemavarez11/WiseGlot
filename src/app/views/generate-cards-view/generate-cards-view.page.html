@@ -75,7 +75,7 @@
       <div class="newCard" *ngIf="showNewCard">
         <div class="lineSeparate"></div>
         <button class="counterCard" (click)="openModal()">
-          <p>Cartas a generar: 10</p>
+          <p>Cartas a generar: {{ numberOfCardsToGenerate }}</p>
         </button>
       </div>
       <!-- Siguiente Paso -->
@@ -92,5 +92,6 @@
   <app-card-option-day-selector
     [isVisible]="isModalVisible"
     (close)="closeModal()"
+    (numberOfCardsChange)="onNumberOfCardsChange($event)"
   />
 </div>

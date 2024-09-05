@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%; 
-  height: 60%; 
+  height: 50%; 
   background: white;
   position: fixed;
   bottom: 0;  
@@ -31,6 +31,126 @@
   width: 90%;
   height: 80%;
   gap: 15px;
+}
+
+.top{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 90%;
+  height: 10%;
+}
+
+.middle{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  height: 90%;
+}
+
+h3{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #000;
+}
+
+.nextNum{
+  width: 50px;
+  height: 50px;
+  background-color: #F0F0F0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nextNum:active{
+  background-color: #0600FF;
+  color: white;
+}
+.contentDay{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+input{
+  width: 120px;
+  height: 70px;
+  font-size: 50px;
+  font-weight: bold;
+  color: #0600FF;
+  border: none;
+  outline: none;
+  text-align: center;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+.save{
+  margin-top: 30px;
+  width: 100%;
+  height: 120px;
+  background-color: #D3D3D3;
+  border-radius: 10px;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+}
+.save:active{
+  background-color: #0600FF;
+  color: white;
+}
+p{
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+span{
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+span:active{
+  color: white;
+}
+img{
+  width: 25px;
+  height: 25px;
+}
+.closeModal{
+  background-color: transparent;
+}
+.personalizado {
+  background-color: #D3D3D3;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 90%;
+  height: 120px;
+  border-radius: 10px;
+
+  &.active {
+    background-color: #0600FF;
+    color: white;
+  }
 }
 
 

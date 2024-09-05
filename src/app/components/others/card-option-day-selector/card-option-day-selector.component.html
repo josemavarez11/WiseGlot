@@ -2,17 +2,48 @@
   <div class="modal-background" (click)="closeModal()"></div>
   <div class="modal-content">
     <div class="body">
-      <mat-slider
-      min="10"
-      max="80"
-      step="1"
-      thumbLabel
-      tickInterval="10"
-      [(ngModel)]="value"
-      aria-labelledby="custom-range-label"
-    >
-      <span id="custom-range-label" matSliderThumbLabel>{{ value }}</span>
-    </mat-slider>
+      <div class="top">
+        <button (click)="closeModal()" class="closeModal">
+          <img src="../../../../assets/icons/equisBlue.png" alt="">
+        </button>
+      </div>
+      <div class="middle">
+        <h3>
+          Establece la cantidad de cartas nuevas que deseas generar al día
+        </h3>
+        <div class="contentDay">
+          <button 
+            class="nextNum" 
+            *ngIf="!isCustomInput" 
+            (touchstart)="startDecreasing()" 
+            (touchend)="stopAdjusting()"
+            (touchcancel)="stopAdjusting()"
+          ><span><</span></button>
+          
+          <div class="contentInput">
+            <input type="number" [(ngModel)]="numberOfCards" [readonly]="!isCustomInput"/>
+            <p>cartas</p>
+          </div>
+
+          <button 
+            class="nextNum" 
+            *ngIf="!isCustomInput" 
+            (touchstart)="startIncreasing()" 
+            (touchend)="stopAdjusting()"
+            (touchcancel)="stopAdjusting()"
+          ><span>></span></button>
+        </div>
+
+        <button 
+          class="personalizado" 
+          [ngClass]="{'active': isCustomInput}" 
+          (click)="toggleCustomInput()"
+        >
+          Establecer número personalizado
+        </button>
+        
+        <button class="save" (click)="save()">Guardar</button>
+      </div>
     </div>
     <ng-content></ng-content>
   </div>

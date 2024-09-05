@@ -30,6 +30,7 @@ export class GenerateCardsViewPage implements OnInit {
   showNewCard: boolean = false;
   isModalVisible = false;
   topics: Array<any> = [];
+  numberOfCardsToGenerate: number = 10;
 
   constructor(private router: Router, private capacitorPreferencesService: CapacitorPreferencesService) {}
 
@@ -102,4 +103,9 @@ export class GenerateCardsViewPage implements OnInit {
   openModal() {
     this.isModalVisible = true;
   }
+
+    // Método para actualizar el número de cartas desde el modal
+    onNumberOfCardsChange(newNumberOfCards: number) {
+      this.numberOfCardsToGenerate = newNumberOfCards;
+    }
 }
