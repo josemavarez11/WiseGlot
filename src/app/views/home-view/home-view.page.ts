@@ -81,6 +81,11 @@ export class HomeViewPage implements OnInit {
     } finally {
       this.isLoading = false;
     }
+
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation && navigation.extras.state &&  navigation.extras.state['deletedDeckId']) {
+      this.handleDeckDeleted(navigation.extras.state['deletedDeckId']);
+    }
   }
 
   openModal() {
@@ -93,6 +98,10 @@ export class HomeViewPage implements OnInit {
       title: newDeck.nam_deck,
       description: 0,
     });
+  }
+
+  handleDeckDeleted(deckId: string) {
+    this.decks = this.decks.filter((deck) => deck.id !== deckId);
   }
 
   private async getDecksByUser(token: string): Promise<any> {

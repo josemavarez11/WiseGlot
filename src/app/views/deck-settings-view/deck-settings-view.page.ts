@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
@@ -31,10 +31,11 @@ import { CardOptionDaySelectorComponent } from 'src/app/components/others/card-o
   ],
 })
 export class DeckSettingsViewPage implements OnInit {
+  @Output() deckDeleted = new EventEmitter<any>();
+  callback: Function | undefined;
   isLoading: boolean = false;
   isModalVisible = false;
   isModalVisibleTwo = false;
-  // 
   isModalVisibleThree = false;
   isModalVisibleFour = false;
   isModalVisibleFive = false;
@@ -132,7 +133,7 @@ export class DeckSettingsViewPage implements OnInit {
 
         if (deleteDeckResponse.status !== 204) console.error('delete', deleteDeckResponse);
 
-        this.router.navigate(['/home']); //esto tiene que llevar a la vista de los mazos
+        this.router.navigate(['/home'], { state: { deletedDeckId: this.deckId }}); //esto tiene que llevar a la vista de los mazos
       } else {
         console.error('delete', 'No token');
       }

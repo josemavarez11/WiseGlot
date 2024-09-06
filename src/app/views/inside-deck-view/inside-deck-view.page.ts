@@ -87,17 +87,20 @@ export class InsideDeckViewPage implements OnInit {
       const token = await this.capacitorPreferencesService.getToken();
       if (token) {
         const getCardsResponse = await this.getCardsByDeck(this.deckId, token);
-        if (getCardsResponse.cards_details.length === 0) this.cards = []; //Añadir mensaje visual de que no hay cartas aún
 
-        for (const card of getCardsResponse.cards_details) {
+        if (getCardsResponse.error) return console.error(getCardsResponse.error);
+
+        if (getCardsResponse.data.cards_amount === 0) this.cards = [];
+
+        for (const card of getCardsResponse.data.cards_details) {
           this.cards.push({ id: card.id, front: card.val_card, back: card.mea_card });
         }
 
-        this.deckName = getCardsResponse.deck_details.name;
-        this.cardsNotStudiedAmount = getCardsResponse.deck_details.cards_not_studied.amount;
-        this.cardsToReviewAmount = getCardsResponse.deck_details.cards_to_review.amount;
-        this.cardsNotStudied = getCardsResponse.deck_details.cards_not_studied.cards;
-        this.cardsToReview = getCardsResponse.deck_details.cards_to_review.cards;
+        this.deckName = getCardsResponse.data.deck_details.name;
+        this.cardsNotStudiedAmount = getCardsResponse.data.deck_details.cards_not_studied.amount;
+        this.cardsToReviewAmount = getCardsResponse.data.deck_details.cards_to_review.amount;
+        this.cardsNotStudied = getCardsResponse.data.deck_details.cards_not_studied.cards;
+        this.cardsToReview = getCardsResponse.data.deck_details.cards_to_review.cards;
       }
     } catch (error) {
       return console.error(error);
@@ -116,7 +119,17 @@ export class InsideDeckViewPage implements OnInit {
       [['Authorization', `Bearer ${token}`]]
     );
 
-    return response.data;
+    return response;
+  }
+
+  handleDeckDeleted(deckId: string) {
+    console.log('Deck deleted: ', deckId);
+  }
+
+  navigateToDeckSettings(): void {
+    this.router.navigate(['/deck-settings-view'], {
+      queryParams: { deckId: this.deckId }
+    });
   }
 
   addCard() {

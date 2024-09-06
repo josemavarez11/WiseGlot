@@ -2,6 +2,23 @@
 2. Organizar nombres de las pantallas según el figma.
 3. sigue sin funcionar correctamente el scroll to botom en el chat
 4. estilos para los mensajes corregidos y las frases alternas en el chat.
+5. el boton de estudiar debe estar bloqueado si no hay cartas por estudiar en el mazo.
+6. no tiene hover:
+  boton de crear nuevo mazo
+  boton con simbolo de + en la vista de los mazos
+  cada cuadro de mazo donde sale el nombre y cantidad de cartas en la vista de los mazos.
+  boton de añadir nueva cartas
+  el circulito para entrar a deck settings view
+  ninguna boton de las opciones en configuración del mazo
+  boton agregar carta personalizada
+  boton generar cartas con IA
+  boton de hecho en agregar carta
+  todas las flechas para retroceder
+  boton de flecha para enviar mensaje
+  boton de lapiz en las opciones de usuario
+  boton de salida para hacer logout
+  boton de cerrar sesión y cancelar en la vista de logout
+7.cuando borras un mazo, que se usa el router para navegar a home view, te lleva a la vista del home en vez de a la vista donde se tienen todos los mazos porque ambas vistas tienen el mismo nombre.
 
 en api:
 - chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar

@@ -19,7 +19,7 @@
     >
       {{deckName}}
     </h3>
-      <button (click)="settings()">
+      <button (click)="navigateToDeckSettings()">
         <svg
           version="1.1"
           id="Capa_1"
@@ -106,7 +106,11 @@
             <p class="character">Por Repasar</p>
           </div>
         </div>
-        <button (click)="Study()">Estudiar cartas</button>
+        <button
+          (click)="Study()"
+          >Estudiar cartas
+          <!-- Desactivar este boton cuando cardsToReview esté vacío, también opacar el color -->
+        </button>
       </div>
 
       <div class="bottomBody">
@@ -121,7 +125,7 @@
           <div *ngIf="cards.length === 0" class="empty-deck">
             <p>No hay cartas en el mazo</p>
           </div>
-        
+
           <div *ngIf="cards.length > 0" class="Prueba">
             <div class="card" *ngFor="let card of cards; let i = index">
               <div class="line1">
@@ -140,7 +144,7 @@
             </div>
           </div>
         </div>
-        
+
 
         <div class="addCard">
           <button (click)="openModal()">Añadir nueva carta</button>
