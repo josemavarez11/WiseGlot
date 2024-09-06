@@ -49,7 +49,7 @@ export class CardOptionThreeComponent implements OnInit {
     this.router.navigate(['/add-edit-card-view'], {
       queryParams: {
         mode: 'edit',
-        deckId: this.deckId,
+        cardId: this.card.id,
         front: this.card.front,
         back: this.card.back,
       },
@@ -89,7 +89,7 @@ export class CardOptionThreeComponent implements OnInit {
   }
 
   handleDeleteModal(){
-    
+
     this.isModalVisible = true;
   }
 

@@ -18,6 +18,7 @@ import { DeleteResetModalComponent } from 'src/app/components/others/delete-rese
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+import { CardService } from 'src/services/cardService.service';
 import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 import { addIcons } from "ionicons";
 
@@ -64,7 +65,8 @@ export class InsideDeckViewPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private capacitorPreferencesService: CapacitorPreferencesService
+    private capacitorPreferencesService: CapacitorPreferencesService,
+    private cardService: CardService
   ) {}
 
 
@@ -81,6 +83,9 @@ export class InsideDeckViewPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.deckId = params['deckId'];
     });
+
+    this.cardService.cardCreated$.subscribe(newCard => this.handleCardAdded(newCard));
+    this.cardService.cardUpdated$.subscribe(updatedCard => this.handleCardUpdated(updatedCard));
 
     try {
       this.isLoading = true;
@@ -144,15 +149,31 @@ export class InsideDeckViewPage implements OnInit {
   openModalTwo(card: any) {
     this.selectedCard = card;
     this.isModalVisibleTwo = true;
-    console.log('Front:', card.front);
-    console.log('Back:', card.back);
 
     // Pasar la carta seleccionada al modal
     const modalComponent = new CardOptionThreeComponent(this.router, this.apiService, this.capacitorPreferencesService); // Crea una instancia del modal
     modalComponent.card = card; // Asigna la carta al modal
     modalComponent.isVisible = true; // Muestra el modal
-}
+  }
 
+  handleCardDeleted(cardId: string) {
+    this.cards = this.cards.filter((card) => card.id !== cardId);
+  }
+
+  handleCardAdded(card: any) {
+    console.log('Card added: ', card);
+    this.cards.push({ id: card.id, front: card.val_card, back: card.mea_card });
+    this.cardsNotStudied.push(card);
+    this.cardsNotStudiedAmount++;
+  }
+
+  handleCardUpdated(card: any) {
+    console.log('Card updated: ', card);
+    const cardIndex = this.cards.findIndex((c) => c.id === card.id);
+    this.cards[cardIndex] = { id: card.id, front: card.val_card, back: card.mea_card };
+    this.cardsNotStudied = this.cardsNotStudied.map((c) => c.id === card.id ? card : c);
+    this.cardsToReview = this.cardsToReview.map((c) => c.id === card.id ? card : c);
+  }
 
   closeModalTwo() {
     this.isModalVisibleTwo = false;
@@ -161,16 +182,20 @@ export class InsideDeckViewPage implements OnInit {
   closeModal() {
     this.isModalVisible = false;
   }
+
   handleClickAdd() {
     this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'agregar', deckId: this.deckId } });
     this.closeModal();
   }
+
   settings(){
     this.router.navigate(['/deck-settings-view'], { queryParams: { deckId: this.deckId } });
   }
+
   Study(){
     this.isModalErrorVisible = true;
   }
+
   closeModalError(){
     this.isModalErrorVisible = false;
   }

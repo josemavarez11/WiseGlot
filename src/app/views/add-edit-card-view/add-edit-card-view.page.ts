@@ -6,16 +6,19 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { Router } from '@angular/router';
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+import { CardService } from 'src/services/cardService.service';
+import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 
 @Component({
   selector: 'app-add-edit-card-view',
   templateUrl: './add-edit-card-view.page.html',
   styleUrls: ['./add-edit-card-view.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LoadingComponent]
 })
 export class AddEditCardViewPage implements OnInit {
   mode: string = '';
+  isLoading: boolean = false;
   deckId: string = '';
   frontSide: string = '';
   backSide: string = '';
@@ -25,7 +28,8 @@ export class AddEditCardViewPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private capacitorPreferencesService: CapacitorPreferencesService
+    private capacitorPreferencesService: CapacitorPreferencesService,
+    private cardService: CardService
   ) {}
 
   ngOnInit() {
@@ -35,11 +39,6 @@ export class AddEditCardViewPage implements OnInit {
       this.frontSide = params['front'] || '';
       this.backSide = params['back'] || '';
       this.cardId = params['cardId'] || ''; // Suponiendo que pasas el ID de la carta para la edición
-
-      console.log('Mode:', this.mode);
-      console.log('Deck ID:', this.deckId);
-      console.log('Front:', this.frontSide);
-      console.log('Back:', this.backSide);
     });
   }
 
@@ -52,28 +51,37 @@ export class AddEditCardViewPage implements OnInit {
   }
 
   async handleDoneClick() {
-    const token = await this.capacitorPreferencesService.getToken();
-    if (token) {
-      if (this.mode === 'add') {
-        const createCardResponse = await this.createCard(this.frontSide, this.backSide, token, this.deckId);
+    try {
+      this.isLoading = true;
+      const token = await this.capacitorPreferencesService.getToken();
+      if (token) {
+        if (this.mode === 'add') {
+          const createCardResponse = await this.createCard(this.frontSide, this.backSide, token, this.deckId);
 
-        if (createCardResponse.status !== 201) {
-          console.error('Error creating card');
+          if (createCardResponse.status !== 201) {
+            console.error('Error creating card');
+          }
+
+          this.cardService.emitCardCreated(createCardResponse.data);
+          this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId } });
+        } else {
+          const updateCardResponse = await this.updateCard(this.cardId, this.frontSide, this.backSide, token);
+
+          if (updateCardResponse.status !== 200) {
+            console.error('Error updating card');
+          }
+
+          this.cardService.emitCardUpdated(updateCardResponse.data);
+          this.router.navigate( ['/inside-deck-view'],{ queryParams: { deckId: this.deckId } });
         }
-
-        return this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId }});
       } else {
-        const updateCardResponse = await this.updateCard(this.frontSide, this.backSide, token);
-
-        if (updateCardResponse.status !== 200) {
-          console.error('Error updating card');
-        }
-
-        return this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId }});
+        console.error('No token found');
+        return this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId } });
       }
-    } else {
-      console.error('No token found');
-      return this.router.navigate(['/login']);
+    } catch (error) {
+      return console.error(error);
+    } finally {
+      return this.isLoading = false;
     }
   }
 
@@ -88,9 +96,9 @@ export class AddEditCardViewPage implements OnInit {
     return response;
   }
 
-  private async updateCard(val_card: string, mea_card: string, token: string) {
+  private async updateCard(cardId: string, val_card: string, mea_card: string, token: string) {
     const response = await this.apiService.put(
-      `/cards/update-card/${this.cardId}/`,
+      `/cards/update-card/${cardId}/`,
       { val_card, mea_card },
       [['Authorization', `Bearer ${token}`]],
       true

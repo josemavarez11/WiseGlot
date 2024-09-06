@@ -28,6 +28,7 @@
       <button (click)="handleDoneClick()">Hecho</button>
     </div>
   </div>
+  <app-loading *ngIf="isLoading"></app-loading>
 </div>
 
 <!-- Container for "Agregar Carta" -->
@@ -70,5 +71,6 @@
       </button>
     </div>
   </div>
+  <app-loading *ngIf="isLoading"></app-loading>
 </div>
 
