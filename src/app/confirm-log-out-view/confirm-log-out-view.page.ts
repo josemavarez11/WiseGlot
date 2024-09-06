@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+
 @Component({
   selector: 'app-confirm-log-out-view',
   templateUrl: './confirm-log-out-view.page.html',
@@ -12,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class ConfirmLogOutViewPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private capacitorPreferencesService: CapacitorPreferencesService) { }
 
   ngOnInit() {
   }
@@ -21,8 +23,9 @@ export class ConfirmLogOutViewPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  handleLogOut(){
-    // Funcion
+  async handleLogOut(){
+    await this.capacitorPreferencesService.clearAll();
+    this.router.navigate(['/login'])
   }
 
 }

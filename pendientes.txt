@@ -1,5 +1,7 @@
 1. Falta subir la flecha de preferences 5. NO puede quedar a un lado.
 2. Organizar nombres de las pantallas según el figma.
+3. sigue sin funcionar correctamente el scroll to botom en el chat
+4. estilos para los mensajes corregidos y las frases alternas en el chat.
 
 en api:
 - chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar

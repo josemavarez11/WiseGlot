@@ -34,7 +34,6 @@ export class ProfileComponent  implements OnInit {
   ) {}
 
   async ngOnInit() {
-    console.log('se inició profile')
     try {
       this.isLoading = true;
       await this.loadUserProfileData();
@@ -92,11 +91,6 @@ export class ProfileComponent  implements OnInit {
       console.log(error) ////
       return;
     }
-  }
-
-  async handleLogOut() {
-    await this.capacitorPreferencesService.clearAll();
-    this.router.navigate(['/login'])
   }
 
   deleteUser(){

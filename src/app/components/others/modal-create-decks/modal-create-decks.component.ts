@@ -5,28 +5,32 @@ import { BtnAuthComponent } from '../../buttons/btn-auth/btn-auth.component';
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { HomeViewPage } from 'src/app/views/home-view/home-view.page';
 
 @Component({
   selector: 'app-modal-create-decks',
   templateUrl: './modal-create-decks.component.html',
   styleUrls: ['./modal-create-decks.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, BtnAuthComponent, LoadingComponent] // Incluye FormsModule en imports
+  imports: [CommonModule, FormsModule, BtnAuthComponent, LoadingComponent]
 })
 export class ModalCreateDecksComponent {
   @Input() isVisible = false;
   @Output() close = new EventEmitter<void>();
   @Output() click = new EventEmitter<void>();
-  @Input() externalFunction: (() => void) | null = null; // Propiedad para la función externa
+  @Output() newDeckAdded = new EventEmitter<any>();
   nameDecks: string = '';
   isLoading: boolean = false;
 
   constructor(
     private apiService: ApiService,
-    private capacitorPreferencesService: CapacitorPreferencesService
+    private capacitorPreferencesService: CapacitorPreferencesService,
+    private homeViewPage: HomeViewPage
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   closeModal() {
     this.isVisible = false;
@@ -37,44 +41,43 @@ export class ModalCreateDecksComponent {
     return this.nameDecks.trim() === '';
   }
 
-  handleClick(){
-    if (this.externalFunction) {
-      this.externalFunction(); // Ejecuta la función externa si está definida
-    }
-  }
-
   onInputChange() {
     // Esto provocará una reevaluación del template y, por lo tanto, cambiará el color del botón
   }
 
-  // async handleCreateDeck() {
-  //   if (this.nameDecks.trim() !== '') {
-  //     this.isLoading = true;
-  //     const token = await this.capacitorPreferencesService.getToken();
+  async handleCreateDeck() {
+    if (this.nameDecks.trim() == '') return;
 
-  //     if (token) {
-  //       const createDeckResponse = await this.createDeck(token, this.nameDecks);
-  //     }
+    try {
+      this.isLoading = true;
+      const token = await this.capacitorPreferencesService.getToken();
 
-  //     this.isLoading = false;
-  //     this.closeModal();
-  //   }
-  //   this.closeModal();
-  // }
+      if (token) {
+        const createDeckResponse = await this.createDeck(token, this.nameDecks);
+        return this.newDeckAdded.emit(createDeckResponse);
+      }
 
-  // private async createDeck(token: string, nam_deck: string): Promise<any> {
-  //   const response: ApiResponse = await this.apiService.post(
-  //     '/cards/create-deck/',
-  //     { nam_deck },
-  //     [['Authorization', `Bearer ${token}`]],
-  //     true
-  //   )
+    } catch (error) {
+      return console.error(error);
+    } finally {
+      this.closeModal();
+      return this.isLoading = false;
+    }
+  }
 
-  //   if (response.error) {
-  //     console.error('Error creating deck: ', response.error);
-  //     return;
-  //   }
+  private async createDeck(token: string, nam_deck: string): Promise<any> {
+    const response: ApiResponse = await this.apiService.post(
+      '/cards/create-deck/',
+      { nam_deck },
+      [['Authorization', `Bearer ${token}`]],
+      true
+    )
 
-  //   return response.data;
-  // }
+    if (response.error) {
+      console.error('Error creating deck: ', response.error);
+      return;
+    }
+
+    return response.data;
+  }
 }

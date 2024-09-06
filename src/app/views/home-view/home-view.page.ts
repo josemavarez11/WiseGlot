@@ -2,17 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   IonContent,
   IonHeader,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
-// Interfaces
-// interface Deck {
-//   title: string;
-//   description: string;
-// }
+
 // Components
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { ModalSComponent } from 'src/app/components/others/mosalSelection/modalSelection.component';
@@ -56,7 +53,6 @@ export class HomeViewPage implements OnInit {
   selectedOption: string = 'home';
   isModalVisible = false;
   isLoading: boolean = false;
-
   decks: Array<any> = [];
 
   constructor(
@@ -65,10 +61,7 @@ export class HomeViewPage implements OnInit {
     private capacitorPreferencesService: CapacitorPreferencesService,
     private apiService: ApiService
   ) {}
-// Funcion de crear mazo que se le pasa al modal
-  createDeck(){
-    console.log('Funcion de Creacion de mazo');
-  }
+
   async ngOnInit() {
     this.navbarSelectionService.selectedOption$.subscribe((option) => {
       this.selectedOption = option;
@@ -89,8 +82,17 @@ export class HomeViewPage implements OnInit {
       this.isLoading = false;
     }
   }
+
   openModal() {
     this.isModalVisible = true;
+  }
+
+  handleNewDeckAdded(newDeck: any) {
+    this.decks.push({
+      id: newDeck.id,
+      title: newDeck.nam_deck,
+      description: 0,
+    });
   }
 
   private async getDecksByUser(token: string): Promise<any> {
