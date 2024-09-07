@@ -24,9 +24,6 @@
 10. hay que mejorar el selector para que pueda recibir y mostrar valores por defecto
 11. ir al html de chat view para ver el mensaje que se debe renderizar en caso de que el array de mensajes sea === []
 
-en api:
-- chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar
-
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
 ** Guardar los datos del usuario en local storage y usarlos en user settings view. (José)
 
