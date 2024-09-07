@@ -60,6 +60,7 @@ export class InsideDeckViewPage implements OnInit {
   cardsNotStudied: Array<any> = [];
   cardsToReview: Array<any> = [];
   selectedCard: any;
+  errorDescription: string = '';
 
   constructor(
     private router: Router,
@@ -93,7 +94,10 @@ export class InsideDeckViewPage implements OnInit {
       if (token) {
         const getCardsResponse = await this.getCardsByDeck(this.deckId, token);
 
-        if (getCardsResponse.error) return console.error(getCardsResponse.error);
+        if (getCardsResponse.error) {
+          this.errorDescription = getCardsResponse.error;
+          this.isModalErrorVisible = true;
+        }
 
         if (getCardsResponse.data.cards_amount === 0) this.cards = [];
 
@@ -108,9 +112,10 @@ export class InsideDeckViewPage implements OnInit {
         this.cardsToReview = getCardsResponse.data.deck_details.cards_to_review.cards;
       }
     } catch (error) {
-      return console.error(error);
+      this.errorDescription = 'Error al obtener las cartas del mazo';
+      this.isModalErrorVisible = true;
     } finally {
-      this.isLoading = false;
+      return this.isLoading = false;
     }
   }
 

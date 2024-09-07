@@ -7,13 +7,14 @@ import { LoadingComponent } from '../loading/loading.component';
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { DeleteResetModalComponent } from '../delete-reset-modal/delete-reset-modal.component';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 
 @Component({
   selector: 'app-card-option-three',
   templateUrl: './card-option-three.component.html',
   styleUrls: ['./card-option-three.component.scss'],
   standalone: true,
-  imports: [CommonModule, BtnOptionCardComponent, LoadingComponent, DeleteResetModalComponent],
+  imports: [CommonModule, BtnOptionCardComponent, LoadingComponent, DeleteResetModalComponent, ModalErrorComponent],
 })
 export class CardOptionThreeComponent implements OnInit {
   @Input() isVisible = false;
@@ -21,6 +22,8 @@ export class CardOptionThreeComponent implements OnInit {
   @Input() card: any; // Recibir la carta seleccionada como input
   @Output() close = new EventEmitter<void>();
   isModalVisible = false;
+  isModalErrorVisible = false;
+  errorDescription: string = '';
 
   isLoading: boolean = false;
 
@@ -42,7 +45,8 @@ export class CardOptionThreeComponent implements OnInit {
 
   handleEdit() {
     if (!this.card || !this.card.front || !this.card.back) {
-      console.error('Card data is missing:', this.card);
+      this.errorDescription = 'Error: Los datos de la carta no se encontraron';
+      this.isModalErrorVisible = true;
       return;
     }
 
@@ -73,15 +77,13 @@ export class CardOptionThreeComponent implements OnInit {
         const deleteCardResponse = await this.deleteCard(token);
 
         if(deleteCardResponse.status !== 204) {
-          console.error('Error deleting card:', deleteCardResponse);
-          return this.closeModal();
+          this.errorDescription = 'Error al eliminar la carta';
+          this.isModalErrorVisible = true;
         }
-
-        return this.closeModal();
       }
     } catch (error) {
-      console.error('Error deleting card:', error);
-      return this.closeModal();
+      this.errorDescription = 'Error al eliminar la carta';
+      this.isModalErrorVisible = true;
     } finally {
       this.isLoading = false;
       return this.closeModal();
@@ -99,5 +101,9 @@ export class CardOptionThreeComponent implements OnInit {
 
   handleFreeze() {
     console.log('Freezed');
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }

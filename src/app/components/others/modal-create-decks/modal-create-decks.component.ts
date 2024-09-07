@@ -6,13 +6,14 @@ import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 import { HomeViewPage } from 'src/app/views/home-view/home-view.page';
+import { ModalErrorComponent } from '../modal-error/modal-error.component';
 
 @Component({
   selector: 'app-modal-create-decks',
   templateUrl: './modal-create-decks.component.html',
   styleUrls: ['./modal-create-decks.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, BtnAuthComponent, LoadingComponent]
+  imports: [CommonModule, FormsModule, BtnAuthComponent, LoadingComponent, ModalErrorComponent]
 })
 export class ModalCreateDecksComponent {
   @Input() isVisible = false;
@@ -21,6 +22,8 @@ export class ModalCreateDecksComponent {
   @Output() newDeckAdded = new EventEmitter<any>();
   nameDecks: string = '';
   isLoading: boolean = false;
+  errorDescription: string = '';
+  isModalErrorVisible = false;
 
   constructor(
     private apiService: ApiService,
@@ -35,6 +38,10 @@ export class ModalCreateDecksComponent {
   closeModal() {
     this.isVisible = false;
     this.close.emit();
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 
   areFieldsEmpty() {
@@ -54,11 +61,12 @@ export class ModalCreateDecksComponent {
 
       if (token) {
         const createDeckResponse = await this.createDeck(token, this.nameDecks);
-        return this.newDeckAdded.emit(createDeckResponse);
+        this.newDeckAdded.emit(createDeckResponse);
       }
 
     } catch (error) {
-      return console.error(error);
+      this.errorDescription = 'Error al crear el mazo';
+      this.isModalErrorVisible = true;
     } finally {
       this.closeModal();
       return this.isLoading = false;
@@ -74,7 +82,8 @@ export class ModalCreateDecksComponent {
     )
 
     if (response.error) {
-      console.error('Error creating deck: ', response.error);
+      this.errorDescription = response.error;
+      this.isModalErrorVisible = true;
       return;
     }
 

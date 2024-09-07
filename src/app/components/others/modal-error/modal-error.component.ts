@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 export class ModalErrorComponent implements OnInit {
   @Input() isVisible = false;
   @Input() title = '';
-  @Input() option = '';
+  @Input() description = '';
 
   constructor(private router: Router) { }
 

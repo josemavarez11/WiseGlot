@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { OptionsProfileComponent } from '../../others/options-profile/options-profile.component';
 import { OptionProfileSubComponent } from '../../others/option-profile-sub/option-profile-sub.component';
 import { LoadingComponent } from '../../others/loading/loading.component';
+import { ModalErrorComponent } from '../../others/modal-error/modal-error.component';
 // Services
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
@@ -15,7 +16,7 @@ import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fir
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: [OptionsProfileComponent, OptionProfileSubComponent, LoadingComponent, CommonModule]
+  imports: [OptionsProfileComponent, OptionProfileSubComponent, LoadingComponent, CommonModule, ModalErrorComponent]
 })
 export class ProfileComponent  implements OnInit {
   subscription: string = ''
@@ -25,6 +26,8 @@ export class ProfileComponent  implements OnInit {
   systemLanguage: string = 'Español'
   isLoading: boolean = true;
   isVisibleModal = false;
+  isModalErrorVisible = false;
+  errorDescription: string = '';
 
   constructor(
     private router: Router,
@@ -38,9 +41,10 @@ export class ProfileComponent  implements OnInit {
       this.isLoading = true;
       await this.loadUserProfileData();
     } catch (error) {
-      return console.error('Error al cargar la información del usuario:', error);
+      this.errorDescription = 'Error al cargar la información del usuario';
+      this.isModalErrorVisible = true;
     } finally {
-      this.isLoading = false;
+      return this.isLoading = false;
     }
   }
 
@@ -82,13 +86,15 @@ export class ProfileComponent  implements OnInit {
       );
 
       if (response.error) {
-        console.log(response.error) ////
+        this.errorDescription = response.error;
+        this.isModalErrorVisible = true;
         return;
       }
 
       return response.data
     } catch (error: any) {
-      console.log(error) ////
+      this.errorDescription = 'Error al obtener la información del usuario';
+      this.isModalErrorVisible = true;
       return;
     }
   }
@@ -109,7 +115,8 @@ export class ProfileComponent  implements OnInit {
         );
 
         if (response.error) {
-          console.error(response.error);
+          this.errorDescription = response.error;
+          this.isModalErrorVisible = true;
           return false;
         }
 
@@ -118,7 +125,8 @@ export class ProfileComponent  implements OnInit {
 
       return false;
     } catch (error) {
-      console.error(error);
+      this.errorDescription = 'Error al actualizar la imagen de perfil';
+      this.isModalErrorVisible = true;
       return false;
     }
   }
@@ -134,8 +142,8 @@ export class ProfileComponent  implements OnInit {
       const result = await this.updateProfileImage(imgURL);
 
       if (!result) {
-        console.error('Error al subir la imagen');
-        return;
+        this.errorDescription = 'Error al actualizar la imagen de perfil';
+        this.isModalErrorVisible = true;
       }
 
       const userData = await this.capacitorPreferencesService.getUserData();
@@ -144,14 +152,19 @@ export class ProfileComponent  implements OnInit {
 
       this.profile_img_url = imgURL;
     } catch (error) {
-      console.error(error);
+      this.errorDescription = 'Error al subir la imagen de perfil';
+      this.isModalErrorVisible = true
     } finally {
-      this.isLoading = false;
+      return this.isLoading = false;
     }
   }
 
   navigate(){
     this.router.navigate(['/confirm-log-out-view'])
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 
 }

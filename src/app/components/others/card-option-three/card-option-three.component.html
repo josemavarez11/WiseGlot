@@ -47,5 +47,6 @@
     </div>
     <ng-content></ng-content>
   </div>
+  <app-modal-error [description]="errorDescription" [isVisible]="isModalErrorVisible" (close)="closeModalError()"/>
   <app-delete-reset-modal [isVisible]="isModalVisible" (close)="closeModalTwo()" title="Eliminar Carta" option="Si, Eliminar" (action)="handleDelete()"/>
 </div>

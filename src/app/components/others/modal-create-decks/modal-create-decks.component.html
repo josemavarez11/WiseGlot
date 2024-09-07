@@ -42,5 +42,6 @@
     </div>
     <ng-content></ng-content>
   </div>
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
   <app-loading *ngIf="isLoading"></app-loading>
 </div>

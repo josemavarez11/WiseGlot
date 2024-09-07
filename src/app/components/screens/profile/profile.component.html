@@ -106,4 +106,5 @@
   <div class="delete">
     <a (click)="deleteUser()">Eliminar mi cuenta</a>
   </div>
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
 </div>
