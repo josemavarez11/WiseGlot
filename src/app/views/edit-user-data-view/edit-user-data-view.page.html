@@ -17,6 +17,7 @@
     </div>
   </div>
   <app-loading *ngIf="isLoading"></app-loading>
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
 </div>
 
 <!-- Correo -->
@@ -40,16 +41,19 @@
   </div>
 
   <app-loading *ngIf="isLoading"></app-loading>
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
 </div>
 
 <div *ngIf="option === 'Idioma del sistema'" class="ContainerProximamente">
   <h1>No disponible</h1>
   <button class="btnProximamente" (click)="back()">Atras</button>
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
 </div>
 
 <div *ngIf="option === 'Suscripción'" class="ContainerProximamente">
   <h1>No disponible</h1>
   <button class="btnProximamente" (click)="back()">Atras</button>
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
 </div>
 
 

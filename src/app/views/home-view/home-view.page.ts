@@ -20,6 +20,7 @@ import { InputAnimateComponent } from 'src/app/components/buttons/input-animate/
 import { ModalCreateDecksComponent } from 'src/app/components/others/modal-create-decks/modal-create-decks.component';
 import { DecksComponent } from 'src/app/components/containers/decks/decks.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 //Services
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
@@ -47,6 +48,7 @@ import { NavBarSelectionService } from 'src/services/nav-bar-selection.service';
     DecksComponent,
     RouterLink,
     LoadingComponent,
+    ModalErrorComponent
   ],
 })
 export class HomeViewPage implements OnInit {
@@ -54,6 +56,8 @@ export class HomeViewPage implements OnInit {
   isModalVisible = false;
   isLoading: boolean = false;
   decks: Array<any> = [];
+  errorDescription: string = '';
+  isModalErrorVisible: boolean = false;
 
   constructor(
     private router: Router,
@@ -77,7 +81,8 @@ export class HomeViewPage implements OnInit {
         }
       }
     } catch (error) {
-      return console.error(error);
+      this.errorDescription = 'Error al obtener los mazos';
+      this.isModalErrorVisible = true;
     } finally {
       this.isLoading = false;
     }
@@ -111,5 +116,9 @@ export class HomeViewPage implements OnInit {
 
   closeModal() {
     this.isModalVisible = false;
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }

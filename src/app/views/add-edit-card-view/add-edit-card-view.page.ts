@@ -8,13 +8,14 @@ import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { CardService } from 'src/services/cardService.service';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 
 @Component({
   selector: 'app-add-edit-card-view',
   templateUrl: './add-edit-card-view.page.html',
   styleUrls: ['./add-edit-card-view.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LoadingComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LoadingComponent, ModalErrorComponent]
 })
 export class AddEditCardViewPage implements OnInit {
   mode: string = '';
@@ -23,6 +24,8 @@ export class AddEditCardViewPage implements OnInit {
   frontSide: string = '';
   backSide: string = '';
   cardId: string = '';
+  isModalErrorVisible: boolean = false;
+  errorDescription: string = '';
 
   constructor(
     private router: Router,
@@ -59,7 +62,8 @@ export class AddEditCardViewPage implements OnInit {
           const createCardResponse = await this.createCard(this.frontSide, this.backSide, token, this.deckId);
 
           if (createCardResponse.status !== 201) {
-            console.error('Error creating card');
+            this.errorDescription = 'Error al crear la carta';
+            return this.isModalErrorVisible = true;
           }
 
           this.cardService.emitCardCreated(createCardResponse.data);
@@ -68,18 +72,21 @@ export class AddEditCardViewPage implements OnInit {
           const updateCardResponse = await this.updateCard(this.cardId, this.frontSide, this.backSide, token);
 
           if (updateCardResponse.status !== 200) {
-            console.error('Error updating card');
+            this.errorDescription = 'Error al actualizar la carta';
+            return this.isModalErrorVisible = true;
           }
 
           this.cardService.emitCardUpdated(updateCardResponse.data);
           this.router.navigate( ['/inside-deck-view'],{ queryParams: { deckId: this.deckId } });
         }
       } else {
-        console.error('No token found');
-        return this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId } });
+        this.errorDescription = 'Error al obtener el token';
+        this.isModalErrorVisible = true;
+        this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId } });
       }
     } catch (error) {
-      return console.error(error);
+      this.errorDescription = 'Error al crear o actualizar la carta';
+      this.isModalErrorVisible = true;
     } finally {
       return this.isLoading = false;
     }
@@ -105,5 +112,9 @@ export class AddEditCardViewPage implements OnInit {
     );
 
     return response;
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }

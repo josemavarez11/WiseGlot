@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 // Components
 import { InputAnimateComponent } from 'src/app/components/buttons/input-animate/input-animate.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { WebSocketService } from 'src/services/webSocket.service';
@@ -25,7 +26,8 @@ import { WebSocketService } from 'src/services/webSocket.service';
     FormsModule,
     InputAnimateComponent,
     RouterLink,
-    LoadingComponent
+    LoadingComponent,
+    ModalErrorComponent
   ]
 })
 export class ChatViewPage implements OnInit, OnDestroy {
@@ -33,6 +35,8 @@ export class ChatViewPage implements OnInit, OnDestroy {
   url_profile_pic: string = '';
   messages: { text: string, sent: boolean, loading?: boolean }[] = [];
   isLoading: boolean = false;
+  isModalErrorVisible: boolean = false;
+  errorDescription: string = '';
   @ViewChild('chatContainer') chatContainer!: ElementRef;
 
   constructor(
@@ -71,7 +75,10 @@ export class ChatViewPage implements OnInit, OnDestroy {
 
         const getMessagesResponse = await this.getMessagesByUser(token);
 
-        if (getMessagesResponse.status !== 200 ) return console.error('Error getting messages');
+        if (getMessagesResponse.status !== 200 ) {
+          this.errorDescription = 'Error al obtener los mensajes';
+          this.isModalErrorVisible = true;
+        }
 
         for (let message of getMessagesResponse.data) {
           if (message.con_message) {
@@ -80,11 +87,15 @@ export class ChatViewPage implements OnInit, OnDestroy {
           }
         }
 
-      } else return console.error('No token found');
+      } else {
+        this.errorDescription = 'Error al obtener el token';
+        this.isModalErrorVisible = true;
+      }
     } catch (error) {
-      console.error(error);
+      this.errorDescription = 'Error al cargar los mensajes';
+      this.isModalErrorVisible = true;
     } finally {
-      this.isLoading = false;
+      return this.isLoading = false;
     }
   }
 
@@ -128,5 +139,9 @@ export class ChatViewPage implements OnInit, OnDestroy {
     );
 
     return response;
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }

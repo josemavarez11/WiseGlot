@@ -8,6 +8,7 @@ import { TitleLrComponent } from 'src/app/components/others/title-lr/title-lr.co
 import { MessageErrorComponent } from 'src/app/components/containers/message-error/message-error.component';
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 import message from '../../json/messages.json'
 // Services
 import { ApiResponse, ApiService } from 'src/services/api.service';
@@ -27,6 +28,7 @@ import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.s
     CommonModule,
     BtnAuthComponent,
     LoadingComponent,
+    ModalErrorComponent
   ],
 })
 export class LoginViewPage implements OnInit {
@@ -37,6 +39,8 @@ export class LoginViewPage implements OnInit {
   errorMessage: string = '';
   isLoading: boolean = false;
   passwordFieldType: string = 'password';
+  isModalErrorVisible: boolean = false;
+  errorDescription: string = '';
 
   constructor(
     private router: Router,
@@ -82,11 +86,12 @@ export class LoginViewPage implements OnInit {
       const { user, token } = response;
       await this.loadAppContent(user, token);
 
-      return this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
     } catch (error) {
-      console.error('Error logging in: ', error);
+      this.errorDescription = 'Error al iniciar sesión';
+      this.isModalErrorVisible = true;
     } finally {
-      this.isLoading = false;
+      return this.isLoading = false;
     }
   }
 
@@ -141,5 +146,9 @@ export class LoginViewPage implements OnInit {
     setTimeout(() => {
       this.showErrorMessage = false;
     }, 3000);
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }

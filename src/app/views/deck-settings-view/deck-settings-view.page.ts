@@ -10,6 +10,7 @@ import { LoadingComponent } from 'src/app/components/others/loading/loading.comp
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { CardOptionDaySelectorComponent } from 'src/app/components/others/card-option-day-selector/card-option-day-selector.component';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 
 @Component({
   selector: 'app-deck-settings-view',
@@ -27,7 +28,8 @@ import { CardOptionDaySelectorComponent } from 'src/app/components/others/card-o
     BtnOptionCardComponent,
     DeleteResetModalComponent,
     LoadingComponent,
-    CardOptionDaySelectorComponent
+    CardOptionDaySelectorComponent,
+    ModalErrorComponent
   ],
 })
 export class DeckSettingsViewPage implements OnInit {
@@ -41,6 +43,8 @@ export class DeckSettingsViewPage implements OnInit {
   isModalVisibleFive = false;
   isModalVisibleSix = false;
   deckId: string = '';
+  isModalErrorVisible: boolean = false;
+  errorDescription: string = '';
 
   constructor(
     private router: Router,
@@ -109,14 +113,19 @@ export class DeckSettingsViewPage implements OnInit {
       if (token) {
         const resetDeckProgressResponse = await this.resetDeckProgress(this.deckId, token);
 
-        if (resetDeckProgressResponse.status !== 200) console.error('reset', resetDeckProgressResponse);
+        if (resetDeckProgressResponse.status !== 200) {
+          this.errorDescription = 'Error al reiniciar el mazo';
+          this.isModalErrorVisible = true;
+        }
 
         this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId }}); //esto tiene que llevar a la vista de los mazos
       } else {
-        console.error('reset', 'No token');
+        this.errorDescription = 'Error al obtener el token';
+        this.isModalErrorVisible = true;
       }
     } catch (error) {
-      console.error('reset', error);
+      this.errorDescription = 'Error al reiniciar el mazo';
+      this.isModalErrorVisible = true;
     } finally {
       this.isLoading = false;
       return this.closeModal();
@@ -131,14 +140,19 @@ export class DeckSettingsViewPage implements OnInit {
       if (token) {
         const deleteDeckResponse = await this.deleteDeck(this.deckId, token);
 
-        if (deleteDeckResponse.status !== 204) console.error('delete', deleteDeckResponse);
+        if (deleteDeckResponse.status !== 204) {
+          this.errorDescription = 'Error al eliminar el mazo';
+          this.isModalErrorVisible = true;
+        }
 
         this.router.navigate(['/home'], { state: { deletedDeckId: this.deckId }}); //esto tiene que llevar a la vista de los mazos
       } else {
-        console.error('delete', 'No token');
+        this.errorDescription = 'Error al obtener el token';
+        this.isModalErrorVisible = true;
       }
     } catch (error) {
-      console.error('delete', error);
+      this.errorDescription = 'Error al eliminar el mazo';
+      this.isModalErrorVisible = true;
     } finally {
       this.isLoading = false;
       return this.closeModal();
@@ -164,5 +178,9 @@ export class DeckSettingsViewPage implements OnInit {
     );
 
     return response;
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }

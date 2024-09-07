@@ -17,6 +17,7 @@ import { ButtonPreferenceThreeComponent } from 'src/app/components/containers/bu
 import { TitlePreferenceComponent } from 'src/app/components/others/title-preference/title-preference.component';
 import { ModalErrorWifiComponent } from 'src/app/components/others/modal-error-wifi/modal-error-wifi.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 import message from '../../json/messages.json';
 
 @Component({
@@ -38,9 +39,12 @@ import message from '../../json/messages.json';
     ButtonPreferenceThreeComponent,
     ModalErrorWifiComponent,
     LoadingComponent,
+    ModalErrorComponent
   ],
 })
 export class PreferencesView1Page implements OnInit {
+  errorDescription: string = '';
+  isModalErrorVisible: boolean = false;
   step: number = 0;
   isLoading: boolean = false;
   selectedOption: boolean = false;
@@ -90,14 +94,16 @@ export class PreferencesView1Page implements OnInit {
       const response: ApiResponse = await this.apiService.get('/learning/get-preference-options/');
 
       if (response.error) {
-        console.error(message.ERROR.GetPreferences, response.error); //usar un modal de notificación
+        this.errorDescription = message.ERROR.GetPreferences;
+        this.isModalErrorVisible = true
         return;
       }
 
       const data = response.data;
       return data;
     } catch (error) {
-      console.error(message.ERROR.GetPreferences, error); //usar un modal de notificación
+      this.errorDescription = message.ERROR.GetPreferences;
+      this.isModalErrorVisible = true;
       return;
     }
   }
@@ -177,14 +183,16 @@ export class PreferencesView1Page implements OnInit {
       );
 
       if (response.error) {
-        console.error(message.ERROR.SavePrefereces, response);
+        this.errorDescription = message.ERROR.SavePrefereces;
+        this.isModalErrorVisible = true;
         this.router.navigate(['/register-welcome']);
         return null;
       }
 
       return response.data.id;
     } catch (error) {
-      console.error(message.ERROR.SavePrefereces, error);
+      this.errorDescription = message.ERROR.SavePrefereces;
+      this.isModalErrorVisible = true;
       this.router.navigate(['/register-welcome']);
       return null;
     } finally {
@@ -202,14 +210,16 @@ export class PreferencesView1Page implements OnInit {
       );
 
       if (response.error) {
-        console.error(message.ERROR.SavePreferencesTopics, response);
+        this.errorDescription = message.ERROR.SavePreferencesTopics;
+        this.isModalErrorVisible = true;
         this.router.navigate(['/register-welcome']);
         return false;
       }
 
       return true;
     } catch (error) {
-      console.error(message.ERROR.SavePreferencesTopics, error);
+      this.errorDescription = message.ERROR.SavePreferencesTopics;
+      this.isModalErrorVisible = true;
       this.router.navigate(['/register-welcome']);
       return false;
     } finally {
@@ -293,5 +303,9 @@ export class PreferencesView1Page implements OnInit {
         this.router.navigate(['/home']);
       }
     }
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }

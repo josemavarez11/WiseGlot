@@ -6,18 +6,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 
 @Component({
   selector: 'app-edit-user-data-view',
   templateUrl: './edit-user-data-view.page.html',
   styleUrls: ['./edit-user-data-view.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LoadingComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LoadingComponent, ModalErrorComponent]
 })
 export class EditUserDataViewPage implements OnInit {
   option: string = '';
   title: string = '';
   isLoading: boolean = false;
+  isModalErrorVisible: boolean = false;
+  errorDescription: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -47,7 +50,8 @@ export class EditUserDataViewPage implements OnInit {
         }
       }
     } catch (error) {
-      return console.error('Error updating: ', error);
+      this.errorDescription = 'Error al actualizar el email';
+      this.isModalErrorVisible = true;
     } finally {
       this.isLoading = false;
       return this.routerBack.navigate(['/home']);
@@ -68,7 +72,8 @@ export class EditUserDataViewPage implements OnInit {
     );
 
     if (response.error) {
-      console.error('Error updating email: ', response.error);
+      this.errorDescription = 'Error al actualizar el email';
+      this.isModalErrorVisible = true;
       return;
     }
 
@@ -77,5 +82,9 @@ export class EditUserDataViewPage implements OnInit {
 
   back(){
     this.routerBack.navigate(['/home']);
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }

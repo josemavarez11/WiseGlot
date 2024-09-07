@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 // Components
 import { BtnAuthComponent } from 'src/app/components/buttons/btn-auth/btn-auth.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
+import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 // Services
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
@@ -30,11 +31,14 @@ import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.s
     FormsModule,
     LoadingComponent,
     BtnAuthComponent,
+    ModalErrorComponent
   ],
 })
 export class DeleteAccountViewPage implements OnInit {
   confirmationText: string = '';
   isLoading: boolean = false;
+  isModalErrorVisible: boolean = false;
+  errorDescription: string = '';
 
   constructor(
     private alertController: AlertController,
@@ -62,7 +66,8 @@ export class DeleteAccountViewPage implements OnInit {
           this.router.navigate(['/welcome']);
         }
       } catch (error) {
-        console.error(error);
+        this.errorDescription = 'Error al eliminar la cuenta';
+        this.isModalErrorVisible = true;
         return;
       } finally {
         this.isLoading = false;
@@ -82,5 +87,9 @@ export class DeleteAccountViewPage implements OnInit {
 
   back() {
     this.router.navigate(['/home']);
+  }
+
+  closeModalError(){
+    this.isModalErrorVisible = false;
   }
 }

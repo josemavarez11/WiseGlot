@@ -78,6 +78,6 @@
       </button>
     </div>
   </div>
-
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
   <app-loading *ngIf="isLoading"></app-loading>
 </ion-content>
