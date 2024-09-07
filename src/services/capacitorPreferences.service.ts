@@ -21,6 +21,15 @@ export class CapacitorPreferencesService {
     }
   }
 
+  async saveAppLearningSteps(): Promise<void> {
+    try {
+      const response = await this.apiService.get('/cards/get-learning-steps/')
+      await Preferences.set({ key: 'appLearningSteps', value: JSON.stringify(response.data) });
+    } catch (error) {
+      console.error('Failed to fetch and store app learning steps:', error);
+    }
+  }
+
   async getAppTopics(): Promise<Array<any> | null> {
     const response = await Preferences.get({ key: 'appTopics' })
     const { value } = response;

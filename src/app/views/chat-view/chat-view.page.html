@@ -16,6 +16,8 @@
 
     <div class="contentChat" #chatContainer>
       <div *ngFor="let message of messages" [ngClass]="{'sent': message.sent, 'received': !message.sent}">
+        <!-- Renderizar un mensaje clarito en el centro de la pantalla que diga "Comienza enviando tu primer mensaje..."
+         asi como el mensaje de que no hay cartas -->
         <ng-container *ngIf="!message.loading">
           <div class="message-container" [ngClass]="{'sent-container': message.sent, 'received-container': !message.sent}">
             <div *ngIf="message.sent" class="message">{{ message.text }}</div>

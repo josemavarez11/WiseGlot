@@ -21,6 +21,8 @@
 7.cuando borras un mazo, que se usa el router para navegar a home view, te lleva a la vista del home en vez de a la vista donde se tienen todos los mazos porque ambas vistas tienen el mismo nombre.
 8. que cuando le de a freeze una carta salga el modal de error diciendo opción no disponible.
 9. que cuando le ponga el foco al input del titulo de un mazo se haga un console.log y cuando se lo quite se haga otro console.log con el valor del titulo del mazo que se dejó.
+10. hay que mejorar el selector para que pueda recibir y mostrar valores por defecto
+11. ir al html de chat view para ver el mensaje que se debe renderizar en caso de que el array de mensajes sea === []
 
 en api:
 - chequear el método de reset deck progress para ver por qué no devuelve bien la cantidad de cartas por estudiar

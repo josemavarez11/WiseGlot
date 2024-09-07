@@ -92,7 +92,8 @@
   <app-card-option-day-selector
     [isVisible]="isModalVisible"
     (close)="closeModal()"
-    (numberOfCardsChange)="onNumberOfCardsChange($event)"
-    title="cartas"
+    (valueChange)="onNumberOfCardsChange($event)"
+    title="Establece la cantidad de cartas que deseas generar"
+    valueType="cartas"
   />
 </div>

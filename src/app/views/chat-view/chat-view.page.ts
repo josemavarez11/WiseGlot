@@ -86,7 +86,6 @@ export class ChatViewPage implements OnInit, OnDestroy {
             if (message.con_response) this.messages.push({ text: message.con_response, sent: false });
           }
         }
-
       } else {
         this.errorDescription = 'Error al obtener el token';
         this.isModalErrorVisible = true;

@@ -99,7 +99,8 @@ export class LoginViewPage implements OnInit {
     await Promise.all([
       this.capacitorPreferencesService.setToken(token),
       this.capacitorPreferencesService.setUserData(user),
-      this.capacitorPreferencesService.saveAppTopics()
+      this.capacitorPreferencesService.saveAppTopics(),
+      this.capacitorPreferencesService.saveAppLearningSteps()
     ]);
   }
 

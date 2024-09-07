@@ -45,6 +45,7 @@ export class DeckSettingsViewPage implements OnInit {
   deckId: string = '';
   isModalErrorVisible: boolean = false;
   errorDescription: string = '';
+  deckConfig: any = {};
 
   constructor(
     private router: Router,
@@ -57,6 +58,27 @@ export class DeckSettingsViewPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.deckId = params['deckId'];
     });
+
+    try {
+      this.isLoading = true;
+      const deckSettingsResponse = await this.getDeckSettings(this.deckId);
+      if (deckSettingsResponse.status !== 200) {
+        this.errorDescription = 'Error al obtener la configuración del mazo';
+        this.isModalErrorVisible = true;
+      }
+
+      this.deckConfig = deckSettingsResponse.data;
+    } catch (error) {
+      this.errorDescription = 'Error al obtener la configuración del mazo';
+      this.isModalErrorVisible = true;
+    } finally {
+      return this.isLoading = false;
+    }
+  }
+
+  private async getDeckSettings(deckId: string) {
+    const response: ApiResponse = await this.apiService.get(`/cards/get-deck-config/${deckId}/`);
+    return response;
   }
 
   openModal() {

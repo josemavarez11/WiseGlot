@@ -9,7 +9,7 @@
       </div>
       <div class="middle">
         <h3>
-          Establece la cantidad de cartas nuevas que deseas generar al día
+          {{ title }}
         </h3>
         <div class="contentDay">
           <button
@@ -19,16 +19,16 @@
             (touchend)="stopAdjusting()"
             (touchcancel)="stopAdjusting()"
           >
-            <span><</span>
+            <span></span>
           </button>
 
           <div class="contentInput">
             <input
               type="number"
-              [(ngModel)]="numberOfCards"
+              [(ngModel)]="value"
               [readonly]="!isCustomInput"
             />
-            <p>{{ title }}</p>
+            <p>{{ valueType }}</p>
           </div>
 
           <button
@@ -38,7 +38,7 @@
             (touchend)="stopAdjusting()"
             (touchcancel)="stopAdjusting()"
           >
-            <span>></span>
+            <span></span>
           </button>
         </div>
         <p class="subTitle">{{ subTitle }}</p>

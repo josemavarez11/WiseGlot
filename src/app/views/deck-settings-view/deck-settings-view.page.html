@@ -99,27 +99,30 @@
   <app-card-option-day-selector
     [isVisible]="isModalVisibleThree"
     (close)="closeModalThree()"
-    title="cartas"
+    title="Establece la cantidas de cartas nuevas que deseas ver al día"
+    valueType="cartas"
     subTitle="(1200 nuevas cartas/mes)"
   />
   <app-card-option-day-selector
     [isVisible]="isModalVisibleFour"
     (close)="closeModalFour()"
-    title="cartas"
-    subTitle="(1200 nuevas cartas/mes)"
+    title="Representa tu primer intervalo en la fase graduada"
+    valueType="horas"
+    subTitle=""
   />
-
   <app-card-option-day-selector
     [isVisible]="isModalVisibleFive"
     (close)="closeModalFive()"
-    title="cartas"
-    subTitle="(1200 nuevas cartas/mes)"
+    title="Representa cada intervalo en la fase de aprendizaje"
+    subTitle=""
+    valueType="minutos"
   />
   <app-card-option-day-selector
     [isVisible]="isModalVisibleSix"
     (close)="closeModalSix()"
-    title="cartas"
-    subTitle="(1200 nuevas cartas/mes)"
+    title="Representa el intervalo máximo en la fase graduada"
+    subTitle=""
+    valueType="días"
   />
   <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
 </div>

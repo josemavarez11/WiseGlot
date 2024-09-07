@@ -14,11 +14,12 @@ import { Router } from '@angular/router';
 export class CardOptionDaySelectorComponent implements OnInit {
   @Input() isVisible = false;
   @Output() close = new EventEmitter<void>();
-  @Output() numberOfCardsChange = new EventEmitter<number>();
+  @Output() valueChange = new EventEmitter<number>();
   @Input() title: string = '';
+  @Input() value: number = 10;
+  @Input() valueType: string = 'cartas';
   @Input() subTitle: string = '';
 
-  numberOfCards: number = 40;
   isCustomInput: boolean = false; // Variable para controlar el modo personalizado
   private adjustInterval: any;
   private adjustSpeed: number = 200; // Velocidad inicial en milisegundos
@@ -39,13 +40,13 @@ export class CardOptionDaySelectorComponent implements OnInit {
 
   // Incrementa el número de cartas
   increaseNumber() {
-    this.numberOfCards++;
+    this.value++;
   }
 
   // Disminuye el número de cartas
   decreaseNumber() {
-    if (this.numberOfCards > 0) {
-      this.numberOfCards--;
+    if (this.value > 0) {
+      this.value--;
     }
   }
 
@@ -76,8 +77,8 @@ export class CardOptionDaySelectorComponent implements OnInit {
   }
 
   save() {
-    console.log('Número de cartas a generar:', this.numberOfCards);
-    this.numberOfCardsChange.emit(this.numberOfCards); // Emitir el número de cartas seleccionado
+    console.log('Número de cartas a generar:', this.value);
+    this.valueChange.emit(this.value); // Emitir el número de cartas seleccionado
     this.closeModal();
   }
 }
