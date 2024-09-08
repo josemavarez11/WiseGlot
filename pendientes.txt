@@ -1,10 +1,7 @@
-1. Falta subir la flecha de preferences 5. NO puede quedar a un lado.
 2. Organizar nombres de las pantallas según el figma.
 4. estilos para los mensajes corregidos y las frases alternas en el chat.
-
 5. el boton de estudiar debe estar bloqueado si no hay cartas por estudiar en el mazo.
 6. cuando borras un mazo, que se usa el router para navegar a home view, te lleva a la vista del home en vez de a la vista donde se tienen todos los mazos porque ambas vistas tienen el mismo nombre. (En espera)
-
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
 
 edmundog04@gmail.com

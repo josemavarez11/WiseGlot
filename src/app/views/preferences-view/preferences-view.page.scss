@@ -119,3 +119,37 @@ button{
     z-index: 1;
   }
   
+  .group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .contador {
+    flex-grow: 1;
+  }
+  
+  .right-aligned {
+    text-align: right;
+    margin-right: 20px; /* Alinea el contador a la derecha */
+  }
+  
+  .left-aligned {
+    text-align: left;
+    margin-left: 20px; /* Alinea el contador a la izquierda en el último paso */
+  }
+  
+  .next-view-button {
+    position: absolute;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  
+    img {
+      width: 15px;
+      height: 25px;
+    }
+  }
+  

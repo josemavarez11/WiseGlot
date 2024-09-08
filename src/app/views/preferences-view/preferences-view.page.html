@@ -10,7 +10,14 @@
         </button>
 
         <div class="group">
-          <p class="contador">{{step + 1}}/{{titles.length}}</p>
+          <!-- Condicional para alinear el contador -->
+          <p class="contador" [ngClass]="{'right-aligned': step !== 4, 'left-aligned': step === 4}">
+            {{step + 1}}/{{titles.length}}
+          </p>
+          <!-- Flecha que aparece solo en el último paso -->
+          <button *ngIf="step === 4 && preferenceTopic.length > 0" (click)="goToNextView()" class="next-view-button">
+            <img src="../../../assets/img/views/back-black.png" alt="" />
+          </button>
         </div>
       </article>
 
