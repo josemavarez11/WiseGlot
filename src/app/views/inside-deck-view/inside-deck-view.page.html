@@ -14,7 +14,8 @@
       <h3
       [contentEditable]="isEditing"
       (click)="enableEditing()"
-      (blur)="disableEditing()"
+      (focus)="logCurrentValue($event)"
+      (blur)="logUpdatedValue($event)"
       [ngClass]="{'editable': isEditing}"
     >
       {{deckName}}
@@ -109,7 +110,7 @@
         <button
           (click)="Study()"
           >Estudiar cartas
-          <!-- Desactivar este boton cuando cardsToReview esté vacío, también opacar el color -->
+          
         </button>
       </div>
 

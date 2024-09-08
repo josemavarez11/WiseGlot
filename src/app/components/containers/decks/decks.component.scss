@@ -15,17 +15,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    color: #040099;
   }
   h6{
     font-weight: bold;
     font-size: 17px;
-    color: #040099;
     padding: 0;
     margin: 0;
   }
   p{
     font-size: 13px;
-    color: #040099;
     padding: 0;
     margin: 0;
   }
+  .deckContent:active{
+    background-color: #0600FF;
+  }
+  .decks:active{
+    color: #F0F0F0;
+  }
+

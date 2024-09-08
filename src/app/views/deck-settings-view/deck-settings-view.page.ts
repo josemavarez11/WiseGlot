@@ -53,6 +53,13 @@ export class DeckSettingsViewPage implements OnInit {
     private apiService: ApiService,
     private capacitorPreferencesService: CapacitorPreferencesService
   ) { }
+// Ejemplo de valor inicial
+  deckConfiggggg = {
+    cardsPerDay: 15, // Ejemplo de valor inicial
+    graduationInterval: 12,
+    stepInterval: 5,
+    maxInterval: 30,
+  };
 
   async ngOnInit() {
     this.route.queryParams.subscribe(params => {

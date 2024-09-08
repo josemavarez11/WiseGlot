@@ -24,6 +24,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/songs.png'"
+      [hoverColor]="'#0600FF'"
       (click)="openModalThree()"
     />
 
@@ -35,6 +36,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/intervalo.png'"
+      [hoverColor]="'#0600FF'"
       (click)="openModalFour()"
     />
     <app-btn-option-card
@@ -45,6 +47,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/huellas.png'"
+      [hoverColor]="'#0600FF'"
       (click)="openModalFive()"
     />
 
@@ -56,6 +59,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/fecha.png'"
+      [hoverColor]="'#0600FF'"
       (click)="openModalSix()"
     />
 
@@ -67,6 +71,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/retroceso.png'"
+      [hoverColor]="'#0600FF'"
       (click)="openModal()"
     />
 
@@ -78,6 +83,7 @@
       [hoverColor]="'#0600FF'"
       width="385px"
       [icon]="'../../../../assets/icons/trashRed.png'"
+      [hoverColor]="'#0600FF'"
       (click)="openModalTwo()"
     />
   </div>
@@ -97,12 +103,14 @@
   />
   <!-- Modal de Creacion de Cartas -->
   <app-card-option-day-selector
-    [isVisible]="isModalVisibleThree"
-    (close)="closeModalThree()"
-    title="Establece la cantidas de cartas nuevas que deseas ver al día"
-    valueType="cartas"
-    subTitle="(1200 nuevas cartas/mes)"
-  />
+  [isVisible]="isModalVisibleThree"
+  (close)="closeModalThree()"
+  title="Establece la cantidad de cartas nuevas que deseas ver al día"
+  [value]="deckConfiggggg.cardsPerDay" 
+  valueType="cartas"
+  subTitle="(1200 nuevas cartas/mes)"
+></app-card-option-day-selector>
+
   <app-card-option-day-selector
     [isVisible]="isModalVisibleFour"
     (close)="closeModalFour()"

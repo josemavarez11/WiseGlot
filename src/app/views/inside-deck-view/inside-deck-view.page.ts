@@ -204,5 +204,18 @@ export class InsideDeckViewPage implements OnInit {
   closeModalError(){
     this.isModalErrorVisible = false;
   }
+
+    // Función para capturar el valor actual del mazo cuando obtiene el foco
+  logCurrentValue(event: FocusEvent) {
+    console.log('Valor actual:', this.deckName);
+  }
+
+  // Función para capturar el valor actualizado cuando se pierde el foco
+  logUpdatedValue(event: FocusEvent) {
+    const newValue = (event.target as HTMLElement).innerText.trim();
+    console.log('Nuevo valor:', newValue);
+    this.deckName = newValue; // Actualiza la variable con el nuevo valor
+    this.isEditing = false;
+  }
 }
 

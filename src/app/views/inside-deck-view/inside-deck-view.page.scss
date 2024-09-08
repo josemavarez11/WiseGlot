@@ -102,6 +102,9 @@ svg{
   width: 24px;
   height: 24px;
 }
+svg:hover{
+  fill: #0600FF;
+}
 button{
   background-color: transparent;
 }
@@ -258,6 +261,10 @@ h6{
   color: #ffffff;
   font-size: 14px;
   font-weight: bold;
+}
+
+.addCard button:hover{
+  background: #0600FF;
 }
 
 .options{

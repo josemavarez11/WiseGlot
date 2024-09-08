@@ -202,5 +202,13 @@ h3{
   object-fit: cover;
   border-radius: 50%;
 }
+.empty-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #888;
+  font-size: 1.2rem;
+}
 
 

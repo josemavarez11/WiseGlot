@@ -23,6 +23,7 @@ export class CardOptionThreeComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
   isModalVisible = false;
   isModalErrorVisible = false;
+  isModalErrorVisibleTwo = false;
   errorDescription: string = '';
 
   isLoading: boolean = false;
@@ -41,6 +42,10 @@ export class CardOptionThreeComponent implements OnInit {
   }
   closeModalTwo() {
     this.isModalVisible = false;
+  }
+
+  closeModalErrorTwo(){
+    this.isModalErrorVisibleTwo = false;
   }
 
   handleEdit() {
@@ -91,7 +96,6 @@ export class CardOptionThreeComponent implements OnInit {
   }
 
   handleDeleteModal(){
-
     this.isModalVisible = true;
   }
 
@@ -100,7 +104,7 @@ export class CardOptionThreeComponent implements OnInit {
   }
 
   handleFreeze() {
-    console.log('Freezed');
+    this.isModalErrorVisibleTwo = true;
   }
 
   closeModalError(){

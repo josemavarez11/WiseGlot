@@ -52,3 +52,7 @@ svg{
   transform: rotate(45deg);
   margin-right: 5px
 }
+
+svg:active{
+  fill: black;
+}

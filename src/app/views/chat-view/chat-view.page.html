@@ -15,34 +15,39 @@
     </div>
 
     <div class="contentChat" #chatContainer>
-      <div *ngFor="let message of messages" [ngClass]="{'sent': message.sent, 'received': !message.sent}">
-        <!-- Renderizar un mensaje clarito en el centro de la pantalla que diga "Comienza enviando tu primer mensaje..."
-         asi como el mensaje de que no hay cartas -->
-        <ng-container *ngIf="!message.loading">
-          <div class="message-container" [ngClass]="{'sent-container': message.sent, 'received-container': !message.sent}">
-            <div *ngIf="message.sent" class="message">{{ message.text }}</div>
-            <div *ngIf="message.sent" class="circle">
-              <img
-              src={{url_profile_pic}}
-              class="imgProfile"
-            />
+      <ng-container *ngIf="messages.length === 0; else messageList">
+        <div class="empty-message">
+          Comienza enviando tu primer mensaje...
+        </div>
+      </ng-container>
+    
+      <ng-template #messageList>
+        <div *ngFor="let message of messages" [ngClass]="{'sent': message.sent, 'received': !message.sent}">
+          <ng-container *ngIf="!message.loading">
+            <div class="message-container" [ngClass]="{'sent-container': message.sent, 'received-container': !message.sent}">
+              <div *ngIf="message.sent" class="message">{{ message.text }}</div>
+              <div *ngIf="message.sent" class="circle">
+                <img src={{url_profile_pic}} class="imgProfile"/>
+              </div>
+              <div *ngIf="!message.sent" class="circle"><b>W</b>g</div>
+              <div *ngIf="!message.sent" class="message">{{ message.text }}</div>
             </div>
-            <div *ngIf="!message.sent" class="circle"><b>W</b>g</div>
-            <div *ngIf="!message.sent" class="message">{{ message.text }}</div>
-          </div>
-        </ng-container>
-        <ng-container *ngIf="message.loading">
-          <div class="message-container" [ngClass]="{'received-container': !message.sent}">
-            <div class="circle"><b>W</b>g</div>
-            <div class="loader">
-              <li class="dots" id="dot-1">&#10022;</li>
-              <li class="dots" id="dot-2">&#10022;</li>
-              <li class="dots" id="dot-3">&#10022;</li>
-          </div>
-          </div>
-        </ng-container>
-      </div>
+          </ng-container>
+    
+          <ng-container *ngIf="message.loading">
+            <div class="message-container" [ngClass]="{'received-container': !message.sent}">
+              <div class="circle"><b>W</b>g</div>
+              <div class="loader">
+                <li class="dots" id="dot-1">&#10022;</li>
+                <li class="dots" id="dot-2">&#10022;</li>
+                <li class="dots" id="dot-3">&#10022;</li>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </ng-template>
     </div>
+    
     <div class="contentInput">
       <app-input-animate (send)="handleSend($event)"></app-input-animate>
     </div>

@@ -3,27 +3,8 @@
 3. sigue sin funcionar correctamente el scroll to botom en el chat
 4. estilos para los mensajes corregidos y las frases alternas en el chat.
 5. el boton de estudiar debe estar bloqueado si no hay cartas por estudiar en el mazo.
-6. no tiene hover:
-  boton de crear nuevo mazo
-  boton con simbolo de + en la vista de los mazos
-  cada cuadro de mazo donde sale el nombre y cantidad de cartas en la vista de los mazos.
-  boton de añadir nueva cartas
-  el circulito para entrar a deck settings view
-  ninguna boton de las opciones en configuración del mazo
-  boton agregar carta personalizada
-  boton generar cartas con IA
-  boton de hecho en agregar carta
-  todas las flechas para retroceder
-  boton de flecha para enviar mensaje
-  boton de lapiz en las opciones de usuario
-  boton de salida para hacer logout
-  boton de cerrar sesión y cancelar en la vista de logout
-7.cuando borras un mazo, que se usa el router para navegar a home view, te lleva a la vista del home en vez de a la vista donde se tienen todos los mazos porque ambas vistas tienen el mismo nombre.
-8. que cuando le de a freeze una carta salga el modal de error diciendo opción no disponible.
-9. que cuando le ponga el foco al input del titulo de un mazo se haga un console.log y cuando se lo quite se haga otro console.log con el valor del titulo del mazo que se dejó.
-10. hay que mejorar el selector para que pueda recibir y mostrar valores por defecto
-11. ir al html de chat view para ver el mensaje que se debe renderizar en caso de que el array de mensajes sea === []
-
+HOVER: todas las flechas para retroceder
+7.cuando borras un mazo, que se usa el router para navegar a home view, te lleva a la vista del home en vez de a la vista donde se tienen todos los mazos porque ambas vistas tienen el mismo nombre. (En espera)
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
 ** Guardar los datos del usuario en local storage y usarlos en user settings view. (José)
 

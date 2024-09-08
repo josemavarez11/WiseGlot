@@ -47,7 +47,12 @@ p {
   border-radius: 50%;
   margin-right: 30px;
 }
-img {
+svg {
   width: 15px;
   height: 15px;
+  fill: white;
+}
+
+svg:active{
+  fill: #0600ff;
 }
