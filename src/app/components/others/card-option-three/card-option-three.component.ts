@@ -24,6 +24,7 @@ export class CardOptionThreeComponent implements OnInit {
   isModalVisible = false;
   isModalErrorVisible = false;
   isModalErrorVisibleTwo = false;
+  isModalErrorVisibleThree = false;
   errorDescription: string = '';
 
   isLoading: boolean = false;
@@ -46,6 +47,10 @@ export class CardOptionThreeComponent implements OnInit {
 
   closeModalErrorTwo(){
     this.isModalErrorVisibleTwo = false;
+  }
+
+  closeModalErrorThree(){
+    this.isModalErrorVisibleThree = false;
   }
 
   handleEdit() {
@@ -100,7 +105,7 @@ export class CardOptionThreeComponent implements OnInit {
   }
 
   handleSelect() {
-    console.log('Selected');
+    this.isModalErrorVisibleThree = true;
   }
 
   handleFreeze() {
