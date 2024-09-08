@@ -49,43 +49,48 @@ export class ChatViewPage implements OnInit, OnDestroy {
   async ngOnInit() {
     try {
       this.isLoading = true;
-
+  
       const getUserDataResponse = await this.capacitorPreferencesService.getUserData();
       this.url_profile_pic = getUserDataResponse ? getUserDataResponse.profile_img_url : '';
-
+  
       const token = await this.capacitorPreferencesService.getToken();
-
+  
       if (token) {
         this.webSocketService.connect(token);
         this.subscription = this.webSocketService.messages$.subscribe((message) => {
           console.log('Message received:', message);
-
+  
           // Eliminar la animación de carga
           const loadingIndex = this.messages.findIndex(msg => msg.loading);
           if (loadingIndex !== -1) {
             this.messages.splice(loadingIndex, 1);
           }
-
+  
           // Agregar la respuesta de la API
           this.messages.push({ text: message, sent: false });
-
+  
           // Desplazar hacia abajo para mostrar la respuesta
           this.scrollToBottom();
         });
-
+  
         const getMessagesResponse = await this.getMessagesByUser(token);
-
+  
         if (getMessagesResponse.status !== 200 ) {
           this.errorDescription = 'Error al obtener los mensajes';
           this.isModalErrorVisible = true;
         }
-
+  
         for (let message of getMessagesResponse.data) {
           if (message.con_message) {
             this.messages.push({ text: message.con_message, sent: true });
             if (message.con_response) this.messages.push({ text: message.con_response, sent: false });
           }
         }
+  
+        // Esperar que los mensajes se rendericen antes de hacer scroll
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 100); // Añadir un pequeño retraso para asegurar el renderizado
       } else {
         this.errorDescription = 'Error al obtener el token';
         this.isModalErrorVisible = true;
@@ -94,9 +99,10 @@ export class ChatViewPage implements OnInit, OnDestroy {
       this.errorDescription = 'Error al cargar los mensajes';
       this.isModalErrorVisible = true;
     } finally {
-      return this.isLoading = false;
+      this.isLoading = false;
     }
   }
+  
 
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
@@ -123,7 +129,9 @@ export class ChatViewPage implements OnInit, OnDestroy {
 
   private scrollToBottom(): void {
     try {
-      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+      setTimeout(() => {
+        this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+      }, 0);
     } catch (err) { }
   }
 
