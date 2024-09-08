@@ -106,7 +106,7 @@
   [isVisible]="isModalVisibleThree"
   (close)="closeModalThree()"
   title="Establece la cantidad de cartas nuevas que deseas ver al día"
-  [value]="deckConfiggggg.cardsPerDay" 
+  [value]="deckConfig.new_cards_per_day"
   valueType="cartas"
   subTitle="(1200 nuevas cartas/mes)"
 ></app-card-option-day-selector>
@@ -115,6 +115,7 @@
     [isVisible]="isModalVisibleFour"
     (close)="closeModalFour()"
     title="Representa tu primer intervalo en la fase graduada"
+    [value]="deckConfig.gra_interval"
     valueType="horas"
     subTitle=""
   />
@@ -122,6 +123,7 @@
     [isVisible]="isModalVisibleFive"
     (close)="closeModalFive()"
     title="Representa cada intervalo en la fase de aprendizaje"
+    [value]="deckConfig.ste_value"
     subTitle=""
     valueType="minutos"
   />
@@ -129,8 +131,10 @@
     [isVisible]="isModalVisibleSix"
     (close)="closeModalSix()"
     title="Representa el intervalo máximo en la fase graduada"
+    [value]="deckConfig.gra_max_interval"
     subTitle=""
     valueType="días"
   />
+  <app-loading *ngIf="isLoading"></app-loading>
   <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
 </div>

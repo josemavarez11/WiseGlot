@@ -198,7 +198,7 @@ export class InsideDeckViewPage implements OnInit {
   }
 
   Study(){
-    this.isModalErrorVisible = true;
+    this.router.navigate(['/study-deck-view']);
   }
 
   closeModalError(){

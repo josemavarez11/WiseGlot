@@ -2,4 +2,10 @@
   <button (click)="StudyNext()">
     Next
   </button>
+  <app-loading *ngIf="isLoading"></app-loading>
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
+  <!-- cuando vayas a renderizar los 4 botones de colores que son las opciones cuando se estudia una carta, los nombres para cada
+  uno de ellos los tienes ya disponibles en el array learningSteps, accedes a ellos recorriendo el array con un ngFor y la propiedad
+  se llamada des_learning_step. Sería algo así como *ngFor="let step of learningSteps" y luego en el botón pones {{step.des_learning_step}}
+  -->
 </div>

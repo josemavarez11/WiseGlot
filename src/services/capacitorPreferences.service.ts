@@ -30,6 +30,15 @@ export class CapacitorPreferencesService {
     }
   }
 
+  async getAppLearningSteps(): Promise<Array<any> | null> {
+    const response = await Preferences.get({ key: 'appLearningSteps' })
+    const { value } = response;
+
+    if(value === null) return null;
+
+    return JSON.parse(value);
+  }
+
   async getAppTopics(): Promise<Array<any> | null> {
     const response = await Preferences.get({ key: 'appTopics' })
     const { value } = response;
