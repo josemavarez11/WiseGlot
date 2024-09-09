@@ -50,9 +50,11 @@
           Establecer número personalizado
         </button>
 
-        <button class="save" (click)="save()">Guardar</button>
+        <button class="save" (click)="handleSaveClick()">Guardar</button>
       </div>
     </div>
     <ng-content></ng-content>
   </div>
+  <app-loading *ngIf="isLoading"></app-loading>
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
 </div>

@@ -12,8 +12,7 @@
       <div class="write">
         <h6 class="writeTitle">Genera tus cartas de estudio.</h6>
         <p class="writeSubtitle">
-          Ingresa un tema específico o elige uno de la lista proporcionada. La
-          IA ofrecerá contenido educativo relacionado al tema seleccionado.
+          Ingresa un tema específico o elige uno de la lista proporcionada. La IA ofrecerá contenido educativo relacionado al tema seleccionado.
         </p>
       </div>
     </div>
@@ -82,7 +81,7 @@
 
     </div>
     <div class="containerBtn">
-      <button (click)="createCard()"
+      <button (click)="handleDoneClick()"
       [ngClass]="{'disabled-btn': !isButtonEnabled, 'enabled-btn': isButtonEnabled}"
       [disabled]="!isButtonEnabled"
       >Hecho</button>
@@ -95,5 +94,10 @@
     (valueChange)="onNumberOfCardsChange($event)"
     title="Establece la cantidad de cartas que deseas generar"
     valueType="cartas"
+    propertyName="generate"
+    [deckId]="deckId"
   />
+
+  <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>
+  <app-loading *ngIf="isLoading"></app-loading>
 </div>

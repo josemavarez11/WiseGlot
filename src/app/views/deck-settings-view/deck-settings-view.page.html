@@ -103,13 +103,15 @@
   />
   <!-- Modal de Creacion de Cartas -->
   <app-card-option-day-selector
-  [isVisible]="isModalVisibleThree"
-  (close)="closeModalThree()"
-  title="Establece la cantidad de cartas nuevas que deseas ver al día"
-  [value]="deckConfig.new_cards_per_day"
-  valueType="cartas"
-  subTitle="(1200 nuevas cartas/mes)"
-></app-card-option-day-selector>
+    [isVisible]="isModalVisibleThree"
+    (close)="closeModalThree()"
+    title="Establece la cantidad de cartas nuevas que deseas ver al día"
+    [value]="deckConfig.new_cards_per_day"
+    valueType="cartas"
+    subTitle="(1200 nuevas cartas/mes)"
+    propertyName="new_cards_per_day"
+    [deckId]="deckId"
+  ></app-card-option-day-selector>
 
   <app-card-option-day-selector
     [isVisible]="isModalVisibleFour"
@@ -118,6 +120,8 @@
     [value]="deckConfig.gra_interval"
     valueType="horas"
     subTitle=""
+    propertyName="gra_interval"
+    [deckId]="deckId"
   />
   <app-card-option-day-selector
     [isVisible]="isModalVisibleFive"
@@ -126,6 +130,8 @@
     [value]="deckConfig.ste_value"
     subTitle=""
     valueType="minutos"
+    propertyName="ste_value"
+    [deckId]="deckId"
   />
   <app-card-option-day-selector
     [isVisible]="isModalVisibleSix"
@@ -134,6 +140,8 @@
     [value]="deckConfig.gra_max_interval"
     subTitle=""
     valueType="días"
+    propertyName="gra_max_interval"
+    [deckId]="deckId"
   />
   <app-loading *ngIf="isLoading"></app-loading>
   <app-modal-error [isVisible]="isModalErrorVisible" [description]="errorDescription" (close)="closeModalError()"/>

@@ -205,7 +205,7 @@ export class InsideDeckViewPage implements OnInit {
     this.isModalErrorVisible = false;
   }
 
-    // Función para capturar el valor actual del mazo cuando obtiene el foco
+  // Función para capturar el valor actual del mazo cuando obtiene el foco
   logCurrentValue(event: FocusEvent) {
     console.log('Valor actual:', this.deckName);
   }
@@ -216,6 +216,44 @@ export class InsideDeckViewPage implements OnInit {
     console.log('Nuevo valor:', newValue);
     this.deckName = newValue; // Actualiza la variable con el nuevo valor
     this.isEditing = false;
+  }
+
+  async handleDeckNameUpdated(event: FocusEvent) {
+    try {
+      this.isLoading = true;
+      const newValue = (event.target as HTMLElement).innerText.trim();
+      const token = await this.capacitorPreferencesService.getToken();
+
+      if(token) {
+        const updateDeckNameResponse = await this.updateDeckName(this.deckId, newValue, token);
+        if (updateDeckNameResponse.error) {
+          this.errorDescription = updateDeckNameResponse.error;
+          this.isModalErrorVisible = true;
+        }
+
+        this.deckName = newValue;
+        this.router.navigate(['/home'], { state: { updatedDeck: updateDeckNameResponse.data }});
+      } else {
+        this.errorDescription = 'Error al obtener el token';
+        this.isModalErrorVisible = true;
+      }
+
+    } catch (error) {
+      this.errorDescription = 'Error al actualizar el nombre del mazo';
+      this.isModalErrorVisible = true;
+    } finally {
+      return this.isLoading = false;
+    }
+  }
+
+  private async updateDeckName(deckId: string, newName: string, token: string): Promise<any> {
+    const response: ApiResponse = await this.apiService.put(
+      `/cards/update-deck/${deckId}/`,
+      { nam_deck: newName },
+      [['Authorization', `Bearer ${token}`]]
+    );
+
+    return response;
   }
 }
 

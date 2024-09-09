@@ -31,7 +31,7 @@ export class CardOptionBoxOneComponent  implements OnInit {
   }
 
   handleClickGenerate(){
-    this.router.navigate(['/generate-cards-view']);
+    this.router.navigate(['/generate-cards-view'], { queryParams: { deckId: this.deckId } });
     this.closeModal();
   }
 }

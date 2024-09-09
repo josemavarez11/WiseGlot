@@ -2,7 +2,9 @@
 4. estilos para los mensajes corregidos y las frases alternas en el chat.
 5. el boton de estudiar debe estar bloqueado si no hay cartas por estudiar en el mazo.
 6. cuando borras un mazo, que se usa el router para navegar a home view, te lleva a la vista del home en vez de a la vista donde se tienen todos los mazos porque ambas vistas tienen el mismo nombre. (En espera)
+el input del selector de numeros debe solo admitir numeros, ahorita admite caracteres y todo
 ** Guardar ruta base de api, endpoints y otras cosas en variables de entorno. (José)
+
 
 edmundog04@gmail.com
 jose.3011

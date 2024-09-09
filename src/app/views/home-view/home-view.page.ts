@@ -88,8 +88,14 @@ export class HomeViewPage implements OnInit {
     }
 
     const navigation = this.router.getCurrentNavigation();
-    if (navigation && navigation.extras.state &&  navigation.extras.state['deletedDeckId']) {
-      this.handleDeckDeleted(navigation.extras.state['deletedDeckId']);
+    if (navigation && navigation.extras.state) {
+      if (navigation.extras.state['deletedDeckId']) {
+        console.log('se navegó a decks con un mazo eliminado: ', navigation.extras.state['deletedDeckId']);
+        this.handleDeckDeleted(navigation.extras.state['deletedDeckId']);
+      }
+      if (navigation.extras.state['updatedDeck']) {
+        this.handleDeckUpdated(navigation.extras.state['updatedDeck']);
+      }
     }
   }
 
@@ -103,6 +109,17 @@ export class HomeViewPage implements OnInit {
       title: newDeck.nam_deck,
       description: 0,
     });
+  }
+
+  handleDeckUpdated(updatedDeck: any) {
+    const deckIndex = this.decks.findIndex((deck) => deck.id === updatedDeck.id);
+    if (deckIndex !== -1) {
+      this.decks[deckIndex] = {
+        id: updatedDeck.id,
+        title: updatedDeck.nam_deck,
+        description: updatedDeck.cards_amount,
+      }
+    }
   }
 
   handleDeckDeleted(deckId: string) {

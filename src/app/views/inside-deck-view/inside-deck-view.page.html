@@ -15,7 +15,7 @@
       [contentEditable]="isEditing"
       (click)="enableEditing()"
       (focus)="logCurrentValue($event)"
-      (blur)="logUpdatedValue($event)"
+      (blur)="handleDeckNameUpdated($event)"
       [ngClass]="{'editable': isEditing}"
     >
       {{deckName}}
