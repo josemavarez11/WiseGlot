@@ -64,8 +64,9 @@
           (ngModelChange)="onSelectChange()"
         >
           <option class="green" value="" disabled selected>Selecciona algún tema</option>
-          <option *ngFor="let topic of topics" [value]="topic.des_topic" class="green">
+          <option *ngFor="let topic of topics" [value]="topic.des_topic" [id]="topic.id" class="green">
             {{ topic.des_topic }}
+            {{ topic.id_topic }}
           </option>
         </select>
 

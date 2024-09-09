@@ -1,7 +1,20 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 import { Router, ActivatedRoute } from '@angular/router';
 // Components
 import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
@@ -88,6 +101,13 @@ export class GenerateCardsViewPage implements OnInit {
   }
 
   onSelectChange() {
+    const selectedOption = this.selectInput.nativeElement.options[this.selectInput.nativeElement.selectedIndex];
+    const selectedValue = this.selectedValue;
+    const selectedId = selectedOption.id;
+  
+    console.log('Valor seleccionado:', selectedValue);
+    console.log('ID de la opción seleccionada:', selectedId);
+  
     this.updateShowNewCard();
   }
 
@@ -103,7 +123,6 @@ export class GenerateCardsViewPage implements OnInit {
   }
 
   async handleDoneClick() {
-
     try {
       this.isLoading = true;
       const token = await this.capacitorPreferencesService.getToken();
@@ -111,22 +130,29 @@ export class GenerateCardsViewPage implements OnInit {
       if (!token) {
         this.errorDescription = 'Error al obtener el token';
         this.isModalErrorVisible = true;
-        return this.isLoading = false;
+        return (this.isLoading = false);
       }
 
       var generateResponse: ApiResponse;
       if (this.isTextInputSelected && this.textValue) {
         generateResponse = await this.generateCardsWithIA(
-          token, this.deckId, this.numberOfCardsToGenerate, this.textValue
+          token,
+          this.deckId,
+          this.numberOfCardsToGenerate,
+          this.textValue
         );
       } else if (this.isSelectInputSelected && this.selectedValue) {
         console.log('creando cartas con topic: ', this.selectedValue);
         generateResponse = await this.generateCardsWithIA(
-          token, this.deckId, this.numberOfCardsToGenerate, undefined, this.selectedValue
+          token,
+          this.deckId,
+          this.numberOfCardsToGenerate,
+          undefined,
+          this.selectedValue
         );
       } else {
         this.errorDescription = 'Error al generar las cartas';
-        return this.isModalErrorVisible = true;
+        return (this.isModalErrorVisible = true);
       }
 
       if (generateResponse.error) {
@@ -138,17 +164,24 @@ export class GenerateCardsViewPage implements OnInit {
         this.cardService.emitCardCreated(newCard);
       }
 
-      this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId } });
-
+      this.router.navigate(['/inside-deck-view'], {
+        queryParams: { deckId: this.deckId },
+      });
     } catch (error) {
       this.errorDescription = 'Error al generar las cartas';
       this.isModalErrorVisible = true;
     } finally {
-      return this.isLoading = false;
+      return (this.isLoading = false);
     }
   }
 
-  private async generateCardsWithIA(token: string, id_deck: string, cards_amount: number, user_prompt?: string, topic?: string) : Promise<any> {
+  private async generateCardsWithIA(
+    token: string,
+    id_deck: string,
+    cards_amount: number,
+    user_prompt?: string,
+    topic?: string
+  ): Promise<any> {
     const response: ApiResponse = await this.apiService.post(
       '/cards/generate-cards-with-ai/',
       { id_deck, cards_amount, user_prompt, topic },
@@ -159,7 +192,9 @@ export class GenerateCardsViewPage implements OnInit {
   }
 
   back() {
-    this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId } });
+    this.router.navigate(['/inside-deck-view'], {
+      queryParams: { deckId: this.deckId },
+    });
   }
 
   closeModal() {
@@ -170,12 +205,12 @@ export class GenerateCardsViewPage implements OnInit {
     this.isModalVisible = true;
   }
 
-    // Método para actualizar el número de cartas desde el modal
+  // Método para actualizar el número de cartas desde el modal
   onNumberOfCardsChange(newNumberOfCards: number) {
     this.numberOfCardsToGenerate = newNumberOfCards;
   }
 
-  closeModalError(){
+  closeModalError() {
     this.isModalErrorVisible = false;
   }
 }
