@@ -46,6 +46,7 @@ export class GenerateCardsViewPage implements OnInit {
   isSelectInputSelected = false;
   textValue: string = '';
   selectedValue: string = '';
+  selectedTopicId: string = '';
   showNewCard: boolean = false;
   isModalVisible = false;
   topics: Array<any> = [];
@@ -108,6 +109,8 @@ export class GenerateCardsViewPage implements OnInit {
     console.log('Valor seleccionado:', selectedValue);
     console.log('ID de la opción seleccionada:', selectedId);
   
+    this.selectedTopicId = selectedId;
+
     this.updateShowNewCard();
   }
 
@@ -148,7 +151,8 @@ export class GenerateCardsViewPage implements OnInit {
           this.deckId,
           this.numberOfCardsToGenerate,
           undefined,
-          this.selectedValue
+          this.selectedValue,
+          this.selectedTopicId
         );
       } else {
         this.errorDescription = 'Error al generar las cartas';
@@ -176,12 +180,7 @@ export class GenerateCardsViewPage implements OnInit {
   }
 
   private async generateCardsWithIA(
-    token: string,
-    id_deck: string,
-    cards_amount: number,
-    user_prompt?: string,
-    topic?: string
-  ): Promise<any> {
+token: string, id_deck: string, cards_amount: number, user_prompt?: string, topic?: string, selectedTopicId?: string  ): Promise<any> {
     const response: ApiResponse = await this.apiService.post(
       '/cards/generate-cards-with-ai/',
       { id_deck, cards_amount, user_prompt, topic },

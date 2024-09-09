@@ -24,10 +24,11 @@
 
           <div class="contentInput">
             <input
-              type="number"
-              [(ngModel)]="value"
-              [readonly]="!isCustomInput"
-            />
+            type="tel"
+            [(ngModel)]="value"
+            [readonly]="!isCustomInput"
+            (input)="validateNumericInput($event)"
+          />
             <p>{{ valueType }}</p>
           </div>
 

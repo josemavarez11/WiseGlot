@@ -138,4 +138,16 @@ export class CardOptionDaySelectorComponent implements OnInit {
   closeModalError(){
     this.isModalErrorVisible = false;
   }
+
+  validateNumericInput(event: any) {
+    let inputValue = event.target.value;
+  
+    // Remueve cualquier carácter que no sea numérico
+    inputValue = inputValue.replace(/\D/g, '');
+  
+    // Actualiza el valor con el número limpio
+    event.target.value = inputValue;
+    this.value = Number(inputValue);
+  }
 }
+
