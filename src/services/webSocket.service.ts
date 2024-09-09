@@ -10,7 +10,8 @@ export class WebSocketService implements OnDestroy {
   private messagesSubject$ = new Subject<any>();
   public messages$ = this.messagesSubject$.asObservable();
 
-  private baseSocketUrl = 'wss://wg-api-linux2.onrender.com/ws/chat/?token=';
+  private renderBaseSocketUrl = 'wss://wg-api-linux2.onrender.com/ws/chat/?token=';
+  private awsBaseSocketUrl = 'ws://3.17.153.219:8000/ws/chat/?token=';
 
   constructor() {}
 
@@ -20,7 +21,7 @@ export class WebSocketService implements OnDestroy {
       return;
     }
 
-    const socketUrl = `${this.baseSocketUrl}${token}`;
+    const socketUrl = `${this.awsBaseSocketUrl}${token}`;
     this.socket$ = webSocket(socketUrl);
 
     this.socket$.subscribe({

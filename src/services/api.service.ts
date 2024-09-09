@@ -10,7 +10,8 @@ export interface ApiResponse<T = any> {
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly baseUrl = 'https://wg-api-linux2.onrender.com';
+  private readonly renderBaseUrl = 'https://wg-api-linux2.onrender.com';
+  private readonly awsBaseUrl = 'http://3.17.153.219:8000'
 
   constructor() {}
 
@@ -22,7 +23,7 @@ export class ApiService {
       }
     }
 
-    const url = `${this.baseUrl}${endpoint}`;
+    const url = `${this.awsBaseUrl}${endpoint}`;
 
     const config: RequestInit = {
       method,
