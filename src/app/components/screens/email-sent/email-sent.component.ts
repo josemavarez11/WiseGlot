@@ -22,7 +22,7 @@ export class EmailSentViewComponent  implements OnInit {
       this.stepChange.emit(step);
     }
 
-    handleClick(){
+    handleClick(event: MouseEvent){
       this.router.navigate(['/validate-secret-code']);
     }
 

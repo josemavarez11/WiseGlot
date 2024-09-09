@@ -78,7 +78,7 @@ export class RegisterViewPage implements OnInit {
     this.fullname = '';
   }
 
-  async handleClick(): Promise<any> {
+  async handleClick(event: MouseEvent): Promise<any> {
     this.isLoading = true;
 
     if (!this.areFieldsValid()) {

@@ -56,7 +56,7 @@ export class DeleteAccountViewPage implements OnInit {
     // Esto provocará una reevaluación del template y, por lo tanto, cambiará el color del botón
   }
 
-  async handleDeleteButton() {
+  async handleDeleteButton(event: MouseEvent) {
     if (this.confirmationText === 'Eliminar mi cuenta') {
       this.isLoading = true;
       try {

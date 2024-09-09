@@ -25,12 +25,12 @@ export class CardOptionBoxOneComponent  implements OnInit {
     this.close.emit();
   }
 
-  handleClickAdd() {
+  handleClickAdd(event: MouseEvent) {
     this.router.navigate(['/add-edit-card-view'], { queryParams: { mode: 'add', deckId: this.deckId } });
     this.closeModal();
   }
 
-  handleClickGenerate(){
+  handleClickGenerate(event: MouseEvent) {
     this.router.navigate(['/generate-cards-view'], { queryParams: { deckId: this.deckId } });
     this.closeModal();
   }

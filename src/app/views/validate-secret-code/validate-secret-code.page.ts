@@ -91,7 +91,7 @@ export class ValidateSecretCodePage implements OnInit {
     this.resetForm();
   }
 
-  async handleClick(): Promise<void> {
+  async handleClick(event: MouseEvent): Promise<void> {
     this.isLoading = true;
     const code = this.getCode();
 

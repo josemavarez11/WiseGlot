@@ -82,7 +82,7 @@ export class PasswordChangeViewPage implements OnInit {
     this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 
-  async handleClick(): Promise<void> {
+  async handleClick(event: MouseEvent): Promise<void> {
     this.isLoading = true;
 
     if (!this.areFieldsValid()) {

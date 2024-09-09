@@ -19,7 +19,7 @@
       [textColor]="areFieldsEmpty()? '#000000' : '#FFFFFF'"
       [borderColor]="'none'"
       [title]="'Siguiente'"
-      (click)="handleClick()"
+      (click)="handleClick($event)"
       [hoverColor]="'#0600FF'"
       [disabled]="areFieldsEmpty()"
       width="325px"

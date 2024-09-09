@@ -14,7 +14,7 @@ export class BtnAuthComponent implements OnInit {
   @Input() hoverColor: string = '';
   @Input() width: string = '200px';
   @Input() disabled: boolean = false;
-  @Output() click = new EventEmitter<void>();
+  @Output() click = new EventEmitter<MouseEvent>();
 
   private originalColor: string = '';
 
@@ -24,13 +24,14 @@ export class BtnAuthComponent implements OnInit {
     this.originalColor = this.color;
   }
 
-  handleChangeColor() {
+  handleChangeColor(event: MouseEvent) {
     if (!this.disabled) {
       this.color = this.hoverColor;
       setTimeout(() => {
         this.color = this.originalColor;
       }, 100);
-      this.click.emit();
+      event.stopPropagation();
+      this.click.emit(event);
     }
   }
 }

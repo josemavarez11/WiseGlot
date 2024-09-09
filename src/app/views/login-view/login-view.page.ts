@@ -73,7 +73,7 @@ export class LoginViewPage implements OnInit {
     this.password = '';
   }
 
-  async handleClick(): Promise<any> {
+  async handleClick(event: MouseEvent): Promise<any> {
     try {
       this.isLoading = true;
 

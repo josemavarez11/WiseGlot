@@ -66,7 +66,7 @@ export class AskEmailViewComponent implements OnInit {
     this.stepChange.emit(step);
   }
 
-  async handleClick(): Promise<void> {
+  async handleClick(event: MouseEvent): Promise<void> {
     this.isLoading = true;
 
     if (!this.isEmailValid()) {

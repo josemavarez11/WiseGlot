@@ -20,11 +20,11 @@ export class WelcomeViewPage implements OnInit {
   ngOnInit() {
   }
 
-  onLogin() {
+  onLogin(event: MouseEvent) {
     this.router.navigate(['/login']);
   }
 
-  onRegister() {
+  onRegister(event: MouseEvent) {
     this.router.navigate(['/register']);
   }
 }

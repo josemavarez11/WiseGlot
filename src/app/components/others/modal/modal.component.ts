@@ -12,7 +12,7 @@ export class ModalComponent {
   @Input() message: string = '';
   @Output() buttonClick = new EventEmitter<void>();
 
-  handleButtonClick() {
+  handleButtonClick(event: MouseEvent) {
     this.buttonClick.emit();
   }
 }

@@ -7,7 +7,7 @@
         [textColor]="'#000000'"
         [borderColor]="'none'"
         [title]="'Agregar carta personalizada'"
-        (click)="handleClickAdd()"
+        (click)="handleClickAdd($event)"
         [hoverColor]="'#0600FF'"
         width="348px"
       ></app-btn-auth>
@@ -16,7 +16,7 @@
       [textColor]="'#FFFFFF'"
       [borderColor]="'none'"
       [title]="'Generar cartas con IA'"
-      (click)="handleClickGenerate()"
+      (click)="handleClickGenerate($event)"
       [hoverColor]="'#0600FF'"
       width="348px"
     ></app-btn-auth>
