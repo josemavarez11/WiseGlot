@@ -147,7 +147,7 @@ export class DeckSettingsViewPage implements OnInit {
           this.isModalErrorVisible = true;
         }
 
-        this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId }}); //esto tiene que llevar a la vista de los mazos
+        this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId }, state: { deckReseted: true } }); //esto tiene que llevar a la vista de los mazos
       } else {
         this.errorDescription = 'Error al obtener el token';
         this.isModalErrorVisible = true;
@@ -189,7 +189,6 @@ export class DeckSettingsViewPage implements OnInit {
   }
 
   private async resetDeckProgress(deckId: string, token: string) {
-    console.log('resetDeckProgress', deckId, token);
     const response: ApiResponse = await this.apiService.get(
       `/cards/reset-deck-progress/${deckId}/`,
       [['Authorization', `Bearer ${token}`]],

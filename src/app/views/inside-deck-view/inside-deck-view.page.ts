@@ -115,6 +115,10 @@ export class InsideDeckViewPage implements OnInit {
       this.errorDescription = 'Error al obtener las cartas del mazo';
       this.isModalErrorVisible = true;
     } finally {
+      const navigation = this.router.getCurrentNavigation();
+      if(navigation && navigation.extras.state && navigation.extras.state['resetedDeck']) {
+        this.handleDeckReseted();
+      }
       return this.isLoading = false;
     }
   }
@@ -170,6 +174,13 @@ export class InsideDeckViewPage implements OnInit {
     this.cards.push({ id: card.id, front: card.val_card, back: card.mea_card });
     this.cardsNotStudied.push(card);
     this.cardsNotStudiedAmount++;
+  }
+
+  handleDeckReseted() {
+    this.cardsNotStudied = this.cards;
+    this.cardsToReview = [];
+    this.cardsNotStudiedAmount = this.cards.length;
+    this.cardsToReviewAmount = 0;
   }
 
   handleCardUpdated(card: any) {
