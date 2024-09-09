@@ -20,6 +20,10 @@ export class StudyDeckViewPage implements OnInit {
   errorDescription: string = '';
   isLoading: boolean = false;
   learningSteps: Array<any> = [];
+  againInfo: any = {};
+  hardInfo: any = {};
+  goodInfo: any = {};
+  easyInfo: any = {};
   @ViewChild('textInput') textInput!: ElementRef<HTMLInputElement>;
 
   cards: Array<any> = [
@@ -55,7 +59,11 @@ export class StudyDeckViewPage implements OnInit {
     try {
       this.isLoading = true;
       await this.getLearningSteps();
-      console.log(this.learningSteps);
+
+      this.againInfo = this.learningSteps.find((step: any) => step.des_learning_step === 'Again');
+      this.hardInfo = this.learningSteps.find((step: any) => step.des_learning_step === 'Hard');
+      this.goodInfo = this.learningSteps.find((step: any) => step.des_learning_step === 'Good');
+      this.easyInfo = this.learningSteps.find((step: any) => step.des_learning_step === 'Easy');
     } catch (error) {
       this.errorDescription = 'Failed to fetch learning steps';
       this.isModalErrorVisible = true;
