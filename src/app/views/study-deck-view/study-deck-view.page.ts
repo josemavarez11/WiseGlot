@@ -126,6 +126,7 @@ async ngOnInit() {
     if (this.currentCardIndex < this.cards.length) {
       this.currentCard = this.cards[this.currentCardIndex];
       this.updateProgressBar(); // Actualiza la barra de progreso
+      this.textInput.nativeElement.value = ''; // Limpia el input
     } else {
       this.updateProgressBar(); // Asegurarse de llenar la barra al 100%
       this.router.navigate(['/deck-completed-animation'], { queryParams: { deckId: this.deckId } });
@@ -154,6 +155,11 @@ async ngOnInit() {
     this.textInput.nativeElement.focus();
   }
 
+  closeStudyDeck(){
+    this.router.navigate(['/inside-deck-view']);
+  }
+
+
   private async reviewCard(cardId: string, id_learning_step: string, token: string): Promise<ApiResponse> {
     const response: ApiResponse = await this.apiService.put(
       `/cards/review-card/${cardId}/`,
@@ -166,6 +172,8 @@ async ngOnInit() {
 
   handleXClick() {
     return this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId } });
+
   }
 }
+
 
