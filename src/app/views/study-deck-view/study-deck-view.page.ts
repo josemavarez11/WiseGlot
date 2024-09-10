@@ -2,11 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 import { LoadingComponent } from 'src/app/components/others/loading/loading.component';
 import { ApiService, ApiResponse } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
+import { StudyCardsService } from 'src/services/studyCards.service';
 
 @Component({
   selector: 'app-study-deck-view',
@@ -20,39 +21,38 @@ export class StudyDeckViewPage implements OnInit {
   errorDescription: string = '';
   isLoading: boolean = false;
   learningSteps: Array<any> = [];
-
-  againStep: string = '';
-  hardStep: string = '';
-  goodStep: string = '';
-  easyStep: string = '';
-  @ViewChild('textInput') textInput!: ElementRef<HTMLInputElement>;
-
-  cards: Array<any> = [
-    { front: 'Front 1', back: 'Back 1' },
-    { front: 'Front 2', back: 'Back 2' },
-    { front: 'Front 3', back: 'Back 3' },
-    { front: 'Front 4', back: 'Back 4' },
-    { front: 'Front 5', back: 'Back 5' },
-    { front: 'Front 6', back: 'Back 6' },
-    { front: 'Front 7', back: 'Back 7' },
-    { front: 'Front 8', back: 'Back 8' },
-    { front: 'Front 9', back: 'Back 9' },
-    { front: 'Front 10', back: 'Back 10' },
-    // Agrega más cartas según sea necesario
-  ];
+  deckId: string = '';
+  againStep: any = {};
+  hardStep: any = {};
+  goodStep: any = {};
+  easyStep: any = {};
+  cardsNotStudied: Array<any> = [];
+  cardsToReview: Array<any> = [];
+  cardsAlreadyStudied: Array<any> = [];
+  cards: Array<any> = [];
   currentCardIndex: number = 0;
   currentCard: any = this.cards[this.currentCardIndex];
   showBack: boolean = false;
   showOptions: boolean = false;
   progressWidth: string = '0%'; // Inicializa la barra de progreso al 0%
+  @ViewChild('textInput') textInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     private router: Router,
     private capacitorPreferencesService: CapacitorPreferencesService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private studyCardsService: StudyCardsService
   ) { }
 
 async ngOnInit() {
+  this.route.queryParams.subscribe(params => {
+    this.deckId = params['deckId'];
+  });
+
+  for(let card of this.studyCardsService.cardsNotStudied) this.cards.push(card);
+  for(let card of this.studyCardsService.cardsToReview) this.cards.push(card);
+
   this.currentCard = this.cards[this.currentCardIndex];
   this.updateProgressBar();
 
@@ -60,11 +60,10 @@ async ngOnInit() {
     this.isLoading = true;
     await this.getLearningSteps();
 
-    // Descomponemos los pasos de aprendizaje en variables individuales
-    this.againStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Again')?.des_learning_step || '';
-    this.hardStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Hard')?.des_learning_step || '';
-    this.goodStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Good')?.des_learning_step || '';
-    this.easyStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Easy')?.des_learning_step || '';
+    this.againStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Again')
+    this.hardStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Hard')
+    this.goodStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Good')
+    this.easyStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Easy')
   } catch (error) {
     this.errorDescription = 'Failed to fetch learning steps';
     this.isModalErrorVisible = true;
@@ -89,9 +88,34 @@ async ngOnInit() {
     }, 2000);
   }
 
-  selectOption(option: string) {
-    console.log('Opción seleccionada:', option);
-    this.goToNextCard();
+  async selectOption(option: any) {
+    try {
+      this.isLoading = true;
+      const token = await this.capacitorPreferencesService.getToken();
+
+      if(!token) {
+        this.errorDescription = 'Failed to get token';
+        this.isModalErrorVisible = true;
+        return;
+      }
+
+      const reviewResponse = await this.reviewCard(this.currentCard.id, option.id, token);
+
+      if (reviewResponse.error) {
+        this.errorDescription = reviewResponse.error;
+        this.isModalErrorVisible = true;
+        return;
+      }
+
+      this.cardsAlreadyStudied.push(this.currentCard);
+      console.log('Cartas ya estudiadas: ', this.cardsAlreadyStudied);
+      this.goToNextCard();
+    } catch (error) {
+      this.errorDescription = 'Failed to update card';
+      this.isModalErrorVisible = true;
+    } finally {
+      this.isLoading = false;
+    }
   }
 
   goToNextCard() {
@@ -104,7 +128,7 @@ async ngOnInit() {
       this.updateProgressBar(); // Actualiza la barra de progreso
     } else {
       this.updateProgressBar(); // Asegurarse de llenar la barra al 100%
-      this.router.navigate(['/deck-completed-animation']);
+      this.router.navigate(['/deck-completed-animation'], { queryParams: { deckId: this.deckId } });
     }
   }
 
@@ -125,8 +149,23 @@ async ngOnInit() {
       this.updateProgressBar();
     }
   }
+
   activateKeyboard() {
     this.textInput.nativeElement.focus();
+  }
+
+  private async reviewCard(cardId: string, id_learning_step: string, token: string): Promise<ApiResponse> {
+    const response: ApiResponse = await this.apiService.put(
+      `/cards/review-card/${cardId}/`,
+      { id_learning_step },
+      [['Authorization', `Bearer ${token}`]]
+    );
+
+    return response;
+  }
+
+  handleXClick() {
+    return this.router.navigate(['/inside-deck-view'], { queryParams: { deckId: this.deckId } });
   }
 }
 

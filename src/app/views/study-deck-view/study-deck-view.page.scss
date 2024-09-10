@@ -35,7 +35,7 @@
     border-radius: 10.5px; /* Bordes redondeados */
     overflow: hidden;
   }
-  
+
   .barra-interna {
     height: 100%;
     background-color: #040099; /* Color de relleno de la barra */
@@ -44,7 +44,7 @@
     width: 0%; /* Inicialmente vacía */
     transition: width 0.5s ease; /* Transición suave */
   }
-  
+
 .contentBody{
     width: 85%;
     height: 65%;
@@ -76,10 +76,20 @@
     font-size: 18px;
     font-weight: lighter;
 }
-.cardWhiteB{
+.cardWhiteA p{
     color: #000000;
-    font-size: 18px;
-    font-weight: lighter;
+    font-size: 20px;
+    font-weight: normal;
+}
+.cardWhiteB{
+  color: #000000;
+  font-size: 18px;
+  font-weight: lighter;
+}
+.cardWhiteB p{
+    color: #000000;
+    font-size: 20px;
+    font-weight: normal;
 }
 .line{
     width: 90%;
@@ -120,7 +130,7 @@
     height: 30px;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     color: white;
     font-size: 18px;
     background-color: transparent;
@@ -140,6 +150,8 @@
     align-items: center;
   }
   input{
+    color: #000000;
+    font-size: 25px;
     text-align: center;
     background-color: transparent;
     border: none;
@@ -151,7 +163,7 @@
     font-size: 18px;
     font-weight: bold;
   }
-  
+
   .keyboard-input {
     flex: 1;
     margin-right: 10px;
@@ -218,5 +230,4 @@
         background-color: #38AAF1;
         color: white;
     }
-  
-  
+

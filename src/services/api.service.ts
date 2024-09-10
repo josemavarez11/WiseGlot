@@ -23,7 +23,7 @@ export class ApiService {
       }
     }
 
-    const url = `${this.renderBaseUrl}${endpoint}`;
+    const url = `${this.awsBaseUrl}${endpoint}`;
 
     const config: RequestInit = {
       method,

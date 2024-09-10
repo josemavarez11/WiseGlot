@@ -19,6 +19,7 @@ import { LoadingComponent } from 'src/app/components/others/loading/loading.comp
 import { ApiResponse, ApiService } from 'src/services/api.service';
 import { CapacitorPreferencesService } from 'src/services/capacitorPreferences.service';
 import { CardService } from 'src/services/cardService.service';
+import { StudyCardsService } from 'src/services/studyCards.service';
 import { ModalErrorComponent } from 'src/app/components/others/modal-error/modal-error.component';
 import { addIcons } from "ionicons";
 
@@ -67,7 +68,8 @@ export class InsideDeckViewPage implements OnInit {
     private route: ActivatedRoute,
     private apiService: ApiService,
     private capacitorPreferencesService: CapacitorPreferencesService,
-    private cardService: CardService
+    private cardService: CardService,
+    private studyCardsService: StudyCardsService
   ) {}
 
 
@@ -209,7 +211,9 @@ export class InsideDeckViewPage implements OnInit {
   }
 
   Study(){
-    this.router.navigate(['/study-deck-view']);
+    this.studyCardsService.cardsNotStudied = this.cardsNotStudied;
+    this.studyCardsService.cardsToReview = this.cardsToReview;
+    this.router.navigate(['/study-deck-view'], { queryParams: { deckId: this.deckId } });
   }
 
   closeModalError(){
