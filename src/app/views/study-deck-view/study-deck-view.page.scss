@@ -135,15 +135,6 @@
     background-color: #f0f0f0;
     border-radius: 20px;
 }
-.grade{
-    width: 70px;
-    height: 60px;
-    border-radius: 10px;
-    background-color: lightblue;
-    color: #000;
-    font-size: 18px;
-    font-weight: bold;
-} 
   .input-container {
     display: flex;
     align-items: center;
@@ -162,8 +153,70 @@
   }
   
   .keyboard-input {
-    flex: 1; /* Ocupa el espacio disponible */
-    margin-right: 10px; /* Espacio entre el input y el botón */
+    flex: 1;
+    margin-right: 10px;
   }
+  .grader{
+    margin: 0;
+    padding: 3px;
+    font-size: 13px;
+    font-weight: lighter;
+  }
+  .again{
+    width: 70px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #FF003C80;
+    color: #000;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #B8002C;
+  }
+  .hard{
+    width: 70px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #FFC00D80;
+    color: #000;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #D8A000;
+  }
+  .good{
+    width: 70px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #98EE0180;
+    color: #000;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #75B702;
+  }
+  .easy{
+    width: 70px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #38AAF180;
+    color: #000;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #0078C3;
+  }
+    .again:hover{
+        background-color: #FF003C;
+        color: white;
+    }
+    .hard:hover{
+        background-color: #FFC00D;
+        color: white;
+    }
+    .good:hover{
+        background-color: #98EE01;
+        color: white;
+    }
+    .easy:hover{
+        background-color: #38AAF1;
+        color: white;
+    }
   
   

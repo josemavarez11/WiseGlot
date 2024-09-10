@@ -47,14 +47,24 @@
         </div>
       </div>
       <div class="input-container">
-        <input #textInput type="text" placeholder="Escribe respuesta..." class="keyboard-input" (keydown.enter)="showBackOfCard()" />
+        <input
+          #textInput
+          type="text"
+          placeholder="Escribe respuesta..."
+          class="keyboard-input"
+          (keydown.enter)="showBackOfCard()"
+        />
       </div>
     </div>
   </div>
 
   <div class="contentBottom">
     <ng-container *ngIf="!showOptions">
-      <button *ngIf="currentCardIndex > 0" (click)="goToPreviousCard()" class="back">
+      <button
+        *ngIf="currentCardIndex > 0"
+        (click)="goToPreviousCard()"
+        class="back"
+      >
         <svg
           width="15"
           height="15"
@@ -126,8 +136,21 @@
     <ng-container *ngIf="showOptions">
       <!-- Contenedor blanco con 4 botones -->
       <div class="optionsContainer">
-        <button *ngFor="let step of learningSteps" class="grade" (click)="selectOption(step.des_learning_step)">
-          {{ step.des_learning_step }}
+        <button class="again" (click)="selectOption(againStep)">
+          {{ againStep}}
+          <p class="grader">8m</p>
+        </button>
+        <button class="hard" (click)="selectOption(hardStep)">
+          {{ hardStep}}
+          <p class="grader">8m</p>
+        </button>
+        <button class="good" (click)="selectOption(goodStep)">
+          {{ goodStep}}
+          <p class="grader">15m</p>
+        </button>
+        <button class="easy" (click)="selectOption(easyStep)">
+          {{ easyStep}} 
+          <p class="grader">4d</p>
         </button>
       </div>
     </ng-container>

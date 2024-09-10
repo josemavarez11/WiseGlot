@@ -20,10 +20,11 @@ export class StudyDeckViewPage implements OnInit {
   errorDescription: string = '';
   isLoading: boolean = false;
   learningSteps: Array<any> = [];
-  againInfo: any = {};
-  hardInfo: any = {};
-  goodInfo: any = {};
-  easyInfo: any = {};
+
+  againStep: string = '';
+  hardStep: string = '';
+  goodStep: string = '';
+  easyStep: string = '';
   @ViewChild('textInput') textInput!: ElementRef<HTMLInputElement>;
 
   cards: Array<any> = [
@@ -51,26 +52,26 @@ export class StudyDeckViewPage implements OnInit {
     private apiService: ApiService
   ) { }
 
-  async ngOnInit() {
-    // Inicializa la primera carta
-    this.currentCard = this.cards[this.currentCardIndex];
-    this.updateProgressBar(); // Actualiza la barra al cargar la primera carta
+async ngOnInit() {
+  this.currentCard = this.cards[this.currentCardIndex];
+  this.updateProgressBar();
 
-    try {
-      this.isLoading = true;
-      await this.getLearningSteps();
+  try {
+    this.isLoading = true;
+    await this.getLearningSteps();
 
-      this.againInfo = this.learningSteps.find((step: any) => step.des_learning_step === 'Again');
-      this.hardInfo = this.learningSteps.find((step: any) => step.des_learning_step === 'Hard');
-      this.goodInfo = this.learningSteps.find((step: any) => step.des_learning_step === 'Good');
-      this.easyInfo = this.learningSteps.find((step: any) => step.des_learning_step === 'Easy');
-    } catch (error) {
-      this.errorDescription = 'Failed to fetch learning steps';
-      this.isModalErrorVisible = true;
-    } finally {
-      return this.isLoading = false;
-    }
+    // Descomponemos los pasos de aprendizaje en variables individuales
+    this.againStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Again')?.des_learning_step || '';
+    this.hardStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Hard')?.des_learning_step || '';
+    this.goodStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Good')?.des_learning_step || '';
+    this.easyStep = this.learningSteps.find((step: any) => step.des_learning_step === 'Easy')?.des_learning_step || '';
+  } catch (error) {
+    this.errorDescription = 'Failed to fetch learning steps';
+    this.isModalErrorVisible = true;
+  } finally {
+    this.isLoading = false;
   }
+}
 
   private async getLearningSteps() {
     const response = await this.capacitorPreferencesService.getAppLearningSteps();
