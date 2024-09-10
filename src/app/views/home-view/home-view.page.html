@@ -7,7 +7,7 @@
     <!-- Componente View-Mazo -->
       <div *ngIf="selectedOption === 'mazo'" class="Mazo">
         <div *ngIf="decks.length === 0" class="contentOption2">
-          <img src="../../../assets/img/views/logoModal.png" class="imgHome" />
+          <img src="../../../assets/img/views/logoModal.png.png" class="imgHome" />
           <button class="contentTouch" (click)="openModal()">
             <img src="../../../assets/img/views/decks/manito.png" class="manito">
             <p>Toca para crear un nuevo mazo</p>
@@ -15,7 +15,7 @@
         </div>
 
         <div *ngIf="decks.length > 0" class="contentOption1">
-          <img src="../../../assets/img/views/logoModal.png" class="imgHome" />
+          <img src="../../../assets/img/views/logoModal.png.png" class="imgHome" />
           <div class="body">
             <app-decks
               *ngFor="let deck of decks"

@@ -1,8 +1,8 @@
 1. estilos para los mensajes corregidos y las frases alternas en el chat.
 2. el boton de estudiar debe estar bloqueado si no hay cartas por estudiar en el mazo.
-3. cuando borras un mazo, que se usa el router para navegar a home view, te lleva a la vista del home en vez de a la vista donde se tienen todos los mazos porque ambas vistas tienen el mismo nombre. (En espera)
-4. Las flechas que suben y bajan el numero en el selector no se están viendo.
-5. El logo de la app se tarda demasiado en cargar en la vista de los mazos (home)
+3. cuando borras un mazo, que se usa el router para navegar a home view, te lleva a la vista del home en vez de a la vista donde se tienen todos los mazos porque ambas vistas tienen el mismo nombre.
+-- No lo se hacer --
+
 
 edmundog04@gmail.com
 jose.3011
