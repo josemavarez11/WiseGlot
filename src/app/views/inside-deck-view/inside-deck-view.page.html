@@ -4,7 +4,7 @@
       <button class="back" [routerLink]="['/home']">
         <img src="../../../assets/img/views/back-black.png" />
       </button>
-      <img src="../../../assets/img/views/logoModal.png" class="logoApp" />
+      <img src="../../../assets/img/views/logoModal.png.png" class="logoApp" />
     </section>
   </div>
 
@@ -107,9 +107,12 @@
             <p class="character">Por Repasar</p>
           </div>
         </div>
-        <button
-          (click)="Study()"
-          >Estudiar cartas
+        <button 
+        (click)="Study()"
+        [disabled]="cards.length === 0"
+        [ngClass]="{'disabled-button': cards.length === 0, 'aws': cards.length > 0}"
+        class="aws"
+      >Estudiar cartas
         </button>
       </div>
 
